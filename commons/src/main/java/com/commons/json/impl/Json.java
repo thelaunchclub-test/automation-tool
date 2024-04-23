@@ -6,7 +6,6 @@ import com.commons.json.JsonMapper;
 
 import java.io.File;
 
-
 /**
  * <p>
  * Converts JSON String to JSON Arrays and JSON Objects.

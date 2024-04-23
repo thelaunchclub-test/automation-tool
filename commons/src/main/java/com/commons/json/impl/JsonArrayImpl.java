@@ -5,8 +5,6 @@ import com.commons.json.JsonObject;
 import com.commons.json.JsonMapper;
 import com.commons.json.JsonWrapper;
 
-import org.apache.poi.ss.formula.functions.T;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -221,7 +219,7 @@ public class JsonArrayImpl implements JsonArray, JsonWrapper {
      * @throws NullPointerException if the specified action is null.
      */
     @Override
-    public void forEach(final Consumer<? super T> action) {
+    public void forEach(final Consumer<? super Object> action) {
         list.forEach((Consumer<? super Object>) action);
     }
 

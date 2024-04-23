@@ -1,6 +1,5 @@
 package com.commons.json;
 
-import org.apache.poi.ss.formula.functions.T;
 
 import java.util.function.Consumer;
 
@@ -121,5 +120,5 @@ public interface JsonArray {
      * @param action The action to be performed for each element.
      * @throws NullPointerException if the specified action is null.
      */
-    void forEach(Consumer<? super T> action);
+    void forEach(Consumer<? super Object> action);
 }
