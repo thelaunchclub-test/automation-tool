@@ -1,6 +1,7 @@
 package com.extent.reports.extent;
 
 import com.aventstack.extentreports.ExtentTest;
+
 import com.extent.reports.spark.SparkReporter;
 import com.extent.reports.test.Test;
 import com.extent.reports.test.TestersImpl;
@@ -10,10 +11,12 @@ import java.util.Map;
 
 /**
  * extending the ExtentReport abstract class.
+ * @see ExtentReport
  */
 public class ExtentReportImpl extends ExtentReport {
 
     private final Map<Test, ExtentTest> testMapping = new HashMap<>();
+
     private ExtentTest test;
 
     /**
@@ -28,7 +31,7 @@ public class ExtentReportImpl extends ExtentReport {
      * {@inheritDoc}
      */
     @Override
-    protected ExtentReport getReporter(String path) {
+    protected ExtentReport getReporter(final String path) {
         return null;
     }
 
@@ -36,10 +39,12 @@ public class ExtentReportImpl extends ExtentReport {
      * {@inheritDoc}
      */
     @Override
-    public Test createTest(String name) {
-        ExtentTest extentTest = reports.createTest(name);
-        Test test = new TestersImpl(extentTest);
+    public Test createTest(final String name) {
+        final ExtentTest extentTest = reports.createTest(name);
+        final Test test = new TestersImpl(extentTest);
+
         testMapping.put(test, extentTest);
+
         return test;
     }
 
@@ -47,10 +52,12 @@ public class ExtentReportImpl extends ExtentReport {
      * {@inheritDoc}
      */
     @Override
-    public Test createTestWithDes(String name, String description) {
-        ExtentTest extentTest = reports.createTest(name, description);
-        Test test = new TestersImpl(extentTest);
+    public Test createTestWithDes(final String name, final String description) {
+        final ExtentTest extentTest = reports.createTest(name, description);
+        final Test test = new TestersImpl(extentTest);
+
         testMapping.put(test, extentTest);
+
         return test;
     }
 
@@ -58,8 +65,9 @@ public class ExtentReportImpl extends ExtentReport {
      * {@inheritDoc}
      */
     @Override
-    public void removeTest(Test test) {
-        ExtentTest extentTest = testMapping.get(test);
+    public void removeTest(final Test test) {
+        final ExtentTest extentTest = testMapping.get(test);
+
         if (extentTest != null) {
             reports.removeTest(extentTest);
             testMapping.remove(test);

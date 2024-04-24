@@ -5,6 +5,7 @@ import com.extent.reports.test.Test;
 /**
  * represents a Reporter for reporting functionalities.
  * Extends the ReportMarker interface.
+ * @see ReportMarker
  */
 public interface Reporter extends ReportMarker {
 

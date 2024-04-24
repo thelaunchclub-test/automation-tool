@@ -11,20 +11,21 @@ import com.extent.reports.test.node.service.Node;
  */
 public class NodeImpl implements Node {
 
-    private Test test;
+    private final Test test;
 
     /**
      * Constructs a NodeImpl instance with the given ExtentTest object.
      *
      */
-    public NodeImpl() {
+    public NodeImpl(final Test test) {
+        this.test = test;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Test createNode(String name) {
+    public Test createNode(final String name) {
         return test.createNodeWithName(name);
     }
 

@@ -2,6 +2,7 @@ package com.extent.reports.extent;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+
 import com.extent.reports.service.Reporter;
 import com.extent.reports.spark.SparkReporter;
 import com.extent.reports.test.Test;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 /**
  * represents the Extent report functionality.
- * Implements the Reporter interface.
+ * @see Reporter
  */
 public abstract class ExtentReport implements Reporter {
 
@@ -25,14 +26,15 @@ public abstract class ExtentReport implements Reporter {
 
     /**
      * Attaches a SparkReporter to the ExtentReports instance.
-     *
      * @param reporter The SparkReporter to attach.
      */
     public void attachReporter(final SparkReporter reporter) {
         reports.attachReporter(reporter.getReport());
     }
 
-    /** Flushes the ExtentReports instance to write the report. */
+    /**
+     * Flushes the ExtentReports instance to write the report.
+     */
     public void flush() {
         reports.flush();
     }
@@ -51,10 +53,12 @@ public abstract class ExtentReport implements Reporter {
      * @param name The name of the test.
      * @return A custom Test object representing the test.
      */
-    public Test createTest(String name) {
+    public Test createTest(final String name) {
         final ExtentTest extentTest = reports.createTest(name);
         final Test test = new TestersImpl(extentTest);
+
         testMapping.put(test, extentTest.getModel());
+
         return test;
     }
 
@@ -65,10 +69,12 @@ public abstract class ExtentReport implements Reporter {
      * @param description The description of the test.
      * @return A custom Test object representing the test.
      */
-    public Test createTestWithDes(String name, String description) {
+    public Test createTestWithDes(final String name, final String description) {
         final ExtentTest extentTest = reports.createTest(name, description);
         final Test test = new TestersImpl(extentTest);
+
         testMapping.put(test, extentTest.getModel());
+
         return test;
     }
 
@@ -78,7 +84,8 @@ public abstract class ExtentReport implements Reporter {
      * @param test The custom Test object to remove.
      */
     public void removeTest(final Test test) {
-        com.aventstack.extentreports.model.Test extentTest = testMapping.get(test);
+        final com.aventstack.extentreports.model.Test extentTest = testMapping.get(test);
+
         if (extentTest != null) {
             reports.removeTest(String.valueOf(extentTest));
             testMapping.remove(test);
@@ -99,4 +106,5 @@ public abstract class ExtentReport implements Reporter {
      * @return An instance of ExtentReport.
      */
     protected abstract ExtentReport getReporter(final SparkReporter reporter);
+}
 

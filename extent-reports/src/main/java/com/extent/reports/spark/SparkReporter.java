@@ -2,21 +2,24 @@ package com.extent.reports.spark;
 
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+
 import com.extent.reports.extent.ExtentReport;
+import com.extent.reports.extent.ExtentReportImpl;
 import com.extent.reports.test.Test;
+
 import lombok.Getter;
 
 import java.io.IOException;
 
-import static com.extent.reports.Main.Main.report;
-
 /**
  * Provides functionalities for Spark reporting.
+ * @see ExtentReport
  */
 @Getter
 public class SparkReporter extends ExtentReport {
 
     private final ExtentSparkReporter extentSparkReporter;
+    private ExtentReportImpl report;
 
     public SparkReporter(final String path) {
         super();
@@ -29,7 +32,7 @@ public class SparkReporter extends ExtentReport {
      * @param xmlPath The path to the XML configuration file.
      * @throws IOException If there is an issue loading the XML configuration.
      */
-    public void loadXMLConfig(String xmlPath) throws IOException {
+    public void loadXMLConfig(final String xmlPath) throws IOException {
         extentSparkReporter.loadXMLConfig(xmlPath);
     }
 
@@ -102,7 +105,7 @@ public class SparkReporter extends ExtentReport {
      * {@inheritDoc}
      */
     @Override
-    protected ExtentReport getReporter(SparkReporter reporter) {
+    protected ExtentReport getReporter(final SparkReporter reporter) {
         return new SparkReporter(reporter.toString());
     }
 

@@ -3,6 +3,7 @@ package com.extent.reports.test;
 import com.aventstack.extentreports.AbstractProcessor;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.GherkinKeyword;
+
 import com.extent.reports.test.log.impl.LogImpl;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.node.service.Node;
@@ -18,9 +19,6 @@ public class TestersImpl extends AbstractProcessor implements Test {
     private ExtentTest extentTest;
     private Test test;
 
-    /**
-     * Constructs a TestersImpl instance with the given ExtentTest object.
-     */
     public TestersImpl(final ExtentTest test) {
         this.extentTest = test;
     }
@@ -39,6 +37,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test assignAuthor(final String author) {
         this.extentTest = extentTest.assignAuthor(author);
+
         return this;
     }
 
@@ -48,6 +47,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test assignCategory(final String category) {
         this.extentTest = extentTest.assignCategory(category);
+
         return this;
     }
 
@@ -57,6 +57,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test assignDevice(final String device) {
         this.extentTest = extentTest.assignDevice(device);
+
         return this;
     }
 
@@ -66,6 +67,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test addSnapShotFromPath(final String path) {
         this.extentTest = extentTest.addScreenCaptureFromPath(path);
+
         return this;
     }
 
@@ -75,6 +77,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test addSnapShotFromBase64String(final String base64) {
         this.extentTest = extentTest.addScreenCaptureFromBase64String(base64);
+
         return this;
     }
 
@@ -94,6 +97,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test createNodeWithNameAndDesc(final String name, final String description) {
         this.extentTest = extentTest.createNode(name, description);
+
         return this;
     }
 
@@ -103,6 +107,7 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test createNodeWithNameAndDescAndGherkin(final GherkinKeyword gherkinKeyword, final String name, final String description) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name, description);
+
         return this;
     }
 
@@ -112,12 +117,12 @@ public class TestersImpl extends AbstractProcessor implements Test {
     @Override
     public Test createNodeWithGherkin(final GherkinKeyword gherkinKeyword, final String name) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name);
+
         return this;
     }
 
     @Override
     public void setLog(Status status, String details) {
-
     }
 
     @Override

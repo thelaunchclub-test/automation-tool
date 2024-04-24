@@ -12,17 +12,17 @@ public class TabsImpl implements Tabs {
         this.test = testGenerator;
     }
     @Override
-    public Test assignAuthor(String name) {
+    public Test assignAuthor(final String name) {
         return test.assignAuthor(name);
     }
 
     @Override
-    public Test assignCategory(String name) {
+    public Test assignCategory(final String name) {
         return test.assignCategory(name);
     }
 
     @Override
-    public Test assignDevice(String name) {
+    public Test assignDevice(final String name) {
         return test.assignDevice(name);
     }
 }
