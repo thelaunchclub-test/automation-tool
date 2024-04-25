@@ -1,37 +1,73 @@
-/**
- * provides a contract for operations related to test execution and reporting.
- * To interact with test nodes, assign attributes, add snapshots, and manage logging.
- */
 package com.extent.reports.test;
 
 import com.aventstack.extentreports.GherkinKeyword;
+
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.node.service.Node;
 import com.extent.reports.test.screenshot.service.ScreenCapture;
 import com.extent.reports.test.status.Status;
 import com.extent.reports.test.tabs.service.Tabs;
 
-
+/**
+ * The {@code Test} interface defines the contract for a test object
+ * that encapsulates various functionalities for managing and reporting
+ * test execution details.
+ *
+ * <p>
+ * This interface provides methods to interact with test nodes, logs,
+ * screen captures, and tabs. It also includes methods for assigning
+ * authors, categories, and devices to tests, as well as adding snapshots
+ * and creating test nodes with various configurations.
+ * </p>
+ *
+ * @version 1.0
+ * @Author Navin Jones
+ * @see Node
+ * @see Log
+ * @see ScreenCapture
+ * @see Tabs
+ * @see GherkinKeyword
+ * @see Status
+ */
 public interface Test {
 
     /**
-     * Retrieves the current node associated with the tester.
+     * Retrieves the current node associated with the test.
      *
-     * @return Node - the current node
+     * @return Node - the current test node
+     * @see Node
      */
     Node getNode();
 
+    /**
+     * Retrieves the log instance associated with the test.
+     *
+     * @return Log - the log instance
+     * @see Log
+     */
     Log getLog();
 
+    /**
+     * Retrieves the screen capture instance associated with the test.
+     *
+     * @return ScreenCapture - the screen capture instance
+     * @see ScreenCapture
+     */
     ScreenCapture getScreenCapture();
 
+    /**
+     * Retrieves the tabs instance associated with the test.
+     *
+     * @return Tabs - the tabs instance
+     * @see Tabs
+     */
     Tabs getTabs();
 
     /**
      * Assigns an author name to the test.
      *
      * @param name - the name of the author
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test assignAuthor(final String name);
 
@@ -39,7 +75,7 @@ public interface Test {
      * Assigns a category to the test.
      *
      * @param name - the name of the category
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test assignCategory(final String name);
 
@@ -47,7 +83,7 @@ public interface Test {
      * Assigns a device name to the test.
      *
      * @param name - the name of the device
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test assignDevice(final String name);
 
@@ -55,7 +91,7 @@ public interface Test {
      * Adds a snapshot from a file path to the test.
      *
      * @param path - the file path of the snapshot
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test addSnapShotFromPath(final String path);
 
@@ -63,7 +99,7 @@ public interface Test {
      * Adds a snapshot from a Base64 encoded string to the test.
      *
      * @param base64 - the Base64 encoded string of the snapshot
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test addSnapShotFromBase64String(final String base64);
 
@@ -71,7 +107,7 @@ public interface Test {
      * Creates a new test node with the specified name.
      *
      * @param name - the name of the test node
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test createNodeWithName(final String name);
 
@@ -80,7 +116,7 @@ public interface Test {
      *
      * @param name        - the name of the test node
      * @param description - the description of the test node
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test createNodeWithNameAndDesc(final String name, final String description);
 
@@ -90,7 +126,7 @@ public interface Test {
      * @param gherkinKeyword - the GherkinKeyword enum value
      * @param name           - the name of the test node
      * @param description    - the description of the test node
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test createNodeWithNameAndDescAndGherkin(final GherkinKeyword gherkinKeyword, final String name, final String description);
 
@@ -99,7 +135,7 @@ public interface Test {
      *
      * @param gherkinKeyword - the GherkinKeyword enum value
      * @param name           - the name of the test node
-     * @return Testers - the updated Testers instance
+     * @return Test - the updated Test instance
      */
     Test createNodeWithGherkin(final GherkinKeyword gherkinKeyword, final String name);
 
@@ -108,6 +144,7 @@ public interface Test {
      *
      * @param status  - the Status enum value
      * @param details - the details to be logged
+     * @see Status
      */
     void setLog(final Status status, final String details);
 

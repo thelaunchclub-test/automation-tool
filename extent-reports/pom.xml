@@ -9,8 +9,7 @@
     </parent>
 
     <groupId>com.extent-reports</groupId>
-    <artifactId>extent-reports</artifactId>
-    <name>extent-reports</name>
+    <artifactId>extent.reports</artifactId>
 
     <dependencies>
         <dependency>

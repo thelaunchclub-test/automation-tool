@@ -5,16 +5,65 @@ import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.status.Status;
 
 /**
- * Manages logging functionalities such as setting log details, retrieving logs,
- * and handling exceptions and media attachments for a test.
+ * The {@code LogImpl} class provides an implementation of the {@code Log} interface, encapsulating
+ * the behavior and state management of logging operations within the application context.
+ *
+ * <p>
+ * This implementation serves as a foundational layer for logging functionalities, offering a basic
+ * structure to handle and process logging details based on provided {@code Status} indicators
+ * and associated messages.
+ * </p>
+ *
+ * <p>
+ * The {@code LogImpl} class delegates the actual logging responsibilities to an underlying
+ * {@code Test} instance, which is responsible for managing and persisting the logging information.
+ * </p>
+ *
+ * <p>
+ * Key Features:
+ * <ul>
+ *     <li>Method {@code log}: Creates a new instance of {@code LogImpl}, facilitating the
+ *         initialization of a new logging sequence or context. This method can be extended to
+ *         incorporate additional logging configurations or behaviors.</li>
+ *     <li>Method {@code setLog}: Delegates the logging operation to an underlying {@code Test} instance,
+ *         setting the provided status and details. This method enables the integration of the
+ *         {@code LogImpl} with existing logging mechanisms or systems.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * Example Usage:
+ * <pre>
+ *     Log logger = new LogImpl();
+ *     logger.log(Status.INFO, "Application started successfully.");
+ *     logger.setLog(Status.ERROR, "An error occurred during processing.");
+ * </pre>
+ * </p>
+ *
+ * <p>
+ * Note: This implementation serves as a placeholder and may require additional refinement
+ * to incorporate complete logging functionalities, error handling, and integration
+ * with external logging systems.
+ * </p>
+ *
+ * @author Navin Jones
+ * @version 1.0
  * @see Log
+ * @see Test
  */
-public class LogImpl implements Log {
+public final class LogImpl implements Log {
 
     private Test test;
+    public LogImpl() {
+    }
 
     /**
      * {@inheritDoc}
+     *
+     * <p>
+     * This method creates a new instance of {@code LogImpl}, facilitating the initialization
+     * of a new logging sequence or context.
+     * </p>
      */
     @Override
     public Log log(final Status status, final String details) {
@@ -23,10 +72,17 @@ public class LogImpl implements Log {
 
     /**
      * {@inheritDoc}
+     *
+     * <p>
+     * This method delegates the logging operation to the underlying {@code Test} instance,
+     * setting the provided status and details.
+     * </p>
      */
     @Override
     public void setLog(final Status status, final String details) {
         test.setLog(status, details);
     }
 }
+
+
 

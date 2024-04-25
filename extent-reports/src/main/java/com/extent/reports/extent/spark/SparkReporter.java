@@ -1,10 +1,11 @@
-package com.extent.reports.spark;
+package com.extent.reports.extent.spark;
 
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import com.extent.reports.extent.ExtentReport;
-import com.extent.reports.extent.ExtentReportImpl;
+import com.extent.reports.extent.ExtentReportBuilder;
+import com.extent.reports.extent.ExtentReportBuilderImpl;
+import com.extent.reports.service.ReportGenerator;
 import com.extent.reports.test.Test;
 
 import lombok.Getter;
@@ -12,15 +13,34 @@ import lombok.Getter;
 import java.io.IOException;
 
 /**
- * Provides functionalities for Spark reporting.
- * @see ExtentReport
+ * The {@code SparkReporter} class extends the {@code ExtentReport} class
+ * to provide a custom reporter implementation using ExtentSparkReporter
+ * for generating reports with enhanced features.
+ *
+ * <p>
+ * This class encapsulates the functionality to configure and generate
+ * reports using the ExtentSparkReporter library.
+ * </p>
+ *
+ * @version 1.1
+ * @Author Navin Jones
+ * @see ExtentReportBuilder
  */
 @Getter
-public class SparkReporter extends ExtentReport {
+public class SparkReporter extends ExtentReportBuilder {
+
 
     private final ExtentSparkReporter extentSparkReporter;
-    private ExtentReportImpl report;
 
+    private ExtentReportBuilderImpl report;
+
+    private SparkReporter sparkReporter;
+
+    /**
+     * Constructs a new SparkReporter with the specified path.
+     *
+     * @param path The path to the report file.
+     */
     public SparkReporter(final String path) {
         super();
         this.extentSparkReporter = new ExtentSparkReporter(path);
@@ -79,25 +99,16 @@ public class SparkReporter extends ExtentReport {
 
     /**
      * {@inheritDoc}
+     *
+     * @see Test
      */
     @Override
     public Test getTest() {
         return report.getTest();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    protected ExtentReport getReporter(final String path) {
-        return new SparkReporter(path);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected ExtentReport getReporter() {
+    protected ExtentReportBuilder getReporter() {
         return null;
     }
 
@@ -105,19 +116,20 @@ public class SparkReporter extends ExtentReport {
      * {@inheritDoc}
      */
     @Override
-    protected ExtentReport getReporter(final SparkReporter reporter) {
-        return new SparkReporter(reporter.toString());
+    protected ExtentReportBuilder getReporter(final String path) {
+        return new SparkReporter(path);
     }
 
     /**
-     * Returns the ExtentSparkReporter instance for reporting.
+     * {@inheritDoc}
      *
-     * @return An ExtentSparkReporter instance.
+     * @see ReportGenerator
      */
-    public ExtentSparkReporter getReport() {
-        return extentSparkReporter;
+    public ReportGenerator getReport() {
+        return new ExtentReportBuilderImpl();
     }
 }
+
 
 
 
