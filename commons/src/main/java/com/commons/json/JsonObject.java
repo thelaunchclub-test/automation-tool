@@ -2,13 +2,24 @@ package com.commons.json;
 
 /**
  * <p>
- * Associates the specified value with the specified key in this JSON object
+ * Provides methods to put and retrieve data based on its data type within a JSON object.
+ * Ensures type safety and handles null values appropriately.
+ * Represents a list as a {@link JsonArray} and a map as a {@link JsonObject}.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * JsonObject jsonObject = new JsonObjectImpl();
+ * jsonObject.put("name", "John Doe");
+ * String name = jsonObject.getString("name");
+ * }</pre>
  * </p>
  *
  * @author petchimuthu1520
  * @version 1.0
  */
-public interface JsonObject {
+public interface JsonObject extends JsonWrapper{
 
     /**
      * Associates the specified value with the specified key in this JSON object.
@@ -88,6 +99,14 @@ public interface JsonObject {
     Integer optInt(final String key);
 
     /**
+     * Returns the integer value associated with the specified key, or null if the key is not found or the value is not an integer.
+     *
+     * @param key The key whose associated integer value is to be returned.
+     * @return The integer value associated with the given key, or null if the key is not found or the value is not an integer.
+     */
+    String optString(final String key);
+
+    /**
      * Returns the boolean value associated with the specified key, or null if the key is not found or the value is not a boolean.
      *
      * @param key The key whose associated boolean value is to be returned.
@@ -118,5 +137,4 @@ public interface JsonObject {
      * @return true if the value associated with the key is null, false otherwise.
      */
     boolean isNull(final String key);
-
 }

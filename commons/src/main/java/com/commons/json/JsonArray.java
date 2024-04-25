@@ -1,17 +1,33 @@
 package com.commons.json;
 
-
 import java.util.function.Consumer;
 
 /**
+ * The {@code JsonArray} interface defines operations for manipulating JSON arrays.
+ * It provides methods to access and manipulate elements within the array, offering
+ * functionalities for type checking, handling null values, and wrapping data structures.
+ *
  * <p>
- * Manipulates JSON Array.
+ * Example usage:
+ * <pre>{@code
+ * JsonArray jsonArray = new JsonArrayImpl();
+ * jsonArray.put("value");
+ * String retrievedValue = jsonArray.getString(0);
+ * }</pre>
  * </p>
  *
  * @author petchimuthu1520
  * @version 1.0
  */
-public interface JsonArray {
+
+public interface JsonArray extends JsonWrapper{
+
+    /**
+     * Puts value into the list.
+     *
+     * @param value The value to be added.
+     */
+    void put(final Object value);
 
     /**
      * Returns the integer value at the specified index.
@@ -98,12 +114,6 @@ public interface JsonArray {
      */
     Object optString(final int index);
 
-    /**
-     * Appends the specified value to the end of the JSON array.
-     *
-     * @param value The value to be appended.
-     */
-    void put(final Object value);
 
     /**
      * Checks if the value at the specified index is null.

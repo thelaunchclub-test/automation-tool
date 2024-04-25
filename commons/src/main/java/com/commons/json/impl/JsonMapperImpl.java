@@ -8,53 +8,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * encodes and decoded JSON data.
+ * Provides methods to encode and decode JSON data. It offers functionalities to convert
+ * JSON files or JSON strings to String or byte[], and transforms Strings into lists or maps as required.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * JsonMapper jsonMapper = new JsonMapperImpl();
+ * String jsonString = "{\"key\": \"value\"}";
+ * Map<String, Object> decodedObject = jsonMapper.decodeAsObject(jsonString);
+ * }</pre>
  * </p>
  *
  * @author petchimuthu1520
  * @version 1.0
+ * @see JsonMapper
  */
-public class JsonMapperImpl implements JsonMapper {
+final class JsonMapperImpl implements JsonMapper {
 
     private final ObjectMapper objectMapper;
 
     public JsonMapperImpl() {
         this.objectMapper = new ObjectMapper();
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param classType The object to be encoded.
-     * @return The JSON string representation of the object.
-     */
-    @Override
-    public String encodeAsString(final String classType) {
-        try {
-            return objectMapper.writeValueAsString(classType);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e); // TODO: Implement custom exception
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param classType The object to be encoded.
-     * @return The JSON bytes representation of the object.
-     */
-    @Override
-    public byte[] encodeAsByte(final String classType) {
-        try {
-            return objectMapper.writeValueAsBytes(classType);
-        } catch (JsonProcessingException exception) {
-            throw new RuntimeException(exception);
-        }
     }
 
     /**

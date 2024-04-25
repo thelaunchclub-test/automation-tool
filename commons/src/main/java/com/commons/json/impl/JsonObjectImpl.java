@@ -1,8 +1,8 @@
 package com.commons.json.impl;
 
 import com.commons.json.JsonArray;
-import com.commons.json.JsonObject;
 import com.commons.json.JsonMapper;
+import com.commons.json.JsonObject;
 import com.commons.json.JsonWrapper;
 
 import java.util.List;
@@ -11,13 +11,25 @@ import java.util.Objects;
 
 /**
  * <p>
- * Associates the specified value with the specified key in this JSON object
+ * Provides methods to put and retrieve data based on its data type within a JSON object.
+ * Ensures type safety and handles null values appropriately.
+ * Represents a list as a {@link JsonArray} and a map as a {@link JsonObject}.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * JsonObject jsonObject = new JsonObjectImpl();
+ * jsonObject.put("name", "John Doe");
+ * String name = jsonObject.getString("name");
+ * }</pre>
  * </p>
  *
  * @author petchimuthu1520
  * @version 1.0
+ * @see JsonObject
  */
-public class JsonObjectImpl implements JsonObject, JsonWrapper {
+final class JsonObjectImpl implements JsonObject, JsonWrapper {
 
     private JsonMapper jsonMapper;
 
@@ -110,7 +122,13 @@ public class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) map.get(key));
+
+        if (Objects.nonNull(map.get(key))) {
+
+            return wrappedJsonArray((List<Object>) map.get(key));
+        } else {
+            throw new NullPointerException("The Key is invalid");
+        }
     }
 
     /**
@@ -151,6 +169,23 @@ public class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
+     * @param key The key whose associated integer value is to be returned.
+     * @return The integer value associated with the given key, or null if the key is not found or the value is not an integer.
+     */
+    @Override
+    public String optString(final String key) {
+        final Object object = map.get(key);
+
+        if (Objects.nonNull(object) && object instanceof String) {
+            return (String) object;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @param key The key whose associated boolean value is to be returned.
      * @return The boolean value associated with the given key, or null if the key is not found or the value is not a boolean.
      */
@@ -173,7 +208,13 @@ public class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) map.get(key));
+
+        if (Objects.nonNull(map.get(key))) {
+
+            return wrappedJsonObject((Map<String, Object>) map.get(key));
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -194,7 +235,6 @@ public class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The object if not null.
      * @throws NullPointerException If the object is null.
      */
-
     private Object check(final Object object) {
         if (Objects.nonNull(object)) {
             return object;
@@ -206,35 +246,19 @@ public class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param list The list to be wrapped.
-     * @return The wrapped {@link JsonArray}.
-     */
-    @Override
-    public JsonArray wrappedJsonArray(final List<Object> list) {
-        return new JsonArrayImpl(jsonMapper, list);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param map The map to be wrapped.
-     * @return The wrapped {@link JsonObject}.
-     */
-    @Override
-    public JsonObject wrappedJsonObject(final Map<String, Object> map) {
-        return new JsonObjectImpl(jsonMapper, map);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
      * @param key The key whose associated JSON object is to be returned.
      * @return The JSON object associated with the given key.
      * @throws NullPointerException if the key is not found or the value is not a JSON object.
      */
     @Override
     public JsonObject getJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) map.get(key));
+
+        if (Objects.nonNull(map.get(key))) {
+
+            return wrappedJsonObject((Map<String, Object>) map.get(key));
+        } else {
+            throw new NullPointerException("The Key is invalid");
+        }
     }
 
     /**
@@ -244,8 +268,33 @@ public class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
      */
     public JsonArray optJsonArray(final String key) {
-        final Object object = map.get(key);
+        if (Objects.nonNull(map.get(key))) {
 
-        return wrappedJsonArray((List<Object>) object);
+            return wrappedJsonArray((List<Object>) map.get(key));
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param list The List of Objects to wrap.
+     * @return A JsonArray containing the wrapped list.
+     */
+    @Override
+    public JsonArray wrappedJsonArray(final List<Object> list) {
+        return new JsonArrayImpl(jsonMapper, list);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param map The Map of key-value pairs to wrap.
+     * @return A JsonObject containing the wrapped map.
+     */
+    @Override
+    public JsonObject wrappedJsonObject(final Map<String, Object> map) {
+        return new JsonObjectImpl(jsonMapper, map);
     }
 }

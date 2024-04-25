@@ -1,20 +1,37 @@
 package com.commons.json.impl;
 
 import com.commons.json.JsonArray;
-import com.commons.json.JsonObject;
 import com.commons.json.JsonMapper;
+import com.commons.json.JsonObject;
 
 import java.io.File;
 
 /**
  * <p>
- * Converts JSON String to JSON Arrays and JSON Objects.
+ * The {@code Json} class serves as a utility to handle and process JSON data.
+ * It provides methods to accept input either as a JSON File or a JSON String and
+ * converts the input data to a suitable representation like {@link  JsonArray} or {@link JsonObject},
+ * based on the specific requirements and structure of the provided data.
  * </p>
  *
- * @author petchimuthu1520
+ * <p>
+ * This class offers flexibility in processing both file-based and string-based JSON inputs,
+ * allowing users to seamlessly convert and manipulate JSON data as per their needs.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * JsonObject jsonData = json.object(new File("data.json"));
+ * }</pre>
+ * </p>
+ * <p>
+ *
+ * @author petchimuthu2015
  * @version 1.0
  */
-public class Json {
+
+public final class Json {
 
     private static final JsonMapper JSON_MAPPER = new JsonMapperImpl();
 

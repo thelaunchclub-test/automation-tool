@@ -8,6 +8,15 @@ import java.util.Map;
  * Provides methods to wrap a List of Objects into a JsonArray and a Map into a JsonObject.
  * </p>
  *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * JsonWrapper jsonWrapper = new JsonWrapperImpl();
+ * List<Object> dataList = new ArrayList<>();
+ * JsonArray jsonArray = jsonWrapper.wrappedJsonArray(dataList);
+ * }</pre>
+ * </p>
+ *
  * @author petchimuthu1520
  * @version 1.0
  */
@@ -28,5 +37,4 @@ public interface JsonWrapper {
      * @return A JsonObject containing the wrapped map.
      */
     JsonObject wrappedJsonObject(final Map<String, Object> map);
-
 }
