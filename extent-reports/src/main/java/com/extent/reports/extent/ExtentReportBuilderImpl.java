@@ -7,12 +7,9 @@ import com.extent.reports.service.ReportGenerator;
 import com.extent.reports.test.Test;
 import com.extent.reports.test.TestService;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * The {@code ExtentReportBuilderImpl} class extends the {@code ReportBuilder} class
- * to provide a concrete implementation of the report generation functionalities
+ * Provides a concrete implementation of the report generation functionalities
  * using the ExtentReports library.
  *
  * <p>
@@ -27,12 +24,11 @@ import java.util.Map;
  */
 public final class ExtentReportBuilderImpl extends ExtentReportBuilder {
 
-    private final Map<Test, ExtentTest> test = new HashMap<>();
-
+    private final ExtentReportServiceImpl reportService;
     private ExtentTest extentTest ;
-    private final ExtentReportServiceImpl reportService = new ExtentReportServiceImpl();
 
     public ExtentReportBuilderImpl() {
+        reportService = new ExtentReportServiceImpl();
     }
 
     /**
@@ -46,45 +42,6 @@ public final class ExtentReportBuilderImpl extends ExtentReportBuilder {
     @Override
     protected ExtentReportBuilder getReporter(final String path) {
         return new SparkReporter(path);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Test createTest(final String name) {
-        final ExtentTest extentTest = reports.createTest(name);
-        final Test test = new TestService(extentTest);
-
-        this.test.put(test, extentTest);
-
-        return test;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Test createTestWithDes(final String name, final String description) {
-        final ExtentTest extentTest = reports.createTest(name, description);
-        final Test test = new TestService(extentTest);
-
-        this.test.put(test, extentTest);
-
-        return test;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void removeTest(final Test test) {
-        final ExtentTest extentTest = this.test.get(test);
-
-        if (extentTest != null) {
-            reports.removeTest(extentTest);
-            this.test.remove(test);
-        }
     }
 
     /**

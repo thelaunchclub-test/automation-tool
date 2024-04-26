@@ -1,11 +1,10 @@
 package com.extent.reports.test.screenshot.service;
 
-
 import com.extent.reports.test.Test;
 import com.extent.reports.test.screenshot.impl.ScreenCaptureImpl;
 
 /**
- * The {@code ScreenCapture} interface defines the contract for capturing and integrating
+ * Defines the contract for capturing and integrating
  * screenshots into the testing framework or system. This interface provides methods to
  * capture screenshots from various sources, such as file paths and Base64 encoded strings,
  * and associate them with the test execution context.

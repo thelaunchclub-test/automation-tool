@@ -4,7 +4,7 @@ package com.extent.reports.test.tabs.service;
 import com.extent.reports.test.Test;
 
 /**
- * The {@code Tabs} interface defines the contract for managing and associating
+ * Defines the contract for managing and associating
  * various metadata attributes, such as author, category, and device, with a test
  * execution or operation within the testing framework. This interface offers methods
  * to assign and update these metadata attributes to provide additional context and

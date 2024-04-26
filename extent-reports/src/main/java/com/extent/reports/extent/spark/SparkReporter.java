@@ -13,8 +13,7 @@ import lombok.Getter;
 import java.io.IOException;
 
 /**
- * The {@code SparkReporter} class extends the {@code ExtentReport} class
- * to provide a custom reporter implementation using ExtentSparkReporter
+ * Provides a custom reporter implementation using ExtentSparkReporter
  * for generating reports with enhanced features.
  *
  * <p>
@@ -27,20 +26,11 @@ import java.io.IOException;
  * @see ExtentReportBuilder
  */
 @Getter
-public class SparkReporter extends ExtentReportBuilder {
-
+public final class SparkReporter extends ExtentReportBuilder {
 
     private final ExtentSparkReporter extentSparkReporter;
-
     private ExtentReportBuilderImpl report;
 
-    private SparkReporter sparkReporter;
-
-    /**
-     * Constructs a new SparkReporter with the specified path.
-     *
-     * @param path The path to the report file.
-     */
     public SparkReporter(final String path) {
         super();
         this.extentSparkReporter = new ExtentSparkReporter(path);

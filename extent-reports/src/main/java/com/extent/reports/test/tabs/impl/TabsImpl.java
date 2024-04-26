@@ -4,7 +4,7 @@ import com.extent.reports.test.Test;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
- * The {@code TabsImpl} class provides an implementation of the {@code Tabs} interface,
+ * Provides an implementation of the {@code Tabs} interface,
  * encapsulating the logic for managing and associating metadata attributes, such as author,
  * category, and device, with a test execution or operation within the testing framework.
  *
@@ -43,18 +43,8 @@ import com.extent.reports.test.tabs.service.Tabs;
  */
 public final class TabsImpl implements Tabs {
 
-    /**
-     * The underlying {@code Test} instance responsible for handling the actual
-     * assignment and management of metadata attributes with the test execution or operation.
-     */
     private final Test test;
 
-    /**
-     * Constructs a {@code TabsImpl} instance with the specified {@code Test} generator.
-     *
-     * @param testGenerator - the {@code Test} generator representing the test execution
-     *                      context and responsible for managing metadata attributes.
-     */
     public TabsImpl(final Test testGenerator) {
         this.test = testGenerator;
     }

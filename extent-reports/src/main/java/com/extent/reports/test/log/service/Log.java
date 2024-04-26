@@ -3,7 +3,7 @@ package com.extent.reports.test.log.service;
 import com.extent.reports.test.status.Status;
 
 /**
- * The {@code Log} interface defines the contract for logging operations within the application.
+ * Defines the contract for logging operations within the application.
  * Implementations of this interface encapsulate the behavior and characteristics of various logging strategies.
  *
  * <p>

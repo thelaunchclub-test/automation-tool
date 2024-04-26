@@ -12,8 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The {@code ExtentReport} abstract class implements the {@code TestReporterInterface}
- * and serves as a base class for custom report generation using ExtentReports library.
+ * Serves as a base class for custom report generation using ExtentReports library.
  *
  * <p>
  * This class encapsulates the core functionality for report generation,
@@ -28,20 +27,14 @@ import java.util.Map;
 public abstract class ExtentReportBuilder implements ExtentReporterService {
 
     protected static ExtentReports reports;
-    private final Map<Test, com.aventstack.extentreports.model.Test> test = new HashMap<>();
 
-    /**
-     * Initializes a new ExtentReport instance with a new ExtentReports object.
-     */
+    protected final Map<Test, ExtentTest> test;
+
     protected ExtentReportBuilder() {
         reports = new ExtentReports();
+        test = new HashMap<>();
     }
 
-    /**
-     * Attaches a SparkReporter to the ExtentReports instance for enhanced reporting.
-     *
-     * @param reporter The SparkReporter instance to attach.
-     */
     public void attachReporter(final SparkReporter reporter) {
         reports.attachReporter(reporter.getExtentSparkReporter());
     }
@@ -63,7 +56,7 @@ public abstract class ExtentReportBuilder implements ExtentReporterService {
         final ExtentTest extentTest = reports.createTest(name);
         final Test test = new TestService(extentTest);
 
-        this.test.put(test, extentTest.getModel());
+        this.test.put(test, extentTest);
 
         return test;
     }
@@ -75,11 +68,11 @@ public abstract class ExtentReportBuilder implements ExtentReporterService {
      * @param description The description of the test.
      * @return A custom Test object representing the newly created test.
      */
-    public Test createTestWithDes(final String name, final String description) {
+    public Test createTest(final String name, final String description) {
         final ExtentTest extentTest = reports.createTest(name, description);
         final Test test = new TestService(extentTest);
 
-        this.test.put(test, extentTest.getModel());
+        this.test.put(test, extentTest);
 
         return test;
     }
@@ -90,10 +83,11 @@ public abstract class ExtentReportBuilder implements ExtentReporterService {
      * @param test The custom Test object to remove.
      */
     public void removeTest(final Test test) {
-        final com.aventstack.extentreports.model.Test extentTest = this.test.get(test);
 
-        if (extentTest != null) {
-            reports.removeTest(String.valueOf(extentTest));
+        if (this.test.containsKey(test)) {
+            final ExtentTest extentTest = this.test.get(test);
+
+            reports.removeTest(extentTest);
             this.test.remove(test);
         }
     }

@@ -9,7 +9,7 @@ import com.extent.reports.test.status.Status;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
- * The {@code Test} interface defines the contract for a test object
+ * Defines the contract for a test object
  * that encapsulates various functionalities for managing and reporting
  * test execution details.
  *
@@ -109,7 +109,7 @@ public interface Test {
      * @param name - the name of the test node
      * @return Test - the updated Test instance
      */
-    Test createNodeWithName(final String name);
+    Test createNode(final String name);
 
     /**
      * Creates a new test node with the specified name and description.
@@ -118,7 +118,7 @@ public interface Test {
      * @param description - the description of the test node
      * @return Test - the updated Test instance
      */
-    Test createNodeWithNameAndDesc(final String name, final String description);
+    Test createNode(final String name, final String description);
 
     /**
      * Creates a new test node with the specified Gherkin keyword, name, and description.
@@ -128,7 +128,7 @@ public interface Test {
      * @param description    - the description of the test node
      * @return Test - the updated Test instance
      */
-    Test createNodeWithNameAndDescAndGherkin(final GherkinKeyword gherkinKeyword, final String name, final String description);
+    Test createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
 
     /**
      * Creates a new test node with the specified Gherkin keyword and name.
@@ -137,7 +137,7 @@ public interface Test {
      * @param name           - the name of the test node
      * @return Test - the updated Test instance
      */
-    Test createNodeWithGherkin(final GherkinKeyword gherkinKeyword, final String name);
+    Test createNode(final GherkinKeyword gherkinKeyword, final String name);
 
     /**
      * Sets the log status and details for the current test node.
@@ -147,6 +147,16 @@ public interface Test {
      * @see Status
      */
     void setLog(final Status status, final String details);
+
+    void LogInfo(final String message);
+
+    void LogPass(final String message);
+
+    void LogFail(final String message);
+
+    void LogSkip(final String message);
+
+    void LogWarning(final String message);
 
 }
 

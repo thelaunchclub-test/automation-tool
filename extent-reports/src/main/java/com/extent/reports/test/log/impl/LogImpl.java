@@ -5,7 +5,7 @@ import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.status.Status;
 
 /**
- * The {@code LogImpl} class provides an implementation of the {@code Log} interface, encapsulating
+ * Provides an implementation of the {@code Log} interface, encapsulating
  * the behavior and state management of logging operations within the application context.
  *
  * <p>
@@ -59,11 +59,6 @@ public final class LogImpl implements Log {
 
     /**
      * {@inheritDoc}
-     *
-     * <p>
-     * This method creates a new instance of {@code LogImpl}, facilitating the initialization
-     * of a new logging sequence or context.
-     * </p>
      */
     @Override
     public Log log(final Status status, final String details) {
@@ -72,11 +67,6 @@ public final class LogImpl implements Log {
 
     /**
      * {@inheritDoc}
-     *
-     * <p>
-     * This method delegates the logging operation to the underlying {@code Test} instance,
-     * setting the provided status and details.
-     * </p>
      */
     @Override
     public void setLog(final Status status, final String details) {

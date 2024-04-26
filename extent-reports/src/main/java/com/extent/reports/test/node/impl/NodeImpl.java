@@ -6,7 +6,7 @@ import com.extent.reports.test.Test;
 import com.extent.reports.test.node.service.Node;
 
 /**
- * The {@code NodeImpl} class provides an implementation of the {@code Node} interface,
+ * Provides an implementation of the {@code Node} interface,
  * encapsulating the logic for creating test nodes based on the provided parameters
  * and delegating the actual node creation to an underlying {@code Test} instance.
  *
@@ -66,12 +66,6 @@ public final class NodeImpl implements Node {
 
     private final Test test;
 
-    /**
-     * Constructs a {@code NodeImpl} instance with the given {@code Test} object.
-     *
-     * @param test - the {@code Test} object representing the underlying test framework
-     *              or system for test node creation.
-     */
     public NodeImpl(final Test test) {
         this.test = test;
     }
@@ -80,8 +74,8 @@ public final class NodeImpl implements Node {
      * {@inheritDoc}
      */
     @Override
-    public Test createNode(final String name) {
-        return test.createNodeWithName(name);
+    public void createNode(final String name) {
+        test.createNode(name);
     }
 
     /**
@@ -89,7 +83,7 @@ public final class NodeImpl implements Node {
      */
     @Override
     public Test createNode(final String name, final String description) {
-        return test.createNodeWithNameAndDesc(name, description);
+        return test.createNode(name, description);
     }
 
     /**
@@ -97,7 +91,7 @@ public final class NodeImpl implements Node {
      */
     @Override
     public Test createNode(final GherkinKeyword gherkinKeyword, final String name) {
-        return test.createNodeWithGherkin(gherkinKeyword, name);
+        return test.createNode(gherkinKeyword, name);
     }
 
     /**
@@ -105,7 +99,7 @@ public final class NodeImpl implements Node {
      */
     @Override
     public Test createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
-        return test.createNodeWithNameAndDescAndGherkin(gherkinKeyword, name, description);
+        return test.createNode(gherkinKeyword, name, description);
     }
 }
 

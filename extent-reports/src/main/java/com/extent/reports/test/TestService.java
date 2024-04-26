@@ -37,13 +37,14 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see Status
  */
 
-public class TestService implements Test {
+public final class TestService implements Test {
 
     private ExtentTest extentTest;
-    private Test test;
+    private final Test test;
 
     public TestService(final ExtentTest test) {
         this.extentTest = test;
+        this.test = this;
 
     }
 
@@ -109,7 +110,7 @@ public class TestService implements Test {
      * {@inheritDoc}
      */
     @Override
-    public Test createNodeWithName(final String name) {
+    public Test createNode(final String name) {
         this.extentTest = extentTest.createNode(name);
 
         return this;
@@ -119,7 +120,7 @@ public class TestService implements Test {
      * {@inheritDoc}
      */
     @Override
-    public Test createNodeWithNameAndDesc(final String name, final String description) {
+    public Test createNode(final String name, final String description) {
         this.extentTest = extentTest.createNode(name, description);
 
         return this;
@@ -129,7 +130,7 @@ public class TestService implements Test {
      * {@inheritDoc}
      */
     @Override
-    public Test createNodeWithNameAndDescAndGherkin(final GherkinKeyword gherkinKeyword, final String name, final String description) {
+    public Test createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name, description);
 
         return this;
@@ -139,7 +140,7 @@ public class TestService implements Test {
      * {@inheritDoc}
      */
     @Override
-    public Test createNodeWithGherkin(final GherkinKeyword gherkinKeyword, final String name) {
+    public Test createNode(final GherkinKeyword gherkinKeyword, final String name) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name);
 
         return this;
@@ -147,6 +148,32 @@ public class TestService implements Test {
 
     @Override
     public void setLog(final Status status, final String details) {
+
+    }
+
+    @Override
+    public void LogInfo(final String message) {
+        extentTest.info(message);
+    }
+
+    @Override
+    public void LogPass(final String message) {
+        extentTest.pass(message);
+    }
+
+    @Override
+    public void LogFail(final String message) {
+        extentTest.fail(message);
+    }
+
+    @Override
+    public void LogSkip(final String message) {
+        extentTest.skip(message);
+    }
+
+    @Override
+    public void LogWarning(final String message) {
+        extentTest.warning(message);
     }
 
     @Override

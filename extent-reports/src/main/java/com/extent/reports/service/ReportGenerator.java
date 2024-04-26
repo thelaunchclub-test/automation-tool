@@ -3,8 +3,7 @@ package com.extent.reports.service;
 import com.extent.reports.extent.ExtentReportBuilderImpl;
 
 /**
- * The {@code ReportMarker} interface extends the {@code ReportProvider} interface
- * to define a contract for classes that mark a report generation capability.
+ * Defines a contract for classes that mark a report generation capability.
  * It serves as a marker interface indicating the ability to generate reports.
  *
  * <p>
@@ -29,7 +28,7 @@ import com.extent.reports.extent.ExtentReportBuilderImpl;
 public interface ReportGenerator extends ReportService {
 
     /**
-     * Returns an instance of the {@code ReportMarker} implementation
+     * Returns an instance of the {@code ReportGenerator} implementation
      * to facilitate report generation.
      *
      * <p>

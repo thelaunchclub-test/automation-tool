@@ -3,8 +3,7 @@ package com.extent.reports.service;
 import com.extent.reports.test.Test;
 
 /**
- * The {@code Reporter} interface extends the {@code ReportMarker} interface
- * to provide methods for reporting test results and generating reports.
+ * Provides methods for reporting test results and generating reports.
  * It defines a contract for classes that implement reporting functionalities.
  *
  * <p>

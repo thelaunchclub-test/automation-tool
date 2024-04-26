@@ -4,7 +4,7 @@ import com.aventstack.extentreports.GherkinKeyword;
 import com.extent.reports.test.Test;
 
 /**
- * The {@code Node} interface defines the contract for creating test nodes within the testing framework.
+ * Defines the contract for creating test nodes within the testing framework.
  * Test nodes serve as fundamental building blocks for structuring and organizing test executions,
  * encapsulating various attributes such as name, description, and Gherkin keywords.
  *
@@ -54,7 +54,7 @@ public interface Node {
     /**
      * Creates a test node with the specified name.
      */
-    Test createNode(final String name);
+    void createNode(final String name);
 
     /**
      * Creates a test node with the specified name and description.

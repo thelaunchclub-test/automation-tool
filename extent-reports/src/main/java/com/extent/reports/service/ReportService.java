@@ -1,9 +1,7 @@
 package com.extent.reports.service;
 
 /**
- * The {@code ReportProvider} interface defines a contract for classes
- * that provide report generation capabilities. It serves as an abstraction
- * for obtaining instances of report generation utilities.
+ * Serves as an abstraction for obtaining instances of report generation utilities.
  *
  * <p>
  * This interface declares a method to retrieve an instance of

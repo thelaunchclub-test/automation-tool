@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code ScreenCaptureImpl} class provides an implementation of the {@code ScreenCapture} interface,
+ * Provides an implementation of the {@code ScreenCapture} interface,
  * encapsulating the logic for capturing screenshots and integrating them into the test execution or reporting context.
  *
  * <p><font color = "maroon">
@@ -60,12 +60,11 @@ import lombok.Setter;
 public final class ScreenCaptureImpl implements ScreenCapture {
 
     private final Test testGenerator;
-
     @Getter
     @Setter
     private String base64;
 
-    public ScreenCaptureImpl(Test testGenerator) {
+    public ScreenCaptureImpl(final Test testGenerator) {
         this.testGenerator = testGenerator;
     }
 
