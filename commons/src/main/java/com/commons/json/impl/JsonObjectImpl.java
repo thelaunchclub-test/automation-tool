@@ -129,7 +129,6 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      *
      * @param key The key whose associated string value is to be returned.
      * @return The string value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a string.
      */
     @Override
     public String getString(final String key) {
@@ -167,7 +166,6 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     public JsonObject getJsonObject(final String key) {
 
         if (Objects.nonNull(map.get(key))) {
-
             return wrappedJsonObject((Map<String, Object>) map.get(key));
         } else {
             throw new NullPointerException("The Key is invalid");
@@ -238,6 +236,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     public JsonArray optJsonArray(final String key) {
         final Object object = map.get(key);
+
         return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
     }
 

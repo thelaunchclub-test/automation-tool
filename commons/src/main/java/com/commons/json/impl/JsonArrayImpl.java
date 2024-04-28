@@ -8,6 +8,7 @@ import com.commons.json.JsonWrapper;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 import java.util.function.Consumer;
 
 /**
@@ -30,8 +31,8 @@ import java.util.function.Consumer;
  */
 final class JsonArrayImpl implements JsonArray, JsonWrapper {
 
-    private JsonMapper jsonMapper;
     private final List<Object> list;
+    private JsonMapper jsonMapper;
 
     public JsonArrayImpl(final List<Object> objects) {
         this.list = objects;
@@ -73,11 +74,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     public int getInt(final int index) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object)) {
-            return (object instanceof Number) ? ((Number) object).intValue() : (int) object;
-        }
-
-        return 0;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : (int) object;
     }
 
     /**
@@ -90,11 +87,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     public float getFloat(final int index) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object)) {
-            return (object instanceof Number) ? ((Number) object).floatValue() : (int) object;
-        }
-
-        return 0;
+            return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : (float) object;
     }
 
     /**
@@ -115,17 +108,13 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      *
      * @param index The index of the string value to be returned.
      * @return The string value at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a string.
      */
     @Override
     public String getString(final int index) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object) && object instanceof String) {
-            return (String) object;
-        } else {
-            throw new NullPointerException("Null");
-        }
+        return (Objects.nonNull(object) && object instanceof String) ? (String) object : null;
+
     }
 
     /**
@@ -227,6 +216,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     @Override
     public JsonArray optJsonArray(final int index) {
         final Object object = list.get(index);
+
         return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
     }
 
