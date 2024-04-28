@@ -29,11 +29,11 @@ import java.util.Objects;
  * @version 1.0
  * @see JsonObject
  */
+
 final class JsonObjectImpl implements JsonObject, JsonWrapper {
 
-    private JsonMapper jsonMapper;
-
     private final Map<String, Object> map;
+    private JsonMapper jsonMapper;
 
     public JsonObjectImpl(final Map<String, Object> map) {
         this.map = map;
@@ -82,17 +82,33 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      *
      * @param key The key whose associated integer value is to be returned.
      * @return The integer value associated with the given key.
-     * throws NullPointerException if the key is not found or the value is not an integer.
      */
     @Override
     public int getInt(final String key) {
         final Object object = map.get(key);
 
-        if (Objects.nonNull(object) && object instanceof Integer) {
-            return (int) object;
-        } else {
-            throw new NullPointerException("Null");
+        if (Objects.nonNull(object)) {
+            return (object instanceof Number) ? ((Number) object).intValue() : (int) object;
         }
+
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param key The key whose associated integer value is to be returned.
+     * @return The integer value associated with the given key.
+     */
+    @Override
+    public float getFloat(final String key) {
+        final Object object = map.get(key);
+
+        if (Objects.nonNull(object)) {
+            return (object instanceof Number) ? ((Number) object).floatValue() : (int) object;
+        }
+
+        return 0;
     }
 
     /**
@@ -100,17 +116,26 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      *
      * @param key The key whose associated boolean value is to be returned.
      * @return The boolean value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a boolean.
      */
     @Override
     public boolean getBoolean(final String key) {
         final Object object = map.get(key);
 
-        if (Objects.nonNull(object) && object instanceof Boolean) {
-            return (boolean) object;
-        } else {
-            throw new NullPointerException("Null");
-        }
+        return Objects.nonNull(object) && object instanceof Boolean && (boolean) object;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param key The key whose associated string value is to be returned.
+     * @return The string value associated with the given key.
+     * @throws NullPointerException if the key is not found or the value is not a string.
+     */
+    @Override
+    public String getString(final String key) {
+        final Object object = map.get(key);
+
+        return (Objects.nonNull(object) && object instanceof String) ? (String) object : null;
     }
 
     /**
@@ -128,118 +153,6 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
             return wrappedJsonArray((List<Object>) map.get(key));
         } else {
             throw new NullPointerException("The Key is invalid");
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key whose associated string value is to be returned.
-     * @return The string value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a string.
-     */
-    @Override
-    public String getString(final String key) {
-        final Object object = map.get(key);
-
-        if (Objects.nonNull(object) && object instanceof String) {
-            return (String) object;
-        } else {
-            throw new NullPointerException("Null");
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key whose associated integer value is to be returned.
-     * @return The integer value associated with the given key, or null if the key is not found or the value is not an integer.
-     */
-    @Override
-    public Integer optInt(final String key) {
-        final Object object = map.get(key);
-
-        if (Objects.nonNull(object) && object instanceof Integer) {
-            return (Integer) object;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key whose associated integer value is to be returned.
-     * @return The integer value associated with the given key, or null if the key is not found or the value is not an integer.
-     */
-    @Override
-    public String optString(final String key) {
-        final Object object = map.get(key);
-
-        if (Objects.nonNull(object) && object instanceof String) {
-            return (String) object;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key whose associated boolean value is to be returned.
-     * @return The boolean value associated with the given key, or null if the key is not found or the value is not a boolean.
-     */
-    @Override
-    public Boolean optBoolean(final String key) {
-        final Object object = map.get(key);
-
-        if (Objects.nonNull(object) && object instanceof Boolean) {
-            return (Boolean) object;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key whose associated JSON object is to be returned.
-     * @return The JSON object associated with the given key, or null if the key is not found or the value is not a JSON object.
-     */
-    @Override
-    public JsonObject optJsonObject(final String key) {
-
-        if (Objects.nonNull(map.get(key))) {
-
-            return wrappedJsonObject((Map<String, Object>) map.get(key));
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key to check.
-     * @return true if the value associated with the key is null, false otherwise.
-     */
-    @Override
-    public boolean isNull(final String key) {
-        return Objects.isNull(map.get(key));
-    }
-
-    /**
-     * Checks if the provided object is not null.
-     *
-     * @param object The object to be checked.
-     * @return The object if not null.
-     * @throws NullPointerException If the object is null.
-     */
-    private Object check(final Object object) {
-        if (Objects.nonNull(object)) {
-            return object;
-        } else {
-            throw new NullPointerException("");
         }
     }
 
@@ -264,13 +177,104 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
+     * @param key          The key whose associated integer value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not an integer.
+     * @return The integer value associated with the given key, or the default value if the key is not found or the value is not an integer.
+     */
+    @Override
+    public int optInt(final String key, final int defaultValue) {
+        final Object value = map.get(key);
+
+        return (Objects.nonNull(value) && value instanceof Integer) ? (int) value : defaultValue;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param key          The key whose associated float value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not a float.
+     * @return The float value associated with the given key, or the default value if the key is not found or the value is not a float.
+     */
+    @Override
+    public float optFloat(final String key, final float defaultValue) {
+        final Object value = map.get(key);
+
+        return (Objects.nonNull(value) && value instanceof Float) ? (float) value : defaultValue;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param key          The key whose associated boolean value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not a boolean.
+     * @return The boolean value associated with the given key, or the default value if the key is not found or the value is not a boolean.
+     */
+    @Override
+    public boolean optBoolean(final String key, final boolean defaultValue) {
+        final Object object = map.get(key);
+
+        return (object instanceof Boolean) ? (boolean) object : defaultValue;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param key          The key whose associated string value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not a string.
+     * @return The string value associated with the given key, or the default value if the key is not found or the value is not a string.
+     */
+    @Override
+    public String optString(final String key, final String defaultValue) {
+        final Object object = map.get(key);
+
+        return (object instanceof String) ? (String) object : defaultValue;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @param key The key whose associated JSON array is to be returned.
      * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
      */
     public JsonArray optJsonArray(final String key) {
-        if (Objects.nonNull(map.get(key))) {
+        final Object object = map.get(key);
+        return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
+    }
 
-            return wrappedJsonArray((List<Object>) map.get(key));
+    /**
+     * {@inheritDoc}
+     *
+     * @param key The key whose associated JSON object is to be returned.
+     * @return The JSON object associated with the given key, or null if the key is not found or the value is not a JSON object.
+     */
+    @Override
+    public JsonObject optJsonObject(final String key) {
+        final Object object = map.get(key);
+
+        return (Objects.nonNull(object)) ? wrappedJsonObject((Map<String, Object>) object) : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param key The key to check.
+     * @return true if the value associated with the key is null, false otherwise.
+     */
+    @Override
+    public boolean isNull(final String key) {
+        return Objects.isNull(map.get(key));
+    }
+
+    /**
+     * Checks if the provided object is not null.
+     *
+     * @param object The object to be checked.
+     * @return The object if not null.
+     * @throws NullPointerException If the object is null.
+     */
+    private Object check(final Object object) {
+        if (Objects.nonNull(object)) {
+            return object;
         } else {
             return null;
         }

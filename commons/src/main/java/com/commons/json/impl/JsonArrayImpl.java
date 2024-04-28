@@ -45,19 +45,56 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     /**
      * {@inheritDoc}
      *
+     * @param value The value to be added.
+     */
+    @Override
+    public void put(final Object value) {
+        list.add(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param index The index of the value to be returned.
+     * @return The value at the specified index.
+     */
+    @Override
+    public Object get(final int index) {
+        return list.get(index);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @param index The index of the integer value to be returned.
      * @return The integer value at the specified index.
-     * @throws NullPointerException if the value at the specified index is not an integer.
      */
     @Override
     public int getInt(final int index) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object) && object instanceof Integer) {
-            return (int) object;
-        } else {
-            throw new NullPointerException("Null");
+        if (Objects.nonNull(object)) {
+            return (object instanceof Number) ? ((Number) object).intValue() : (int) object;
         }
+
+        return 0;
+    }
+
+    /**
+     * Returns the float value at the specified index in the JSON array.
+     *
+     * @param index The index of the float value to be returned.
+     * @return The float value at the specified index.
+     */
+    @Override
+    public float getFloat(final int index) {
+        final Object object = list.get(index);
+
+        if (Objects.nonNull(object)) {
+            return (object instanceof Number) ? ((Number) object).floatValue() : (int) object;
+        }
+
+        return 0;
     }
 
     /**
@@ -65,41 +102,12 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      *
      * @param index The index of the boolean value to be returned.
      * @return The boolean value at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a boolean.
      */
     @Override
     public boolean getBoolean(final int index) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object) && object instanceof Boolean) {
-            return (boolean) object;
-        } else {
-            throw new NullPointerException("Null");
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param index The index of the JSON array to be returned.
-     * @return The JSON array at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a JSON array.
-     */
-    @Override
-    public JsonArray getJsonArray(final int index) {
-        return wrappedJsonArray((List<Object>) list.get(index));
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param index The index of the JSON object to be returned.
-     * @return The JSON object at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a JSON object.
-     */
-    @Override
-    public JsonObject getJsonObject(final int index) {
-        return wrappedJsonObject((Map<String, Object>) list.get(index));
+        return Objects.nonNull(object) && object instanceof Boolean && (boolean) object;
     }
 
     /**
@@ -123,18 +131,65 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param index The index of the integer value to be returned.
-     * @return The integer value at the specified index, or null if the value is not an integer.
+     * @param index The index of the JSON array to be returned.
+     * @return The JSON array at the specified index.
+     * @throws NullPointerException if the value at the specified index is not a JSON array.
      */
     @Override
-    public Integer optInt(final int index) {
-        final Object object = list.get(index);
+    public JsonArray getJsonArray(final int index) {
 
-        if (Objects.nonNull(object) && object instanceof Integer) {
-            return (int) object;
+        if (Objects.nonNull(list.get(index))) {
+
+            return wrappedJsonArray((List<Object>) list.get(index));
         } else {
-            return null;
+            throw new NullPointerException("The index is invalid");
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param index The index of the JSON object to be returned.
+     * @return The JSON object at the specified index.
+     * @throws NullPointerException if the value at the specified index is not a JSON object.
+     */
+    @Override
+    public JsonObject getJsonObject(final int index) {
+
+        if (Objects.nonNull(list.get(index))) {
+
+            return wrappedJsonObject((Map<String, Object>) list.get(index));
+        } else {
+            throw new NullPointerException("The Key is invalid");
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param index        The index of the integer value to be returned.
+     * @param defaultValue The default value to be returned if the value is not an integer.
+     * @return The integer value at the specified index, or the default value if the value is not an integer.
+     */
+    @Override
+    public int optInt(final int index, final int defaultValue) {
+        final Object value = list.get(index);
+
+        return (Objects.nonNull(value) && value instanceof Integer) ? (int) value : defaultValue;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param index        The index of the float value to be returned.
+     * @param defaultValue The default value to be returned if the value is not a float.
+     * @return The float value at the specified index, or the default value if the value is not a float.
+     */
+    @Override
+    public float optFloat(final int index, final float defaultValue) {
+        final Object value = list.get(index);
+
+        return (Objects.nonNull(value) && value instanceof Float) ? (float) value : defaultValue;
     }
 
     /**
@@ -144,14 +199,23 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      * @return The boolean value at the specified index, or null if the value is not a boolean.
      */
     @Override
-    public Boolean optBoolean(final int index) {
+    public boolean optBoolean(final int index, final boolean defaultValue) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object) && object instanceof Boolean) {
-            return (boolean) object;
-        } else {
-            return null;
-        }
+        return (object instanceof Boolean) ? (boolean) object : defaultValue;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param index The index of the string value to be returned.
+     * @return The string value at the specified index, or null if the value is not a string.
+     */
+    @Override
+    public String optString(final int index, final String defaultValue) {
+        final Object object = list.get(index);
+
+        return (object instanceof String) ? (String) object : defaultValue;
     }
 
     /**
@@ -160,14 +224,10 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      * @param index The index of the JSON array to be returned.
      * @return The JSON array at the specified index, or null if the value is not a JSON array.
      */
+    @Override
     public JsonArray optJsonArray(final int index) {
         final Object object = list.get(index);
-
-        if (Objects.nonNull(object)) {
-            return wrappedJsonArray((List<Object>) object);
-        } else {
-            return null;
-        }
+        return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
     }
 
     /**
@@ -180,38 +240,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     public JsonObject optJsonObject(final int index) {
         final Object object = list.get(index);
 
-        if (Objects.nonNull(object)) {
-            return wrappedJsonObject((Map<String, Object>) list.get(index));
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param index The index of the string value to be returned.
-     * @return The string value at the specified index, or null if the value is not a string.
-     */
-    @Override
-    public String optString(final int index) {
-        final Object object = list.get(index);
-
-        if (Objects.nonNull(object) && object instanceof String) {
-            return (String) object;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param value The value to be added.
-     */
-    @Override
-    public void put(final Object value) {
-        list.add(value);
+        return (Objects.nonNull(object)) ? wrappedJsonObject((Map<String, Object>) object) : null;
     }
 
     /**

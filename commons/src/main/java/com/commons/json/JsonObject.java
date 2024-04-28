@@ -19,7 +19,7 @@ package com.commons.json;
  * @author petchimuthu1520
  * @version 1.0
  */
-public interface JsonObject extends JsonWrapper{
+public interface JsonObject extends JsonWrapper {
 
     /**
      * Associates the specified value with the specified key in this JSON object.
@@ -50,9 +50,16 @@ public interface JsonObject extends JsonWrapper{
      *
      * @param key The key whose associated integer value is to be returned.
      * @return The integer value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not an integer.
      */
     int getInt(final String key);
+
+    /**
+     * Returns the float value associated with the specified key.
+     *
+     * @param key The key whose associated float value is to be returned.
+     * @return The float value associated with the given key.
+     */
+    float getFloat(final String key);
 
     /**
      * Returns the boolean value associated with the specified key.
@@ -62,6 +69,15 @@ public interface JsonObject extends JsonWrapper{
      * @throws NullPointerException if the key is not found or the value is not a boolean.
      */
     boolean getBoolean(final String key);
+
+    /**
+     * Returns the string value associated with the specified key.
+     *
+     * @param key The key whose associated string value is to be returned.
+     * @return The string value associated with the given key.
+     * @throws NullPointerException if the key is not found or the value is not a string.
+     */
+    String getString(final String key);
 
     /**
      * Returns the JSON array associated with the specified key.
@@ -82,37 +98,40 @@ public interface JsonObject extends JsonWrapper{
     JsonObject getJsonObject(final String key);
 
     /**
-     * Returns the string value associated with the specified key.
+     * Returns the integer value associated with the specified key, or the default value if the key is not found or the value is not an integer.
      *
-     * @param key The key whose associated string value is to be returned.
-     * @return The string value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a string.
+     * @param key          The key whose associated integer value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not an integer.
+     * @return The integer value associated with the given key, or the default value if the key is not found or the value is not an integer.
      */
-    String getString(final String key);
+    int optInt(final String key, final int defaultValue);
 
     /**
-     * Returns the integer value associated with the specified key, or null if the key is not found or the value is not an integer.
+     * Returns the float value associated with the specified key, or the default value if the key is not found or the value is not a float.
      *
-     * @param key The key whose associated integer value is to be returned.
-     * @return The integer value associated with the given key, or null if the key is not found or the value is not an integer.
+     * @param key          The key whose associated float value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not a float.
+     * @return The float value associated with the given key, or the default value if the key is not found or the value is not a float.
      */
-    Integer optInt(final String key);
+    float optFloat(final String key, final float defaultValue);
 
     /**
-     * Returns the integer value associated with the specified key, or null if the key is not found or the value is not an integer.
+     * Returns the boolean value associated with the specified key, or the default value if the key is not found or the value is not a boolean.
      *
-     * @param key The key whose associated integer value is to be returned.
-     * @return The integer value associated with the given key, or null if the key is not found or the value is not an integer.
+     * @param key          The key whose associated boolean value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not a boolean.
+     * @return The boolean value associated with the given key, or the default value if the key is not found or the value is not a boolean.
      */
-    String optString(final String key);
+    boolean optBoolean(final String key, final boolean defaultValue);
 
     /**
-     * Returns the boolean value associated with the specified key, or null if the key is not found or the value is not a boolean.
+     * Returns the string value associated with the specified key, or the default value if the key is not found or the value is not a string.
      *
-     * @param key The key whose associated boolean value is to be returned.
-     * @return The boolean value associated with the given key, or null if the key is not found or the value is not a boolean.
+     * @param key          The key whose associated string value is to be returned.
+     * @param defaultValue The default value to be returned if the key is not found or the value is not a string.
+     * @return The string value associated with the given key, or the default value if the key is not found or the value is not a string.
      */
-    Boolean optBoolean(final String key);
+    String optString(final String key, final String defaultValue);
 
     /**
      * Returns the JSON array associated with the specified key, or null if the key is not found or the value is not a JSON array.

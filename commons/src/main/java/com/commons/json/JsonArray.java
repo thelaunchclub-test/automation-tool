@@ -3,7 +3,7 @@ package com.commons.json;
 import java.util.function.Consumer;
 
 /**
- * The {@code JsonArray} interface defines operations for manipulating JSON arrays.
+ * The {@code JsonArray} defines operations for manipulating JSON arrays.
  * It provides methods to access and manipulate elements within the array, offering
  * functionalities for type checking, handling null values, and wrapping data structures.
  *
@@ -19,36 +19,57 @@ import java.util.function.Consumer;
  * @author petchimuthu1520
  * @version 1.0
  */
-
-public interface JsonArray extends JsonWrapper{
+public interface JsonArray extends JsonWrapper {
 
     /**
-     * Puts value into the list.
+     * Adds the specified value to the end of the JSON array.
      *
-     * @param value The value to be added.
+     * @param value The value to be added to the array.
      */
     void put(final Object value);
 
     /**
-     * Returns the integer value at the specified index.
+     * Returns the value at the specified index in the JSON array.
+     *
+     * @param index The index of the value to be returned.
+     * @return The value at the specified index.
+     */
+    Object get(final int index);
+
+    /**
+     * Returns the integer value at the specified index in the JSON array.
      *
      * @param index The index of the integer value to be returned.
      * @return The integer value at the specified index.
-     * @throws NullPointerException if the value at the specified index is not an integer.
      */
     int getInt(final int index);
 
     /**
-     * Returns the boolean value at the specified index.
+     * Returns the float value at the specified index in the JSON array.
+     *
+     * @param index The index of the float value to be returned.
+     * @return The float value at the specified index.
+     */
+    float getFloat(final int index);
+
+    /**
+     * Returns the boolean value at the specified index in the JSON array.
      *
      * @param index The index of the boolean value to be returned.
      * @return The boolean value at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a boolean.
      */
     boolean getBoolean(final int index);
 
     /**
-     * Returns the JSON array at the specified index.
+     * Returns the string value at the specified index in the JSON array.
+     *
+     * @param index The index of the string value to be returned.
+     * @return The string value at the specified index.
+     */
+    String getString(final int index);
+
+    /**
+     * Returns the JSON array at the specified index in the JSON array.
      *
      * @param index The index of the JSON array to be returned.
      * @return The JSON array at the specified index.
@@ -57,7 +78,7 @@ public interface JsonArray extends JsonWrapper{
     JsonArray getJsonArray(final int index);
 
     /**
-     * Returns the JSON object at the specified index.
+     * Returns the JSON object at the specified index in the JSON array.
      *
      * @param index The index of the JSON object to be returned.
      * @return The JSON object at the specified index.
@@ -66,32 +87,43 @@ public interface JsonArray extends JsonWrapper{
     JsonObject getJsonObject(final int index);
 
     /**
-     * Returns the string value at the specified index.
+     * Returns the integer value at the specified index in the JSON array, or a default value if the value is not an integer.
      *
-     * @param index The index of the string value to be returned.
-     * @return The string value at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a string.
+     * @param index        The index of the integer value to be returned.
+     * @param defaultValue The default value to be returned if the value is not an integer.
+     * @return The integer value at the specified index, or the default value if the value is not an integer.
      */
-    String getString(final int index);
+    int optInt(final int index, final int defaultValue);
 
     /**
-     * Returns the integer value at the specified index, or null if the value is not an integer.
+     * Returns the float value at the specified index in the JSON array, or a default value if the value is not a float.
      *
-     * @param index The index of the integer value to be returned.
-     * @return The integer value at the specified index, or null if the value is not an integer.
+     * @param index        The index of the float value to be returned.
+     * @param defaultValue The default value to be returned if the value is not a float.
+     * @return The float value at the specified index, or the default value if the value is not a float.
      */
-    Object optInt(final int index);
+    float optFloat(final int index, final float defaultValue);
 
     /**
-     * Returns the boolean value at the specified index, or null if the value is not a boolean.
+     * Returns the boolean value at the specified index in the JSON array, or a default value if the value is not a boolean.
      *
-     * @param index The index of the boolean value to be returned.
-     * @return The boolean value at the specified index, or null if the value is not a boolean.
+     * @param index        The index of the boolean value to be returned.
+     * @param defaultValue The default value to be returned if the value is not a boolean.
+     * @return The boolean value at the specified index, or the default value if the value is not a boolean.
      */
-    Object optBoolean(final int index);
+    boolean optBoolean(final int index, final boolean defaultValue);
 
     /**
-     * Returns the JSON array at the specified index, or null if the value is not a JSON array.
+     * Returns the string value at the specified index in the JSON array, or null if the value is not a string.
+     *
+     * @param index        The index of the string value to be returned.
+     * @param defaultValue The default value to be returned if the value is not a string.
+     * @return The string value at the specified index, or null if the value is not a string.
+     */
+    Object optString(final int index, final String defaultValue);
+
+    /**
+     * Returns the JSON array at the specified index in the JSON array, or null if the value is not a JSON array.
      *
      * @param index The index of the JSON array to be returned.
      * @return The JSON array at the specified index, or null if the value is not a JSON array.
@@ -99,7 +131,7 @@ public interface JsonArray extends JsonWrapper{
     Object optJsonArray(final int index);
 
     /**
-     * Returns the JSON object at the specified index, or null if the value is not a JSON object.
+     * Returns the JSON object at the specified index in the JSON array, or null if the value is not a JSON object.
      *
      * @param index The index of the JSON object to be returned.
      * @return The JSON object at the specified index, or null if the value is not a JSON object.
@@ -107,18 +139,9 @@ public interface JsonArray extends JsonWrapper{
     Object optJsonObject(final int index);
 
     /**
-     * Returns the string value at the specified index, or null if the value is not a string.
+     * Checks if the value at the specified index in the JSON array is null.
      *
-     * @param index The index of the string value to be returned.
-     * @return The string value at the specified index, or null if the value is not a string.
-     */
-    Object optString(final int index);
-
-
-    /**
-     * Checks if the value at the specified index is null.
-     *
-     * @param index The index to check.
+     * @param index The index to be checked.
      * @return true if the value at the specified index is null, false otherwise.
      */
     boolean isNull(final int index);

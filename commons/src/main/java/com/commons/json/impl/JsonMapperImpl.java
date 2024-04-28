@@ -3,7 +3,6 @@ package com.commons.json.impl;
 import com.commons.json.JsonMapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -63,8 +62,7 @@ final class JsonMapperImpl implements JsonMapper {
     @Override
     public List<Object> decodeAsArray(final String json) {
         try {
-            return objectMapper.readValue(json, new TypeReference<>() {
-            });
+            return objectMapper.readValue(json, List.class);
         } catch (JsonProcessingException exception) {
             throw new RuntimeException(exception);
         }
@@ -80,8 +78,7 @@ final class JsonMapperImpl implements JsonMapper {
     @Override
     public Map<String, Object> decodeAsObject(final File file) {
         try {
-            return objectMapper.readValue(file, new TypeReference<>() {
-            });
+            return objectMapper.readValue(file, Map.class);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -97,8 +94,7 @@ final class JsonMapperImpl implements JsonMapper {
     @Override
     public List<Object> decodeAsArray(final File file) {
         try {
-            return objectMapper.readValue(file, new TypeReference<>() {
-            });
+            return objectMapper.readValue(file, List.class);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
