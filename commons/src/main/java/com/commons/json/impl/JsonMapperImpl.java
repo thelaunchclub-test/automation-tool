@@ -34,7 +34,7 @@ final class JsonMapperImpl implements JsonMapper {
 
     private final ObjectMapper objectMapper;
 
-    public JsonMapperImpl() {
+    JsonMapperImpl() {
         this.objectMapper = new ObjectMapper();
     }
 

@@ -35,11 +35,11 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     private final Map<String, Object> map;
     private JsonMapper jsonMapper;
 
-    public JsonObjectImpl(final Map<String, Object> map) {
+    JsonObjectImpl(final Map<String, Object> map) {
         this.map = map;
     }
 
-    public JsonObjectImpl(final JsonMapper jsonMapper, final Map<String, Object> map) {
+    JsonObjectImpl(final JsonMapper jsonMapper, final Map<String, Object> map) {
         this.jsonMapper = jsonMapper;
         this.map = map;
     }
@@ -52,7 +52,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public void put(final String key, final Object value) {
-        map.put(key, check(value));
+        map.put(key, value);
     }
 
     /**
@@ -64,6 +64,15 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     @Override
     public Object get(final String key) {
         return map.get(key);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return The size of the JSON array.
+     */
+    public int getSize() {
+        return map.size();
     }
 
     /**
@@ -85,13 +94,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int getInt(final String key) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
-        if (Objects.nonNull(object)) {
-            return (object instanceof Number) ? ((Number) object).intValue() : (int) object;
-        }
-
-        return 0;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : (int) object;
     }
 
     /**
@@ -102,13 +107,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float getFloat(final String key) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
-        if (Objects.nonNull(object)) {
-            return (object instanceof Number) ? ((Number) object).floatValue() : (int) object;
-        }
-
-        return 0;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : (float) object;
     }
 
     /**
@@ -119,7 +120,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean getBoolean(final String key) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
         return Objects.nonNull(object) && object instanceof Boolean && (boolean) object;
     }
@@ -132,7 +133,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public String getString(final String key) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
         return (Objects.nonNull(object) && object instanceof String) ? (String) object : null;
     }
@@ -146,10 +147,10 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final String key) {
+        final Object object = get(key);
 
-        if (Objects.nonNull(map.get(key))) {
-
-            return wrappedJsonArray((List<Object>) map.get(key));
+        if (Objects.nonNull(object)) {
+            return wrappedJsonArray((List<Object>) object);
         } else {
             throw new NullPointerException("The Key is invalid");
         }
@@ -164,9 +165,10 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject getJsonObject(final String key) {
+        final Object object = get(key);
 
-        if (Objects.nonNull(map.get(key))) {
-            return wrappedJsonObject((Map<String, Object>) map.get(key));
+        if (Objects.nonNull(object)) {
+            return wrappedJsonObject((Map<String, Object>) object);
         } else {
             throw new NullPointerException("The Key is invalid");
         }
@@ -181,9 +183,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int optInt(final String key, final int defaultValue) {
-        final Object value = map.get(key);
+        final Object object = get(key);
 
-        return (Objects.nonNull(value) && value instanceof Integer) ? (int) value : defaultValue;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : defaultValue;
     }
 
     /**
@@ -195,9 +197,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float optFloat(final String key, final float defaultValue) {
-        final Object value = map.get(key);
+        final Object object = get(key);
 
-        return (Objects.nonNull(value) && value instanceof Float) ? (float) value : defaultValue;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : defaultValue;
     }
 
     /**
@@ -209,7 +211,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean optBoolean(final String key, final boolean defaultValue) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
         return (object instanceof Boolean) ? (boolean) object : defaultValue;
     }
@@ -223,7 +225,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public String optString(final String key, final String defaultValue) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
         return (object instanceof String) ? (String) object : defaultValue;
     }
@@ -235,7 +237,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
      */
     public JsonArray optJsonArray(final String key) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
         return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
     }
@@ -248,7 +250,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final String key) {
-        final Object object = map.get(key);
+        final Object object = get(key);
 
         return (Objects.nonNull(object)) ? wrappedJsonObject((Map<String, Object>) object) : null;
     }
@@ -261,22 +263,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean isNull(final String key) {
-        return Objects.isNull(map.get(key));
-    }
-
-    /**
-     * Checks if the provided object is not null.
-     *
-     * @param object The object to be checked.
-     * @return The object if not null.
-     * @throws NullPointerException If the object is null.
-     */
-    private Object check(final Object object) {
-        if (Objects.nonNull(object)) {
-            return object;
-        } else {
-            return null;
-        }
+        return Objects.isNull(get(key));
     }
 
     /**

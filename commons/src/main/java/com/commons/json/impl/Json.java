@@ -30,7 +30,6 @@ import java.io.File;
  * @author petchimuthu2015
  * @version 1.0
  */
-
 public final class Json {
 
     private static final JsonMapper JSON_MAPPER = new JsonMapperImpl();

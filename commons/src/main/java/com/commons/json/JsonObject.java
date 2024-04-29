@@ -38,6 +38,13 @@ public interface JsonObject extends JsonWrapper {
     Object get(final String key);
 
     /**
+     * Returns the size of the JSON object.
+     *
+     * @return The size of the JSON object.
+     */
+    int getSize();
+
+    /**
      * Checks if the JSON object contains the specified key.
      *
      * @param key The key to check.

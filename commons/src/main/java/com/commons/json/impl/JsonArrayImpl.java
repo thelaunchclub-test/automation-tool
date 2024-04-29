@@ -34,11 +34,11 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     private final List<Object> list;
     private JsonMapper jsonMapper;
 
-    public JsonArrayImpl(final List<Object> objects) {
+    JsonArrayImpl(final List<Object> objects) {
         this.list = objects;
     }
 
-    public JsonArrayImpl(final JsonMapper jsonMapper, final List<Object> list) {
+    JsonArrayImpl(final JsonMapper jsonMapper, final List<Object> list) {
         this.jsonMapper = jsonMapper;
         this.list = list;
     }
@@ -67,12 +67,21 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     /**
      * {@inheritDoc}
      *
+     * @return The size of the JSON array.
+     */
+    public int getSize() {
+        return list.size();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @param index The index of the integer value to be returned.
      * @return The integer value at the specified index.
      */
     @Override
     public int getInt(final int index) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : (int) object;
     }
@@ -85,9 +94,9 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public float getFloat(final int index) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
-            return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : (float) object;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : (float) object;
     }
 
     /**
@@ -98,7 +107,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public boolean getBoolean(final int index) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return Objects.nonNull(object) && object instanceof Boolean && (boolean) object;
     }
@@ -111,7 +120,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public String getString(final int index) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return (Objects.nonNull(object) && object instanceof String) ? (String) object : null;
 
@@ -126,10 +135,11 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final int index) {
+        final Object object = get(index);
 
-        if (Objects.nonNull(list.get(index))) {
+        if (Objects.nonNull(object)) {
 
-            return wrappedJsonArray((List<Object>) list.get(index));
+            return wrappedJsonArray((List<Object>) object);
         } else {
             throw new NullPointerException("The index is invalid");
         }
@@ -144,10 +154,11 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonObject getJsonObject(final int index) {
+        final Object object = get(index);
 
-        if (Objects.nonNull(list.get(index))) {
+        if (Objects.nonNull(object)) {
 
-            return wrappedJsonObject((Map<String, Object>) list.get(index));
+            return wrappedJsonObject((Map<String, Object>) object);
         } else {
             throw new NullPointerException("The Key is invalid");
         }
@@ -162,9 +173,9 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public int optInt(final int index, final int defaultValue) {
-        final Object value = list.get(index);
+        final Object object = get(index);
 
-        return (Objects.nonNull(value) && value instanceof Integer) ? (int) value : defaultValue;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : defaultValue;
     }
 
     /**
@@ -176,9 +187,9 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public float optFloat(final int index, final float defaultValue) {
-        final Object value = list.get(index);
+        final Object object = get(index);
 
-        return (Objects.nonNull(value) && value instanceof Float) ? (float) value : defaultValue;
+        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : defaultValue;
     }
 
     /**
@@ -189,7 +200,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public boolean optBoolean(final int index, final boolean defaultValue) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return (object instanceof Boolean) ? (boolean) object : defaultValue;
     }
@@ -202,7 +213,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public String optString(final int index, final String defaultValue) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return (object instanceof String) ? (String) object : defaultValue;
     }
@@ -215,7 +226,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonArray optJsonArray(final int index) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
     }
@@ -228,7 +239,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final int index) {
-        final Object object = list.get(index);
+        final Object object = get(index);
 
         return (Objects.nonNull(object)) ? wrappedJsonObject((Map<String, Object>) object) : null;
     }
@@ -241,7 +252,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public boolean isNull(final int index) {
-        return Objects.isNull(list.get(index));
+        return Objects.isNull(get(index));
     }
 
     /**

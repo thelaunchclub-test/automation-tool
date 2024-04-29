@@ -37,6 +37,13 @@ public interface JsonArray extends JsonWrapper {
     Object get(final int index);
 
     /**
+     * Returns the size of the JSON array.
+     *
+     * @return The size of the JSON array.
+     */
+    int getSize();
+
+    /**
      * Returns the integer value at the specified index in the JSON array.
      *
      * @param index The index of the integer value to be returned.
