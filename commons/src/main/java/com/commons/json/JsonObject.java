@@ -155,12 +155,4 @@ public interface JsonObject extends JsonWrapper {
      * @return The JSON object associated with the given key, or null if the key is not found or the value is not a JSON object.
      */
     JsonObject optJsonObject(final String key);
-
-    /**
-     * Checks if the value associated with the specified key is null.
-     *
-     * @param key The key to check.
-     * @return true if the value associated with the key is null, false otherwise.
-     */
-    boolean isNull(final String key);
 }

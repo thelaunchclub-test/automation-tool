@@ -69,7 +69,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      *
      * @return The size of the JSON array.
      */
-    public int getSize() {
+    public int size() {
         return list.size();
     }
 
@@ -83,7 +83,8 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     public int getInt(final int index) {
         final Object object = get(index);
 
-        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : (int) object;
+        return Objects.nonNull(object) ? (object instanceof Number ? ((Number) object).intValue()
+                : Integer.parseInt((String)object)) : 0;
     }
 
     /**
@@ -123,7 +124,6 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
         final Object object = get(index);
 
         return (Objects.nonNull(object) && object instanceof String) ? (String) object : null;
-
     }
 
     /**
@@ -141,7 +141,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
 
             return wrappedJsonArray((List<Object>) object);
         } else {
-            throw new NullPointerException("The index is invalid");
+           return null;
         }
     }
 
@@ -247,17 +247,6 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param index The index to check.
-     * @return true if the value at the specified index is null, false otherwise.
-     */
-    @Override
-    public boolean isNull(final int index) {
-        return Objects.isNull(get(index));
-    }
-
-    /**
-     * {@inheritDoc}
-     *
      * @param action The action to be performed for each element.
      * @throws NullPointerException if the specified action is null.
      */
@@ -284,7 +273,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      * @return A JsonObject containing the wrapped map.
      */
     @Override
-    public JsonObject wrappedJsonObject(Map<String, Object> map) {
+    public JsonObject wrappedJsonObject(final Map<String, Object> map) {
         return new JsonObjectImpl(jsonMapper, map);
     }
 }

@@ -96,8 +96,8 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     public int getInt(final String key) {
         final Object object = get(key);
 
-        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : (int) object;
-    }
+        return Objects.nonNull(object) ? (object instanceof Number ? ((Number) object).intValue()
+                : Integer.parseInt((String)object)) : 0;    }
 
     /**
      * {@inheritDoc}
@@ -152,7 +152,8 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
         if (Objects.nonNull(object)) {
             return wrappedJsonArray((List<Object>) object);
         } else {
-            throw new NullPointerException("The Key is invalid");
+
+           return null;
         }
     }
 
@@ -168,7 +169,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
         final Object object = get(key);
 
         if (Objects.nonNull(object)) {
-            return wrappedJsonObject((Map<String, Object>) object);
+            return wrappedJsonObject((Map<String, Object>) get(key));
         } else {
             throw new NullPointerException("The Key is invalid");
         }
@@ -253,17 +254,6 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
         final Object object = get(key);
 
         return (Objects.nonNull(object)) ? wrappedJsonObject((Map<String, Object>) object) : null;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param key The key to check.
-     * @return true if the value associated with the key is null, false otherwise.
-     */
-    @Override
-    public boolean isNull(final String key) {
-        return Objects.isNull(get(key));
     }
 
     /**

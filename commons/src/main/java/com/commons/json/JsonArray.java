@@ -41,7 +41,7 @@ public interface JsonArray extends JsonWrapper {
      *
      * @return The size of the JSON array.
      */
-    int getSize();
+    int size();
 
     /**
      * Returns the integer value at the specified index in the JSON array.
@@ -144,14 +144,6 @@ public interface JsonArray extends JsonWrapper {
      * @return The JSON object at the specified index, or null if the value is not a JSON object.
      */
     Object optJsonObject(final int index);
-
-    /**
-     * Checks if the value at the specified index in the JSON array is null.
-     *
-     * @param index The index to be checked.
-     * @return true if the value at the specified index is null, false otherwise.
-     */
-    boolean isNull(final int index);
 
     /**
      * Performs the given action for each element of the JSON array until all elements have been processed or the action throws an exception.
