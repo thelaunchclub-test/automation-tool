@@ -14,7 +14,7 @@ public final class ExtentReportServiceImpl implements ReportService {
      */
     @Override
     public ReportGenerator getReport() {
-        return new ExtentReportBuilderImpl();
+        return new ExtentReporterImpl();
     }
 }
 

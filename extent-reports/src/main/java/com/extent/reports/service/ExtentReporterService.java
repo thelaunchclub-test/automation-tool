@@ -1,13 +1,13 @@
 package com.extent.reports.service;
 
-import com.extent.reports.test.Test;
+import com.extent.reports.test.TestOperation;
 
 /**
  * Provides methods for reporting test results and generating reports.
  * It defines a contract for classes that implement reporting functionalities.
  *
  * <p>
- * This interface declares a method to retrieve a {@link Test} object
+ * This interface declares a method to retrieve a {@link TestOperation} object
  * representing the current test context for reporting purposes.
  * Implementing classes should provide an implementation for this method
  * to return a Test object that encapsulates the current test's details
@@ -15,7 +15,7 @@ import com.extent.reports.test.Test;
  * </p>
  *
  * @see ReportGenerator
- * @see Test
+ * @see TestOperation
  *
  * @Author Navin Jones
  * @version 1.1
@@ -23,7 +23,7 @@ import com.extent.reports.test.Test;
 public interface ExtentReporterService extends ReportGenerator {
 
     /**
-     * Returns a {@link Test} object representing the current test context
+     * Returns a {@link TestOperation} object representing the current test context
      * for reporting purposes.
      *
      * <p>
@@ -32,11 +32,11 @@ public interface ExtentReporterService extends ReportGenerator {
      * and provides methods for reporting test steps and results.
      * </p>
      *
-     * @return A {@link Test} object representing the current test.
+     * @return A {@link TestOperation} object representing the current test.
      *
-     * @see Test
+     * @see TestOperation
      */
-    Test getTest();
+    TestOperation getTest();
 }
 
 

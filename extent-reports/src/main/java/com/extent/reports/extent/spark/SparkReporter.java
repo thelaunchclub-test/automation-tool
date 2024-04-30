@@ -1,13 +1,12 @@
 package com.extent.reports.extent.spark;
 
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-
-import com.extent.reports.extent.ExtentReportBuilder;
-import com.extent.reports.extent.ExtentReportBuilderImpl;
+import com.extent.reports.extent.AbstractExtentReporter;
+import com.extent.reports.extent.ExtentReporterImpl;
 import com.extent.reports.service.ReportGenerator;
-import com.extent.reports.test.Test;
-
+import com.extent.reports.test.TestOperation;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -23,13 +22,13 @@ import java.io.IOException;
  *
  * @version 1.1
  * @Author Navin Jones
- * @see ExtentReportBuilder
+ * @see AbstractExtentReporter
  */
 @Getter
-public final class SparkReporter extends ExtentReportBuilder {
+public final class SparkReporter extends AbstractExtentReporter {
 
     private final ExtentSparkReporter extentSparkReporter;
-    private ExtentReportBuilderImpl report;
+    private ExtentReporterImpl report;
 
     public SparkReporter(final String path) {
         super();
@@ -47,12 +46,22 @@ public final class SparkReporter extends ExtentReportBuilder {
     }
 
     /**
+     * Retrieves the configuration settings for the ExtentSparkReporter.
+     * Delegates the call to the config() method of the ExtentSparkReporter instance.
+     *
+     * @return ExtentSparkReporterConfig object containing the configuration settings.
+     */
+    public ExtentSparkReporterConfig config() {
+        return extentSparkReporter.config();
+    }
+
+    /**
      * Sets the document title for the report.
      *
      * @param title The title to set.
      */
     public void setDocumentTitle(final String title) {
-        extentSparkReporter.config().setDocumentTitle(title);
+        config().setDocumentTitle(title);
     }
 
     /**
@@ -61,7 +70,7 @@ public final class SparkReporter extends ExtentReportBuilder {
      * @param reportName The report name to set.
      */
     public void setReportName(final String reportName) {
-        extentSparkReporter.config().setReportName(reportName);
+        config().setReportName(reportName);
     }
 
     /**
@@ -70,7 +79,7 @@ public final class SparkReporter extends ExtentReportBuilder {
      * @param theme The theme to set.
      */
     public void setTheme(final Theme theme) {
-        extentSparkReporter.config().setTheme(theme);
+        config().setTheme(theme);
     }
 
     /**
@@ -90,15 +99,15 @@ public final class SparkReporter extends ExtentReportBuilder {
     /**
      * {@inheritDoc}
      *
-     * @see Test
+     * @see TestOperation
      */
     @Override
-    public Test getTest() {
+    public TestOperation getTest() {
         return report.getTest();
     }
 
     @Override
-    protected ExtentReportBuilder getReporter() {
+    protected AbstractExtentReporter getReporter() {
         return null;
     }
 
@@ -106,7 +115,7 @@ public final class SparkReporter extends ExtentReportBuilder {
      * {@inheritDoc}
      */
     @Override
-    protected ExtentReportBuilder getReporter(final String path) {
+    protected AbstractExtentReporter getReporter(final String path) {
         return new SparkReporter(path);
     }
 
@@ -116,7 +125,7 @@ public final class SparkReporter extends ExtentReportBuilder {
      * @see ReportGenerator
      */
     public ReportGenerator getReport() {
-        return new ExtentReportBuilderImpl();
+        return new ExtentReporterImpl();
     }
 }
 

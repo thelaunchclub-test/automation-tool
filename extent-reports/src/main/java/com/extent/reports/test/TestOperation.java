@@ -29,7 +29,7 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see GherkinKeyword
  * @see Status
  */
-public interface Test {
+public interface TestOperation {
 
     /**
      * Retrieves the current node associated with the test.
@@ -69,7 +69,7 @@ public interface Test {
      * @param name - the name of the author
      * @return Test - the updated Test instance
      */
-    Test assignAuthor(final String name);
+    TestOperation assignAuthor(final String name);
 
     /**
      * Assigns a category to the test.
@@ -77,7 +77,7 @@ public interface Test {
      * @param name - the name of the category
      * @return Test - the updated Test instance
      */
-    Test assignCategory(final String name);
+    TestOperation assignCategory(final String name);
 
     /**
      * Assigns a device name to the test.
@@ -85,7 +85,7 @@ public interface Test {
      * @param name - the name of the device
      * @return Test - the updated Test instance
      */
-    Test assignDevice(final String name);
+    TestOperation assignDevice(final String name);
 
     /**
      * Adds a snapshot from a file path to the test.
@@ -93,7 +93,7 @@ public interface Test {
      * @param path - the file path of the snapshot
      * @return Test - the updated Test instance
      */
-    Test addSnapShotFromPath(final String path);
+    TestOperation addSnapShotFromPath(final String path);
 
     /**
      * Adds a snapshot from a Base64 encoded string to the test.
@@ -101,7 +101,7 @@ public interface Test {
      * @param base64 - the Base64 encoded string of the snapshot
      * @return Test - the updated Test instance
      */
-    Test addSnapShotFromBase64String(final String base64);
+    TestOperation addSnapShotFromBase64String(final String base64);
 
     /**
      * Creates a new test node with the specified name.
@@ -109,7 +109,7 @@ public interface Test {
      * @param name - the name of the test node
      * @return Test - the updated Test instance
      */
-    Test createNode(final String name);
+    TestOperation createNode(final String name);
 
     /**
      * Creates a new test node with the specified name and description.
@@ -118,7 +118,7 @@ public interface Test {
      * @param description - the description of the test node
      * @return Test - the updated Test instance
      */
-    Test createNode(final String name, final String description);
+    TestOperation createNode(final String name, final String description);
 
     /**
      * Creates a new test node with the specified Gherkin keyword, name, and description.
@@ -128,7 +128,7 @@ public interface Test {
      * @param description    - the description of the test node
      * @return Test - the updated Test instance
      */
-    Test createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
+    TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
 
     /**
      * Creates a new test node with the specified Gherkin keyword and name.
@@ -137,7 +137,7 @@ public interface Test {
      * @param name           - the name of the test node
      * @return Test - the updated Test instance
      */
-    Test createNode(final GherkinKeyword gherkinKeyword, final String name);
+    TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name);
 
     /**
      * Sets the log status and details for the current test node.

@@ -1,7 +1,7 @@
 package com.extent.reports.test.tabs.service;
 
 
-import com.extent.reports.test.Test;
+import com.extent.reports.test.TestOperation;
 
 /**
  * Defines the contract for managing and associating
@@ -44,7 +44,7 @@ import com.extent.reports.test.Test;
  * @author Navin Jones
  * @version 1.0
  * @see com.extent.reports.test.tabs.impl.TabsImpl
- * @see Test
+ * @see TestOperation
  */
 public interface Tabs {
 
@@ -56,7 +56,7 @@ public interface Tabs {
      * @return an updated instance of {@code Test} reflecting the assignment
      * of the author name to the test execution or operation.
      */
-    Test assignAuthor(final String name);
+    TestOperation assignAuthor(final String name);
 
     /**
      * Assigns the specified category name to the test execution or operation.
@@ -66,7 +66,7 @@ public interface Tabs {
      * @return an updated instance of {@code Test} reflecting the assignment
      * of the category name to the test execution or operation.
      */
-    Test assignCategory(final String name);
+    TestOperation assignCategory(final String name);
 
     /**
      * Assigns the specified device name to the test execution or operation.
@@ -76,6 +76,6 @@ public interface Tabs {
      * @return an updated instance of {@code Test} reflecting the assignment
      * of the device name to the test execution or operation.
      */
-    Test assignDevice(final String name);
+    TestOperation assignDevice(final String name);
 }
 

@@ -1,6 +1,6 @@
 package com.extent.reports.test.screenshot.impl;
 
-import com.extent.reports.test.Test;
+import com.extent.reports.test.TestOperation;
 import com.extent.reports.test.screenshot.service.ScreenCapture;
 
 import lombok.Getter;
@@ -55,16 +55,16 @@ import lombok.Setter;
  * @author Navin Jones
  * @version 1.0
  * @see ScreenCapture
- * @see Test
+ * @see TestOperation
  */
 public final class ScreenCaptureImpl implements ScreenCapture {
 
-    private final Test testGenerator;
+    private final TestOperation testGenerator;
     @Getter
     @Setter
     private String base64;
 
-    public ScreenCaptureImpl(final Test testGenerator) {
+    public ScreenCaptureImpl(final TestOperation testGenerator) {
         this.testGenerator = testGenerator;
     }
 
@@ -72,7 +72,7 @@ public final class ScreenCaptureImpl implements ScreenCapture {
      * {@inheritDoc}
      */
     @Override
-    public Test fromPath(final String path) {
+    public TestOperation fromPath(final String path) {
         return testGenerator.addSnapShotFromPath(path);
     }
 
@@ -80,7 +80,7 @@ public final class ScreenCaptureImpl implements ScreenCapture {
      * {@inheritDoc}
      */
     @Override
-    public Test fromBase64Path(final String base64) {
+    public TestOperation fromBase64Path(final String base64) {
         return testGenerator.addSnapShotFromBase64String(base64);
     }
 }

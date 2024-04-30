@@ -58,4 +58,14 @@ public interface Log {
      * @param details - the details or message to be logged, providing context to the logged event.
      */
     void setLog(final Status status, final String details);
+
+    void LogInfo(final String message);
+
+    void LogPass(final String message);
+
+    void LogFail(final String message);
+
+    void LogSkip(final String message);
+
+    void LogWarning(final String message);
 }

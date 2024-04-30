@@ -1,6 +1,6 @@
 package com.extent.reports.service;
 
-import com.extent.reports.extent.ExtentReportBuilderImpl;
+import com.extent.reports.extent.ExtentReporterImpl;
 
 /**
  * Defines a contract for classes that mark a report generation capability.
@@ -19,7 +19,7 @@ import com.extent.reports.extent.ExtentReportBuilderImpl;
  * </p>
  *
  * @see ReportService
- * @see ExtentReportBuilderImpl
+ * @see ExtentReporterImpl
  *
  * @Author Navin Jones
  * @version 1.1
@@ -39,10 +39,10 @@ public interface ReportGenerator extends ReportService {
      *
      * @return An instance of {@code ReportGenerator} implementation.
      *
-     * @see ExtentReportBuilderImpl
+     * @see ExtentReporterImpl
      */
     static ReportGenerator getInstance(){
-        return new ExtentReportBuilderImpl();
+        return new ExtentReporterImpl();
     }
 }
 

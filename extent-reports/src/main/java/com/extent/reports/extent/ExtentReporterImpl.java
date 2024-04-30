@@ -4,8 +4,8 @@ import com.aventstack.extentreports.ExtentTest;
 
 import com.extent.reports.extent.spark.SparkReporter;
 import com.extent.reports.service.ReportGenerator;
-import com.extent.reports.test.Test;
-import com.extent.reports.test.TestService;
+import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.TestOperationImpl;
 
 
 /**
@@ -17,30 +17,30 @@ import com.extent.reports.test.TestService;
  * instances, as well as retrieving test and report instances.
  * </p>
  *
- * @see ExtentReportBuilder
+ * @see AbstractExtentReporter
  *
  * @Author Navin Jones
  * @version 1.1
  */
-public final class ExtentReportBuilderImpl extends ExtentReportBuilder {
+public final class ExtentReporterImpl extends AbstractExtentReporter {
 
     private final ExtentReportServiceImpl reportService;
-    private ExtentTest extentTest ;
+    private ExtentTest extentTest;
 
-    public ExtentReportBuilderImpl() {
-        reportService = new ExtentReportServiceImpl();
+    public ExtentReporterImpl() {
+        this.reportService = new ExtentReportServiceImpl();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected ExtentReportBuilder getReporter() {
-        return new ExtentReportBuilderImpl();
+    protected AbstractExtentReporter getReporter() {
+        return new ExtentReporterImpl();
     }
 
     @Override
-    protected ExtentReportBuilder getReporter(final String path) {
+    protected AbstractExtentReporter getReporter(final String path) {
         return new SparkReporter(path);
     }
 
@@ -48,8 +48,8 @@ public final class ExtentReportBuilderImpl extends ExtentReportBuilder {
      * {@inheritDoc}
      */
     @Override
-    public Test getTest() {
-        return new TestService(extentTest);
+    public TestOperation getTest() {
+        return new TestOperationImpl(extentTest);
     }
 
     /**
