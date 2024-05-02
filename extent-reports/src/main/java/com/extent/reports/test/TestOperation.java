@@ -148,14 +148,40 @@ public interface TestOperation {
      */
     void setLog(final Status status, final String details);
 
+    /**
+     * Logs an informational message.
+     *
+     * @param message The message to be logged.
+     */
+
     void LogInfo(final String message);
 
+    /**
+     * Logs a pass status along with a message.
+     *
+     * @param message The message to be logged.
+     */
     void LogPass(final String message);
 
+    /**
+     * Logs a fail status along with a message.
+     *
+     * @param message The message to be logged.
+     */
     void LogFail(final String message);
 
+    /**
+     * Logs a skip status along with a message.
+     *
+     * @param message The message to be logged.
+     */
     void LogSkip(final String message);
 
+    /**
+     * Logs a warning status along with a message.
+     *
+     * @param message The message to be logged.
+     */
     void LogWarning(final String message);
 
 }

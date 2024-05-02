@@ -39,6 +39,9 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
         return new ExtentReporterImpl();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected AbstractExtentReporter getReporter(final String path) {
         return new SparkReporter(path);

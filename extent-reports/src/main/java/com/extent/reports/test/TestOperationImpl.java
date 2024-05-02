@@ -14,7 +14,7 @@ import com.extent.reports.test.tabs.impl.TabsImpl;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
- * The {@code TestService} class implements the {@link TestOperation} interface
+ * The {@code TestOperation} class implements the {@link TestOperation} interface
  * and provides an implementation for managing and reporting test execution details
  * using an ExtentTest instance.
  *
@@ -146,46 +146,73 @@ public final class TestOperationImpl implements TestOperation {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLog(final Status status, final String details) {
-
+        test.setLog(status, details);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogInfo(final String message) {
         extentTest.info(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogPass(final String message) {
         extentTest.pass(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogFail(final String message) {
         extentTest.fail(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogSkip(final String message) {
         extentTest.skip(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogWarning(final String message) {
         extentTest.warning(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Log getLog() {
         return new LogImpl(extentTest);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScreenCapture getScreenCapture() {
         return new ScreenCaptureImpl(test);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Tabs getTabs() {
         return new TabsImpl(test);
