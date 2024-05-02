@@ -7,6 +7,7 @@ import java.util.function.Consumer;
  * It provides methods to access and manipulate elements within the array, offering
  * functionalities for type checking, handling null values, and wrapping data structures.
  *
+ *
  * <p>
  * Example usage:
  * <pre>{@code
@@ -27,14 +28,6 @@ public interface JsonArray extends JsonWrapper {
      * @param value The value to be added to the array.
      */
     void put(final Object value);
-
-    /**
-     * Returns the value at the specified index in the JSON array.
-     *
-     * @param index The index of the value to be returned.
-     * @return The value at the specified index.
-     */
-    Object get(final int index);
 
     /**
      * Returns the size of the JSON array.
@@ -152,5 +145,5 @@ public interface JsonArray extends JsonWrapper {
      * @param action The action to be performed for each element.
      * @throws NullPointerException if the specified action is null.
      */
-    void forEach(Consumer<? super Object> action);
+    void forEach(final Consumer<? super Object> action);
 }

@@ -30,19 +30,11 @@ public interface JsonObject extends JsonWrapper {
     void put(final String key, final Object value);
 
     /**
-     * Returns the value associated with the specified key.
-     *
-     * @param key The key whose associated value is to be returned.
-     * @return The value associated with the given key.
-     */
-    Object get(final String key);
-
-    /**
      * Returns the size of the JSON object.
      *
      * @return The size of the JSON object.
      */
-    int getSize();
+    int size();
 
     /**
      * Checks if the JSON object contains the specified key.

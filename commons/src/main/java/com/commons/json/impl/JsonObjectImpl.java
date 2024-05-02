@@ -58,20 +58,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param key The key whose associated value is to be returned.
-     * @return The value at the specified index
-     */
-    @Override
-    public Object get(final String key) {
-        return map.get(key);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
      * @return The size of the JSON array.
      */
-    public int getSize() {
+    public int size() {
         return map.size();
     }
 
@@ -94,10 +83,11 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int getInt(final String key) {
-        final Object object = get(key);
+        final Object object = isNonNull(key);
 
-        return Objects.nonNull(object) ? (object instanceof Number ? ((Number) object).intValue()
-                : Integer.parseInt((String)object)) : 0;    }
+        return object instanceof Number number ? number.intValue() : Integer.parseInt((String) object);
+
+    }
 
     /**
      * {@inheritDoc}
@@ -107,9 +97,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float getFloat(final String key) {
-        final Object object = get(key);
+        final Object object = isNonNull(key);
 
-        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : (float) object;
+        return object instanceof Number number ? number.floatValue() : Float.parseFloat((String) object);
     }
 
     /**
@@ -120,9 +110,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean getBoolean(final String key) {
-        final Object object = get(key);
+        final Object object = isNonNull(key);
 
-        return Objects.nonNull(object) && object instanceof Boolean && (boolean) object;
+        return object instanceof Boolean ? (boolean) object : Boolean.parseBoolean((String) object);
     }
 
     /**
@@ -133,9 +123,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public String getString(final String key) {
-        final Object object = get(key);
+        final Object object = isNonNull(key);
 
-        return (Objects.nonNull(object) && object instanceof String) ? (String) object : null;
+        return object instanceof String ? (String) object : null;
     }
 
     /**
@@ -143,18 +133,10 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      *
      * @param key The key whose associated JSON array is to be returned.
      * @return The JSON array associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a JSON array.
      */
     @Override
     public JsonArray getJsonArray(final String key) {
-        final Object object = get(key);
-
-        if (Objects.nonNull(object)) {
-            return wrappedJsonArray((List<Object>) object);
-        } else {
-
-           return null;
-        }
+        return wrappedJsonArray((List<Object>) isNonNull(key));
     }
 
     /**
@@ -162,17 +144,10 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      *
      * @param key The key whose associated JSON object is to be returned.
      * @return The JSON object associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a JSON object.
      */
     @Override
     public JsonObject getJsonObject(final String key) {
-        final Object object = get(key);
-
-        if (Objects.nonNull(object)) {
-            return wrappedJsonObject((Map<String, Object>) get(key));
-        } else {
-            throw new NullPointerException("The Key is invalid");
-        }
+        return wrappedJsonObject((Map<String, Object>) isNonNull(key));
     }
 
     /**
@@ -184,9 +159,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int optInt(final String key, final int defaultValue) {
-        final Object object = get(key);
-
-        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).intValue() : defaultValue;
+        return isNonNull(key) instanceof Number number ? number.intValue() : defaultValue;
     }
 
     /**
@@ -198,9 +171,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float optFloat(final String key, final float defaultValue) {
-        final Object object = get(key);
-
-        return Objects.nonNull(object) && object instanceof Number ? ((Number) object).floatValue() : defaultValue;
+        return isNonNull(key) instanceof Number ? ((Number) object).floatValue() : defaultValue;
     }
 
     /**
@@ -238,9 +209,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
      */
     public JsonArray optJsonArray(final String key) {
-        final Object object = get(key);
-
-        return (Objects.nonNull(object)) ? wrappedJsonArray((List<Object>) object) : null;
+        return wrappedJsonArray((List<Object>) isNonNull(key);
     }
 
     /**
@@ -251,9 +220,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final String key) {
-        final Object object = get(key);
-
-        return (Objects.nonNull(object)) ? wrappedJsonObject((Map<String, Object>) object) : null;
+        return wrappedJsonObject((Map<String, Object>) isNonNull(key));
     }
 
     /**
@@ -276,5 +243,21 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     @Override
     public JsonObject wrappedJsonObject(final Map<String, Object> map) {
         return new JsonObjectImpl(jsonMapper, map);
+    }
+
+    /**
+     * Checks if the object at the specified index is not null.
+     *
+     * @param index The index of the object to check.
+     * @return The object at the specified index if it is not null.
+     * @throws NullPointerException if the object at the specified index is null.
+     */
+    private Object isNonNull(final String key) {
+        final Object object = map.get(key);
+
+        if (Objects.isNull(object)) {
+            throw new NullPointerException("the key is invalid");
+        }
+        return object;
     }
 }
