@@ -5,6 +5,7 @@ import com.commons.json.JsonMapper;
 import com.commons.json.JsonObject;
 import com.commons.json.JsonWrapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -73,6 +74,16 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     @Override
     public boolean containsKey(final String key) {
         return map.containsKey(key);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return a Map containing the elements of this object
+     */
+    @Override
+    public Map<String, Object> toMap() {
+        return this.map;
     }
 
     /**
@@ -171,7 +182,8 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float optFloat(final String key, final float defaultValue) {
-        return isNonNull(key) instanceof Number ? ((Number) object).floatValue() : defaultValue;
+        return isNonNull(key) instanceof Number number ? number.floatValue() : defaultValue;
+
     }
 
     /**
@@ -183,7 +195,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean optBoolean(final String key, final boolean defaultValue) {
-        final Object object = get(key);
+        final Object object = map.get(key);
 
         return (object instanceof Boolean) ? (boolean) object : defaultValue;
     }
@@ -197,7 +209,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public String optString(final String key, final String defaultValue) {
-        final Object object = get(key);
+        final Object object = map.get(key);
 
         return (object instanceof String) ? (String) object : defaultValue;
     }
@@ -209,7 +221,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
      */
     public JsonArray optJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) isNonNull(key);
+        return wrappedJsonArray((List<Object>) isNonNull(key));
     }
 
     /**
@@ -248,7 +260,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * Checks if the object at the specified index is not null.
      *
-     * @param index The index of the object to check.
+     * @param key The index of the object to check.
      * @return The object at the specified index if it is not null.
      * @throws NullPointerException if the object at the specified index is null.
      */

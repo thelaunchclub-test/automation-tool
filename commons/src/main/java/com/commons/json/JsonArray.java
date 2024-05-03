@@ -1,5 +1,6 @@
 package com.commons.json;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -35,6 +36,14 @@ public interface JsonArray extends JsonWrapper {
      * @return The size of the JSON array.
      */
     int size();
+
+
+    /**
+     * Converts the elements of this object into a List of Objects.
+     *
+     * @return a List containing the elements of this object
+     */
+    List<Object> toList();
 
     /**
      * Returns the integer value at the specified index in the JSON array.

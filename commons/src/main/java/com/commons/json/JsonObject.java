@@ -1,5 +1,7 @@
 package com.commons.json;
 
+import java.util.Map;
+
 /**
  * <p>
  * Provides methods to put and retrieve data based on its data type within a JSON object.
@@ -43,6 +45,14 @@ public interface JsonObject extends JsonWrapper {
      * @return true if the JSON object contains the key, false otherwise.
      */
     boolean containsKey(final String key);
+
+    /**
+     * Converts the elements of this object into a Map where keys are strings
+     * and values are objects.
+     *
+     * @return a Map containing the elements of this object
+     */
+    Map<String, Object> toMap();
 
     /**
      * Returns the integer value associated with the specified key.

@@ -5,6 +5,7 @@ import com.commons.json.JsonMapper;
 import com.commons.json.JsonObject;
 import com.commons.json.JsonWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -57,10 +58,20 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      *
      * @return The size of the JSON array.
      */
+    @Override
     public int size() {
         return list.size();
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return a List containing the elements of this object.
+     */
+    @Override
+    public List<Object> toList(){
+        return this.list;
+    }
     /**
      * {@inheritDoc}
      *
