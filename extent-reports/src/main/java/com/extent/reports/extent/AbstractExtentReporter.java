@@ -5,8 +5,8 @@ import com.aventstack.extentreports.ExtentTest;
 
 import com.extent.reports.service.ExtentReporterService;
 import com.extent.reports.extent.spark.SparkReporter;
-import com.extent.reports.test.TestOperation;
-import com.extent.reports.test.TestOperationImpl;
+import com.extent.reports.test.TestFunction;
+import com.extent.reports.test.TestFunctionImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
 
     protected static ExtentReports reports;
 
-    protected final Map<TestOperation, ExtentTest> test;
+    protected final Map<TestFunction, ExtentTest> test;
 
     protected AbstractExtentReporter() {
         reports = new ExtentReports();
@@ -52,9 +52,9 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      * @param name The name of the test.
      * @return A custom Test object representing the newly created test.
      */
-    public TestOperation createTest(final String name) {
+    public TestFunction createTest(final String name) {
         final ExtentTest extentTest = reports.createTest(name);
-        final TestOperation test = new TestOperationImpl(extentTest);
+        final TestFunction test = new TestFunctionImpl(extentTest);
 
         this.test.put(test, extentTest);
 
@@ -68,9 +68,9 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      * @param description The description of the test.
      * @return A custom Test object representing the newly created test.
      */
-    public TestOperation createTest(final String name, final String description) {
+    public TestFunction createTest(final String name, final String description) {
         final ExtentTest extentTest = reports.createTest(name, description);
-        final TestOperation test = new TestOperationImpl(extentTest);
+        final TestFunction test = new TestFunctionImpl(extentTest);
 
         this.test.put(test, extentTest);
 
@@ -82,7 +82,7 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      *
      * @param test The custom Test object to remove.
      */
-    public void removeTest(final TestOperation test) {
+    public void removeTest(final TestFunction test) {
 
         if (this.test.containsKey(test)) {
             final ExtentTest extentTest = this.test.get(test);

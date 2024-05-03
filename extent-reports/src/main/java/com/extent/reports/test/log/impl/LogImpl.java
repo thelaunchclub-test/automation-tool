@@ -1,7 +1,7 @@
 package com.extent.reports.test.log.impl;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.TestFunction;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.status.Status;
 
@@ -50,11 +50,11 @@ import com.extent.reports.test.status.Status;
  * @author Navin Jones
  * @version 1.0
  * @see Log
- * @see TestOperation
+ * @see TestFunction
  */
 public final class LogImpl implements Log {
 
-    private TestOperation test;
+    private TestFunction test;
     private final ExtentTest extentTest;
 
     public LogImpl(final ExtentTest extentTest) {
@@ -77,26 +77,41 @@ public final class LogImpl implements Log {
         test.setLog(status, details);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogInfo(final String message) {
         extentTest.info(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogPass(final String message) {
         extentTest.pass(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogFail(final String message) {
         extentTest.fail(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogSkip(final String message) {
         extentTest.skip(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void LogWarning(final String message) {
         extentTest.warning(message);

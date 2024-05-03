@@ -6,7 +6,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.ExtentReporterImpl;
 import com.extent.reports.service.ReportGenerator;
-import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.TestFunction;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -39,10 +39,13 @@ public final class SparkReporter extends AbstractExtentReporter {
      * Loads the XML configuration from the specified path.
      *
      * @param xmlPath The path to the XML configuration file.
-     * @throws IOException If there is an issue loading the XML configuration.
      */
-    public void loadXMLConfig(final String xmlPath) throws IOException {
-        extentSparkReporter.loadXMLConfig(xmlPath);
+    public void loadXMLConfig(final String xmlPath) {
+        try {
+            extentSparkReporter.loadXMLConfig(xmlPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -99,10 +102,10 @@ public final class SparkReporter extends AbstractExtentReporter {
     /**
      * {@inheritDoc}
      *
-     * @see TestOperation
+     * @see TestFunction
      */
     @Override
-    public TestOperation getTest() {
+    public TestFunction getTest() {
         return report.getTest();
     }
 
