@@ -8,7 +8,7 @@ import java.io.File;
 
 /**
  * <p>
- * The {@code Json} class serves as  a utility to handle and process JSON data.
+ * The {@code Json} serves as  a utility to handle and process JSON data.
  * It provides methods to accept input either as a JSON File or a JSON String and
  * converts the input data to a suitable representation like {@link  JsonArray} or {@link JsonObject},
  * based on the specific requirements and structure of the provided data.

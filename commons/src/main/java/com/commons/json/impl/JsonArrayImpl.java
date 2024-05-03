@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
- * The {@code JsonArray} interface defines operations for manipulating JSON arrays.
+ * The {@code JsonArray} defines operations for manipulating JSON arrays.
  * It provides methods to access and manipulate elements within the array, offering
  * functionalities for type checking, handling null values, and wrapping data structures.
  *
@@ -70,8 +70,9 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public List<Object> toList(){
-        return this.list;
+        return new ArrayList<>(this.list);
     }
+
     /**
      * {@inheritDoc}
      *
@@ -80,7 +81,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public int getInt(final int index) {
-        final Object object = isNonNull(index);
+        final Object object = fetchValue(index);
 
         return object instanceof Number number ? number.intValue() : Integer.parseInt((String) object);
     }
@@ -93,7 +94,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public float getFloat(final int index) {
-        final Object object = isNonNull(index);
+        final Object object = fetchValue(index);
 
         return object instanceof Number number ? number.floatValue() : Float.parseFloat((String) object);
     }
@@ -106,7 +107,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public boolean getBoolean(final int index) {
-        final Object object = isNonNull(index);
+        final Object object = fetchValue(index);
 
         return object instanceof Boolean  ? (boolean)object : Boolean.parseBoolean((String) object);
     }
@@ -119,7 +120,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public String getString(final int index) {
-        final Object object = isNonNull(index);
+        final Object object = fetchValue(index);
 
         return object instanceof String ? (String) object : null;
     }
@@ -132,7 +133,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final int index) {
-        return wrappedJsonArray((List<Object>) isNonNull(index));
+        return wrappedJsonArray((List<Object>) fetchValue(index));
     }
 
     /**
@@ -143,7 +144,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonObject getJsonObject(final int index) {
-        return wrappedJsonObject((Map<String, Object>) isNonNull(index));
+        return wrappedJsonObject((Map<String, Object>) fetchValue(index));
     }
 
     /**
@@ -155,7 +156,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public int optInt(final int index, final int defaultValue) {
-        return isNonNull(index) instanceof Number number ? number.intValue() : defaultValue;
+        return fetchValue(index) instanceof Number number ? number.intValue() : defaultValue;
     }
 
     /**
@@ -167,7 +168,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public float optFloat(final int index, final float defaultValue) {
-        return isNonNull(index) instanceof Number number ? number.floatValue() : defaultValue;
+        return fetchValue(index) instanceof Number number ? number.floatValue() : defaultValue;
     }
 
     /**
@@ -178,7 +179,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public boolean optBoolean(final int index, final boolean defaultValue) {
-        final Object object = isNonNull(index);
+        final Object object = fetchValue(index);
 
         return (object instanceof Boolean) ? (boolean) object : defaultValue;
     }
@@ -191,7 +192,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public String optString(final int index, final String defaultValue) {
-        final Object object = isNonNull(index);
+        final Object object = fetchValue(index);
 
         return (object instanceof String) ? (String) object : defaultValue;
     }
@@ -204,7 +205,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonArray optJsonArray(final int index) {
-        return wrappedJsonArray((List<Object>) isNonNull(index));
+        return wrappedJsonArray((List<Object>) fetchValue(index));
     }
 
     /**
@@ -215,7 +216,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final int index) {
-        return wrappedJsonObject((Map<String, Object>) isNonNull(index));
+        return wrappedJsonObject((Map<String, Object>) fetchValue(index));
     }
 
     /**
@@ -257,7 +258,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      * @return The object at the specified index if it is not null.
      * @throws NullPointerException if the object at the specified index is null.
      */
-    private Object isNonNull(final int index) {
+    private Object fetchValue(final int index) {
         final Object object = list.get(index);
 
         if (Objects.isNull(object)) {

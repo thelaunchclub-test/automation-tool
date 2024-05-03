@@ -83,7 +83,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public Map<String, Object> toMap() {
-        return this.map;
+        return new HashMap<>(this.map);
     }
 
     /**
@@ -94,10 +94,9 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int getInt(final String key) {
-        final Object object = isNonNull(key);
+        final Object object = fetchValue(key);
 
         return object instanceof Number number ? number.intValue() : Integer.parseInt((String) object);
-
     }
 
     /**
@@ -108,7 +107,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float getFloat(final String key) {
-        final Object object = isNonNull(key);
+        final Object object = fetchValue(key);
 
         return object instanceof Number number ? number.floatValue() : Float.parseFloat((String) object);
     }
@@ -121,7 +120,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean getBoolean(final String key) {
-        final Object object = isNonNull(key);
+        final Object object = fetchValue(key);
 
         return object instanceof Boolean ? (boolean) object : Boolean.parseBoolean((String) object);
     }
@@ -134,7 +133,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public String getString(final String key) {
-        final Object object = isNonNull(key);
+        final Object object = fetchValue(key);
 
         return object instanceof String ? (String) object : null;
     }
@@ -147,7 +146,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) isNonNull(key));
+        return wrappedJsonArray((List<Object>) fetchValue(key));
     }
 
     /**
@@ -158,7 +157,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject getJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) isNonNull(key));
+        return wrappedJsonObject((Map<String, Object>) fetchValue(key));
     }
 
     /**
@@ -170,7 +169,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int optInt(final String key, final int defaultValue) {
-        return isNonNull(key) instanceof Number number ? number.intValue() : defaultValue;
+        return fetchValue(key) instanceof Number number ? number.intValue() : defaultValue;
     }
 
     /**
@@ -182,8 +181,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public float optFloat(final String key, final float defaultValue) {
-        return isNonNull(key) instanceof Number number ? number.floatValue() : defaultValue;
-
+        return fetchValue(key) instanceof Number number ? number.floatValue() : defaultValue;
     }
 
     /**
@@ -221,7 +219,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
      */
     public JsonArray optJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) isNonNull(key));
+        return wrappedJsonArray((List<Object>) fetchValue(key));
     }
 
     /**
@@ -232,7 +230,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) isNonNull(key));
+        return wrappedJsonObject((Map<String, Object>) fetchValue(key));
     }
 
     /**
@@ -264,12 +262,13 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The object at the specified index if it is not null.
      * @throws NullPointerException if the object at the specified index is null.
      */
-    private Object isNonNull(final String key) {
+    private Object fetchValue(final String key) {
         final Object object = map.get(key);
 
         if (Objects.isNull(object)) {
             throw new NullPointerException("the key is invalid");
         }
+
         return object;
     }
 }
