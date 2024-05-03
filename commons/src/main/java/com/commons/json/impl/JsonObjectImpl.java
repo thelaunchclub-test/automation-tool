@@ -30,7 +30,6 @@ import java.util.Objects;
  * @version 1.0
  * @see JsonObject
  */
-
 final class JsonObjectImpl implements JsonObject, JsonWrapper {
 
     private final Map<String, Object> map;
