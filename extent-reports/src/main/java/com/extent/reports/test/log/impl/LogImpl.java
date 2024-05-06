@@ -1,6 +1,7 @@
 package com.extent.reports.test.log.impl;
 
 import com.aventstack.extentreports.ExtentTest;
+
 import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.ReportTestImpl;
 import com.extent.reports.test.log.service.Log;
@@ -146,6 +147,3 @@ public final class LogImpl implements Log {
         return this;
     }
 }
-
-
-

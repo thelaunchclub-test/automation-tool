@@ -6,10 +6,9 @@ import com.extent.reports.service.ReportService;
 /**
  * Provides an ExtentReport instance using ExtentReportImpl.
  *
- * @see ReportService
- *
- * @Author Navin Jones
  * @version 1.0
+ * @Author Navin Jones
+ * @see ReportService
  */
 public final class ExtentReportServiceImpl implements ReportService {
 

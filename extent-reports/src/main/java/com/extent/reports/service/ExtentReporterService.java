@@ -14,11 +14,10 @@ import com.extent.reports.test.ReportTest;
  * and provides methods for reporting test steps and results.
  * </p>
  *
+ * @version 1.1
+ * @Author Navin Jones
  * @see ReportGenerator
  * @see ReportTest
- *
- * @Author Navin Jones
- * @version 1.1
  */
 public interface ExtentReporterService extends ReportGenerator {
 
@@ -33,11 +32,7 @@ public interface ExtentReporterService extends ReportGenerator {
      * </p>
      *
      * @return A {@link ReportTest} object representing the current test.
-     *
      * @see ReportTest
      */
     ReportTest getTest();
 }
-
-
-

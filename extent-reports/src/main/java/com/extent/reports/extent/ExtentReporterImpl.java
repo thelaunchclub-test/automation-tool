@@ -17,10 +17,9 @@ import com.extent.reports.test.ReportTestImpl;
  * instances, as well as retrieving test and report instances.
  * </p>
  *
- * @see AbstractExtentReporter
- *
- * @Author Navin Jones
  * @version 1.1
+ * @Author Navin Jones
+ * @see AbstractExtentReporter
  */
 public final class ExtentReporterImpl extends AbstractExtentReporter {
 
@@ -72,5 +71,3 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
         return reportService.getReport();
     }
 }
-
-

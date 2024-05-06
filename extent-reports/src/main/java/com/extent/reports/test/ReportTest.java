@@ -149,4 +149,3 @@ public interface ReportTest {
     void setLog(final Status status, final String details);
 
 }
-

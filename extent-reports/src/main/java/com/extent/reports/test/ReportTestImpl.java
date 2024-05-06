@@ -14,8 +14,7 @@ import com.extent.reports.test.tabs.impl.TabsImpl;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
- * The {@code TestOperation} class implements the {@link ReportTest} interface
- * and provides an implementation for managing and reporting test execution details
+ * Provides an implementation for managing and reporting test execution details
  * using an ExtentTest instance.
  *
  * <p>
@@ -45,7 +44,6 @@ public final class ReportTestImpl implements ReportTest {
     public ReportTestImpl(final ExtentTest test) {
         this.extentTest = test;
         this.test = this;
-
     }
 
     /**
@@ -140,7 +138,7 @@ public final class ReportTestImpl implements ReportTest {
     /**
      * {@inheritDoc}
      *
-     * @param name - the name of the test node
+     * @param name        - the name of the test node
      * @param description - the description of the test node
      * @return Test - the updated Test instance
      */
@@ -225,6 +223,3 @@ public final class ReportTestImpl implements ReportTest {
         return new TabsImpl(test);
     }
 }
-
-
-

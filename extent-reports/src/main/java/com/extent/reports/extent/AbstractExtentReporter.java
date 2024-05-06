@@ -44,7 +44,6 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
         reports.attachReporter(reporter.getExtentSparkReporter());
     }
 
-
     /**
      * Flushes the ExtentReports instance to write all logs and close the report.
      */
@@ -103,7 +102,9 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      *
      * @return An instance of ExtentReport.
      */
-    protected abstract AbstractExtentReporter getReporter();
+    protected AbstractExtentReporter getReporter() {
+        return null;
+    }
 
     /**
      * Subclasses must implement this method to create and return the appropriate ExtentReporter.
@@ -112,7 +113,4 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      * @return An instance of ExtentReporter configured to generate reports at the specified path.
      */
     protected abstract AbstractExtentReporter getReporter(final String path);
-
 }
-
-

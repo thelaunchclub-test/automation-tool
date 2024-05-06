@@ -65,7 +65,7 @@ public final class TabsImpl implements Tabs {
      * {@inheritDoc}
      *
      * @param name - the name of the category, facilitating grouping and
-     * organization based on predefined categories.
+     *             organization based on predefined categories.
      * @return an updated instance of {@code Test} reflecting the assignment
      * of the category name to the test execution or operation.
      */
@@ -76,10 +76,11 @@ public final class TabsImpl implements Tabs {
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Assigns the specified device name to the test execution or operation.
+     *
      * @param name - the name of the device, providing insights into the
-     * targeted device or platform for the test execution or operation.
+     *             targeted device or platform for the test execution or operation.
      * @return an updated instance of {@code Test} reflecting the assignment
      * of the device name to the test execution or operation.
      */
@@ -88,4 +89,3 @@ public final class TabsImpl implements Tabs {
         return test.assignDevice(name);
     }
 }
-

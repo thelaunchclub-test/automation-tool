@@ -90,8 +90,3 @@ public final class ScreenCaptureImpl implements ScreenCapture {
         return testGenerator.addSnapShotFromBase64String(base64);
     }
 }
-
-
-
-
-

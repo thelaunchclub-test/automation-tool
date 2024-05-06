@@ -72,8 +72,9 @@ public final class NodeImpl implements Node {
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Creates a test node with the specified name.
+     *
      * @param name The name of the test node.
      */
     @Override
@@ -97,7 +98,7 @@ public final class NodeImpl implements Node {
      * {@inheritDoc}
      *
      * @param gherkinKeyword The Gherkin keyword associated with the test node.
-     * @param name The name of the test node.
+     * @param name           The name of the test node.
      * @return A ReportTest object representing the created test node.
      */
     @Override
@@ -109,8 +110,8 @@ public final class NodeImpl implements Node {
      * {@inheritDoc}
      *
      * @param gherkinKeyword The Gherkin keyword associated with the test node.
-     * @param name The name of the test node.
-     * @param description The description of the test node.
+     * @param name           The name of the test node.
+     * @param description    The description of the test node.
      * @return A ReportTest object representing the created test node.
      */
     @Override

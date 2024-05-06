@@ -93,20 +93,21 @@ public final class SparkReporter extends AbstractExtentReporter {
     /**
      * Attaches the SparkReporter to the ExtentReports instance.
      */
-    public void start() {
+    public void attach() {
         reports.attachReporter(extentSparkReporter);
     }
 
     /**
      * Flushes the ExtentReports instance to write the report.
      */
-    public void stop() {
+    public void save() {
         reports.flush();
     }
 
     /**
      * {@inheritDoc}
      *
+     * @return The ReportTest instance representing the current test context.
      * @see ReportTest
      */
     @Override
@@ -114,13 +115,11 @@ public final class SparkReporter extends AbstractExtentReporter {
         return report.getTest();
     }
 
-    @Override
-    protected AbstractExtentReporter getReporter() {
-        return new ExtentReporterImpl();
-    }
-
     /**
      * {@inheritDoc}
+     *
+     * @param path The file path used to initialize the SparkReporter instance.
+     * @return An AbstractExtentReporter instance, specifically a SparkReporter object, initialized with the provided path.
      */
     @Override
     protected AbstractExtentReporter getReporter(final String path) {
@@ -128,16 +127,13 @@ public final class SparkReporter extends AbstractExtentReporter {
     }
 
     /**
-     * {@inheritDoc}
+     * Obtains a ReportGenerator instance.
+     * This method instantiates a new instance of ExtentReporterImpl, a concrete implementation
+     * of the ReportGenerator interface, and returns it.
      *
-     * @see ReportGenerator
+     * @return A ReportGenerator instance, specifically an instance of ExtentReporterImpl.
      */
     public ReportGenerator getReport() {
         return new ExtentReporterImpl();
     }
 }
-
-
-
-
-

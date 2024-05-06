@@ -61,7 +61,4 @@ public interface ScreenCapture {
      * @return A ReportTest object with the screenshot associated.
      */
     ReportTest fromBase64Path(final String base64);
-
 }
-
-

@@ -4,7 +4,7 @@ import com.extent.reports.extent.ExtentReporterImpl;
 
 /**
  * Defines a contract for classes that mark a report generation capability.
- * It serves as a marker interface indicating the ability to generate reports.
+ * It serves as a functional interface indicating the ability to generate reports.
  *
  * <p>
  * This interface provides a static factory method to obtain an instance
@@ -18,11 +18,10 @@ import com.extent.reports.extent.ExtentReporterImpl;
  * }</pre>
  * </p>
  *
+ * @version 1.1
+ * @Author Navin Jones
  * @see ReportService
  * @see ExtentReporterImpl
- *
- * @Author Navin Jones
- * @version 1.1
  */
 @FunctionalInterface
 public interface ReportGenerator extends ReportService {
@@ -38,11 +37,9 @@ public interface ReportGenerator extends ReportService {
      * </p>
      *
      * @return An instance of {@code ReportGenerator} implementation.
-     *
      * @see ExtentReporterImpl
      */
-    static ReportGenerator getInstance(){
+    static ReportGenerator getInstance() {
         return new ExtentReporterImpl();
     }
 }
-

@@ -78,4 +78,3 @@ public interface Tabs {
      */
     ReportTest assignDevice(final String name);
 }
-

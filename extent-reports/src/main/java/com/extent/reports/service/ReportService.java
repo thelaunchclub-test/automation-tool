@@ -24,10 +24,9 @@ package com.extent.reports.service;
  * }</pre>
  * </p>
  *
- * @see ReportGenerator
- *
- * @Author Navin Jones
  * @version 1.1
+ * @Author Navin Jones
+ * @see ReportGenerator
  */
 public interface ReportService {
 
@@ -41,9 +40,7 @@ public interface ReportService {
      * </p>
      *
      * @return An instance of {@link ReportGenerator} for generating reports.
-     *
      * @see ReportGenerator
      */
     ReportGenerator getReport();
 }
-

@@ -47,7 +47,7 @@ public interface Log {
      * @param status  - the {@code Status} enum value indicating the log status.
      * @param details - the details or message to be logged, providing context to the logged event.
      * @return an updated instance of the {@code Log} interface, facilitating method chaining and
-     *         fluent logging sequences.
+     * fluent logging sequences.
      */
     Log log(final Status status, final String details);
 
@@ -98,5 +98,4 @@ public interface Log {
      * @param message The warning message to be logged.
      */
     Log LogWarning(final String message);
-
 }
