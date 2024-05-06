@@ -6,7 +6,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.ExtentReporterImpl;
 import com.extent.reports.service.ReportGenerator;
-import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.ReportTest;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -99,10 +99,10 @@ public final class SparkReporter extends AbstractExtentReporter {
     /**
      * {@inheritDoc}
      *
-     * @see TestOperation
+     * @see ReportTest
      */
     @Override
-    public TestOperation getTest() {
+    public ReportTest getTest() {
         return report.getTest();
     }
 

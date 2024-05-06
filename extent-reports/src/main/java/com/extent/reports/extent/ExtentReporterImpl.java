@@ -4,8 +4,8 @@ import com.aventstack.extentreports.ExtentTest;
 
 import com.extent.reports.extent.spark.SparkReporter;
 import com.extent.reports.service.ReportGenerator;
-import com.extent.reports.test.TestOperation;
-import com.extent.reports.test.TestOperationImpl;
+import com.extent.reports.test.ReportTest;
+import com.extent.reports.test.ReportTestImpl;
 
 
 /**
@@ -51,8 +51,8 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation getTest() {
-        return new TestOperationImpl(extentTest);
+    public ReportTest getTest() {
+        return new ReportTestImpl(extentTest);
     }
 
     /**

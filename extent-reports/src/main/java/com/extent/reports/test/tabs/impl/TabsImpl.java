@@ -1,6 +1,6 @@
 package com.extent.reports.test.tabs.impl;
 
-import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
@@ -39,13 +39,13 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @author Navin Jones
  * @version 1.0
  * @see Tabs
- * @see TestOperation
+ * @see ReportTest
  */
 public final class TabsImpl implements Tabs {
 
-    private final TestOperation test;
+    private final ReportTest test;
 
-    public TabsImpl(final TestOperation testGenerator) {
+    public TabsImpl(final ReportTest testGenerator) {
         this.test = testGenerator;
     }
 
@@ -54,7 +54,7 @@ public final class TabsImpl implements Tabs {
      *
      */
     @Override
-    public TestOperation assignAuthor(final String name) {
+    public ReportTest assignAuthor(final String name) {
         return test.assignAuthor(name);
     }
 
@@ -62,7 +62,7 @@ public final class TabsImpl implements Tabs {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation assignCategory(final String name) {
+    public ReportTest assignCategory(final String name) {
         return test.assignCategory(name);
     }
 
@@ -70,7 +70,7 @@ public final class TabsImpl implements Tabs {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation assignDevice(final String name) {
+    public ReportTest assignDevice(final String name) {
         return test.assignDevice(name);
     }
 }

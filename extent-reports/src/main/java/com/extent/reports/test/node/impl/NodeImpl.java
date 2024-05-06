@@ -2,7 +2,7 @@ package com.extent.reports.test.node.impl;
 
 import com.aventstack.extentreports.GherkinKeyword;
 
-import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.node.service.Node;
 
 /**
@@ -59,14 +59,14 @@ import com.extent.reports.test.node.service.Node;
  * @author Navin Jones
  * @version 1.0
  * @see Node
- * @see TestOperation
+ * @see ReportTest
  * @see GherkinKeyword
  */
 public final class NodeImpl implements Node {
 
-    private final TestOperation test;
+    private final ReportTest test;
 
-    public NodeImpl(final TestOperation test) {
+    public NodeImpl(final ReportTest test) {
         this.test = test;
     }
 
@@ -82,7 +82,7 @@ public final class NodeImpl implements Node {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final String name, final String description) {
+    public ReportTest createNode(final String name, final String description) {
         return test.createNode(name, description);
     }
 
@@ -90,7 +90,7 @@ public final class NodeImpl implements Node {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name) {
+    public ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name) {
         return test.createNode(gherkinKeyword, name);
     }
 
@@ -98,7 +98,7 @@ public final class NodeImpl implements Node {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
+    public ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
         return test.createNode(gherkinKeyword, name, description);
     }
 }

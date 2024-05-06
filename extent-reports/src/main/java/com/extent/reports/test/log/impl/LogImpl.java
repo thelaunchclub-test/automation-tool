@@ -1,7 +1,7 @@
 package com.extent.reports.test.log.impl;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.extent.reports.test.TestOperation;
+import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.status.Status;
 
@@ -50,11 +50,11 @@ import com.extent.reports.test.status.Status;
  * @author Navin Jones
  * @version 1.0
  * @see Log
- * @see TestOperation
+ * @see ReportTest
  */
 public final class LogImpl implements Log {
 
-    private TestOperation test;
+    private ReportTest test;
     private final ExtentTest extentTest;
 
     public LogImpl(final ExtentTest extentTest) {

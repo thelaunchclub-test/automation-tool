@@ -14,7 +14,7 @@ import com.extent.reports.test.tabs.impl.TabsImpl;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
- * The {@code TestOperation} class implements the {@link TestOperation} interface
+ * The {@code TestOperation} class implements the {@link ReportTest} interface
  * and provides an implementation for managing and reporting test execution details
  * using an ExtentTest instance.
  *
@@ -27,7 +27,7 @@ import com.extent.reports.test.tabs.service.Tabs;
  *
  * @version 1.0
  * @Author Navin Jones
- * @see TestOperation
+ * @see ReportTest
  * @see ExtentTest
  * @see Node
  * @see Log
@@ -37,12 +37,12 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see Status
  */
 
-public final class TestOperationImpl implements TestOperation {
+public final class ReportTestImpl implements ReportTest {
 
     private ExtentTest extentTest;
-    private final TestOperation test;
+    private final ReportTest test;
 
-    public TestOperationImpl(final ExtentTest test) {
+    public ReportTestImpl(final ExtentTest test) {
         this.extentTest = test;
         this.test = this;
 
@@ -60,7 +60,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation assignAuthor(final String author) {
+    public ReportTest assignAuthor(final String author) {
         this.extentTest = extentTest.assignAuthor(author);
 
         return this;
@@ -70,7 +70,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation assignCategory(final String category) {
+    public ReportTest assignCategory(final String category) {
         this.extentTest = extentTest.assignCategory(category);
 
         return this;
@@ -80,7 +80,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation assignDevice(final String device) {
+    public ReportTest assignDevice(final String device) {
         this.extentTest = extentTest.assignDevice(device);
 
         return this;
@@ -90,7 +90,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation addSnapShotFromPath(final String path) {
+    public ReportTest addSnapShotFromPath(final String path) {
         this.extentTest = extentTest.addScreenCaptureFromPath(path);
 
         return this;
@@ -100,7 +100,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation addSnapShotFromBase64String(final String base64) {
+    public ReportTest addSnapShotFromBase64String(final String base64) {
         this.extentTest = extentTest.addScreenCaptureFromBase64String(base64);
 
         return this;
@@ -110,7 +110,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final String name) {
+    public ReportTest createNode(final String name) {
         this.extentTest = extentTest.createNode(name);
 
         return this;
@@ -120,7 +120,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final String name, final String description) {
+    public ReportTest createNode(final String name, final String description) {
         this.extentTest = extentTest.createNode(name, description);
 
         return this;
@@ -130,7 +130,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
+    public ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name, description);
 
         return this;
@@ -140,7 +140,7 @@ public final class TestOperationImpl implements TestOperation {
      * {@inheritDoc}
      */
     @Override
-    public TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name) {
+    public ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name);
 
         return this;
