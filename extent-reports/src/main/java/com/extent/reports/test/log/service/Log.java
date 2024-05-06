@@ -47,7 +47,7 @@ public interface Log {
      * @param status  - the {@code Status} enum value indicating the log status.
      * @param details - the details or message to be logged, providing context to the logged event.
      * @return an updated instance of the {@code Log} interface, facilitating method chaining and
-     * fluent logging sequences.
+     *         fluent logging sequences.
      */
     Log log(final Status status, final String details);
 
@@ -59,38 +59,13 @@ public interface Log {
      */
     void setLog(final Status status, final String details);
 
-    /**
-     * Logs an informational message.
-     *
-     * @param message The informational message to be logged.
-     */
     void LogInfo(final String message);
 
-    /**
-     * Logs a message indicating a passed test or operation.
-     *
-     * @param message The message indicating the passed test or operation.
-     */
     void LogPass(final String message);
 
-    /**
-     * Logs a message indicating a failed test or operation.
-     *
-     * @param message The message indicating the failed test or operation.
-     */
     void LogFail(final String message);
 
-    /**
-     * Logs a message indicating a skipped test or operation.
-     *
-     * @param message The message indicating the skipped test or operation.
-     */
     void LogSkip(final String message);
 
-    /**
-     * Logs a warning message.
-     *
-     * @param message The warning message to be logged.
-     */
     void LogWarning(final String message);
 }

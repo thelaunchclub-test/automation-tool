@@ -1,7 +1,7 @@
 package com.extent.reports.test.node.service;
 
 import com.aventstack.extentreports.GherkinKeyword;
-import com.extent.reports.test.TestFunction;
+import com.extent.reports.test.TestOperation;
 
 /**
  * Defines the contract for creating test nodes within the testing framework.
@@ -46,7 +46,7 @@ import com.extent.reports.test.TestFunction;
  *
  * @author Navin Jones
  * @version 1.0
- * @see TestFunction
+ * @see TestOperation
  * @see GherkinKeyword
  */
 public interface Node {
@@ -59,17 +59,17 @@ public interface Node {
     /**
      * Creates a test node with the specified name and description.
      */
-    TestFunction createNode(final String name, final String description);
+    TestOperation createNode(final String name, final String description);
 
     /**
      * Creates a test node with the specified Gherkin keyword and name.
      */
-    TestFunction createNode(final GherkinKeyword gherkinKeyword, final String name);
+    TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name);
 
     /**
      * Creates a test node with the specified Gherkin keyword, name, and description.
      */
-    TestFunction createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
+    TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
 }
 
 

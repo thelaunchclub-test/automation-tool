@@ -2,6 +2,7 @@ package com.extent.reports.test;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.GherkinKeyword;
+
 import com.extent.reports.test.log.impl.LogImpl;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.node.impl.NodeImpl;
@@ -13,7 +14,7 @@ import com.extent.reports.test.tabs.impl.TabsImpl;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
- * The {@code TestOperation} class implements the {@link TestFunction} interface
+ * The {@code TestOperation} class implements the {@link TestOperation} interface
  * and provides an implementation for managing and reporting test execution details
  * using an ExtentTest instance.
  *
@@ -26,7 +27,7 @@ import com.extent.reports.test.tabs.service.Tabs;
  *
  * @version 1.0
  * @Author Navin Jones
- * @see TestFunction
+ * @see TestOperation
  * @see ExtentTest
  * @see Node
  * @see Log
@@ -35,14 +36,16 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see GherkinKeyword
  * @see Status
  */
-public final class TestFunctionImpl implements TestFunction {
+
+public final class TestOperationImpl implements TestOperation {
 
     private ExtentTest extentTest;
-    private final TestFunction test;
+    private final TestOperation test;
 
-    public TestFunctionImpl(final ExtentTest test) {
+    public TestOperationImpl(final ExtentTest test) {
         this.extentTest = test;
         this.test = this;
+
     }
 
     /**
@@ -57,7 +60,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction assignAuthor(final String author) {
+    public TestOperation assignAuthor(final String author) {
         this.extentTest = extentTest.assignAuthor(author);
 
         return this;
@@ -67,7 +70,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction assignCategory(final String category) {
+    public TestOperation assignCategory(final String category) {
         this.extentTest = extentTest.assignCategory(category);
 
         return this;
@@ -77,7 +80,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction assignDevice(final String device) {
+    public TestOperation assignDevice(final String device) {
         this.extentTest = extentTest.assignDevice(device);
 
         return this;
@@ -87,7 +90,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction addSnapShotFromPath(final String path) {
+    public TestOperation addSnapShotFromPath(final String path) {
         this.extentTest = extentTest.addScreenCaptureFromPath(path);
 
         return this;
@@ -97,7 +100,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction addSnapShotFromBase64String(final String base64) {
+    public TestOperation addSnapShotFromBase64String(final String base64) {
         this.extentTest = extentTest.addScreenCaptureFromBase64String(base64);
 
         return this;
@@ -107,7 +110,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction createNode(final String name) {
+    public TestOperation createNode(final String name) {
         this.extentTest = extentTest.createNode(name);
 
         return this;
@@ -117,7 +120,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction createNode(final String name, final String description) {
+    public TestOperation createNode(final String name, final String description) {
         this.extentTest = extentTest.createNode(name, description);
 
         return this;
@@ -127,7 +130,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
+    public TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name, description);
 
         return this;
@@ -137,7 +140,7 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction createNode(final GherkinKeyword gherkinKeyword, final String name) {
+    public TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name) {
         this.extentTest = extentTest.createNode(gherkinKeyword, name);
 
         return this;
@@ -147,61 +150,48 @@ public final class TestFunctionImpl implements TestFunction {
      * {@inheritDoc}
      */
     @Override
-    public TestFunction setLog(final Status status, final String details) {
+    public void setLog(final Status status, final String details) {
         test.setLog(status, details);
-
-        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public TestFunction LogInfo(final String message) {
+    public void LogInfo(final String message) {
         extentTest.info(message);
-
-        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public TestFunction LogPass(final String message) {
+    public void LogPass(final String message) {
         extentTest.pass(message);
-
-        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public TestFunction LogFail(final String message) {
+    public void LogFail(final String message) {
         extentTest.fail(message);
-
-        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public TestFunction LogSkip(final String message) {
+    public void LogSkip(final String message) {
         extentTest.skip(message);
-
-        return this;
     }
 
     /**
      * {@inheritDoc}
      */
-
     @Override
-    public TestFunction LogWarning(final String message) {
+    public void LogWarning(final String message) {
         extentTest.warning(message);
-
-        return this;
     }
 
     /**

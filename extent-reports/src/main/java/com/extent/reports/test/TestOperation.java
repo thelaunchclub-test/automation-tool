@@ -29,7 +29,7 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see GherkinKeyword
  * @see Status
  */
-public interface TestFunction {
+public interface TestOperation {
 
     /**
      * Retrieves the current node associated with the test.
@@ -69,7 +69,7 @@ public interface TestFunction {
      * @param name - the name of the author
      * @return Test - the updated Test instance
      */
-    TestFunction assignAuthor(final String name);
+    TestOperation assignAuthor(final String name);
 
     /**
      * Assigns a category to the test.
@@ -77,7 +77,7 @@ public interface TestFunction {
      * @param name - the name of the category
      * @return Test - the updated Test instance
      */
-    TestFunction assignCategory(final String name);
+    TestOperation assignCategory(final String name);
 
     /**
      * Assigns a device name to the test.
@@ -85,7 +85,7 @@ public interface TestFunction {
      * @param name - the name of the device
      * @return Test - the updated Test instance
      */
-    TestFunction assignDevice(final String name);
+    TestOperation assignDevice(final String name);
 
     /**
      * Adds a snapshot from a file path to the test.
@@ -93,7 +93,7 @@ public interface TestFunction {
      * @param path - the file path of the snapshot
      * @return Test - the updated Test instance
      */
-    TestFunction addSnapShotFromPath(final String path);
+    TestOperation addSnapShotFromPath(final String path);
 
     /**
      * Adds a snapshot from a Base64 encoded string to the test.
@@ -101,7 +101,7 @@ public interface TestFunction {
      * @param base64 - the Base64 encoded string of the snapshot
      * @return Test - the updated Test instance
      */
-    TestFunction addSnapShotFromBase64String(final String base64);
+    TestOperation addSnapShotFromBase64String(final String base64);
 
     /**
      * Creates a new test node with the specified name.
@@ -109,7 +109,7 @@ public interface TestFunction {
      * @param name - the name of the test node
      * @return Test - the updated Test instance
      */
-    TestFunction createNode(final String name);
+    TestOperation createNode(final String name);
 
     /**
      * Creates a new test node with the specified name and description.
@@ -118,7 +118,7 @@ public interface TestFunction {
      * @param description - the description of the test node
      * @return Test - the updated Test instance
      */
-    TestFunction createNode(final String name, final String description);
+    TestOperation createNode(final String name, final String description);
 
     /**
      * Creates a new test node with the specified Gherkin keyword, name, and description.
@@ -128,7 +128,7 @@ public interface TestFunction {
      * @param description    - the description of the test node
      * @return Test - the updated Test instance
      */
-    TestFunction createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
+    TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
 
     /**
      * Creates a new test node with the specified Gherkin keyword and name.
@@ -137,7 +137,7 @@ public interface TestFunction {
      * @param name           - the name of the test node
      * @return Test - the updated Test instance
      */
-    TestFunction createNode(final GherkinKeyword gherkinKeyword, final String name);
+    TestOperation createNode(final GherkinKeyword gherkinKeyword, final String name);
 
     /**
      * Sets the log status and details for the current test node.
@@ -146,7 +146,7 @@ public interface TestFunction {
      * @param details - the details to be logged
      * @see Status
      */
-    TestFunction setLog(final Status status, final String details);
+    void setLog(final Status status, final String details);
 
     /**
      * Logs an informational message.
@@ -154,35 +154,35 @@ public interface TestFunction {
      * @param message The message to be logged.
      */
 
-    TestFunction LogInfo(final String message);
+    void LogInfo(final String message);
 
     /**
      * Logs a pass status along with a message.
      *
      * @param message The message to be logged.
      */
-    TestFunction LogPass(final String message);
+    void LogPass(final String message);
 
     /**
      * Logs a fail status along with a message.
      *
      * @param message The message to be logged.
      */
-    TestFunction LogFail(final String message);
+    void LogFail(final String message);
 
     /**
      * Logs a skip status along with a message.
      *
      * @param message The message to be logged.
      */
-    TestFunction LogSkip(final String message);
+    void LogSkip(final String message);
 
     /**
      * Logs a warning status along with a message.
      *
      * @param message The message to be logged.
      */
-    TestFunction LogWarning(final String message);
+    void LogWarning(final String message);
 
 }
 

@@ -1,6 +1,6 @@
 package com.extent.reports.test.screenshot.service;
 
-import com.extent.reports.test.TestFunction;
+import com.extent.reports.test.TestOperation;
 import com.extent.reports.test.screenshot.impl.ScreenCaptureImpl;
 
 /**
@@ -38,20 +38,20 @@ import com.extent.reports.test.screenshot.impl.ScreenCaptureImpl;
  * @author Navin Jones
  * @version 1.0
  * @see ScreenCaptureImpl
- * @see TestFunction
+ * @see TestOperation
  */
 public interface ScreenCapture {
 
     /**
      * Captures a screenshot from the specified path and associates it with the test execution context.
      */
-    TestFunction fromPath(final String path);
+    TestOperation fromPath(final String path);
 
     /**
      * Captures a screenshot from the specified Base64 encoded string and associates it with
      * the test execution context.
      */
-    TestFunction fromBase64Path(final String base64);
+    TestOperation fromBase64Path(final String base64);
 }
 
 
