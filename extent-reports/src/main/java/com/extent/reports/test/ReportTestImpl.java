@@ -50,6 +50,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @return Node - the current test node
+     * @see Node
      */
     @Override
     public Node getNode() {
@@ -58,6 +61,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param author - the name of the author
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest assignAuthor(final String author) {
@@ -68,6 +74,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param category - the name of the category
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest assignCategory(final String category) {
@@ -78,6 +87,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param device - the name of the device
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest assignDevice(final String device) {
@@ -88,6 +100,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param path - the file path of the snapshot
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest addSnapShotFromPath(final String path) {
@@ -98,6 +113,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param base64 - the Base64 encoded string of the snapshot
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest addSnapShotFromBase64String(final String base64) {
@@ -108,6 +126,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param name - the name of the test node
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest createNode(final String name) {
@@ -118,6 +139,10 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param name - the name of the test node
+     * @param description - the description of the test node
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest createNode(final String name, final String description) {
@@ -128,6 +153,11 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param gherkinKeyword - the GherkinKeyword enum value
+     * @param name           - the name of the test node
+     * @param description    - the description of the test node
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name, final String description) {
@@ -138,6 +168,10 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param gherkinKeyword - the GherkinKeyword enum value
+     * @param name           - the name of the test node
+     * @return Test - the updated Test instance
      */
     @Override
     public ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name) {
@@ -148,6 +182,10 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @param status  - the Status enum value
+     * @param details - the details to be logged
+     * @see Status
      */
     @Override
     public void setLog(final Status status, final String details) {
@@ -156,46 +194,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
-     */
-    @Override
-    public void LogInfo(final String message) {
-        extentTest.info(message);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void LogPass(final String message) {
-        extentTest.pass(message);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void LogFail(final String message) {
-        extentTest.fail(message);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void LogSkip(final String message) {
-        extentTest.skip(message);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void LogWarning(final String message) {
-        extentTest.warning(message);
-    }
-
-    /**
-     * {@inheritDoc}
+     *
+     * @return Log - the log instance
+     * @see Log
      */
     @Override
     public Log getLog() {
@@ -204,6 +205,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @return ScreenCapture - the screen capture instance
+     * @see ScreenCapture
      */
     @Override
     public ScreenCapture getScreenCapture() {
@@ -212,6 +216,9 @@ public final class ReportTestImpl implements ReportTest {
 
     /**
      * {@inheritDoc}
+     *
+     * @return Tabs - the tabs instance
+     * @see Tabs
      */
     @Override
     public Tabs getTabs() {

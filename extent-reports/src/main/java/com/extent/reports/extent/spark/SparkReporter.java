@@ -3,10 +3,13 @@ package com.extent.reports.extent.spark;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.ExtentReporterImpl;
+import com.extent.reports.service.ExtentReporterService;
 import com.extent.reports.service.ReportGenerator;
 import com.extent.reports.test.ReportTest;
+
 import lombok.Getter;
 
 import java.io.IOException;
@@ -28,7 +31,7 @@ import java.io.IOException;
 public final class SparkReporter extends AbstractExtentReporter {
 
     private final ExtentSparkReporter extentSparkReporter;
-    private ExtentReporterImpl report;
+    private ExtentReporterService report;
 
     public SparkReporter(final String path) {
         super();
@@ -36,13 +39,18 @@ public final class SparkReporter extends AbstractExtentReporter {
     }
 
     /**
-     * Loads the XML configuration from the specified path.
+     * Loads the XML configuration file from the specified path and configures the ExtentSparkReporter.
+     * This method attempts to load the XML configuration file from the provided path and configures
+     * the ExtentSparkReporter accordingly. It handles IOException if encountered during the process.
      *
      * @param xmlPath The path to the XML configuration file.
-     * @throws IOException If there is an issue loading the XML configuration.
      */
-    public void loadXMLConfig(final String xmlPath) throws IOException {
-        extentSparkReporter.loadXMLConfig(xmlPath);
+    public void loadXMLConfig(final String xmlPath) {
+        try {
+            extentSparkReporter.loadXMLConfig(xmlPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -108,7 +116,7 @@ public final class SparkReporter extends AbstractExtentReporter {
 
     @Override
     protected AbstractExtentReporter getReporter() {
-        return null;
+        return new ExtentReporterImpl();
     }
 
     /**

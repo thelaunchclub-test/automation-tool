@@ -52,6 +52,9 @@ public final class TabsImpl implements Tabs {
     /**
      * {@inheritDoc}
      *
+     * @param name - the name of the author, providing identification and categorization based on authorship.
+     * @return an updated instance of {@code Test} reflecting the assignment
+     * of the author name to the test execution or operation.
      */
     @Override
     public ReportTest assignAuthor(final String name) {
@@ -60,6 +63,11 @@ public final class TabsImpl implements Tabs {
 
     /**
      * {@inheritDoc}
+     *
+     * @param name - the name of the category, facilitating grouping and
+     * organization based on predefined categories.
+     * @return an updated instance of {@code Test} reflecting the assignment
+     * of the category name to the test execution or operation.
      */
     @Override
     public ReportTest assignCategory(final String name) {
@@ -68,6 +76,12 @@ public final class TabsImpl implements Tabs {
 
     /**
      * {@inheritDoc}
+     *
+     * Assigns the specified device name to the test execution or operation.
+     * @param name - the name of the device, providing insights into the
+     * targeted device or platform for the test execution or operation.
+     * @return an updated instance of {@code Test} reflecting the assignment
+     * of the device name to the test execution or operation.
      */
     @Override
     public ReportTest assignDevice(final String name) {

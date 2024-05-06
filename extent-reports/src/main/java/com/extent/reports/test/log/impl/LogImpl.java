@@ -2,6 +2,7 @@ package com.extent.reports.test.log.impl;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.extent.reports.test.ReportTest;
+import com.extent.reports.test.ReportTestImpl;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.status.Status;
 
@@ -54,15 +55,20 @@ import com.extent.reports.test.status.Status;
  */
 public final class LogImpl implements Log {
 
-    private ReportTest test;
+    private final ReportTest test;
     private final ExtentTest extentTest;
 
     public LogImpl(final ExtentTest extentTest) {
         this.extentTest = extentTest;
+        this.test = new ReportTestImpl(extentTest);
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @param status  The status of the log message.
+     * @param details The details or content of the log message.
+     * @return A new Log instance initialized with the provided status and details.
      */
     @Override
     public Log log(final Status status, final String details) {
@@ -71,35 +77,73 @@ public final class LogImpl implements Log {
 
     /**
      * {@inheritDoc}
+     *
+     * @param status  The status of the log message.
+     * @param details The details or content of the log message.
      */
     @Override
     public void setLog(final Status status, final String details) {
         test.setLog(status, details);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param message The informational message to be logged.
+     */
     @Override
-    public void LogInfo(final String message) {
+    public Log LogInfo(final String message) {
         extentTest.info(message);
+
+        return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param message The pass message to be logged.
+     */
     @Override
-    public void LogPass(final String message) {
+    public Log LogPass(final String message) {
         extentTest.pass(message);
+
+        return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param message The fail message to be logged.
+     */
     @Override
-    public void LogFail(final String message) {
+    public Log LogFail(final String message) {
         extentTest.fail(message);
+
+        return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param message The skip message to be logged.
+     */
     @Override
-    public void LogSkip(final String message) {
+    public Log LogSkip(final String message) {
         extentTest.skip(message);
+
+        return this;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param message The warning message to be logged.
+     */
     @Override
-    public void LogWarning(final String message) {
+    public Log LogWarning(final String message) {
         extentTest.warning(message);
+
+        return this;
     }
 }
 

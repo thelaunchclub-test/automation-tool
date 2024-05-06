@@ -59,13 +59,44 @@ public interface Log {
      */
     void setLog(final Status status, final String details);
 
-    void LogInfo(final String message);
+    /**
+     * Logs an informational message.
+     * This method is used to log informational messages with the Log object.
+     *
+     * @param message The informational message to be logged.
+     */
+    Log LogInfo(final String message);
 
-    void LogPass(final String message);
+    /**
+     * Logs a pass message.
+     * This method is used to log pass messages with the Log object.
+     *
+     * @param message The pass message to be logged.
+     */
+    Log LogPass(final String message);
 
-    void LogFail(final String message);
+    /**
+     * Logs a fail message.
+     * This method is used to log fail messages with the Log object.
+     *
+     * @param message The fail message to be logged.
+     */
+    Log LogFail(final String message);
 
-    void LogSkip(final String message);
+    /**
+     * Logs a skip message.
+     * This method is used to log skip messages with the Log object.
+     *
+     * @param message The skip message to be logged.
+     */
+    Log LogSkip(final String message);
 
-    void LogWarning(final String message);
+    /**
+     * Logs a warning message.
+     * This method is used to log warning messages with the Log object.
+     *
+     * @param message The warning message to be logged.
+     */
+    Log LogWarning(final String message);
+
 }

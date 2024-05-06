@@ -33,6 +33,8 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
 
     /**
      * {@inheritDoc}
+     *
+     * @return A new ExtentReporterImpl instance.
      */
     @Override
     protected AbstractExtentReporter getReporter() {
@@ -41,6 +43,9 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
 
     /**
      * {@inheritDoc}
+     *
+     * @param path The path where the report will be generated.
+     * @return A new SparkReporter instance initialized with the provided path.
      */
     @Override
     protected AbstractExtentReporter getReporter(final String path) {
@@ -49,6 +54,8 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
 
     /**
      * {@inheritDoc}
+     *
+     * @return A new ReportTestImpl instance with ExtentTest.
      */
     @Override
     public ReportTest getTest() {
@@ -57,6 +64,8 @@ public final class ExtentReporterImpl extends AbstractExtentReporter {
 
     /**
      * {@inheritDoc}
+     *
+     * @return The ReportGenerator method obtained from the reportService.
      */
     @Override
     public ReportGenerator getReport() {

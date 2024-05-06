@@ -43,15 +43,25 @@ import com.extent.reports.test.screenshot.impl.ScreenCaptureImpl;
 public interface ScreenCapture {
 
     /**
-     * Captures a screenshot from the specified path and associates it with the test execution context.
+     * Constructs a ReportTest instance based on the provided file path.
+     * This method creates a ReportTest object using the information obtained from the specified file path.
+     *
+     * @param path The file path from which to construct the ReportTest instance.
+     * @return A ReportTest object initialized with the provided file path.
      */
     ReportTest fromPath(final String path);
 
     /**
      * Captures a screenshot from the specified Base64 encoded string and associates it with
      * the test execution context.
+     * This method allows capturing a screenshot represented as a Base64 encoded string
+     * and associating it with the test execution context.
+     *
+     * @param base64 The Base64 encoded string representing the screenshot.
+     * @return A ReportTest object with the screenshot associated.
      */
     ReportTest fromBase64Path(final String base64);
+
 }
 
 

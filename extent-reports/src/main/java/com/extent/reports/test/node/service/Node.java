@@ -1,6 +1,7 @@
 package com.extent.reports.test.node.service;
 
 import com.aventstack.extentreports.GherkinKeyword;
+
 import com.extent.reports.test.ReportTest;
 
 /**
@@ -53,21 +54,36 @@ public interface Node {
 
     /**
      * Creates a test node with the specified name.
+     *
+     * @param name The name of the test node.
      */
     void createNode(final String name);
 
     /**
      * Creates a test node with the specified name and description.
+     *
+     * @param name        The name of the test node.
+     * @param description The description of the test node.
+     * @return A ReportTest object representing the created test node.
      */
     ReportTest createNode(final String name, final String description);
 
     /**
      * Creates a test node with the specified Gherkin keyword and name.
+     *
+     * @param gherkinKeyword The Gherkin keyword associated with the test node.
+     * @param name           The name of the test node.
+     * @return A ReportTest object representing the created test node.
      */
     ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name);
 
     /**
      * Creates a test node with the specified Gherkin keyword, name, and description.
+     *
+     * @param gherkinKeyword The Gherkin keyword associated with the test node.
+     * @param name           The name of the test node.
+     * @param description    The description of the test node.
+     * @return A ReportTest object representing the created test node.
      */
     ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
 }

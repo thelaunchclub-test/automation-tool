@@ -15,6 +15,8 @@ public final class ExtentReportServiceImpl implements ReportService {
 
     /**
      * {@inheritDoc}
+     *
+     * @return A new instance of ExtentReporterImpl, which implements the ReportGenerator interface.
      */
     @Override
     public ReportGenerator getReport() {

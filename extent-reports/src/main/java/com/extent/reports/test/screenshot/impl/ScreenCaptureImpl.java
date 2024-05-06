@@ -70,6 +70,9 @@ public final class ScreenCaptureImpl implements ScreenCapture {
 
     /**
      * {@inheritDoc}
+     *
+     * @param path The file path from which to construct the ReportTest instance.
+     * @return A ReportTest object initialized with the provided file path.
      */
     @Override
     public ReportTest fromPath(final String path) {
@@ -78,6 +81,9 @@ public final class ScreenCaptureImpl implements ScreenCapture {
 
     /**
      * {@inheritDoc}
+     *
+     * @param base64 The Base64 encoded string representing the screenshot.
+     * @return A ReportTest object with the screenshot associated.
      */
     @Override
     public ReportTest fromBase64Path(final String base64) {

@@ -3,8 +3,8 @@ package com.extent.reports.extent;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
-import com.extent.reports.service.ExtentReporterService;
 import com.extent.reports.extent.spark.SparkReporter;
+import com.extent.reports.service.ExtentReporterService;
 import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.ReportTestImpl;
 
@@ -35,9 +35,15 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
         this.test = new HashMap<>();
     }
 
+    /**
+     * Attaches a SparkReporter instance to the reports object.
+     *
+     * @param reporter The SparkReporter instance to attach.
+     */
     public void attachReporter(final SparkReporter reporter) {
         reports.attachReporter(reporter.getExtentSparkReporter());
     }
+
 
     /**
      * Flushes the ExtentReports instance to write all logs and close the report.
