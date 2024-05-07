@@ -14,7 +14,7 @@ import com.extent.reports.test.ReportTest;
  * and provides methods for reporting test steps and results.
  * </p>
  *
- * @version 1.1
+ * @version 1.0
  * @Author Navin Jones
  * @see ReportGenerator
  * @see ReportTest

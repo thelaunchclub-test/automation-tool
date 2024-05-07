@@ -19,7 +19,7 @@ import java.util.Map;
  * including test creation, test removal, attaching reporters, and flushing reports.
  * </p>
  *
- * @version 1.1
+ * @version 1.0
  * @Author Navin Jones
  * @see ExtentReporterService
  * @see ExtentReports
@@ -88,12 +88,13 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      * @param test The custom Test object to remove.
      */
     public void removeTest(final ReportTest test) {
+        final Map<ReportTest, ExtentTest> reporter= this.test;
 
-        if (this.test.containsKey(test)) {
-            final ExtentTest extentTest = this.test.get(test);
+        if (reporter.containsKey(test)) {
+            final ExtentTest extentTest = reporter.get(test);
 
             reports.removeTest(extentTest);
-            this.test.remove(test);
+            reporter.remove(test);
         }
     }
 

@@ -18,7 +18,7 @@ import com.extent.reports.extent.ExtentReporterImpl;
  * }</pre>
  * </p>
  *
- * @version 1.1
+ * @version 1.0
  * @Author Navin Jones
  * @see ReportService
  * @see ExtentReporterImpl

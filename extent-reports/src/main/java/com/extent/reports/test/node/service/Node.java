@@ -56,8 +56,9 @@ public interface Node {
      * Creates a test node with the specified name.
      *
      * @param name The name of the test node.
+     * @return A ReportTest object representing the created test node.
      */
-    void createNode(final String name);
+    ReportTest createNode(final String name);
 
     /**
      * Creates a test node with the specified name and description.
@@ -87,5 +88,3 @@ public interface Node {
      */
     ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name, final String description);
 }
-
-

@@ -24,7 +24,7 @@ package com.extent.reports.service;
  * }</pre>
  * </p>
  *
- * @version 1.1
+ * @version 1.0
  * @Author Navin Jones
  * @see ReportGenerator
  */

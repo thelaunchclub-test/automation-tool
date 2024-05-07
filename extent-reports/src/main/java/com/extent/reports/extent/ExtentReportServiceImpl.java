@@ -4,7 +4,13 @@ import com.extent.reports.service.ReportGenerator;
 import com.extent.reports.service.ReportService;
 
 /**
- * Provides an ExtentReport instance using ExtentReportImpl.
+ * Serves as a concrete implementation of the ReportService interface,
+ * encapsulating the logic for providing Extent report generation services.
+ * <p>
+ * This implementation ensures strict adherence to the interface contract by furnishing a method, getReport(),
+ * which retrieves a new instance of the ExtentReporterImpl class. ExtentReporterImpl, in turn,
+ * abides by the ReportGenerator interface, guaranteeing uniformity and compatibility with the specified
+ * reporting standards.
  *
  * @version 1.0
  * @Author Navin Jones
@@ -15,12 +21,10 @@ public final class ExtentReportServiceImpl implements ReportService {
     /**
      * {@inheritDoc}
      *
-     * @return A new instance of ExtentReporterImpl, which implements the ReportGenerator interface.
+     * @return A new instance of ExtentReporterImpl, adhering to the ReportGenerator contract.
      */
     @Override
     public ReportGenerator getReport() {
         return new ExtentReporterImpl();
     }
 }
-
-

@@ -147,5 +147,4 @@ public interface ReportTest {
      * @see Status
      */
     void setLog(final Status status, final String details);
-
 }

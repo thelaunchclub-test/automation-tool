@@ -91,6 +91,7 @@ public final class LogImpl implements Log {
      * {@inheritDoc}
      *
      * @param message The informational message to be logged.
+     * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
     public Log LogInfo(final String message) {
@@ -103,6 +104,7 @@ public final class LogImpl implements Log {
      * {@inheritDoc}
      *
      * @param message The pass message to be logged.
+     * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
     public Log LogPass(final String message) {
@@ -115,6 +117,7 @@ public final class LogImpl implements Log {
      * {@inheritDoc}
      *
      * @param message The fail message to be logged.
+     * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
     public Log LogFail(final String message) {
@@ -127,6 +130,7 @@ public final class LogImpl implements Log {
      * {@inheritDoc}
      *
      * @param message The skip message to be logged.
+     * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
     public Log LogSkip(final String message) {
@@ -139,6 +143,7 @@ public final class LogImpl implements Log {
      * {@inheritDoc}
      *
      * @param message The warning message to be logged.
+     * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
     public Log LogWarning(final String message) {

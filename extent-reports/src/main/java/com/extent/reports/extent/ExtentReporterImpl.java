@@ -17,7 +17,7 @@ import com.extent.reports.test.ReportTestImpl;
  * instances, as well as retrieving test and report instances.
  * </p>
  *
- * @version 1.1
+ * @version 1.0
  * @Author Navin Jones
  * @see AbstractExtentReporter
  */

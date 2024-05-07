@@ -72,14 +72,13 @@ public final class NodeImpl implements Node {
 
     /**
      * {@inheritDoc}
-     * <p>
-     * Creates a test node with the specified name.
      *
      * @param name The name of the test node.
+     * @return A ReportTest object representing the created test node.
      */
     @Override
-    public void createNode(final String name) {
-        test.createNode(name);
+    public ReportTest createNode(final String name) {
+        return test.createNode(name);
     }
 
     /**

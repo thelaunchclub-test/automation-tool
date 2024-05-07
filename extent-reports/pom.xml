@@ -8,8 +8,14 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.extent-reports</groupId>
+    <groupId>com.twozo</groupId>
     <artifactId>extent.reports</artifactId>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>

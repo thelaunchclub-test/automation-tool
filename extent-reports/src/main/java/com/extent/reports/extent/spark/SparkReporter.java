@@ -23,7 +23,7 @@ import java.io.IOException;
  * reports using the ExtentSparkReporter library.
  * </p>
  *
- * @version 1.1
+ * @version 1.0
  * @Author Navin Jones
  * @see AbstractExtentReporter
  */
