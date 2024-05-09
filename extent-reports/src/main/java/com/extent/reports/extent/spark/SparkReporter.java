@@ -7,6 +7,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.ExtentReporterImpl;
 import com.extent.reports.extent.spark.filter.StatusFilters;
+import com.extent.reports.extent.spark.view.order.ViewOrders;
 import com.extent.reports.service.ExtentReporterService;
 import com.extent.reports.service.ReportGenerator;
 import com.extent.reports.test.ReportTest;
@@ -34,11 +35,13 @@ public final class SparkReporter extends AbstractExtentReporter {
     private final ExtentSparkReporter extentSparkReporter;
     private ExtentReporterService report;
     private final StatusFilters<SparkReporter> filter;
+    private final ViewOrders<SparkReporter> viewOrders;
 
     public SparkReporter(final String path) {
         super();
         this.extentSparkReporter = new ExtentSparkReporter(path);
         this.filter = new StatusFilters<>(this);
+        this.viewOrders = new ViewOrders<>(this);
     }
 
     /**
@@ -148,5 +151,15 @@ public final class SparkReporter extends AbstractExtentReporter {
      */
     public StatusFilters<SparkReporter> filter() {
         return filter;
+    }
+
+    /**
+     * Retrieves the ViewOrders associated with the SparkReporter instance.
+     * This method allows access to functionalities related to configuring the view order of elements in the SparkReporter.
+     *
+     * @return The ViewOrders associated with the SparkReporter instance.
+     */
+    public ViewOrders<SparkReporter> viewOrder() {
+        return viewOrders;
     }
 }
