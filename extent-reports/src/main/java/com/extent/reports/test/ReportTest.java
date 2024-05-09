@@ -5,7 +5,7 @@ import com.aventstack.extentreports.GherkinKeyword;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.node.service.Node;
 import com.extent.reports.test.screenshot.service.ScreenCapture;
-import com.extent.reports.test.status.Status;
+import com.extent.reports.test.status.Statuses;
 import com.extent.reports.test.tabs.service.Tabs;
 
 /**
@@ -27,7 +27,7 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see ScreenCapture
  * @see Tabs
  * @see GherkinKeyword
- * @see Status
+ * @see Statuses
  */
 public interface ReportTest {
 
@@ -142,9 +142,9 @@ public interface ReportTest {
     /**
      * Sets the log status and details for the current test node.
      *
-     * @param status  - the Status enum value
+     * @param statuses  - the Status enum value
      * @param details - the details to be logged
-     * @see Status
+     * @see Statuses
      */
-    void setLog(final Status status, final String details);
+    void setLog(final Statuses statuses, final String details);
 }

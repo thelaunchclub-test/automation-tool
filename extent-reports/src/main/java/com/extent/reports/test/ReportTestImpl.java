@@ -9,7 +9,7 @@ import com.extent.reports.test.node.impl.NodeImpl;
 import com.extent.reports.test.node.service.Node;
 import com.extent.reports.test.screenshot.impl.ScreenCaptureImpl;
 import com.extent.reports.test.screenshot.service.ScreenCapture;
-import com.extent.reports.test.status.Status;
+import com.extent.reports.test.status.Statuses;
 import com.extent.reports.test.tabs.impl.TabsImpl;
 import com.extent.reports.test.tabs.service.Tabs;
 
@@ -33,7 +33,7 @@ import com.extent.reports.test.tabs.service.Tabs;
  * @see ScreenCapture
  * @see Tabs
  * @see GherkinKeyword
- * @see Status
+ * @see Statuses
  */
 
 public final class ReportTestImpl implements ReportTest {
@@ -181,13 +181,13 @@ public final class ReportTestImpl implements ReportTest {
     /**
      * {@inheritDoc}
      *
-     * @param status  - the Status enum value
+     * @param statuses  - the Status enum value
      * @param details - the details to be logged
-     * @see Status
+     * @see Statuses
      */
     @Override
-    public void setLog(final Status status, final String details) {
-        test.setLog(status, details);
+    public void setLog(final Statuses statuses, final String details) {
+        test.setLog(statuses, details);
     }
 
     /**

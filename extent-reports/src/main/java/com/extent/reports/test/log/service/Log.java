@@ -1,6 +1,6 @@
 package com.extent.reports.test.log.service;
 
-import com.extent.reports.test.status.Status;
+import com.extent.reports.test.status.Statuses;
 
 /**
  * Defines the contract for logging operations within the application.
@@ -37,27 +37,27 @@ import com.extent.reports.test.status.Status;
  *
  * @author Navin Jones
  * @version 1.0
- * @see Status
+ * @see Statuses
  */
 public interface Log {
 
     /**
      * Logs the given status and details, encapsulating the behavior and state of the logging operation.
      *
-     * @param status  - the {@code Status} enum value indicating the log status.
+     * @param statuses  - the {@code Status} enum value indicating the log status.
      * @param details - the details or message to be logged, providing context to the logged event.
      * @return an updated instance of the {@code Log} interface, facilitating method chaining and
      * fluent logging sequences.
      */
-    Log log(final Status status, final String details);
+    Log log(final Statuses statuses, final String details);
 
     /**
      * Sets the log status and details, representing a standalone logging operation.
      *
-     * @param status  - the {@code Status} enum value indicating the log status.
+     * @param statuses  - the {@code Status} enum value indicating the log status.
      * @param details - the details or message to be logged, providing context to the logged event.
      */
-    void setLog(final Status status, final String details);
+    void setLog(final Statuses statuses, final String details);
 
     /**
      * Logs an informational message.

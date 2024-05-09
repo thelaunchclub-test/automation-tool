@@ -5,7 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.ReportTestImpl;
 import com.extent.reports.test.log.service.Log;
-import com.extent.reports.test.status.Status;
+import com.extent.reports.test.status.Statuses;
 
 /**
  * Provides an implementation of the {@code Log} interface, encapsulating
@@ -67,24 +67,24 @@ public final class LogImpl implements Log {
     /**
      * {@inheritDoc}
      *
-     * @param status  The status of the log message.
+     * @param statuses  The status of the log message.
      * @param details The details or content of the log message.
      * @return A new Log instance initialized with the provided status and details.
      */
     @Override
-    public Log log(final Status status, final String details) {
+    public Log log(final Statuses statuses, final String details) {
         return new LogImpl(extentTest);
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param status  The status of the log message.
+     * @param statuses  The status of the log message.
      * @param details The details or content of the log message.
      */
     @Override
-    public void setLog(final Status status, final String details) {
-        test.setLog(status, details);
+    public void setLog(final Statuses statuses, final String details) {
+        test.setLog(statuses, details);
     }
 
     /**

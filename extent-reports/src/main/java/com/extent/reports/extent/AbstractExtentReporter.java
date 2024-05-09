@@ -38,10 +38,13 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
     /**
      * Attaches a SparkReporter instance to the reports object.
      *
-     * @param reporter The SparkReporter instance to attach.
+     * @param reporters The SparkReporter instance to attach.
      */
-    public void attachReporter(final SparkReporter reporter) {
-        reports.attachReporter(reporter.getExtentSparkReporter());
+    public void attachReporter(final SparkReporter... reporters) {
+
+        for (final SparkReporter reporter : reporters) {
+            reports.attachReporter(reporter.getExtentSparkReporter());
+        }
     }
 
     /**

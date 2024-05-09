@@ -6,6 +6,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.ExtentReporterImpl;
+import com.extent.reports.extent.spark.filter.StatusFilters;
 import com.extent.reports.service.ExtentReporterService;
 import com.extent.reports.service.ReportGenerator;
 import com.extent.reports.test.ReportTest;
@@ -32,10 +33,12 @@ public final class SparkReporter extends AbstractExtentReporter {
 
     private final ExtentSparkReporter extentSparkReporter;
     private ExtentReporterService report;
+    private final StatusFilters<SparkReporter> filter;
 
     public SparkReporter(final String path) {
         super();
         this.extentSparkReporter = new ExtentSparkReporter(path);
+        this.filter = new StatusFilters<>(this);
     }
 
     /**
@@ -135,5 +138,15 @@ public final class SparkReporter extends AbstractExtentReporter {
      */
     public ReportGenerator getReport() {
         return new ExtentReporterImpl();
+    }
+
+    /**
+     * Retrieves the StatusFilters associated with the SparkReporter instance.
+     * This method allows access to various filtering options for modifying the behavior of the SparkReporter.
+     *
+     * @return The StatusFilters associated with the SparkReporter instance.
+     */
+    public StatusFilters<SparkReporter> filter() {
+        return filter;
     }
 }
