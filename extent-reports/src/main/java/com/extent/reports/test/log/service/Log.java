@@ -65,7 +65,7 @@ public interface Log {
      *
      * @param message The informational message to be logged.
      */
-    Log Info(final String message);
+    Log info(final String message);
 
     /**
      * Logs a pass message.
@@ -73,7 +73,7 @@ public interface Log {
      *
      * @param message The pass message to be logged.
      */
-    Log Pass(final String message);
+    Log pass(final String message);
 
     /**
      * Logs a fail message.
@@ -81,7 +81,7 @@ public interface Log {
      *
      * @param message The fail message to be logged.
      */
-    Log Fail(final String message);
+    Log fail(final String message);
 
     /**
      * Logs a skip message.
@@ -89,7 +89,7 @@ public interface Log {
      *
      * @param message The skip message to be logged.
      */
-    Log Skip(final String message);
+    Log skip(final String message);
 
     /**
      * Logs a warning message.
@@ -97,7 +97,7 @@ public interface Log {
      *
      * @param message The warning message to be logged.
      */
-    Log Warning(final String message);
+    Log warning(final String message);
 
     /**
      * Logs a test failure with the provided exception.
