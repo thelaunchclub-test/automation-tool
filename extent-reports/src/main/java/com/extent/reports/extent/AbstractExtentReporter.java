@@ -26,12 +26,11 @@ import java.util.Map;
  */
 public abstract class AbstractExtentReporter implements ExtentReporterService {
 
-    protected static ExtentReports reports;
-
+    protected final ExtentReports reports;
     protected final Map<ReportTest, ExtentTest> test;
 
     protected AbstractExtentReporter() {
-        reports = new ExtentReports();
+        this.reports = new ExtentReports();
         this.test = new HashMap<>();
     }
 
@@ -52,6 +51,16 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      */
     public void flush() {
         reports.flush();
+    }
+
+    /**
+     * Sets system information in the test reports.
+     *
+     * @param key   The key representing the type of system information (e.g., "Browser Version").
+     * @param value The corresponding value of the system information (e.g., "Chrome 98").
+     */
+    public void SystemInfo(final String key, final String value) {
+        reports.setSystemInfo(key, value);
     }
 
     /**
@@ -91,7 +100,7 @@ public abstract class AbstractExtentReporter implements ExtentReporterService {
      * @param test The custom Test object to remove.
      */
     public void removeTest(final ReportTest test) {
-        final Map<ReportTest, ExtentTest> reporter= this.test;
+        final Map<ReportTest, ExtentTest> reporter = this.test;
 
         if (reporter.containsKey(test)) {
             final ExtentTest extentTest = reporter.get(test);

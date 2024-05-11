@@ -7,13 +7,14 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Enum representing various view names in an ExtentReport.
+ * Represents various view names in an ExtentReport.
  * These view names are used to categorize and organize report elements.
  *
  * @version 1.0
  * @Author Navin Jones
  */
 public enum ViewNames {
+
     AUTHOR,
     CATEGORY,
     DASHBOARD,
@@ -47,4 +48,3 @@ public enum ViewNames {
         return names;
     }
 }
-

@@ -94,7 +94,7 @@ public final class LogImpl implements Log {
      * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
-    public Log LogInfo(final String message) {
+    public Log Info(final String message) {
         extentTest.info(message);
 
         return this;
@@ -107,7 +107,7 @@ public final class LogImpl implements Log {
      * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
-    public Log LogPass(final String message) {
+    public Log Pass(final String message) {
         extentTest.pass(message);
 
         return this;
@@ -120,7 +120,7 @@ public final class LogImpl implements Log {
      * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
-    public Log LogFail(final String message) {
+    public Log Fail(final String message) {
         extentTest.fail(message);
 
         return this;
@@ -133,7 +133,7 @@ public final class LogImpl implements Log {
      * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
-    public Log LogSkip(final String message) {
+    public Log Skip(final String message) {
         extentTest.skip(message);
 
         return this;
@@ -146,9 +146,19 @@ public final class LogImpl implements Log {
      * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
-    public Log LogWarning(final String message) {
+    public Log Warning(final String message) {
         extentTest.warning(message);
 
         return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param e The exception that caused the test failure.
+     */
+    @Override
+    public void fail(final Exception e) {
+        extentTest.fail(e);
     }
 }

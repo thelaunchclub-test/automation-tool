@@ -87,5 +87,3 @@ public class StatusFilters<T extends AbstractExtentReporter> {
         return as(Arrays.asList(statuses));
     }
 }
-
-

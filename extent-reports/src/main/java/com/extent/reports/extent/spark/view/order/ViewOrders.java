@@ -3,6 +3,7 @@ package com.extent.reports.extent.spark.view.order;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.ViewConfigurer;
 import com.aventstack.extentreports.reporter.configuration.ViewOrder;
+
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.spark.SparkReporter;
 import lombok.Getter;
@@ -27,8 +28,8 @@ public class ViewOrders<T extends AbstractExtentReporter> {
     public ViewOrders(final T reporter) {
         this.reporter = reporter;
 
-        if (reporter instanceof final SparkReporter s) {
-            this.extentSparkReporter = s.getExtentSparkReporter();
+        if (reporter instanceof final SparkReporter spark) {
+            this.extentSparkReporter = spark.getExtentSparkReporter();
             final ViewConfigurer<ExtentSparkReporter> config = extentSparkReporter.viewConfigurer();
             this.viewOrder = config.viewOrder();
         }

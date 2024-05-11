@@ -118,9 +118,3 @@ public final class NodeImpl implements Node {
         return test.createNode(gherkinKeyword, name, description);
     }
 }
-
-
-
-
-
-

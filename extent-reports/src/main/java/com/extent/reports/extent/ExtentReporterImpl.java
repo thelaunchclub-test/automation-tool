@@ -4,9 +4,9 @@ import com.aventstack.extentreports.ExtentTest;
 
 import com.extent.reports.extent.spark.SparkReporter;
 import com.extent.reports.service.ReportGenerator;
+import com.extent.reports.service.ReportService;
 import com.extent.reports.test.ReportTest;
 import com.extent.reports.test.ReportTestImpl;
-
 
 /**
  * Provides a concrete implementation of the report generation functionalities
@@ -23,7 +23,7 @@ import com.extent.reports.test.ReportTestImpl;
  */
 public final class ExtentReporterImpl extends AbstractExtentReporter {
 
-    private final ExtentReportServiceImpl reportService;
+    private final ReportService reportService;
     private ExtentTest extentTest;
 
     public ExtentReporterImpl() {
