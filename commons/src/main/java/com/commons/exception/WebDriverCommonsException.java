@@ -12,7 +12,6 @@ package com.commons.exception;
  */
 public enum WebDriverCommonsException implements CommonsException {
 
-
     ELEMENT_CLICK_INTERCEPTED_EXCEPTION(1),
     ELEMENT_NOT_SELECTABLE_EXCEPTION(2),
     ELEMENT_NOT_VISIBLE_EXCEPTION(3);
