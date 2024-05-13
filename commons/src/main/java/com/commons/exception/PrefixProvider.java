@@ -29,7 +29,7 @@ public interface PrefixProvider {
      * @param provider The provider value.
      * @return The calculated prefix value.
      */
-    static int getCalculate(int baseCode, int provider) {
+    static int getCalculate(final int baseCode, final int provider) {
         return baseCode + provider;
     }
 }
