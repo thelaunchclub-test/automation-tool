@@ -1,6 +1,7 @@
 package com.extent.reports.test.status;
 
 import com.aventstack.extentreports.Status;
+import lombok.Getter;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -14,11 +15,12 @@ import java.util.Set;
  * @author Navin Jones
  * @version 1.0
  */
+@Getter
 public enum Statuses {
 
     INFO("info", 10),
     PASS("pass", 20),
-    WARNING("warning", 30),
+    WARNING("warn", 30),
     SKIP("skip", 40),
     FAIL("fail", 50),
     ;

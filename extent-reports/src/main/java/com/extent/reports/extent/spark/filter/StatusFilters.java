@@ -2,8 +2,8 @@ package com.extent.reports.extent.spark.filter;
 
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.EntityFilters;
-
 import com.aventstack.extentreports.reporter.configuration.StatusFilter;
+
 import com.extent.reports.extent.AbstractExtentReporter;
 import com.extent.reports.extent.spark.SparkReporter;
 import com.extent.reports.test.status.Statuses;
@@ -26,11 +26,10 @@ import java.util.Set;
  */
 @Getter
 @Accessors(fluent = true)
-public class StatusFilters<T extends AbstractExtentReporter> {
+public final class StatusFilters<T extends AbstractExtentReporter> {
 
     private final T reporter;
     private Set<Statuses> statuses;
-    @Getter
     private ExtentSparkReporter extentReporter;
     private EntityFilters<ExtentSparkReporter> filter;
     private StatusFilter<ExtentSparkReporter> extentSparkReporterStatusFilter;

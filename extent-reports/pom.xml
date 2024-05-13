@@ -8,7 +8,6 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.twozo</groupId>
     <artifactId>extent.reports</artifactId>
 
     <dependencies>
@@ -16,6 +15,7 @@
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

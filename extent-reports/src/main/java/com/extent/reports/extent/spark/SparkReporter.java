@@ -54,8 +54,8 @@ public final class SparkReporter extends AbstractExtentReporter {
     public void loadXMLConfig(final String xmlPath) {
         try {
             extentSparkReporter.loadXMLConfig(xmlPath);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 

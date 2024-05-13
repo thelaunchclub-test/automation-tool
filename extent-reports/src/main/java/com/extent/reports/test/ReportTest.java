@@ -138,13 +138,4 @@ public interface ReportTest {
      * @return Test - the updated Test instance
      */
     ReportTest createNode(final GherkinKeyword gherkinKeyword, final String name);
-
-    /**
-     * Sets the log status and details for the current test node.
-     *
-     * @param statuses  - the Status enum value
-     * @param details - the details to be logged
-     * @see Statuses
-     */
-    void setLog(final Statuses statuses, final String details);
 }

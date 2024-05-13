@@ -1,9 +1,8 @@
 package com.extent.reports.test.log.impl;
 
 import com.aventstack.extentreports.ExtentTest;
-
+import com.aventstack.extentreports.Status;
 import com.extent.reports.test.ReportTest;
-import com.extent.reports.test.ReportTestImpl;
 import com.extent.reports.test.log.service.Log;
 import com.extent.reports.test.status.Statuses;
 
@@ -56,35 +55,23 @@ import com.extent.reports.test.status.Statuses;
  */
 public final class LogImpl implements Log {
 
-    private final ReportTest test;
     private final ExtentTest extentTest;
 
     public LogImpl(final ExtentTest extentTest) {
         this.extentTest = extentTest;
-        this.test = new ReportTestImpl(extentTest);
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param statuses  The status of the log message.
-     * @param details The details or content of the log message.
-     * @return A new Log instance initialized with the provided status and details.
-     */
-    @Override
-    public Log log(final Statuses statuses, final String details) {
-        return new LogImpl(extentTest);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param statuses  The status of the log message.
-     * @param details The details or content of the log message.
+     * @param statuses The status of the log message.
+     * @param details  The details or content of the log message.
      */
     @Override
     public void setLog(final Statuses statuses, final String details) {
-        test.setLog(statuses, details);
+        final Status convertStatus = Statuses.getStatus(statuses);
+
+        extentTest.log(convertStatus, details);
     }
 
     /**
@@ -142,11 +129,11 @@ public final class LogImpl implements Log {
     /**
      * {@inheritDoc}
      *
-     * @param message The warning message to be logged.
+     * @param message The warn message to be logged.
      * @return The current instance of the Log object, allowing method chaining.
      */
     @Override
-    public Log warning(final String message) {
+    public Log warn(final String message) {
         extentTest.warning(message);
 
         return this;
@@ -155,10 +142,10 @@ public final class LogImpl implements Log {
     /**
      * {@inheritDoc}
      *
-     * @param e The exception that caused the test failure.
+     * @param exception The exception that caused the test failure.
      */
     @Override
-    public void fail(final Exception e) {
-        extentTest.fail(e);
+    public void fail(final Exception exception) {
+        extentTest.fail(exception);
     }
 }

@@ -21,7 +21,8 @@ public enum ViewNames {
     DEVICE,
     EXCEPTION,
     LOG,
-    TEST;
+    TEST,
+    ;
 
     /**
      * Converts a collection of ViewNames enum values to a list of equivalent ViewName enum values.

@@ -18,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @Author Navin Jones
  */
-public class ViewOrders<T extends AbstractExtentReporter> {
+public final class ViewOrders<T extends AbstractExtentReporter> {
 
     private final T reporter;
     @Getter

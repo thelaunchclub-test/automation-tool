@@ -42,20 +42,10 @@ import com.extent.reports.test.status.Statuses;
 public interface Log {
 
     /**
-     * Logs the given status and details, encapsulating the behavior and state of the logging operation.
-     *
-     * @param statuses  - the {@code Status} enum value indicating the log status.
-     * @param details - the details or message to be logged, providing context to the logged event.
-     * @return an updated instance of the {@code Log} interface, facilitating method chaining and
-     * fluent logging sequences.
-     */
-    Log log(final Statuses statuses, final String details);
-
-    /**
      * Sets the log status and details, representing a standalone logging operation.
      *
-     * @param statuses  - the {@code Status} enum value indicating the log status.
-     * @param details - the details or message to be logged, providing context to the logged event.
+     * @param statuses - the {@code Status} enum value indicating the log status.
+     * @param details  - the details or message to be logged, providing context to the logged event.
      */
     void setLog(final Statuses statuses, final String details);
 
@@ -92,18 +82,17 @@ public interface Log {
     Log skip(final String message);
 
     /**
-     * Logs a warning message.
-     * This method is used to log warning messages with the Log object.
+     * Logs a warn message.
+     * This method is used to log warn messages with the Log object.
      *
-     * @param message The warning message to be logged.
+     * @param message The warn message to be logged.
      */
-    Log warning(final String message);
+    Log warn(final String message);
 
     /**
      * Logs a test failure with the provided exception.
      *
-     * @param e The exception that caused the test failure.
+     * @param exception The exception that caused the test failure.
      */
-    void fail(final Exception e);
-
+    void fail(final Exception exception);
 }

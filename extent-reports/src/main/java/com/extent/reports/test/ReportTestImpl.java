@@ -181,18 +181,6 @@ public final class ReportTestImpl implements ReportTest {
     /**
      * {@inheritDoc}
      *
-     * @param statuses  - the Status enum value
-     * @param details - the details to be logged
-     * @see Statuses
-     */
-    @Override
-    public void setLog(final Statuses statuses, final String details) {
-        test.setLog(statuses, details);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
      * @return Log - the log instance
      * @see Log
      */
