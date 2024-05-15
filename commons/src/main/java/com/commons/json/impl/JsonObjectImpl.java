@@ -1,7 +1,7 @@
 package com.commons.json.impl;
 
 import com.commons.json.JsonArray;
-import com.commons.json.JsonMapper;
+import com.commons.json.JsonDecoder;
 import com.commons.json.JsonObject;
 import com.commons.json.JsonWrapper;
 
@@ -12,15 +12,13 @@ import java.util.Objects;
 
 /**
  * <p>
- * Provides methods to put and retrieve data based on its data type within a JSON object.
- * Ensures type safety and handles null values appropriately.
- * Represents a list as a {@link JsonArray} and a map as a {@link JsonObject}.
+ * Provides methods to put and retrieve data based on its data type within a {@link JsonObject}.
  * </p>
  *
  * <p>
  * Example usage:
  * <pre>{@code
- * JsonObject jsonObject = new JsonObjectImpl();
+ * JsonObject jsonObject = Json.object(file);
  * jsonObject.put("name", "John Doe");
  * String name = jsonObject.getString("name");
  * }</pre>
@@ -28,19 +26,19 @@ import java.util.Objects;
  *
  * @author petchimuthu1520
  * @version 1.0
- * @see JsonObject
+ * @see JsonWrapper
  */
 final class JsonObjectImpl implements JsonObject, JsonWrapper {
 
     private final Map<String, Object> map;
-    private JsonMapper jsonMapper;
+    private JsonDecoder jsonDecoder;
 
     JsonObjectImpl(final Map<String, Object> map) {
         this.map = map;
     }
 
-    JsonObjectImpl(final JsonMapper jsonMapper, final Map<String, Object> map) {
-        this.jsonMapper = jsonMapper;
+    JsonObjectImpl(final JsonDecoder jsonDecoder, final Map<String, Object> map) {
+        this.jsonDecoder = jsonDecoder;
         this.map = map;
     }
 
@@ -58,7 +56,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @return The size of the JSON array.
+     * @return The size of the {@link JsonObject}.
      */
     public int size() {
         return map.size();
@@ -68,7 +66,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * {@inheritDoc}
      *
      * @param key The key to check.
-     * @return true if the JSON object contains the key, false otherwise.
+     * @return true if the {@link JsonObject} contains the key, false otherwise.
      */
     @Override
     public boolean containsKey(final String key) {
@@ -78,7 +76,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @return a Map containing the elements of this object
+     * @return a {@link Map} containing the elements of this object
      */
     @Override
     public Map<String, Object> toMap() {
@@ -93,7 +91,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public int getInt(final String key) {
-        final Object object = fetchValue(key);
+        final Object object = getValue(key);
 
         return object instanceof Number number ? number.intValue() : Integer.parseInt((String) object);
     }
@@ -101,12 +99,12 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param key The key whose associated integer value is to be returned.
-     * @return The integer value associated with the given key.
+     * @param key The key whose associated float value is to be returned.
+     * @return The float value associated with the given key.
      */
     @Override
     public float getFloat(final String key) {
-        final Object object = fetchValue(key);
+        final Object object = getValue(key);
 
         return object instanceof Number number ? number.floatValue() : Float.parseFloat((String) object);
     }
@@ -119,7 +117,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public boolean getBoolean(final String key) {
-        final Object object = fetchValue(key);
+        final Object object = getValue(key);
 
         return object instanceof Boolean ? (boolean) object : Boolean.parseBoolean((String) object);
     }
@@ -132,7 +130,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public String getString(final String key) {
-        final Object object = fetchValue(key);
+        final Object object = getValue(key);
 
         return object instanceof String ? (String) object : null;
     }
@@ -140,55 +138,61 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param key The key whose associated JSON array is to be returned.
-     * @return The JSON array associated with the given key.
+     * @param key The key whose associated {@link JsonArray} is to be returned.
+     * @return The {@link JsonArray} associated with the given key.
      */
     @Override
     public JsonArray getJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) fetchValue(key));
+        return wrappedJsonArray((List<Object>) getValue(key));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param key The key whose associated JSON object is to be returned.
-     * @return The JSON object associated with the given key.
+     * @param key The key whose associated {@link JsonObject} is to be returned.
+     * @return The {@link JsonObject} associated with the given key.
      */
     @Override
     public JsonObject getJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) fetchValue(key));
+        return wrappedJsonObject((Map<String, Object>) getValue(key));
     }
 
     /**
      * {@inheritDoc}
      *
      * @param key          The key whose associated integer value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not an integer.
-     * @return The integer value associated with the given key, or the default value if the key is not found or the value is not an integer.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not an integer.
+     * @return The integer value associated with the given key, or the default value
+     * if the key is not found or the value is not an integer.
      */
     @Override
     public int optInt(final String key, final int defaultValue) {
-        return fetchValue(key) instanceof Number number ? number.intValue() : defaultValue;
+        return getValue(key) instanceof Number number ? number.intValue() : defaultValue;
     }
 
     /**
      * {@inheritDoc}
      *
      * @param key          The key whose associated float value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not a float.
-     * @return The float value associated with the given key, or the default value if the key is not found or the value is not a float.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not a float.
+     * @return The float value associated with the given key, or the default value
+     * if the key is not found or the value is not a float.
      */
     @Override
     public float optFloat(final String key, final float defaultValue) {
-        return fetchValue(key) instanceof Number number ? number.floatValue() : defaultValue;
+        return getValue(key) instanceof Number number ? number.floatValue() : defaultValue;
     }
 
     /**
      * {@inheritDoc}
      *
      * @param key          The key whose associated boolean value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not a boolean.
-     * @return The boolean value associated with the given key, or the default value if the key is not found or the value is not a boolean.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not a boolean.
+     * @return The boolean value associated with the given key, or the default value
+     * if the key is not found or the value is not a boolean.
      */
     @Override
     public boolean optBoolean(final String key, final boolean defaultValue) {
@@ -201,8 +205,10 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * {@inheritDoc}
      *
      * @param key          The key whose associated string value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not a string.
-     * @return The string value associated with the given key, or the default value if the key is not found or the value is not a string.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not a string.
+     * @return The string value associated with the given key, or the default value
+     * if the key is not found or the value is not a string.
      */
     @Override
     public String optString(final String key, final String defaultValue) {
@@ -214,44 +220,46 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
     /**
      * {@inheritDoc}
      *
-     * @param key The key whose associated JSON array is to be returned.
-     * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
+     * @param key The key whose associated {@link JsonArray} is to be returned.
+     * @return The {@link JsonArray} associated with the given key, or
+     * null if the key is not found or the value is not a {@link JsonArray}.
      */
     public JsonArray optJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) fetchValue(key));
+        return wrappedJsonArray((List<Object>) getValue(key));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param key The key whose associated JSON object is to be returned.
-     * @return The JSON object associated with the given key, or null if the key is not found or the value is not a JSON object.
+     * @param key The key whose associated {@link JsonObject} is to be returned.
+     * @return The {@link JsonObject} associated with the given key, or
+     * null if the key is not found or the value is not a {@link JsonObject}.
      */
     @Override
     public JsonObject optJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) fetchValue(key));
+        return wrappedJsonObject((Map<String, Object>) getValue(key));
     }
 
     /**
      * {@inheritDoc}
      *
      * @param list The List of Objects to wrap.
-     * @return A JsonArray containing the wrapped list.
+     * @return A {@link JsonArray} containing the wrapped list.
      */
     @Override
     public JsonArray wrappedJsonArray(final List<Object> list) {
-        return new JsonArrayImpl(jsonMapper, list);
+        return new JsonArrayImpl(jsonDecoder, list);
     }
 
     /**
      * {@inheritDoc}
      *
      * @param map The Map of key-value pairs to wrap.
-     * @return A JsonObject containing the wrapped map.
+     * @return A {@link JsonObject} containing the wrapped map.
      */
     @Override
     public JsonObject wrappedJsonObject(final Map<String, Object> map) {
-        return new JsonObjectImpl(jsonMapper, map);
+        return new JsonObjectImpl(jsonDecoder, map);
     }
 
     /**
@@ -261,7 +269,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * @return The object at the specified index if it is not null.
      * @throws NullPointerException if the object at the specified index is null.
      */
-    private Object fetchValue(final String key) {
+    private Object getValue(final String key) {
         final Object object = map.get(key);
 
         if (Objects.isNull(object)) {

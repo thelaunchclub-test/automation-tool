@@ -4,15 +4,13 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * The {@code JsonArray} defines operations for manipulating JSON arrays.
- * It provides methods to access and manipulate elements within the array, offering
- * functionalities for type checking, handling null values, and wrapping data structures.
- *
+ * The {@code JsonArray} defines operations for manipulating {@link JsonArray}.
+ * Provides methods to access and manipulate elements within the array.
  *
  * <p>
  * Example usage:
  * <pre>{@code
- * JsonArray jsonArray = new JsonArrayImpl();
+ * JsonArray jsonArray = Json.array(file));
  * jsonArray.put("value");
  * String retrievedValue = jsonArray.getString(0);
  * }</pre>
@@ -20,33 +18,41 @@ import java.util.function.Consumer;
  *
  * @author petchimuthu1520
  * @version 1.0
+ * @see JsonWrapper
  */
 public interface JsonArray extends JsonWrapper {
 
     /**
-     * Adds the specified value to the end of the JSON array.
+     * <p>
+     * Puts the specified value to the end of the {@link JsonArray}.
+     * </p>
      *
      * @param value The value to be added to the array.
      */
     void put(final Object value);
 
     /**
-     * Returns the size of the JSON array.
+     * <p>
+     * Returns the size of the {@link JsonArray}.
+     * </p>
      *
-     * @return The size of the JSON array.
+     * @return The size of the {@link JsonArray}.
      */
     int size();
 
-
     /**
-     * Converts the elements of this object into a List of Objects.
+     * <p>
+     * Converts the elements of this object into a {@link List} of Objects.
+     * </p>
      *
      * @return a List containing the elements of this object
      */
     List<Object> toList();
 
     /**
-     * Returns the integer value at the specified index in the JSON array.
+     * <p>
+     * Returns the integer value at the specified index in the {@link JsonArray}.
+     * </p>
      *
      * @param index The index of the integer value to be returned.
      * @return The integer value at the specified index.
@@ -54,7 +60,9 @@ public interface JsonArray extends JsonWrapper {
     int getInt(final int index);
 
     /**
-     * Returns the float value at the specified index in the JSON array.
+     * <p>
+     * Returns the float value at the specified index in the {@link JsonArray}.
+     * </p>
      *
      * @param index The index of the float value to be returned.
      * @return The float value at the specified index.
@@ -62,7 +70,9 @@ public interface JsonArray extends JsonWrapper {
     float getFloat(final int index);
 
     /**
-     * Returns the boolean value at the specified index in the JSON array.
+     * <p>
+     * Returns the boolean value at the specified index in the {@link JsonArray}.
+     * </p>
      *
      * @param index The index of the boolean value to be returned.
      * @return The boolean value at the specified index.
@@ -70,7 +80,9 @@ public interface JsonArray extends JsonWrapper {
     boolean getBoolean(final int index);
 
     /**
-     * Returns the string value at the specified index in the JSON array.
+     * <p>
+     * Returns the string value at the specified index in the {@link JsonArray}.
+     * </p>
      *
      * @param index The index of the string value to be returned.
      * @return The string value at the specified index.
@@ -78,81 +90,107 @@ public interface JsonArray extends JsonWrapper {
     String getString(final int index);
 
     /**
-     * Returns the JSON array at the specified index in the JSON array.
+     * <p>
+     * Returns the {@link JsonArray} at the specified index in the {@link JsonArray}.
+     * </p>
      *
-     * @param index The index of the JSON array to be returned.
-     * @return The JSON array at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a JSON array.
+     * @param index The index of the {@link JsonArray} to be returned.
+     * @return The {@link JsonArray} at the specified index.
      */
     JsonArray getJsonArray(final int index);
 
     /**
-     * Returns the JSON object at the specified index in the JSON array.
+     * <p>
+     * Returns the {@link JsonObject} at the specified index in the {@link JsonArray}.
+     * </p>
      *
-     * @param index The index of the JSON object to be returned.
-     * @return The JSON object at the specified index.
-     * @throws NullPointerException if the value at the specified index is not a JSON object.
+     * @param index The index of the {@link JsonObject} to be returned.
+     * @return The {@link JsonObject}t at the specified index.
      */
     JsonObject getJsonObject(final int index);
 
     /**
-     * Returns the integer value at the specified index in the JSON array, or a default value if the value is not an integer.
+     * <p>
+     * Returns the integer value at the specified index in the {@link JsonArray},
+     * If the value is not present or not an integer, it returns a default value.
+     * </p>
      *
      * @param index        The index of the integer value to be returned.
-     * @param defaultValue The default value to be returned if the value is not an integer.
-     * @return The integer value at the specified index, or the default value if the value is not an integer.
+     * @param defaultValue The default value to be returned if the value is not present or not an integer.
+     * @return The integer value at the specified index, If the value is not present or not an integer,
+     * Returns a default value.
      */
     int optInt(final int index, final int defaultValue);
 
     /**
-     * Returns the float value at the specified index in the JSON array, or a default value if the value is not a float.
+     * <p>
+     * Returns the float value at the specified index in the {@link JsonArray},
+     * If the value is not present or not a float, it returns a default value.
+     * </p>
      *
      * @param index        The index of the float value to be returned.
-     * @param defaultValue The default value to be returned if the value is not a float.
-     * @return The float value at the specified index, or the default value if the value is not a float.
+     * @param defaultValue The default value to be returned if the value is not present or not a float.
+     * @return The float value at the specified index, If the value is not present or not a float,
+     * Returns a default value.
      */
     float optFloat(final int index, final float defaultValue);
 
     /**
-     * Returns the boolean value at the specified index in the JSON array, or a default value if the value is not a boolean.
+     * <p>
+     * Returns the boolean value at the specified index in the {@link JsonArray},
+     * If the value is not present or not a boolean, it returns a default value.
+     * </p>
      *
      * @param index        The index of the boolean value to be returned.
-     * @param defaultValue The default value to be returned if the value is not a boolean.
-     * @return The boolean value at the specified index, or the default value if the value is not a boolean.
+     * @param defaultValue The default value to be returned if the value is not present or not a boolean.
+     * @return The boolean value at the specified index, If the value is not present or not a boolean,
+     * Returns a default value.
      */
     boolean optBoolean(final int index, final boolean defaultValue);
 
     /**
-     * Returns the string value at the specified index in the JSON array, or null if the value is not a string.
+     * <p>
+     * Returns the string value at the specified index in the {@link JsonArray},
+     * If the value is not present or not a string, it returns a default value.
+     * </p>
      *
      * @param index        The index of the string value to be returned.
-     * @param defaultValue The default value to be returned if the value is not a string.
-     * @return The string value at the specified index, or null if the value is not a string.
+     * @param defaultValue The default value to be returned if the value is not present or not a string.
+     * @return The string value at the specified index, If the value is not present or not a string,
+     * Returns a default value.
      */
     Object optString(final int index, final String defaultValue);
 
     /**
-     * Returns the JSON array at the specified index in the JSON array, or null if the value is not a JSON array.
+     * <p>
+     * Returns the {@link JsonArray} at the specified index in the {@link JsonArray},
+     * or null if the value is not present.
+     * </p>
      *
-     * @param index The index of the JSON array to be returned.
-     * @return The JSON array at the specified index, or null if the value is not a JSON array.
+     * @param index The index of the {@link JsonArray} to be returned.
+     * @return The {@link JsonArray} at the specified index, or null if the value is not present.
      */
-    Object optJsonArray(final int index);
+    JsonArray optJsonArray(final int index);
 
     /**
-     * Returns the JSON object at the specified index in the JSON array, or null if the value is not a JSON object.
+     * <p>
+     * Returns the {@link JsonObject} at the specified index in the {@link JsonArray},
+     * or null if the value is not present.
+     * </p>
      *
-     * @param index The index of the JSON object to be returned.
-     * @return The JSON object at the specified index, or null if the value is not a JSON object.
+     * @param index The index of the {@link JsonObject} to be returned.
+     * @return The {@link JsonObject} at the specified index, or null if the value is not present.
      */
-    Object optJsonObject(final int index);
+    JsonObject optJsonObject(final int index);
 
     /**
-     * Performs the given action for each element of the JSON array until all elements have been processed or the action throws an exception.
+     * <p>
+     * Performs the given action for each element of the JSON array until all elements
+     * have been processed or the action throws an exception.
      * The action receives an element from the array as a parameter.
+     * </p>
      *
      * @param action The action to be performed for each element.
-     * @throws NullPointerException if the specified action is null.
      */
     void forEach(final Consumer<? super Object> action);
 }

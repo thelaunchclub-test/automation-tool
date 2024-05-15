@@ -1,6 +1,6 @@
 package com.commons.json.impl;
 
-import com.commons.json.JsonMapper;
+import com.commons.json.JsonDecoder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,18 +10,17 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * <p>
- * Provides methods to encode and decode JSON data. It offers functionalities to convert
+ * Provides methods to decode JSON data. Offers functionalities to convert
  * JSON files or JSON strings to String or byte[], and transforms Strings into lists or maps as required.
  * </p>
  *
  * <p>
  * Example usage:
  * <pre>{@code
- * JsonMapper jsonMapper = new JsonMapperImpl();
+ * JsonDecoder jsonDecoder = new JsonDecoderImpl();
  * String jsonString = "{\"key\": \"value\"}";
  * Map<String, Object> decodedObject = jsonMapper.decodeAsObject(jsonString);
  * }</pre>
@@ -29,13 +28,12 @@ import java.util.Objects;
  *
  * @author petchimuthu1520
  * @version 1.0
- * @see JsonMapper
  */
-final class JsonMapperImpl implements JsonMapper {
+final class JsonDecoderImpl implements JsonDecoder {
 
     private final ObjectMapper objectMapper;
 
-    JsonMapperImpl() {
+    JsonDecoderImpl() {
         this.objectMapper = new ObjectMapper();
     }
 
@@ -43,7 +41,7 @@ final class JsonMapperImpl implements JsonMapper {
      * {@inheritDoc}
      *
      * @param json The JSON string to be decoded.
-     * @return The Map representation of the JSON string.
+     * @return The {@link Map} representation of the JSON string.
      */
     @Override
     public Map<String, Object> decodeAsObject(final String json) {
@@ -58,7 +56,7 @@ final class JsonMapperImpl implements JsonMapper {
      * {@inheritDoc}
      *
      * @param json The JSON string to be decoded.
-     * @return The List representation of the JSON string.
+     * @return The {@link List} representation of the JSON string.
      */
     @Override
     public List<Object> decodeAsArray(final String json) {
@@ -73,7 +71,7 @@ final class JsonMapperImpl implements JsonMapper {
      * {@inheritDoc}
      *
      * @param file The JSON file to be decoded.
-     * @return The Map representation of the JSON file.
+     * @return The {@link Map} representation of the JSON file.
      * @throws IOException if there's an issue reading the file.
      */
     @Override
@@ -89,7 +87,7 @@ final class JsonMapperImpl implements JsonMapper {
      * {@inheritDoc}
      *
      * @param file The JSON file to be decoded.
-     * @return The List representation of the JSON file.
+     * @return The {@link List} representation of the JSON file.
      * @throws IOException if there's an issue reading the file.
      */
     @Override

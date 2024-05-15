@@ -5,15 +5,15 @@ import java.util.Map;
 
 /**
  * <p>
- * Provides methods to wrap a List of Objects into a JsonArray and a Map into a JsonObject.
+ * Provides methods to wrap a {@link List} of Objects into a {@link JsonArray} and a {@link Map} into a {@link JsonObject}.
  * </p>
  *
  * <p>
  * Example usage:
  * <pre>{@code
- * JsonWrapper jsonWrapper = new JsonWrapperImpl();
+ * JsonArray jsonArray = Json.array(file);
  * List<Object> dataList = new ArrayList<>();
- * JsonArray jsonArray = jsonWrapper.wrappedJsonArray(dataList);
+ * JsonArray jsonArray = jsonArray.wrappedJsonArray(dataList);
  * }</pre>
  * </p>
  *
@@ -23,18 +23,22 @@ import java.util.Map;
 public interface JsonWrapper {
 
     /**
-     * Wraps a List of Objects into a JsonArray.
+     * <p>
+     * Wraps a {@link List} of Objects into a {@link JsonArray}.
+     * </p>
      *
-     * @param list The List of Objects to wrap.
-     * @return A JsonArray containing the wrapped list.
+     * @param list The {@link List} of Objects to wrap.
+     * @return A {@link JsonArray} containing the wrapped {@link List}.
      */
     JsonArray wrappedJsonArray(final List<Object> list);
 
     /**
-     * Wraps a Map of key-value pairs into a JsonObject.
+     * <p>
+     * Wraps a {@link Map} of key-value pairs into a {@link JsonObject}.
+     * </p>
      *
-     * @param map The Map of key-value pairs to wrap.
-     * @return A JsonObject containing the wrapped map.
+     * @param map The {@link Map} of key-value pairs to wrap.
+     * @return A {@link JsonObject} containing the wrapped {@link Map}.
      */
     JsonObject wrappedJsonObject(final Map<String, Object> map);
 }

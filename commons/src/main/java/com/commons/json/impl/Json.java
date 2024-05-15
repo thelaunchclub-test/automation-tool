@@ -1,7 +1,7 @@
 package com.commons.json.impl;
 
 import com.commons.json.JsonArray;
-import com.commons.json.JsonMapper;
+import com.commons.json.JsonDecoder;
 import com.commons.json.JsonObject;
 
 import java.io.File;
@@ -32,10 +32,12 @@ import java.io.File;
  */
 public final class Json {
 
-    private static final JsonMapper JSON_MAPPER = new JsonMapperImpl();
+    private static final JsonDecoder JSON_MAPPER = new JsonDecoderImpl();
 
     /**
+     * <p>
      * Converts a JSON string representing an array into a {@link JsonArray} object.
+     * </p>
      *
      * @param value The JSON string representing an array.
      * @return The {@link JsonArray} object containing the decoded array.
@@ -45,7 +47,9 @@ public final class Json {
     }
 
     /**
+     * <p>
      * Converts a JSON string representing an object into a {@link JsonObject} object.
+     * </p>
      *
      * @param value The JSON string representing an object.
      * @return The {@link JsonObject} object containing the decoded object.
@@ -55,7 +59,9 @@ public final class Json {
     }
 
     /**
+     * <p>
      * Converts a JSON file representing an object into a {@link JsonObject} object.
+     * </p>
      *
      * @param file The JSON file representing an object.
      * @return The {@link JsonObject} object containing the decoded object.
@@ -65,7 +71,9 @@ public final class Json {
     }
 
     /**
+     * <p>
      * Converts a JSON file representing an array into a {@link JsonArray} object.
+     * </p>
      *
      * @param file The JSON file representing an array.
      * @return The {@link JsonArray} object containing the decoded array.

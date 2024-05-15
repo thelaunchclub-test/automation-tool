@@ -4,15 +4,13 @@ import java.util.Map;
 
 /**
  * <p>
- * Provides methods to put and retrieve data based on its data type within a JSON object.
- * Ensures type safety and handles null values appropriately.
- * Represents a list as a {@link JsonArray} and a map as a {@link JsonObject}.
+ * Provides methods to put and retrieve data based on its data type within a {@link JsonObject}.
  * </p>
  *
  * <p>
  * Example usage:
  * <pre>{@code
- * JsonObject jsonObject = new JsonObjectImpl();
+ * JsonObject jsonObject = Json.object(file);
  * jsonObject.put("name", "John Doe");
  * String name = jsonObject.getString("name");
  * }</pre>
@@ -20,11 +18,14 @@ import java.util.Map;
  *
  * @author petchimuthu1520
  * @version 1.0
+ * @see JsonWrapper
  */
 public interface JsonObject extends JsonWrapper {
 
     /**
-     * Associates the specified value with the specified key in this JSON object.
+     * <p>
+     * Puts the specified value with the specified key in this {@link JsonObject}.
+     * </p>
      *
      * @param key   The key with which the specified value is to be associated.
      * @param value The value to be associated with the specified key.
@@ -32,30 +33,38 @@ public interface JsonObject extends JsonWrapper {
     void put(final String key, final Object value);
 
     /**
-     * Returns the size of the JSON object.
+     * <p>
+     * Returns the size of the {@link JsonObject}.
+     * </p>
      *
-     * @return The size of the JSON object.
+     * @return The size of the {@link JsonObject}.
      */
     int size();
 
     /**
-     * Checks if the JSON object contains the specified key.
+     * <p>
+     * Checks if the {@link JsonObject} contains the specified key.
+     * </p>
      *
      * @param key The key to check.
-     * @return true if the JSON object contains the key, false otherwise.
+     * @return true if the {@link JsonObject} contains the key, false otherwise.
      */
     boolean containsKey(final String key);
 
     /**
-     * Converts the elements of this object into a Map where keys are strings
+     * <p>
+     * Converts the elements of the {@link JsonObject} into a {@link Map} where keys are strings
      * and values are objects.
+     * </p>
      *
-     * @return a Map containing the elements of this object
+     * @return a {@link Map} containing the elements of this object
      */
     Map<String, Object> toMap();
 
     /**
+     * <p>
      * Returns the integer value associated with the specified key.
+     * </p>
      *
      * @param key The key whose associated integer value is to be returned.
      * @return The integer value associated with the given key.
@@ -63,7 +72,9 @@ public interface JsonObject extends JsonWrapper {
     int getInt(final String key);
 
     /**
+     * <p>
      * Returns the float value associated with the specified key.
+     * </p>
      *
      * @param key The key whose associated float value is to be returned.
      * @return The float value associated with the given key.
@@ -71,90 +82,122 @@ public interface JsonObject extends JsonWrapper {
     float getFloat(final String key);
 
     /**
+     * <p>
      * Returns the boolean value associated with the specified key.
+     * </p>
      *
      * @param key The key whose associated boolean value is to be returned.
      * @return The boolean value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a boolean.
      */
     boolean getBoolean(final String key);
 
     /**
+     * <p>
      * Returns the string value associated with the specified key.
+     * </p>
      *
      * @param key The key whose associated string value is to be returned.
      * @return The string value associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a string.
      */
     String getString(final String key);
 
     /**
-     * Returns the JSON array associated with the specified key.
+     * <p>
+     * Returns the {@link JsonArray} associated with the specified key.
+     * </p>
      *
-     * @param key The key whose associated JSON array is to be returned.
-     * @return The JSON array associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a JSON array.
+     * @param key The key whose associated {@link JsonArray} is to be returned.
+     * @return The {@link JsonArray} associated with the given key.
      */
     JsonArray getJsonArray(final String key);
 
     /**
-     * Returns the JSON object associated with the specified key.
+     * <p>
+     * Returns the {@link JsonObject} associated with the specified key.
+     * </p>
      *
-     * @param key The key whose associated JSON object is to be returned.
-     * @return The JSON object associated with the given key.
-     * @throws NullPointerException if the key is not found or the value is not a JSON object.
+     * @param key The key whose associated {@link JsonObject} is to be returned.
+     * @return The {@link JsonObject} associated with the given key.
      */
     JsonObject getJsonObject(final String key);
 
     /**
-     * Returns the integer value associated with the specified key, or the default value if the key is not found or the value is not an integer.
+     * <p>
+     * Returns the integer value associated with the specified key, or the default value
+     * if the key is not found or the value is not an integer.
+     * </p>
      *
      * @param key          The key whose associated integer value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not an integer.
-     * @return The integer value associated with the given key, or the default value if the key is not found or the value is not an integer.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not an integer.
+     * @return The integer value associated with the given key, or the default value
+     * if the key is not found or the value is not an integer.
      */
     int optInt(final String key, final int defaultValue);
 
     /**
-     * Returns the float value associated with the specified key, or the default value if the key is not found or the value is not a float.
+     * <p>
+     * Returns the float value associated with the specified key, or the default value
+     * if the key is not found or the value is not a float.
+     * </p>
      *
      * @param key          The key whose associated float value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not a float.
-     * @return The float value associated with the given key, or the default value if the key is not found or the value is not a float.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not a float.
+     * @return The float value associated with the given key, or the default value
+     * if the key is not found or the value is not a float.
      */
     float optFloat(final String key, final float defaultValue);
 
     /**
-     * Returns the boolean value associated with the specified key, or the default value if the key is not found or the value is not a boolean.
+     * <p>
+     * Returns the boolean value associated with the specified key, or the default value
+     * if the key is not found or the value is not a boolean.
+     * </p>
      *
      * @param key          The key whose associated boolean value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not a boolean.
-     * @return The boolean value associated with the given key, or the default value if the key is not found or the value is not a boolean.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not a boolean.
+     * @return The boolean value associated with the given key, or the default value
+     * if the key is not found or the value is not a boolean.
      */
     boolean optBoolean(final String key, final boolean defaultValue);
 
     /**
-     * Returns the string value associated with the specified key, or the default value if the key is not found or the value is not a string.
+     * <p>
+     * Returns the string value associated with the specified key, or the default value
+     * if the key is not found or the value is not a string.
+     * </p>
      *
      * @param key          The key whose associated string value is to be returned.
-     * @param defaultValue The default value to be returned if the key is not found or the value is not a string.
-     * @return The string value associated with the given key, or the default value if the key is not found or the value is not a string.
+     * @param defaultValue The default value to be returned if the key is not found or
+     *                     the value is not a string.
+     * @return The string value associated with the given key, or the default value
+     * if the key is not found or the value is not a string.
      */
     String optString(final String key, final String defaultValue);
 
     /**
-     * Returns the JSON array associated with the specified key, or null if the key is not found or the value is not a JSON array.
+     * <p>
+     * Returns the {@link JsonArray} associated with the specified key, or
+     * null if the key is not found or the value is not a {@link JsonArray}.
+     * </p>
      *
-     * @param key The key whose associated JSON array is to be returned.
-     * @return The JSON array associated with the given key, or null if the key is not found or the value is not a JSON array.
+     * @param key The key whose associated {@link JsonArray} is to be returned.
+     * @return The {@link JsonArray} associated with the given key, or
+     * null if the key is not found or the value is not a {@link JsonArray}.
      */
     JsonArray optJsonArray(final String key);
 
     /**
-     * Returns the JSON object associated with the specified key, or null if the key is not found or the value is not a JSON object.
+     * <p>
+     * Returns the {@link JsonObject} associated with the specified key, or
+     * null if the key is not found or the value is not a {@link JsonObject}.
+     * </p>
      *
-     * @param key The key whose associated JSON object is to be returned.
-     * @return The JSON object associated with the given key, or null if the key is not found or the value is not a JSON object.
+     * @param key The key whose associated {@link JsonObject} is to be returned.
+     * @return The {@link JsonObject} associated with the given key, or
+     * null if the key is not found or the value is not a {@link JsonObject}.
      */
     JsonObject optJsonObject(final String key);
 }
