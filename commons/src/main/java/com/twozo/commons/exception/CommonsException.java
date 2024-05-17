@@ -7,7 +7,7 @@ package com.twozo.commons.exception;
  * @author Petchimuthu2015
  * @version 1.0
  */
-public interface CommonsException {
+interface CommonsException {
 
     /**
      * Gets the error code associated with the exception.
