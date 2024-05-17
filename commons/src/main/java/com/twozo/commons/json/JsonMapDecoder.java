@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -19,7 +18,7 @@ import java.util.Map;
  */
 public class JsonMapDecoder implements Decoder<Map<String, Object>> {
 
-    final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Decodes the given object, which is either a JSON file or a JSON string,
@@ -29,16 +28,20 @@ public class JsonMapDecoder implements Decoder<Map<String, Object>> {
      *               containing JSON data or a JSON string.
      * @return A {@link Map} of key-value pairs decoded from the JSON data.
      * If an error occurs, an empty map is returned.
+     * @throws IOException              If an I/O error occurs during decoding.
+     * @throws IllegalArgumentException If the input object is not a {@code File} or {@code String}.
      */
     @Override
     public Map<String, Object> decode(final Object object) {
         try {
-            return (object instanceof File) ?
-                    objectMapper.readValue((File) object, Map.class) :
-                    objectMapper.readValue((String) object, Map.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Collections.emptyMap();
+            return switch (object) {
+                case File file -> objectMapper.readValue(file, Map.class);
+                case String string -> objectMapper.readValue(string, Map.class);
+                default ->
+                        throw new IllegalArgumentException("Unsupported type: " + object.getClass().getName());
+            };
+        } catch (Exception e) {
+            throw new RuntimeException("Exception");
         }
     }
 }

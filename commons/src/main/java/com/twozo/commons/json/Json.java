@@ -44,7 +44,7 @@ public final class Json {
      * @param value The JSON string representing an array.
      * @return The {@link JsonArray} object containing the decoded array.
      */
-    public static JsonArray array(final String value) {
+    public static JsonArray array(final String value) throws Exception {
         return new JsonArrayImpl((List<Object>) LIST_DECODER.decode(value));
     }
 
@@ -56,7 +56,7 @@ public final class Json {
      * @param value The JSON string representing an object.
      * @return The {@link JsonObject} object containing the decoded object.
      */
-    public static JsonObject object(final String value) {
+    public static JsonObject object(final String value) throws Exception {
         return new JsonObjectImpl((Map<String, Object>) MAP_DECODER.decode(value));
     }
 
@@ -68,7 +68,7 @@ public final class Json {
      * @param file The JSON file representing an array.
      * @return The {@link JsonArray} object containing the decoded array.
      */
-    public static JsonArray array(final File file) {
+    public static JsonArray array(final File file) throws Exception {
         return new JsonArrayImpl((List<Object>) LIST_DECODER.decode(file));
     }
 
@@ -80,7 +80,7 @@ public final class Json {
      * @param file The JSON file representing an object.
      * @return The {@link JsonObject} object containing the decoded object.
      */
-    public static JsonObject object(final File file) {
+    public static JsonObject object(final File file) throws Exception {
         return new JsonObjectImpl((Map<String, Object>) MAP_DECODER.decode(file));
     }
 

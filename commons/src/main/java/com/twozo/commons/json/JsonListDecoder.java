@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
  */
 public class JsonListDecoder implements Decoder<List<Object>> {
 
-    final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Decodes the given object, which is either a JSON file or a JSON string,
@@ -29,16 +28,20 @@ public class JsonListDecoder implements Decoder<List<Object>> {
      *               containing JSON data or a JSON string.
      * @return A {@link List} of Java objects decoded from the JSON data.
      * If an error occurs, an empty list is returned.
+     * @throws IOException              If an I/O error occurs during decoding.
+     * @throws IllegalArgumentException If the input object is not a {@code File} or {@code String}.
      */
     @Override
     public List<Object> decode(final Object object) {
         try {
-            return (object instanceof File) ?
-                    objectMapper.readValue((File) object, List.class) :
-                    objectMapper.readValue((String) object, List.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return Collections.emptyList();
+            return switch (object) {
+                case File file -> objectMapper.readValue(file, List.class);
+                case String string -> objectMapper.readValue(string, List.class);
+                default ->
+                        throw new IllegalArgumentException("Unsupported type: " + object.getClass().getName());
+            };
+        } catch (Exception e) {
+            throw new RuntimeException();
         }
     }
 }
