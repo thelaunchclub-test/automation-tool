@@ -1,4 +1,4 @@
-package com.commons.exception;
+package com.twozo.commons.exception;
 
 /**
  * Defines a contract for providing prefixes for exceptions.
