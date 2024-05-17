@@ -1,4 +1,4 @@
-package com.commons.exception;
+package com.twozo.commons.exception;
 
 /**
  * The {@code CommonsException} provides functionality to retrieve error codes
