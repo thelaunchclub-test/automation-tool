@@ -1,9 +1,8 @@
-package com.commons.json.impl;
+package com.twozo.commons.json.impl;
 
-import com.commons.json.JsonArray;
-import com.commons.json.JsonDecoder;
-import com.commons.json.JsonObject;
-import com.commons.json.JsonWrapper;
+import com.twozo.commons.json.Json;
+import com.twozo.commons.json.JsonArray;
+import com.twozo.commons.json.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +18,19 @@ import java.util.function.Consumer;
  * Example usage:
  * <pre>{@code
  * JsonArray jsonArray = Json.array(file));
- * jsonArray.put("value");
- * String retrievedValue = jsonArray.getString(0);
+ * jsonArray.getString(2);
  * }</pre>
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
- * @see JsonWrapper
  */
-final class JsonArrayImpl implements JsonArray, JsonWrapper {
+public final class JsonArrayImpl implements JsonArray {
 
     private final List<Object> list;
-    private JsonDecoder jsonDecoder;
 
-    JsonArrayImpl(final List<Object> objects) {
+    public JsonArrayImpl(final List<Object> objects) {
         this.list = objects;
-    }
-
-    JsonArrayImpl(final JsonDecoder jsonDecoder, final List<Object> list) {
-        this.jsonDecoder = jsonDecoder;
-        this.list = list;
     }
 
     /**
@@ -132,7 +123,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final int index) {
-        return wrappedJsonArray((List<Object>) getValue(index));
+        return Json.array((List<Object>) getValue(index));
     }
 
     /**
@@ -143,7 +134,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonObject getJsonObject(final int index) {
-        return wrappedJsonObject((Map<String, Object>) getValue(index));
+        return Json.object((Map<String, Object>) getValue(index));
     }
 
     /**
@@ -210,7 +201,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonArray optJsonArray(final int index) {
-        return wrappedJsonArray((List<Object>) getValue(index));
+        return Json.array((List<Object>) getValue(index));
     }
 
     /**
@@ -221,7 +212,7 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final int index) {
-        return wrappedJsonObject((Map<String, Object>) getValue(index));
+        return Json.object((Map<String, Object>) getValue(index));
     }
 
     /**
@@ -232,28 +223,6 @@ final class JsonArrayImpl implements JsonArray, JsonWrapper {
     @Override
     public void forEach(final Consumer<? super Object> action) {
         list.forEach(action);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param list The List of Objects to wrap.
-     * @return A {@link JsonArray} containing the wrapped list.
-     */
-    @Override
-    public JsonArray wrappedJsonArray(final List<Object> list) {
-        return new JsonArrayImpl(jsonDecoder, list);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param map The Map of key-value pairs to wrap.
-     * @return A {@link JsonObject} containing the wrapped map.
-     */
-    @Override
-    public JsonObject wrappedJsonObject(final Map<String, Object> map) {
-        return new JsonObjectImpl(jsonDecoder, map);
     }
 
     /**

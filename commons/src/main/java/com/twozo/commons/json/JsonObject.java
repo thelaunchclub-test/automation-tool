@@ -1,4 +1,4 @@
-package com.commons.json;
+package com.twozo.commons.json;
 
 import java.util.Map;
 
@@ -11,16 +11,14 @@ import java.util.Map;
  * Example usage:
  * <pre>{@code
  * JsonObject jsonObject = Json.object(file);
- * jsonObject.put("name", "John Doe");
- * String name = jsonObject.getString("name");
+ * jsonObject.getJsonArray("children");
  * }</pre>
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
- * @see JsonWrapper
  */
-public interface JsonObject extends JsonWrapper {
+public interface JsonObject {
 
     /**
      * <p>

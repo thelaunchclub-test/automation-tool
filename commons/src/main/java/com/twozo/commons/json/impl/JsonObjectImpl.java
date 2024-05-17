@@ -1,9 +1,8 @@
-package com.commons.json.impl;
+package com.twozo.commons.json.impl;
 
-import com.commons.json.JsonArray;
-import com.commons.json.JsonDecoder;
-import com.commons.json.JsonObject;
-import com.commons.json.JsonWrapper;
+import com.twozo.commons.json.Json;
+import com.twozo.commons.json.JsonArray;
+import com.twozo.commons.json.JsonObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,26 +18,18 @@ import java.util.Objects;
  * Example usage:
  * <pre>{@code
  * JsonObject jsonObject = Json.object(file);
- * jsonObject.put("name", "John Doe");
- * String name = jsonObject.getString("name");
+ * jsonObject.getJsonArray("children");
  * }</pre>
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
- * @see JsonWrapper
  */
-final class JsonObjectImpl implements JsonObject, JsonWrapper {
+public final class JsonObjectImpl implements JsonObject {
 
     private final Map<String, Object> map;
-    private JsonDecoder jsonDecoder;
 
-    JsonObjectImpl(final Map<String, Object> map) {
-        this.map = map;
-    }
-
-    JsonObjectImpl(final JsonDecoder jsonDecoder, final Map<String, Object> map) {
-        this.jsonDecoder = jsonDecoder;
+    public JsonObjectImpl(final Map<String, Object> map) {
         this.map = map;
     }
 
@@ -143,7 +134,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonArray getJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) getValue(key));
+        return Json.array((List<Object>) getValue(key));
     }
 
     /**
@@ -154,7 +145,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject getJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) getValue(key));
+        return Json.object((Map<String, Object>) getValue(key));
     }
 
     /**
@@ -225,7 +216,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      * null if the key is not found or the value is not a {@link JsonArray}.
      */
     public JsonArray optJsonArray(final String key) {
-        return wrappedJsonArray((List<Object>) getValue(key));
+        return Json.array((List<Object>) getValue(key));
     }
 
     /**
@@ -237,29 +228,7 @@ final class JsonObjectImpl implements JsonObject, JsonWrapper {
      */
     @Override
     public JsonObject optJsonObject(final String key) {
-        return wrappedJsonObject((Map<String, Object>) getValue(key));
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param list The List of Objects to wrap.
-     * @return A {@link JsonArray} containing the wrapped list.
-     */
-    @Override
-    public JsonArray wrappedJsonArray(final List<Object> list) {
-        return new JsonArrayImpl(jsonDecoder, list);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param map The Map of key-value pairs to wrap.
-     * @return A {@link JsonObject} containing the wrapped map.
-     */
-    @Override
-    public JsonObject wrappedJsonObject(final Map<String, Object> map) {
-        return new JsonObjectImpl(jsonDecoder, map);
+        return Json.object((Map<String, Object>) getValue(key));
     }
 
     /**

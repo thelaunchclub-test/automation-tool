@@ -1,4 +1,4 @@
-package com.commons.json;
+package com.twozo.commons.json;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,16 +11,14 @@ import java.util.function.Consumer;
  * Example usage:
  * <pre>{@code
  * JsonArray jsonArray = Json.array(file));
- * jsonArray.put("value");
- * String retrievedValue = jsonArray.getString(0);
+ * jsonArray.getString(2);
  * }</pre>
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
- * @see JsonWrapper
  */
-public interface JsonArray extends JsonWrapper {
+public interface JsonArray {
 
     /**
      * <p>
