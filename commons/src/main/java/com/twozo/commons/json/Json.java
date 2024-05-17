@@ -33,8 +33,8 @@ import java.util.Map;
  */
 public final class Json {
 
-    private static final Decoder MAP_DECODER = new MapDecoder();
-    private static final Decoder LIST_DECODER = new ListDecoder();
+    private static final Decoder MAP_DECODER = new JsonMapDecoder();
+    private static final Decoder LIST_DECODER = new JsonListDecoder();
 
     /**
      * <p>
