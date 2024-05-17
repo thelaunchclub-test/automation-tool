@@ -1,7 +1,5 @@
 package com.twozo.commons.json;
 
-import java.io.IOException;
-
 /**
  * <p>
  * Decodes JSON data into Java objects.
