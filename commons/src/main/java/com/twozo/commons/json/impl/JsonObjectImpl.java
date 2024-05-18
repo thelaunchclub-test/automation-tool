@@ -24,10 +24,14 @@ import java.util.Objects;
  *
  * @author petchimuthu
  * @version 1.0
+ * @see JsonObject
  */
 public final class JsonObjectImpl implements JsonObject {
 
-    private final Map<String, Object> map;
+    private Map<String, Object> map;
+
+    public JsonObjectImpl() {
+    }
 
     public JsonObjectImpl(final Map<String, Object> map) {
         this.map = map;

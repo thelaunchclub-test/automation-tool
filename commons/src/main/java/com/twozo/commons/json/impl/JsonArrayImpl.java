@@ -24,10 +24,14 @@ import java.util.function.Consumer;
  *
  * @author petchimuthu
  * @version 1.0
+ * @see JsonArray
  */
 public final class JsonArrayImpl implements JsonArray {
 
-    private final List<Object> list;
+    private List<Object> list;
+
+    public JsonArrayImpl() {
+    }
 
     public JsonArrayImpl(final List<Object> objects) {
         this.list = objects;
@@ -59,7 +63,7 @@ public final class JsonArrayImpl implements JsonArray {
      * @return a List containing the elements of this object.
      */
     @Override
-    public List<Object> toList(){
+    public List<Object> toList() {
         return new ArrayList<>(this.list);
     }
 
@@ -99,7 +103,7 @@ public final class JsonArrayImpl implements JsonArray {
     public boolean getBoolean(final int index) {
         final Object object = getValue(index);
 
-        return object instanceof Boolean  ? (boolean)object : Boolean.parseBoolean((String) object);
+        return object instanceof Boolean ? (boolean) object : Boolean.parseBoolean((String) object);
     }
 
     /**
@@ -129,8 +133,8 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     *  @param index The index of the {@link JsonObject} to be returned.
-     *  @return The {@link JsonObject}t at the specified index.
+     * @param index The index of the {@link JsonObject} to be returned.
+     * @return The {@link JsonObject}t at the specified index.
      */
     @Override
     public JsonObject getJsonObject(final int index) {
