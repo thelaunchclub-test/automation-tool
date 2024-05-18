@@ -1,5 +1,6 @@
 package com.twozo.commons.json;
 
+import com.twozo.commons.json.codec.decoder.*;
 import com.twozo.commons.json.impl.JsonArrayImpl;
 import com.twozo.commons.json.impl.JsonObjectImpl;
 
@@ -11,7 +12,7 @@ import java.util.Map;
  * <p>
  * The {@link Json} serves as  a utility to handle and process JSON data.
  * Provides methods to accept input either as a JSON File or a JSON String and
- * converts the input data to a suitable representation like {@link  JsonArray} or {@link JsonObject},
+ * converts the input data to a suitable representation like {@link JsonArray} or {@link JsonObject},
  * based on the specific requirements and structure of the provided data.
  * </p>
  *
@@ -33,8 +34,7 @@ import java.util.Map;
  */
 public final class Json {
 
-    private static final Decoder MAP_DECODER = new JsonMapDecoder();
-    private static final Decoder LIST_DECODER = new JsonListDecoder();
+    private static final DecoderRegistry registry = new DecoderRegistry();
 
     /**
      * <p>
@@ -44,8 +44,11 @@ public final class Json {
      * @param value The JSON string representing an array.
      * @return The {@link JsonArray} object containing the decoded array.
      */
-    public static JsonArray array(final String value) throws Exception {
-        return new JsonArrayImpl((List<Object>) LIST_DECODER.decode(value));
+    public static JsonArray array(final String value) {
+        registry.registerDecoder(String.class, StringToListDecoder::new);
+        final Decoder<String, Object> decoder = registry.getDecoder(String.class);
+
+        return new JsonArrayImpl((List<Object>) decoder.decode(value));
     }
 
     /**
@@ -56,8 +59,11 @@ public final class Json {
      * @param value The JSON string representing an object.
      * @return The {@link JsonObject} object containing the decoded object.
      */
-    public static JsonObject object(final String value) throws Exception {
-        return new JsonObjectImpl((Map<String, Object>) MAP_DECODER.decode(value));
+    public static JsonObject object(final String value) {
+        registry.registerDecoder(String.class, StringToMapDecoder::new);
+        final Decoder<String, Object> decoder = registry.getDecoder(String.class);
+
+        return new JsonObjectImpl((Map<String, Object>) decoder.decode(value));
     }
 
     /**
@@ -68,8 +74,11 @@ public final class Json {
      * @param file The JSON file representing an array.
      * @return The {@link JsonArray} object containing the decoded array.
      */
-    public static JsonArray array(final File file) throws Exception {
-        return new JsonArrayImpl((List<Object>) LIST_DECODER.decode(file));
+    public static JsonArray array(final File file) {
+        registry.registerDecoder(File.class, FileToListDecoder::new);
+        final Decoder<File, Object> decoder = registry.getDecoder(File.class);
+
+        return new JsonArrayImpl((List<Object>) decoder.decode(file));
     }
 
     /**
@@ -80,8 +89,11 @@ public final class Json {
      * @param file The JSON file representing an object.
      * @return The {@link JsonObject} object containing the decoded object.
      */
-    public static JsonObject object(final File file) throws Exception {
-        return new JsonObjectImpl((Map<String, Object>) MAP_DECODER.decode(file));
+    public static JsonObject object(final File file) {
+        registry.registerDecoder(String.class, StringToMapDecoder::new);
+        final Decoder<File, Object> decoder = registry.getDecoder(File.class);
+
+        return new JsonObjectImpl((Map<String, Object>) decoder.decode(file));
     }
 
     /**

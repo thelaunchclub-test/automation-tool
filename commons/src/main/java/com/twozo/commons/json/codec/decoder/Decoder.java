@@ -1,9 +1,9 @@
-package com.twozo.commons.json;
+package com.twozo.commons.json.codec.decoder;
 
 /**
  * <p>
- * Decodes JSON data into Java objects.
- *
+ * Decodes JSON data into {@link Object}.
+ * <p>
  * Defines a generic contract for classes that are responsible for decoding
  * JSON data into {@link Object}.
  * </p>
@@ -18,13 +18,13 @@ package com.twozo.commons.json;
  * @author petchimuthu
  * @version 1.0
  */
-public interface Decoder<R> {
+public interface Decoder<T, R> {
 
     /**
      * Decodes the given object into a Java object of type {@code R}.
      *
-     * @param object The object to be decoded, typically representing JSON data.
+     * @param t The type to be decoded, typically representing JSON data.
      * @return The decoded Java object of type {@code R}.
      */
-    R decode(final Object object);
+    R decode(final T t);
 }
