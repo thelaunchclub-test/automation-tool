@@ -15,12 +15,39 @@ import java.util.List;
  */
 public enum ViewNames {
 
+    /*
+     * Enum representing the author entity.
+     */
     AUTHOR,
+
+    /*
+     * Enum representing the category entity.
+     */
     CATEGORY,
+
+    /*
+     * Enum representing the dashboard entity.
+     */
     DASHBOARD,
+
+    /*
+     * Enum representing the device entity.
+     */
     DEVICE,
+
+    /*
+     * Enum representing the exception entity.
+     */
     EXCEPTION,
+
+    /*
+     * Enum representing the log entity.
+     */
     LOG,
+
+    /*
+     * Enum representing the test entity.
+     */
     TEST,
     ;
 
