@@ -18,7 +18,11 @@ import java.util.Objects;
  */
 public class DecoderRegistry {
 
-    private final Map<Class<?>, Decoder<?, ?>> registry = new HashMap<>();
+    private final Map<Class<?>, Decoder<?, ?>> registry;
+
+    public DecoderRegistry(){
+        this.registry = new HashMap<>();
+    }
 
     /**
      * Registers a {@link Decoder} for a specific input type.

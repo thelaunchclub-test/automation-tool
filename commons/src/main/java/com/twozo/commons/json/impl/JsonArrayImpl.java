@@ -205,7 +205,7 @@ public final class JsonArrayImpl implements JsonArray {
      */
     @Override
     public JsonArray optJsonArray(final int index) {
-        return Json.array((List<Object>) getValue(index));
+        return Json.array((List<Object>) get(index));
     }
 
     /**
@@ -216,7 +216,7 @@ public final class JsonArrayImpl implements JsonArray {
      */
     @Override
     public JsonObject optJsonObject(final int index) {
-        return Json.object((Map<String, Object>) getValue(index));
+        return Json.object((Map<String, Object>) get(index));
     }
 
     /**
@@ -244,5 +244,15 @@ public final class JsonArrayImpl implements JsonArray {
         }
 
         return object;
+    }
+
+    /**
+     * Retrieves the element at the specified index in the list.
+     *
+     * @param index The index of the element to retrieve.
+     * @return The element at the specified index, or null if the index is out of range.
+     */
+    private Object get(int index) {
+        return list.get(index);
     }
 }

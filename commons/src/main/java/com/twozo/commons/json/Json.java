@@ -91,7 +91,7 @@ public final class Json {
      * @return The {@link JsonObject} object containing the decoded object.
      */
     public static JsonObject object(final File file) {
-        registry.registerDecoder(String.class, new StringToMapDecoder());
+        registry.registerDecoder(File.class, new FileToMapDecoder());
         final Decoder<File, Object> decoder = registry.getDecoder(File.class);
 
         return new JsonObjectImpl((Map<String, Object>) decoder.decode(file));
