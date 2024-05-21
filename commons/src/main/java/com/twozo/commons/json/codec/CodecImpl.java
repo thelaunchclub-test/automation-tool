@@ -28,7 +28,8 @@ public class CodecImpl<T, R> implements Codec<T, R> {
      * {@inheritDoc}
      *
      * @param input the input object to be encoded
-     * @return the encoded representation of the input object     */
+     * @return the encoded representation of the input object
+     */
     @Override
     public R encode(final T input) {
         return null;

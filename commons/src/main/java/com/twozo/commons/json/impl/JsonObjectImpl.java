@@ -191,7 +191,7 @@ public final class JsonObjectImpl implements JsonObject {
      */
     @Override
     public boolean optBoolean(final String key, final boolean defaultValue) {
-        final Object object = map.get(key);
+        final Object object = getValue(key);
 
         return (object instanceof Boolean) ? (boolean) object : defaultValue;
     }
@@ -207,7 +207,7 @@ public final class JsonObjectImpl implements JsonObject {
      */
     @Override
     public String optString(final String key, final String defaultValue) {
-        final Object object = map.get(key);
+        final Object object = getValue(key);
 
         return (object instanceof String) ? (String) object : defaultValue;
     }
