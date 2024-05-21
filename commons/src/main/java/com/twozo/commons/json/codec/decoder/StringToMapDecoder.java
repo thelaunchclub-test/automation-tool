@@ -28,7 +28,7 @@ public class StringToMapDecoder implements Decoder<String, Map<String, Object>> 
         try {
             return objectMapper.readValue(value, Map.class);
         } catch (Exception e) {
-            throw new RuntimeException("Error decoding JSON string to Map");
+            throw new RuntimeException("Error decoding JSON string to Map"); // TODO: Replace generic catch block with proper exception handling
         }
     }
 }

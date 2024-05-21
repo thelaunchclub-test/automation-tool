@@ -1,9 +1,10 @@
-package com.twozo.commons.json.codec.decoder;
+package com.twozo.commons.json.codec.registry;
+
+import com.twozo.commons.json.codec.decoder.Decoder;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * <p>
@@ -17,18 +18,18 @@ import java.util.function.Supplier;
  */
 public class DecoderRegistry {
 
-    private final Map<Class<?>, Supplier<Decoder<?, ?>>> registry = new HashMap<>();
+    private final Map<Class<?>, Decoder<?, ?>> registry = new HashMap<>();
 
     /**
      * Registers a {@link Decoder} for a specific input type.
      *
-     * @param <T>             The type of the input that the {@link Decoder} will process.
-     * @param <R>             The type of the output that the {@link Decoder} will produce.
-     * @param inputType       The {@link Class} of the input type.
-     * @param decoderSupplier A {@link Supplier} that provides {@link Decoder}.
+     * @param <T>       The type of the input that the {@link Decoder} will process.
+     * @param <R>       The type of the output that the {@link Decoder} will produce.
+     * @param inputType The {@link Class} of the input type.
+     * @param decoder   The {@link Decoder} instance.
      */
-    public <T, R> void registerDecoder(final Class<T> inputType, final Supplier<Decoder<T, R>> decoderSupplier) {
-        registry.put(inputType, (Supplier<Decoder<?, ?>>) (Supplier<?>) decoderSupplier);
+    public <T, R> void registerDecoder(final Class<T> inputType, final Decoder<T, R> decoder) {
+        registry.put(inputType, decoder);
     }
 
     /**
@@ -41,10 +42,11 @@ public class DecoderRegistry {
      * @throws IllegalArgumentException if no {@link Decoder} is registered for the given input type.
      */
     public <T, R> Decoder<T, R> getDecoder(final Class<T> inputType) {
-        Supplier<Decoder<?, ?>> supplier = registry.get(inputType);
-        if (Objects.isNull(supplier)) {
-            throw new IllegalArgumentException("No decoder registered for input type");
+        final Decoder<?, ?> decoder = registry.get(inputType);
+
+        if (Objects.isNull(decoder)) {
+            throw new IllegalArgumentException("No decoder registered for input type: " + inputType.getName());
         }
-        return (Decoder<T, R>) supplier.get();
+        return (Decoder<T, R>) decoder;
     }
 }

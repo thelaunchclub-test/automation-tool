@@ -29,7 +29,7 @@ public class FileToMapDecoder implements Decoder<File, Map<String, Object>> {
         try {
             return objectMapper.readValue(file, Map.class);
         } catch (Exception e) {
-            throw new RuntimeException("Error decoding JSON file to Map", e);
+            throw new RuntimeException("Error decoding JSON file to Map", e); // TODO: Replace generic catch block with proper exception handling
         }
     }
 }

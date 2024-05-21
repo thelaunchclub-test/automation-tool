@@ -240,7 +240,7 @@ public final class JsonArrayImpl implements JsonArray {
         final Object object = list.get(index);
 
         if (Objects.isNull(object)) {
-            throw new NullPointerException("the key is invalid");
+            throw new NullPointerException("the key is invalid"); // TODO: Replace generic catch block with proper exception handling
         }
 
         return object;

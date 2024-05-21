@@ -1,10 +1,10 @@
 package com.twozo.commons.json.codec.encoder;
 
 /**
- * Defines a method for encoding objects.
  * <p>
- * Converts objects of type T to a specific representation of
- * type R.
+ * Defines a method for encoding objects.
+ * Converts objects of type T to a specific representation of type R.
+ * </p>
  *
  * @author petchimuthu
  * @version 1.0
