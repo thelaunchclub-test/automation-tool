@@ -24,11 +24,22 @@ public class CodecImpl<T, R> implements Codec<T, R> {
         this.decoder = decoder;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param input the input object to be encoded
+     * @return the encoded representation of the input object     */
     @Override
     public R encode(final T input) {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param input the input object to be decoded
+     * @return the decoded representation of the input object
+     */
     @Override
     public R decode(final T input) {
         return decoder.decode(input);

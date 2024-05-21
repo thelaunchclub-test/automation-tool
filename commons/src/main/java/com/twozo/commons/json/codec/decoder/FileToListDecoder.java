@@ -22,7 +22,7 @@ public class FileToListDecoder implements Decoder<File, List<Object>> {
      * Decodes a JSON file into a List of Objects.
      *
      * @param file The JSON file to be decoded.
-     * @return A List of Objects parsed from the JSON file.
+     * @return A {@link List} of {@link Object} parsed from the JSON file.
      * @throws RuntimeException if an error occurs during the decoding process.
      */
     @Override
@@ -30,7 +30,7 @@ public class FileToListDecoder implements Decoder<File, List<Object>> {
         try {
             return objectMapper.readValue(file, List.class);
         } catch (Exception e) {
-            throw new RuntimeException("Error decoding JSON file to List");
+            throw new RuntimeException("Error decoding JSON file to List");  // TODO: Replace generic catch block with proper exception handling
         }
     }
 }

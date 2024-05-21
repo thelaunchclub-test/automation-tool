@@ -246,7 +246,7 @@ public final class JsonObjectImpl implements JsonObject {
         final Object object = map.get(key);
 
         if (Objects.isNull(object)) {
-            throw new NullPointerException("the key is invalid");
+            throw new NullPointerException("the key is invalid"); // TODO: Replace generic catch block with proper exception handling
         }
 
         return object;

@@ -28,7 +28,7 @@ public class StringToListDecoder implements Decoder<String, List<Object>> {
         try {
             return objectMapper.readValue(value, List.class);
         } catch (Exception e) {
-            throw new RuntimeException("Error decoding JSON string to List", e);
+            throw new RuntimeException("Error decoding JSON string to List", e); // TODO: Replace generic catch block with proper exception handling
         }
     }
 }

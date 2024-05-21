@@ -1,6 +1,7 @@
 package com.twozo.commons.json;
 
 import com.twozo.commons.json.codec.decoder.*;
+import com.twozo.commons.json.codec.registry.DecoderRegistry;
 import com.twozo.commons.json.impl.JsonArrayImpl;
 import com.twozo.commons.json.impl.JsonObjectImpl;
 
@@ -45,7 +46,7 @@ public final class Json {
      * @return The {@link JsonArray} object containing the decoded array.
      */
     public static JsonArray array(final String value) {
-        registry.registerDecoder(String.class, StringToListDecoder::new);
+        registry.registerDecoder(String.class, new StringToListDecoder());
         final Decoder<String, Object> decoder = registry.getDecoder(String.class);
 
         return new JsonArrayImpl((List<Object>) decoder.decode(value));
@@ -60,7 +61,7 @@ public final class Json {
      * @return The {@link JsonObject} object containing the decoded object.
      */
     public static JsonObject object(final String value) {
-        registry.registerDecoder(String.class, StringToMapDecoder::new);
+        registry.registerDecoder(String.class, new StringToMapDecoder());
         final Decoder<String, Object> decoder = registry.getDecoder(String.class);
 
         return new JsonObjectImpl((Map<String, Object>) decoder.decode(value));
@@ -75,7 +76,7 @@ public final class Json {
      * @return The {@link JsonArray} object containing the decoded array.
      */
     public static JsonArray array(final File file) {
-        registry.registerDecoder(File.class, FileToListDecoder::new);
+        registry.registerDecoder(File.class, new FileToListDecoder());
         final Decoder<File, Object> decoder = registry.getDecoder(File.class);
 
         return new JsonArrayImpl((List<Object>) decoder.decode(file));
@@ -90,7 +91,7 @@ public final class Json {
      * @return The {@link JsonObject} object containing the decoded object.
      */
     public static JsonObject object(final File file) {
-        registry.registerDecoder(String.class, StringToMapDecoder::new);
+        registry.registerDecoder(String.class, new StringToMapDecoder());
         final Decoder<File, Object> decoder = registry.getDecoder(File.class);
 
         return new JsonObjectImpl((Map<String, Object>) decoder.decode(file));
