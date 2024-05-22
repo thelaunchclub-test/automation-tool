@@ -12,13 +12,15 @@ import com.web.driver.driver.service.WebAutomationDriver;
  * which is responsible for browser automation tasks.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  */
 public interface Driver {
 
     /**
+     * <p>
      * Returns {@link Driver} for obtaining {@link WebAutomationDriver}.
+     * </p>
      *
      * @return An {@link Driver} .
      */
@@ -27,7 +29,9 @@ public interface Driver {
     }
 
     /**
+     * <p>
      * Returns {@link WebAutomationDriver} for web automation.
+     * </p>
      *
      * @return {@link WebAutomationDriver} for web automation.
      */

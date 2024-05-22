@@ -14,15 +14,15 @@ import java.util.Collection;
  * Locates both single and multiple elements
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see AbstractElementFinder
  */
-final class ElementFinderForDriver extends AbstractElementFinder {
+public final class ElementFinderForDriver extends AbstractElementFinder {
 
     private final WebDriver driver;
 
-    ElementFinderForDriver(final WebDriver driver) {
+    public ElementFinderForDriver(final WebDriver driver) {
         this.driver = driver;
     }
 

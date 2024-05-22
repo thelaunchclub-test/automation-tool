@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver.Navigation;
  * and navigating to a specific URL.
  *</p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see WebNavigator
  */

@@ -3,19 +3,23 @@ package com.web.driver.page;
 import org.openqa.selenium.WebDriver;
 
 /**
+ * <p>
  * Retrieves information about the browser.
+ * </p>
+ *
  * <p>
  * Retrieve various information about the browser, such as the current URL, page title, and page source.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
+ * @see PageInformationProvider
  */
-final class PageInformationProviderImpl implements PageInformationProvider {
+public final class PageInformationProviderImpl implements PageInformationProvider {
 
     private final WebDriver driver;
 
-    PageInformationProviderImpl(final WebDriver driver) {
+    public PageInformationProviderImpl(final WebDriver driver) {
         this.driver = driver;
     }
 

@@ -14,14 +14,14 @@ import java.util.Collection;
  * Locates both single and multiple elements
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see AbstractElementFinder
  */
-final class ElementFinderForElement extends AbstractElementFinder {
+public final class ElementFinderForElement extends AbstractElementFinder {
     private final WebElement element;
 
-    ElementFinderForElement(final WebElement element) {
+    public ElementFinderForElement(final WebElement element) {
         this.element = element;
     }
 

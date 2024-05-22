@@ -22,15 +22,15 @@ import java.util.Objects;
  * which is responsible for browser automation tasks.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see Driver
  */
-final class DriverImpl implements Driver {
+public final class DriverImpl implements Driver {
 
     private final PropertyFileReader propertyFileReader;
 
-    DriverImpl() {
+    public DriverImpl() {
         this.propertyFileReader = PropertyFileReader.getInstance();
     }
 

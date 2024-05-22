@@ -5,29 +5,32 @@ import org.openqa.selenium.WebDriver;
 import java.time.Duration;
 
 /**
+ * <p>
  * The {@code WaitHandler} represents a wait handler for Selenium WebDriver.
- * It provides methods to configure and manage waits in WebDriver.
+ * </p>
  *
- * <p>Allow setting an implicit wait duration for WebDriver.</p>
+ * <p>
+ * Provides methods to configure and manage waits in WebDriver. Allow setting
+ * an implicit wait duration for WebDriver.
+ * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
+ * @see WaitHandler
  */
-final class WaitHandlerImpl implements WaitHandler {
+public final class WaitHandlerImpl implements WaitHandler {
 
     private final WebDriver.Timeouts timeouts;
 
-    /**
-     * Constructor for WaitHandlerImpl.
-     *
-     * @param timeouts the timeouts for WebDriver
-     */
-    WaitHandlerImpl(final WebDriver.Timeouts timeouts) {
+    public WaitHandlerImpl(final WebDriver.Timeouts timeouts) {
         this.timeouts = timeouts;
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @param duration the duration of the implicit wait
+     * @return a {@code WaitHandler} configured with the implicit wait duration
      */
     @Override
     public WaitHandler implicitlyWait(final Duration duration) {

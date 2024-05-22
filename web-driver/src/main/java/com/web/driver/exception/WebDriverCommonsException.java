@@ -1,14 +1,17 @@
 package com.web.driver.exception;
 
 
-import com.commons.exception.CommonsException;
-import com.commons.exception.PrefixProvider;
+import com.twozo.commons.exception.CommonsException;
+import com.twozo.commons.exception.PrefixProvider;
 
 /**
- * Represents Selenium exceptions.
  * <p>
- * This enumeration provides a set of exceptions commonly encountered in Selenium WebDriver operations.
- * Each enum constant corresponds to a specific exception type along with its associated error code.
+ * Represents Selenium exceptions.
+ * </p>
+ *
+ * <p>
+ * Provides a set of exceptions commonly encountered in Selenium WebDriver operations.
+ * Corresponds to a specific exception type along with its associated error code.
  * </p>
  *
  * @author Petchimuthu2015
@@ -34,10 +37,10 @@ public enum WebDriverCommonsException implements CommonsException {
     }
 
     /**
-     * Retrieves the error code associated with the exception.
      * <p>
-     * This method calculates the error code based on the base error code and the prefix
-     * provided by the ErrorCodeHandler.
+     * Retrieves the error code associated with the exception.Calculates
+     * the error code based on the base error code and the prefix provided
+     * by the ErrorCodeHandler.
      * </p>
      *
      * @return The error code generated based on the base error code and prefix.
@@ -48,15 +51,17 @@ public enum WebDriverCommonsException implements CommonsException {
     }
 
     /**
-     * Inner class to handle error codes.
      * <p>
+     * Inner class to handle error codes.
      * Provides prefix values for error codes associated with WebDriver exceptions.
      * </p>
      */
     static class ErrorCodeHandler implements PrefixProvider {
 
         /**
+         * <p>
          * Retrieves the prefix value for error codes.
+         * </p>
          *
          * @return The prefix value used in generating error codes.
          */
