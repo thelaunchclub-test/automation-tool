@@ -16,5 +16,6 @@
 
     <modules>
         <module>commons</module>
+        <module>web-driver</module>
     </modules>
 </project>
