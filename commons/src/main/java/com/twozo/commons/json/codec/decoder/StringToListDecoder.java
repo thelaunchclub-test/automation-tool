@@ -12,7 +12,7 @@ import java.util.List;
  * @author petchimuthu
  * @version 1.0
  */
-public class StringToListDecoder implements Decoder<String, List<Object>> {
+public final class StringToListDecoder implements Decoder<String, List<Object>> {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 

@@ -13,7 +13,7 @@ import java.util.Map;
  * @author petchimuthu
  * @version 1.0
  */
-public class FileToMapDecoder implements Decoder<File, Map<String, Object>> {
+public final class FileToMapDecoder implements Decoder<File, Map<String, Object>> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

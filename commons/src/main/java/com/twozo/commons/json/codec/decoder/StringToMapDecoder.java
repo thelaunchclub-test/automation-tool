@@ -12,7 +12,7 @@ import java.util.Map;
  * @author petchimuthu
  * @version 1.0
  */
-public class StringToMapDecoder implements Decoder<String, Map<String, Object>> {
+public final class StringToMapDecoder implements Decoder<String, Map<String, Object>> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

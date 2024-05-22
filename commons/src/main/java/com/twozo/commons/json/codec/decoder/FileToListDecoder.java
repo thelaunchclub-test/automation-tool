@@ -14,7 +14,7 @@ import java.util.List;
  * @author petchimuthu
  * @version 1.0
  */
-public class FileToListDecoder implements Decoder<File, List<Object>> {
+public final class FileToListDecoder implements Decoder<File, List<Object>> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

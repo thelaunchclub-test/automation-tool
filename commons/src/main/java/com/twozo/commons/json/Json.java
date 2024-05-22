@@ -37,6 +37,9 @@ public final class Json {
 
     private static final DecoderRegistry registry = new DecoderRegistry();
 
+    private Json() {
+    }
+
     /**
      * <p>
      * Converts a JSON string representing an array into a {@link JsonArray} object.
@@ -47,7 +50,7 @@ public final class Json {
      */
     public static JsonArray array(final String value) {
         registry.registerDecoder(String.class, new StringToListDecoder());
-        final Decoder<String, Object> decoder = registry.getDecoder(String.class);
+        final Decoder<String, Object> decoder = registry.get(String.class);
 
         return new JsonArrayImpl((List<Object>) decoder.decode(value));
     }
@@ -62,7 +65,7 @@ public final class Json {
      */
     public static JsonObject object(final String value) {
         registry.registerDecoder(String.class, new StringToMapDecoder());
-        final Decoder<String, Object> decoder = registry.getDecoder(String.class);
+        final Decoder<String, Object> decoder = registry.get(String.class);
 
         return new JsonObjectImpl((Map<String, Object>) decoder.decode(value));
     }
@@ -77,7 +80,7 @@ public final class Json {
      */
     public static JsonArray array(final File file) {
         registry.registerDecoder(File.class, new FileToListDecoder());
-        final Decoder<File, Object> decoder = registry.getDecoder(File.class);
+        final Decoder<File, Object> decoder = registry.get(File.class);
 
         return new JsonArrayImpl((List<Object>) decoder.decode(file));
     }
@@ -92,7 +95,7 @@ public final class Json {
      */
     public static JsonObject object(final File file) {
         registry.registerDecoder(File.class, new FileToMapDecoder());
-        final Decoder<File, Object> decoder = registry.getDecoder(File.class);
+        final Decoder<File, Object> decoder = registry.get(File.class);
 
         return new JsonObjectImpl((Map<String, Object>) decoder.decode(file));
     }

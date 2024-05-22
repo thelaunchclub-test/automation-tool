@@ -16,7 +16,7 @@ import com.twozo.commons.json.codec.decoder.Decoder;
  * @version 1.0
  * @see Codec
  */
-public class CodecImpl<T, R> implements Codec<T, R> {
+public final class CodecImpl<T, R> implements Codec<T, R> {
 
     private final Decoder<T, R> decoder;
 
