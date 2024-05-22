@@ -17,7 +17,7 @@ import org.openqa.selenium.WindowType;
  * opening a new window and handling browser alerts.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see WebTargetLocator
  */

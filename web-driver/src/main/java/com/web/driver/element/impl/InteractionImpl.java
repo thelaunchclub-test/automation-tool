@@ -6,12 +6,16 @@ import com.web.driver.element.service.WebPageElement;
 import org.openqa.selenium.WebElement;
 
 /**
- * The {@code InteractionImpl} Interacts with {@link WebPageElement}s using Selenium WebDriver.
+ * <p>
+ * The {@code InteractionImpl} interacts with {@link WebPageElement}s using Selenium WebDriver.
+ * </p>
  *
- * <p>Encapsulates common interactions with web page elements such as clicking,
- * submitting forms, and sending keys.</p>
+ * <p>
+ * Encapsulates common interactions with web page elements such as clicking,
+ * submitting forms, and sending keys.
+ * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see Interaction
  */

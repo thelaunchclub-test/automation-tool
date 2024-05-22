@@ -20,24 +20,31 @@ import java.util.Collection;
  * either a single element or multiple elements on a web page.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  */
 public interface ElementFinder {
 
     /**
+     * <p>
      * Returns {@link ElementFinder} based on the type of the provided value.
+     * </p>
      *
      * @param value The value to be used for creating the {@link ElementFinder}.
      * @return An {@link ElementFinder} for finding elements.
      */
     static ElementFinder getInstance(final Object value) {
-        return value instanceof WebDriver ? new ElementFinderForDriver((WebDriver) value)
-                : new ElementFinderForElement((WebElement) value);
+        return switch (value) {
+            case WebDriver webDriver -> new com.web.driver.element.finders.ElementFinderForDriver(webDriver);
+            case WebElement webElement -> new com.web.driver.element.finders.ElementFinderForElement(webElement);
+            default -> throw new IllegalArgumentException("Unsupported type: " + value.getClass().getName());
+        };
     }
 
     /**
+     * <p>
      * Finds multiple web page elements based on the specified {@code By} locator.
+     * </p>
      *
      * @param by The {@code By} locator used to getElementFinder elements.
      * @return A collection of {@link WebPageElement} representing the found elements.
@@ -45,7 +52,9 @@ public interface ElementFinder {
     Collection<WebPageElement> findElements(final By by);
 
     /**
+     * <p>
      * Finds a single web page element based on the specified {@code By} locator.
+     * </p>
      *
      * @param by The {@code By} locator used to getElementFinder the element.
      * @return The {@link WebPageElement} representing the found element.

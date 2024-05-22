@@ -3,7 +3,7 @@ package com.web.driver.driver;
 /**
  * Represents different types of web browsers.
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  */
 enum BrowserType {

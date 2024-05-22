@@ -6,13 +6,15 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code Interaction} interacts with {@link WebPageElement}s using Selenium WebDriver.
+ * The {@code Interaction} Interacts with {@link WebPageElement}s using Selenium WebDriver.
  * </p>
  *
- * <p> Encapsulates common interactions with web page elements such as clicking,
- * submitting forms, and sending keys.</p>
+ * <p>
+ * Encapsulates common interactions with web page elements such as clicking,
+ * submitting forms, and sending keys.
+ * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  */
 public interface Interaction {
@@ -22,17 +24,23 @@ public interface Interaction {
     }
 
     /**
+     * <p>
      * Simulates a mouse click on the WebElement.
+     * </p>
      */
     void click();
 
     /**
+     * </p>
      * Submits a form if the WebElement represents a form element.
+     * </p>
      */
     void submit();
 
     /**
+     * <p>
      * Sends the given keys to the WebElement, usually a form input element.
+     * </p>
      *
      * @param keysToSend The character sequences to be sent.
      */

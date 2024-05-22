@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import java.util.Set;
 
 /**
+ * <p>
  * Provides information about browser windows.
+ * </p>
+ *
  * <p>
  * Retrieves information about browser windows,
  * including unique identifiers for each window handle and the handle of the current window.
@@ -14,11 +17,11 @@ import java.util.Set;
  * @author petchimuthu1520
  * @version 1.0
  */
-final class WindowInfoProviderImpl implements WindowInfoProvider {
+public final class WindowInfoProviderImpl implements WindowInfoProvider {
 
     private final WebDriver driver;
 
-    WindowInfoProviderImpl(final WebDriver driver) {
+    public WindowInfoProviderImpl(final WebDriver driver) {
         this.driver = driver;
     }
 

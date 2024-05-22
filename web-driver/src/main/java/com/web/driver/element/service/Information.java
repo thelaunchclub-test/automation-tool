@@ -19,13 +19,15 @@ import org.openqa.selenium.WebElement;
  * enabled status, text content, and display status of the web element.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  */
 public interface Information {
 
     /**
+     * <p>
      * Returns {@link Information} based on the provided {@link WebElement}.
+     * </p>
      *
      * @param element The {@link WebElement} to be used for creating the {@link Information}.
      * @return An {@link Information} to get information about the element.
@@ -35,14 +37,18 @@ public interface Information {
     }
 
     /**
+     * <p>
      * Gets the tag name of the {@link WebElement}.
+     * </p>
      *
      * @return The tag name as a String.
      */
     String getTagName();
 
     /**
+     * <p>
      * Gets the value of the specified attribute of the {@link WebElement}.
+     * </p>
      *
      * @param name The name of the attribute.
      * @return The attribute value as a String.
@@ -50,28 +56,36 @@ public interface Information {
     String getAttribute(final String name);
 
     /**
+     * </p>
      * Checks if the {@link WebElement} is selected.
+     * </p>
      *
      * @return true if the element is selected, false otherwise.
      */
     boolean isSelected();
 
     /**
+     * <p>
      * Checks if the {@link WebElement} is enabled.
+     * </p>
      *
      * @return true if the element is enabled, false otherwise.
      */
     boolean isEnabled();
 
     /**
+     * <p>
      * Gets the visible text of the {@link WebElement}.
+     * </p>
      *
      * @return The text of a {@link WebElement}as a String.
      */
     String getText();
 
     /**
+     * <p>
      * Checks if the {@link WebElement} is displayed.
+     * </p>
      *
      * @return true if the element is displayed, false otherwise.
      */

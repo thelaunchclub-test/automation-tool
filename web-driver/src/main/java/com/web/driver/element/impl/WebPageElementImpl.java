@@ -8,14 +8,14 @@ import com.web.driver.element.service.WebPageElement;
 import org.openqa.selenium.WebElement;
 
 /**
+ * <p>
  * The {@code WebPageElementImpl} provides various services related to {@link WebPageElement}s.
- * It encapsulates interaction, information retrieval, and element finding functionalities.
+ * Encapsulates interaction, information retrieval, and element finding functionalities.
+ * </p>
  *
- * <p>This class initializes and delegates interaction, information,
- * and element finding operations to their respective service instances.</p>
- *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
+ * @see WebPageElement
  */
 public final class WebPageElementImpl implements WebPageElement {
     private final Interaction interaction;

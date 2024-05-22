@@ -20,7 +20,7 @@ import org.openqa.selenium.WebElement;
  * enabled status, text content, and display status of the web element.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see Information
  */

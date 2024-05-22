@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
+ * <p>
  * Provides common functionality for element finders.
+ * </p>
+ *
  * <p>
  * The {@link AbstractElementFinder} Provides common functionality
  * for finding web elements and converting them to {@link WebPageElement}.
@@ -20,7 +23,7 @@ import java.util.Collection;
  * and for finding web elements using different locator strategies specified by {@link By}.
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  * @see ElementFinder
  */
