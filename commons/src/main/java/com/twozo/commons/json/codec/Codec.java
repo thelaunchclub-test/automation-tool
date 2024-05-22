@@ -1,5 +1,8 @@
 package com.twozo.commons.json.codec;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * Defines methods for encoding and decoding objects.
@@ -7,7 +10,8 @@ package com.twozo.commons.json.codec;
  *
  * <p>
  * Converts objects of type T to a specific representation
- * of type R and vice versa.
+ * of type R and vice versa. Converts JSON string or JSON file
+ * into a {@link List} or {@link Map} based on the specific requirements.
  * </p>
  *
  * @author petchimuthu

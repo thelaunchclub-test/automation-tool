@@ -1,7 +1,8 @@
 package com.twozo.commons.json.codec.registry;
 
-import com.twozo.commons.json.codec.decoder.Decoder;
+import com.twozo.commons.json.codec.decoder.*;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -16,12 +17,13 @@ import java.util.Objects;
  * @author petchimuthu
  * @version 1.0
  */
-public class DecoderRegistry {
+public final class DecoderRegistry {
 
     private final Map<Class<?>, Decoder<?, ?>> registry;
 
     public DecoderRegistry(){
         this.registry = new HashMap<>();
+        register();
     }
 
     /**
@@ -45,12 +47,25 @@ public class DecoderRegistry {
      * @return The {@link Decoder} for the specified input type.
      * @throws IllegalArgumentException if no {@link Decoder} is registered for the given input type.
      */
-    public <T, R> Decoder<T, R> getDecoder(final Class<T> inputType) {
+    public <T, R> Decoder<T, R> get(final Class<T> inputType) {
         final Decoder<?, ?> decoder = registry.get(inputType);
 
         if (Objects.isNull(decoder)) {
-            throw new IllegalArgumentException("No decoder registered for input type: " + inputType.getName());
+            throw new IllegalArgumentException("No decoder registered for input" ); // TODO: Replace generic catch block with proper exception handling
         }
+
         return (Decoder<T, R>) decoder;
+    }
+
+    /**
+     * <p>
+     * Registers various decoders for different input types.
+     * </p>
+     */
+    private void register(){
+        registerDecoder(String.class, new StringToListDecoder());
+        registerDecoder(String.class, new StringToMapDecoder());
+        registerDecoder(File.class, new FileToMapDecoder());
+        registerDecoder(File.class, new FileToListDecoder());
     }
 }
