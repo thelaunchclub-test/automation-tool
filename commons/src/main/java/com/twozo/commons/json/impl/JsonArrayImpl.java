@@ -4,15 +4,16 @@ import com.twozo.commons.json.Json;
 import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
+ * <p>
  * The {@code JsonArray} defines operations for manipulating {@link JsonArray}.
  * Provides methods to access and manipulate elements within the array.
+ *</p>
  *
  * <p>
  * Example usage:
@@ -64,7 +65,7 @@ public final class JsonArrayImpl implements JsonArray {
      */
     @Override
     public List<Object> toList() {
-        return new ArrayList<>(this.list);
+        return List.copyOf(this.list);
     }
 
     /**
@@ -144,7 +145,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the integer value to be returned.
+     * @param index The index of the integer value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not an integer.
      * @return The integer value at the specified index, If the value is not present or not an integer,
      * Returns a default value.
@@ -157,7 +158,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the float value to be returned.
+     * @param index The index of the float value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a float.
      * @return The float value at the specified index, If the value is not present or not a float,
      * Returns a default value.
@@ -170,7 +171,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the boolean value to be returned.
+     * @param index The index of the boolean value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a boolean.
      * @return The boolean value at the specified index, If the value is not present or not a boolean,
      * Returns a default value.
@@ -185,7 +186,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the string value to be returned.
+     * @param index The index of the string value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a string.
      * @return The string value at the specified index, If the value is not present or not a string,
      * Returns a default value.
@@ -252,7 +253,7 @@ public final class JsonArrayImpl implements JsonArray {
      * @param index The index of the element to retrieve.
      * @return The element at the specified index, or null if the index is out of range.
      */
-    private Object get(int index) {
+    private Object get(final int index) {
         return list.get(index);
     }
 }
