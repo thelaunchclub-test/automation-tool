@@ -3,8 +3,6 @@ package com.twozo.commons.json.codec.decoder;
 /**
  * <p>
  * Decodes JSON data into {@link Object}.
- * </p>
- *
  * <p>
  * Defines a generic contract for classes that are responsible for decoding
  * JSON data into {@link Object}.

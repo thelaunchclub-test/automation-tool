@@ -103,7 +103,7 @@ public interface JsonArray {
      * </p>
      *
      * @param index The index of the {@link JsonObject} to be returned.
-     * @return The {@link JsonObject} at the specified index.
+     * @return The {@link JsonObject}t at the specified index.
      */
     JsonObject getJsonObject(final int index);
 
@@ -113,7 +113,7 @@ public interface JsonArray {
      * If the value is not present or not an integer, it returns a default value.
      * </p>
      *
-     * @param index The index of the integer value to be returned.
+     * @param index        The index of the integer value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not an integer.
      * @return The integer value at the specified index, If the value is not present or not an integer,
      * Returns a default value.
@@ -126,7 +126,7 @@ public interface JsonArray {
      * If the value is not present or not a float, it returns a default value.
      * </p>
      *
-     * @param index The index of the float value to be returned.
+     * @param index        The index of the float value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a float.
      * @return The float value at the specified index, If the value is not present or not a float,
      * Returns a default value.
@@ -139,7 +139,7 @@ public interface JsonArray {
      * If the value is not present or not a boolean, it returns a default value.
      * </p>
      *
-     * @param index The index of the boolean value to be returned.
+     * @param index        The index of the boolean value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a boolean.
      * @return The boolean value at the specified index, If the value is not present or not a boolean,
      * Returns a default value.
@@ -152,7 +152,7 @@ public interface JsonArray {
      * If the value is not present or not a string, it returns a default value.
      * </p>
      *
-     * @param index The index of the string value to be returned.
+     * @param index        The index of the string value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a string.
      * @return The string value at the specified index, If the value is not present or not a string,
      * Returns a default value.
