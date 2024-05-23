@@ -1,6 +1,6 @@
 package com.twozo.commons.json;
 
-import com.twozo.commons.json.codec.decoder.*;
+import com.twozo.commons.json.codec.decoder.Decoder;
 import com.twozo.commons.json.codec.registry.DecoderRegistry;
 import com.twozo.commons.json.impl.JsonArrayImpl;
 import com.twozo.commons.json.impl.JsonObjectImpl;
@@ -51,7 +51,7 @@ public class Json {
      * Converts a JSON string representing an array into a {@link JsonArray} object.
      * </p>
      *
-     * @param value The JSON string representing an array.
+     * @param value The JSON string.
      * @return The {@link JsonArray} object containing the decoded array.
      */
     public static JsonArray array(final String value) {
@@ -65,7 +65,7 @@ public class Json {
      * Converts a JSON string representing an object into a {@link JsonObject} object.
      * </p>
      *
-     * @param value The JSON string representing an object.
+     * @param value The JSON string.
      * @return The {@link JsonObject} object containing the decoded object.
      */
     public static JsonObject object(final String value) {
@@ -79,7 +79,7 @@ public class Json {
      * Converts a JSON file representing an array into a {@link JsonArray} object.
      * </p>
      *
-     * @param file The JSON file representing an array.
+     * @param file The JSON file.
      * @return The {@link JsonArray} object containing the decoded array.
      */
     public static JsonArray array(final File file) {

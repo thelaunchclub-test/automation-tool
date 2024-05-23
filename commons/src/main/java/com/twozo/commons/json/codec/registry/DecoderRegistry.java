@@ -1,8 +1,10 @@
 package com.twozo.commons.json.codec.registry;
 
-import com.twozo.commons.json.codec.decoder.*;
-import lombok.NonNull;
-import lombok.Value;
+import com.twozo.commons.json.codec.decoder.Decoder;
+import com.twozo.commons.json.codec.decoder.FileToMapDecoder;
+import com.twozo.commons.json.codec.decoder.StringToListDecoder;
+import com.twozo.commons.json.codec.decoder.StringToMapDecoder;
+import com.twozo.commons.json.codec.decoder.FileToListDecoder;
 
 import java.io.File;
 import java.util.HashMap;
@@ -19,8 +21,6 @@ import java.util.Objects;
  * @author petchimuthu
  * @version 1.0
  */
-@Value
-@NonNull
 public final class DecoderRegistry {
 
     private final Map<Class<?>, Decoder<?, ?>> registry;
@@ -33,10 +33,10 @@ public final class DecoderRegistry {
     /**
      * Registers a {@link Decoder} for a specific input type.
      *
-     * @param <T>       The type of the input that the {@link Decoder} will process.
-     * @param <R>       The type of the output that the {@link Decoder} will produce.
+     * @param <T> The type of the input that the {@link Decoder} will process.
+     * @param <R> The type of the output that the {@link Decoder} will produce.
      * @param inputType The {@link Class} of the input type.
-     * @param decoder   The {@link Decoder} instance.
+     * @param decoder The {@link Decoder} instance.
      */
     public <T, R> void registerDecoder(final Class<T> inputType, final Decoder<T, R> decoder) {
         registry.put(inputType, decoder);
@@ -45,8 +45,8 @@ public final class DecoderRegistry {
     /**
      * Retrieves the appropriate {@link Decoder} for the given input type.
      *
-     * @param <T>       The type of the input that the {@link Decoder} will process.
-     * @param <R>       The type of the output that the {@link Decoder} will produce.
+     * @param <T> The type of the input that the {@link Decoder} will process.
+     * @param <R> The type of the output that the {@link Decoder} will produce.
      * @param inputType The {@link Class} of the input type.
      * @return The {@link Decoder} for the specified input type.
      * @throws IllegalArgumentException if no {@link Decoder} is registered for the given input type.
