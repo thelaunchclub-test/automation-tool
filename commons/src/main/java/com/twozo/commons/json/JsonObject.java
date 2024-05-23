@@ -25,7 +25,7 @@ public interface JsonObject {
      * Puts the specified value with the specified key in this {@link JsonObject}.
      * </p>
      *
-     * @param key The key with which the specified value is to be associated.
+     * @param key   The key with which the specified value is to be associated.
      * @param value The value to be associated with the specified key.
      */
     void put(final String key, final Object value);
@@ -125,7 +125,7 @@ public interface JsonObject {
      * if the key is not found or the value is not an integer.
      * </p>
      *
-     * @param key The key whose associated integer value is to be returned.
+     * @param key          The key whose associated integer value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not an integer.
      * @return The integer value associated with the given key, or the default value
@@ -139,7 +139,7 @@ public interface JsonObject {
      * if the key is not found or the value is not a float.
      * </p>
      *
-     * @param key The key whose associated float value is to be returned.
+     * @param key          The key whose associated float value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not a float.
      * @return The float value associated with the given key, or the default value
@@ -153,7 +153,7 @@ public interface JsonObject {
      * if the key is not found or the value is not a boolean.
      * </p>
      *
-     * @param key The key whose associated boolean value is to be returned.
+     * @param key          The key whose associated boolean value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not a boolean.
      * @return The boolean value associated with the given key, or the default value
@@ -167,7 +167,7 @@ public interface JsonObject {
      * if the key is not found or the value is not a string.
      * </p>
      *
-     * @param key The key whose associated string value is to be returned.
+     * @param key          The key whose associated string value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not a string.
      * @return The string value associated with the given key, or the default value
