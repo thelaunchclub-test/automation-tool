@@ -1,6 +1,7 @@
 package com.twozo.commons.json.codec.decoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.NonNull;
 import lombok.Value;
 

@@ -4,8 +4,7 @@ import com.twozo.commons.json.codec.decoder.Decoder;
 import com.twozo.commons.json.codec.registry.DecoderRegistry;
 import com.twozo.commons.json.impl.JsonArrayImpl;
 import com.twozo.commons.json.impl.JsonObjectImpl;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 import lombok.NonNull;
 import lombok.Value;
 
