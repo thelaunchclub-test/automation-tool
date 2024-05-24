@@ -1,10 +1,10 @@
-package com.twozo.web.element.finders;
+package com.twozo.web.element.locator;
 
-import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.web.page.element.WebPageElement;
 import com.twozo.web.element.web.page.element.WebPageElementImpl;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.Value;
 
@@ -22,6 +22,7 @@ import java.util.Collection;
  * @version 1.0
  * @see AbstractElementLocator
  */
+@EqualsAndHashCode(callSuper = true)
 @Value
 @NonNull
 @AllArgsConstructor

@@ -7,7 +7,7 @@ import com.twozo.web.driver.target.locator.WebTargetLocator;
 import com.twozo.web.driver.waits.WaitHandler;
 import com.twozo.web.driver.window.WebWindow;
 import com.twozo.web.driver.window.info.WindowInfoProvider;
-import com.twozo.web.element.finders.ElementLocator;
+import com.twozo.web.element.locator.ElementLocator;
 
 import lombok.NonNull;
 import lombok.Value;

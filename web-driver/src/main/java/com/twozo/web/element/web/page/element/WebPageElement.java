@@ -1,6 +1,6 @@
 package com.twozo.web.element.web.page.element;
 
-import com.twozo.web.element.finders.ElementLocator;
+import com.twozo.web.element.locator.ElementLocator;
 import com.twozo.web.element.information.ElementInformation;
 import com.twozo.web.element.interaction.ElementInteraction;
 

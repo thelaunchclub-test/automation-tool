@@ -1,6 +1,5 @@
-package com.twozo.web.element.finders;
+package com.twozo.web.element.locator;
 
-import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.web.page.element.WebPageElement;
 
 import lombok.NonNull;
