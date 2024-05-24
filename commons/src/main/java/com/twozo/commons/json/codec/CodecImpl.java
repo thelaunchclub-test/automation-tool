@@ -1,6 +1,9 @@
 package com.twozo.commons.json.codec;
 
 import com.twozo.commons.json.codec.decoder.Decoder;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.Value;
 
 /**
  * <p>
@@ -16,13 +19,12 @@ import com.twozo.commons.json.codec.decoder.Decoder;
  * @version 1.0
  * @see Codec
  */
-public final class CodecImpl<T, R> implements Codec<T, R> {
+@Value
+@NonNull
+@AllArgsConstructor
+public class CodecImpl<T, R> implements Codec<T, R> {
 
-    private final Decoder<T, R> decoder;
-
-    public CodecImpl(final Decoder<T, R> decoder) {
-        this.decoder = decoder;
-    }
+    Decoder<T, R> decoder;
 
     /**
      * {@inheritDoc}
