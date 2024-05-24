@@ -2,6 +2,9 @@ package com.twozo.commons.json.codec.decoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.NonNull;
+import lombok.Value;
+
 import java.util.List;
 
 /**
@@ -12,7 +15,9 @@ import java.util.List;
  * @author petchimuthu
  * @version 1.0
  */
-public final class StringToListDecoder implements Decoder<String, List<Object>> {
+@Value
+@NonNull
+public class StringToListDecoder implements Decoder<String, List<Object>> {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 

@@ -1,12 +1,11 @@
 package com.twozo.commons.exception;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Value;
+
 /**
- * The {@code ExceptionHandler} class provides functionalities for handling exceptions.
- * It extends RuntimeException to allow unchecked commonsException propagation.
- *
- * <p>
- * This class can be used to wrap original exceptions with additional custom messages or causes.
- * </p>
+ * The {@code ExceptionHandler} provides functionalities for handling exceptions.
  *
  * <p>
  * Example usage:
@@ -26,13 +25,12 @@ package com.twozo.commons.exception;
  * @author Petchimuthu2015
  * @version 1.0
  */
-final class ExceptionHandler extends RuntimeException {
+@Value
+@RequiredArgsConstructor
+@NonNull
+class ExceptionHandler extends RuntimeException {
 
-    private final CommonsException commonsException;
-
-    public ExceptionHandler(final CommonsException commonsException) {
-        this.commonsException = commonsException;
-    }
+    CommonsException commonsException;
 
     ExceptionHandler(final CommonsException commonsException, final String message) {
         super(message);
@@ -58,7 +56,7 @@ final class ExceptionHandler extends RuntimeException {
      * Returns {@link ExceptionHandler} with the specified commonsException and message.
      *
      * @param commonsException The original commonsException.
-     * @param message   The custom message associated with the commonsException.
+     * @param message          The custom message associated with the commonsException.
      * @return A new ExceptionHandler instance.
      */
     public static ExceptionHandler get(final CommonsException commonsException, final String message) {
@@ -69,8 +67,8 @@ final class ExceptionHandler extends RuntimeException {
      * Returns {@link ExceptionHandler} with the specified commonsException, message, and cause.
      *
      * @param commonsException The original commonsException.
-     * @param message   The custom message associated with the commonsException.
-     * @param cause     The cause of the commonsException.
+     * @param message          The custom message associated with the commonsException.
+     * @param cause            The cause of the commonsException.
      * @return A new ExceptionHandler instance.
      */
     public static ExceptionHandler get(final CommonsException commonsException, final String message, final Throwable cause) {

@@ -4,8 +4,7 @@ package com.twozo.commons.exception;
  * Defines a contract for providing prefixes for exceptions.
  *
  * <p>
- * The PrefixProvider allows classes to provide prefixes used in exception handling.
- * Implementing classes must provide an implementation for the {@link #getPrefix()} method.
+ * Provides prefixes used in exception handling.
  * Additionally, a utility method {@link #getCalculate(int, int)} is provided to calculate prefixes
  * based on a base code and a provider value.
  * </p>

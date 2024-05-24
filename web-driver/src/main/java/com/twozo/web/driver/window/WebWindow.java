@@ -19,21 +19,21 @@ public interface WebWindow {
 
     /**
      * <p>
-     * Maximizes the browser getWebWindowHandler.
+     * Maximizes the browser window.
      * </p>
      */
     void maximize();
 
     /**
      * <p>
-     * Minimizes the browser getWebWindowHandler.
+     * Minimizes the browser window.
      * </p>
      */
     void minimize();
 
     /**
      * <p>
-     * Switches the browser getWebWindowHandler to fullscreen mode.
+     * Switches the browser window to fullscreen mode.
      * </p>
      */
     void fullscreen();

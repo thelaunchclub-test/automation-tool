@@ -1,6 +1,13 @@
 package com.twozo.commons.json.codec.registry;
 
-import com.twozo.commons.json.codec.decoder.*;
+import com.twozo.commons.json.codec.decoder.StringToMapDecoder;
+import com.twozo.commons.json.codec.decoder.FileToListDecoder;
+import com.twozo.commons.json.codec.decoder.StringToListDecoder;
+import com.twozo.commons.json.codec.decoder.FileToMapDecoder;
+import com.twozo.commons.json.codec.decoder.Decoder;
+
+import lombok.NonNull;
+import lombok.Value;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,11 +24,13 @@ import java.util.Objects;
  * @author petchimuthu
  * @version 1.0
  */
-public final class DecoderRegistry {
+@Value
+@NonNull
+public class DecoderRegistry {
 
-    private final Map<Class<?>, Decoder<?, ?>> registry;
+    Map<Class<?>, Decoder<?, ?>> registry;
 
-    public DecoderRegistry(){
+    public DecoderRegistry() {
         this.registry = new HashMap<>();
         register();
     }
@@ -51,7 +60,7 @@ public final class DecoderRegistry {
         final Decoder<?, ?> decoder = registry.get(inputType);
 
         if (Objects.isNull(decoder)) {
-            throw new IllegalArgumentException("No decoder registered for input" ); // TODO: Replace generic catch block with proper exception handling
+            throw new IllegalArgumentException("No decoder registered for input"); // TODO: Replace generic catch block with proper exception handling
         }
 
         return (Decoder<T, R>) decoder;
@@ -62,7 +71,7 @@ public final class DecoderRegistry {
      * Registers various decoders for different input types.
      * </p>
      */
-    private void register(){
+    private void register() {
         registerDecoder(String.class, new StringToListDecoder());
         registerDecoder(String.class, new StringToMapDecoder());
         registerDecoder(File.class, new FileToMapDecoder());
