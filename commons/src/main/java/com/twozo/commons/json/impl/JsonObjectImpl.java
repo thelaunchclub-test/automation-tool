@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Value;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,7 +44,7 @@ public final class JsonObjectImpl implements JsonObject {
     /**
      * {@inheritDoc}
      *
-     * @param key   The key with which the specified value is to be associated.
+     * @param key The key with which the specified value is to be associated.
      * @param value The value to be associated with the specified key.
      */
     @Override
@@ -80,7 +79,7 @@ public final class JsonObjectImpl implements JsonObject {
      */
     @Override
     public Map<String, Object> toMap() {
-        return new HashMap<>(this.map);
+        return Map.copyOf(this.map);
     }
 
     /**
@@ -160,7 +159,7 @@ public final class JsonObjectImpl implements JsonObject {
     /**
      * {@inheritDoc}
      *
-     * @param key          The key whose associated integer value is to be returned.
+     * @param key The key whose associated integer value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not an integer.
      * @return The integer value associated with the given key, or the default value
@@ -174,7 +173,7 @@ public final class JsonObjectImpl implements JsonObject {
     /**
      * {@inheritDoc}
      *
-     * @param key          The key whose associated float value is to be returned.
+     * @param key The key whose associated float value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not a float.
      * @return The float value associated with the given key, or the default value
@@ -188,7 +187,7 @@ public final class JsonObjectImpl implements JsonObject {
     /**
      * {@inheritDoc}
      *
-     * @param key          The key whose associated boolean value is to be returned.
+     * @param key The key whose associated boolean value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not a boolean.
      * @return The boolean value associated with the given key, or the default value
@@ -204,7 +203,7 @@ public final class JsonObjectImpl implements JsonObject {
     /**
      * {@inheritDoc}
      *
-     * @param key          The key whose associated string value is to be returned.
+     * @param key The key whose associated string value is to be returned.
      * @param defaultValue The default value to be returned if the key is not found or
      *                     the value is not a string.
      * @return The string value associated with the given key, or the default value

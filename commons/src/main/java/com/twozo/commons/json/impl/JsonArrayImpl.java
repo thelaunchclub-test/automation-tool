@@ -6,15 +6,16 @@ import com.twozo.commons.json.JsonObject;
 import lombok.NonNull;
 import lombok.Value;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
+ * <p>
  * The {@code JsonArray} defines operations for manipulating {@link JsonArray}.
  * Provides methods to access and manipulate elements within the array.
+ *</p>
  *
  * <p>
  * Example usage:
@@ -67,7 +68,7 @@ public final class JsonArrayImpl implements JsonArray {
      */
     @Override
     public List<Object> toList() {
-        return new ArrayList<>(this.list);
+        return List.copyOf(this.list);
     }
 
     /**
@@ -255,7 +256,7 @@ public final class JsonArrayImpl implements JsonArray {
      * @param index The index of the element to retrieve.
      * @return The element at the specified index, or null if the index is out of range.
      */
-    private Object get(int index) {
+    private Object get(final int index) {
         return list.get(index);
     }
 }
