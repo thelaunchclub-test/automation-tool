@@ -1,5 +1,9 @@
 package com.twozo.web.driver.waits;
 
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.Value;
+
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
@@ -18,22 +22,21 @@ import java.time.Duration;
  * @version 1.0
  * @see WaitHandler
  */
-public final class WaitHandlerImpl implements WaitHandler {
+@Value
+@NonNull
+@AllArgsConstructor
+public class WaitHandlerImpl implements WaitHandler {
 
-    private final WebDriver.Timeouts timeouts;
-
-    public WaitHandlerImpl(final WebDriver.Timeouts timeouts) {
-        this.timeouts = timeouts;
-    }
+    WebDriver.Timeouts timeouts;
 
     /**
      * {@inheritDoc}
      *
-     * @param duration the duration of the implicit wait
-     * @return a {@code WaitHandler} configured with the implicit wait duration
+     * @param duration the {@link Duration} of the implicit wait.
+     * @return a {@code WaitHandler} configured with the implicit wait {@link Duration}.
      */
     @Override
-    public WaitHandler implicitlyWait(final Duration duration) {
-        return getInstance(timeouts.implicitlyWait(duration));
+    public WaitHandler implicitlyWait(@NonNull final Duration duration) {
+        return WaitHandler.getInstance(timeouts.implicitlyWait(duration));
     }
 }

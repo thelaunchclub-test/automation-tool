@@ -10,8 +10,8 @@ import java.time.Duration;
  * </p>
  *
  * <p>
- * Provides methods to configure and manage waits in WebDriver. Allow setting
- * an implicit wait duration for WebDriver.
+ * Provides methods to configure and manage waits in {@link WebDriver}. Allow setting
+ * an implicit wait {@link Duration} for {@link WebDriver}.
  * </p>
  *
  * @author petchimuthu
@@ -19,25 +19,17 @@ import java.time.Duration;
  */
 public interface WaitHandler {
 
-    /**
-     * <p>
-     * Returns a {@code WaitHandler} to handle wait for {@link WebDriver}.
-     * </p>
-     *
-     * @param timeouts the timeouts for {@link WebDriver}
-     * @return a {@code WaitHandler} to handle wait for {@link WebDriver}
-     */
     static WaitHandler getInstance(final WebDriver.Timeouts timeouts) {
         return new WaitHandlerImpl(timeouts);
     }
 
     /**
      * <p>
-     * Sets an implicit wait duration for the WebDriver.
+     * Sets an implicit wait {@link Duration} for the {@link WebDriver}.
      * </p>
      *
-     * @param duration the duration of the implicit wait
-     * @return a {@code WaitHandler} configured with the implicit wait duration
+     * @param duration the {@link Duration} of the implicit wait.
+     * @return a {@code WaitHandler} configured with the implicit wait {@link Duration}.
      */
     WaitHandler implicitlyWait(final Duration duration);
 }

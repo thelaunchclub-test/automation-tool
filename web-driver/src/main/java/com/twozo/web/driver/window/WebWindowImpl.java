@@ -1,5 +1,9 @@
 package com.twozo.web.driver.window;
 
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.Value;
+
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -12,13 +16,12 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0
  * @see WebWindow
  */
-public final class WebWindowImpl implements WebWindow {
+@Value
+@NonNull
+@AllArgsConstructor
+public class WebWindowImpl implements WebWindow {
 
-    private final WebDriver.Window window;
-
-    public WebWindowImpl(final WebDriver.Window window) {
-        this.window = window;
-    }
+    WebDriver.Window window;
 
     /**
      * {@inheritDoc}
