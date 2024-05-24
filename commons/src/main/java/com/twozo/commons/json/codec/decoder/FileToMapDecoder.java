@@ -1,6 +1,8 @@
 package com.twozo.commons.json.codec.decoder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.io.File;
 import java.util.Map;
@@ -13,9 +15,11 @@ import java.util.Map;
  * @author petchimuthu
  * @version 1.0
  */
-public final class FileToMapDecoder implements Decoder<File, Map<String, Object>> {
+@Value
+@NonNull
+public class FileToMapDecoder implements Decoder<File, Map<String, Object>> {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Decodes a JSON file into a {@link Map}.

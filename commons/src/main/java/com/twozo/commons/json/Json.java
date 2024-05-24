@@ -4,6 +4,10 @@ import com.twozo.commons.json.codec.decoder.*;
 import com.twozo.commons.json.codec.registry.DecoderRegistry;
 import com.twozo.commons.json.impl.JsonArrayImpl;
 import com.twozo.commons.json.impl.JsonObjectImpl;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.io.File;
 import java.util.List;
@@ -33,7 +37,9 @@ import java.util.Map;
  * @author petchimuthu
  * @version 1.0
  */
-public final class Json {
+@Value
+@NonNull
+public class Json {
 
     private static final DecoderRegistry registry = new DecoderRegistry();
 

@@ -3,6 +3,10 @@ package com.twozo.commons.json.impl;
 import com.twozo.commons.json.Json;
 import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +30,7 @@ import java.util.Objects;
  * @version 1.0
  * @see JsonObject
  */
+@NonNull
 public final class JsonObjectImpl implements JsonObject {
 
     private Map<String, Object> map;

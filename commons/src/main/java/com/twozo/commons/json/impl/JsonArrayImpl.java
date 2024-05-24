@@ -3,6 +3,8 @@ package com.twozo.commons.json.impl;
 import com.twozo.commons.json.Json;
 import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import java.util.function.Consumer;
  * @version 1.0
  * @see JsonArray
  */
+@NonNull
 public final class JsonArrayImpl implements JsonArray {
 
     private List<Object> list;
@@ -144,7 +147,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the integer value to be returned.
+     * @param index The index of the integer value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not an integer.
      * @return The integer value at the specified index, If the value is not present or not an integer,
      * Returns a default value.
@@ -157,7 +160,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the float value to be returned.
+     * @param index The index of the float value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a float.
      * @return The float value at the specified index, If the value is not present or not a float,
      * Returns a default value.
@@ -170,7 +173,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the boolean value to be returned.
+     * @param index The index of the boolean value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a boolean.
      * @return The boolean value at the specified index, If the value is not present or not a boolean,
      * Returns a default value.
@@ -185,7 +188,7 @@ public final class JsonArrayImpl implements JsonArray {
     /**
      * {@inheritDoc}
      *
-     * @param index        The index of the string value to be returned.
+     * @param index The index of the string value to be returned.
      * @param defaultValue The default value to be returned if the value is not present or not a string.
      * @return The string value at the specified index, If the value is not present or not a string,
      * Returns a default value.

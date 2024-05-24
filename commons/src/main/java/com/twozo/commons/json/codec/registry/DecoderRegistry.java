@@ -1,6 +1,8 @@
 package com.twozo.commons.json.codec.registry;
 
 import com.twozo.commons.json.codec.decoder.*;
+import lombok.NonNull;
+import lombok.Value;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,6 +19,8 @@ import java.util.Objects;
  * @author petchimuthu
  * @version 1.0
  */
+@Value
+@NonNull
 public final class DecoderRegistry {
 
     private final Map<Class<?>, Decoder<?, ?>> registry;
