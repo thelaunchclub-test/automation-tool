@@ -70,5 +70,4 @@ public final class DirectoryInfo {
     public static String getConfDirectory() {
         return CONF;
     }
-
 }
