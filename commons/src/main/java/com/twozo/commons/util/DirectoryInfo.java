@@ -1,7 +1,5 @@
 package com.twozo.commons.util;
 
-import lombok.Value;
-
 import java.io.File;
 
 /**
@@ -16,18 +14,17 @@ import java.io.File;
  * }</pre>
  * </p>
  *
- * @author petchimuthu
+ * @author petchimuthu1520
  * @version 1.0
  */
-@Value
-public class DirectoryInfo {
+public final class DirectoryInfo {
 
     private static final String USER_HOME = System.getProperty("user.home");
     private static final String USER_DIRECTORY = System.getProperty("user.dir");
-    private static final String SELENIUM = String.format("%s%sselenium", USER_HOME, File.separator);
-    private static final String FILE = String.format("%s%sfile", SELENIUM, File.separator);
-    private static final String JSON = String.format("%s%sjson", SELENIUM, File.separator);
-    private static final String CONF = String.format("%s%ssrc", USER_DIRECTORY, File.separator);
+    private static final String SELENIUM = USER_HOME + File.separator + "selenium";
+    private static final String FILE = SELENIUM + File.separator + "file";
+    private static final String JSON = SELENIUM + File.separator + "json";
+    private static final String CONF = USER_DIRECTORY + File.separator + "src";
 
     /**
      * Returns the path of the user's home directory.
