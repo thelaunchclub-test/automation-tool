@@ -12,7 +12,7 @@ import java.util.Map;
  * The {@link StringToMapDecoder} is responsible for decoding a JSON string into a {@link Map}.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value

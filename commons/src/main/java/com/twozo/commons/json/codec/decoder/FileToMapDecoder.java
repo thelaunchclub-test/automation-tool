@@ -13,7 +13,7 @@ import java.util.Map;
  * The {@link FileToMapDecoder} is responsible for decoding a JSON file into a {@link Map}.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value
