@@ -22,7 +22,7 @@ public class StringToListDecoder implements Decoder<String, List<Object>> {
     ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * Decodes a JSON string into a List.
+     * Decodes a JSON string into a {@link List} of {@link Object}.
      *
      * @param value The JSON string to be decoded.
      * @return A {@link List} of {@link Object parsed from the JSON string.

@@ -24,7 +24,7 @@ public class FileToListDecoder implements Decoder<File, List<Object>> {
     ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * Decodes a JSON file into a List of Objects.
+     * Decodes a JSON file into a {@link List} of {@link Object}.
      *
      * @param file The JSON file to be decoded.
      * @return A {@link List} of {@link Object} parsed from the JSON file.

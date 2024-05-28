@@ -22,7 +22,7 @@ public class StringToMapDecoder implements Decoder<String, Map<String, Object>> 
     ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * Decodes a JSON string into a Map.
+     * Decodes a JSON string into a {@link Map}.
      *
      * @param value The JSON string to be decoded.
      * @return A {@link Map} with keys and values parsed from the JSON string.

@@ -25,7 +25,7 @@ import java.util.Objects;
  * }</pre>
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see JsonObject
  */
@@ -243,7 +243,7 @@ public final class JsonObjectImpl implements JsonObject {
      * Checks if the object at the specified index is not null.
      *
      * @param key The index of the object to check.
-     * @return The object at the specified index if it is not null.
+     * @return The {@link Object} at the specified index if it is not null.
      * @throws NullPointerException if the object at the specified index is null.
      */
     private Object getValue(final String key) {

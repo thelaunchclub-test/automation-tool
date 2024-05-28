@@ -3,6 +3,7 @@ package com.twozo.commons.json.impl;
 import com.twozo.commons.json.Json;
 import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Value;
 
@@ -25,17 +26,15 @@ import java.util.function.Consumer;
  * }</pre>
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see JsonArray
  */
 @NonNull
+@NoArgsConstructor
 public final class JsonArrayImpl implements JsonArray {
 
     private List<Object> list;
-
-    public JsonArrayImpl() {
-    }
 
     public JsonArrayImpl(final List<Object> objects) {
         this.list = objects;
@@ -234,10 +233,10 @@ public final class JsonArrayImpl implements JsonArray {
     }
 
     /**
-     * Returns the object at the specified index.
+     * Returns the {@link Object} at the specified index.
      *
      * @param index The index of the object to check.
-     * @return The object at the specified index if it is not null.
+     * @return The {@link Object} at the specified index if it is not null.
      * @throws NullPointerException if the object at the specified index is null.
      */
     private Object getValue(final int index) {
@@ -251,8 +250,9 @@ public final class JsonArrayImpl implements JsonArray {
     }
 
     /**
+     * <p>
      * Retrieves the element at the specified index in the list.
-     *
+     * </p>
      * @param index The index of the element to retrieve.
      * @return The element at the specified index, or null if the index is out of range.
      */

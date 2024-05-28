@@ -26,7 +26,7 @@ public interface Decoder<T, R> {
      * Decodes the given object into a Java object of type {@code R}.
      *
      * @param t The type to be decoded, typically representing JSON data.
-     * @return The decoded Java object of type {@code R}.
+     * @return The decoded {@link Object} of type {@code R}.
      */
     R decode(final T t);
 }

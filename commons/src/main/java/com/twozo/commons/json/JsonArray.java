@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  * }</pre>
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface JsonArray {

@@ -33,7 +33,7 @@ import java.util.Map;
  * }</pre>
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value

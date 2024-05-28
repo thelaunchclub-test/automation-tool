@@ -9,12 +9,12 @@ import java.util.Map;
  * </p>
  *
  * <p>
- * Converts objects of type T to a specific representation
+ * Converts {@link Object} of type T to a specific representation
  * of type R and vice versa. Converts JSON string or JSON file
  * into a {@link List} or {@link Map} based on the specific requirements.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface Codec<T, R> {

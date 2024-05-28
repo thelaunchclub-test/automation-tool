@@ -1,6 +1,7 @@
 package com.twozo.commons.json.codec;
 
 import com.twozo.commons.json.codec.decoder.Decoder;
+
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.Value;
@@ -15,7 +16,7 @@ import lombok.Value;
  * of type R and vice versa.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see Codec
  */
@@ -40,8 +41,8 @@ public class CodecImpl<T, R> implements Codec<T, R> {
     /**
      * {@inheritDoc}
      *
-     * @param input the input object to be decoded
-     * @return the decoded representation of the input object
+     * @param input the input {@link Object} to be decoded
+     * @return the decoded representation of the input {@link Object}
      */
     @Override
     public R decode(final T input) {

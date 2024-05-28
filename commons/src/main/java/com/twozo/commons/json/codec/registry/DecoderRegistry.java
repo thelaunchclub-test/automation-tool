@@ -22,7 +22,7 @@ import java.util.Objects;
  * the appropriate decoder based on the input type.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value
@@ -39,10 +39,10 @@ public class DecoderRegistry {
     /**
      * Registers a {@link Decoder} for a specific input type.
      *
-     * @param <T>       The type of the input that the {@link Decoder} will process.
-     * @param <R>       The type of the output that the {@link Decoder} will produce.
+     * @param <T> The type of the input that the {@link Decoder} will process.
+     * @param <R> The type of the output that the {@link Decoder} will produce.
      * @param inputType The {@link Class} of the input type.
-     * @param decoder   The {@link Decoder} instance.
+     * @param decoder The {@link Decoder} instance.
      */
     public <T, R> void registerDecoder(final Class<T> inputType, final Decoder<T, R> decoder) {
         registry.put(inputType, decoder);
@@ -51,8 +51,8 @@ public class DecoderRegistry {
     /**
      * Retrieves the appropriate {@link Decoder} for the given input type.
      *
-     * @param <T>       The type of the input that the {@link Decoder} will process.
-     * @param <R>       The type of the output that the {@link Decoder} will produce.
+     * @param <T> The type of the input that the {@link Decoder} will process.
+     * @param <R> The type of the output that the {@link Decoder} will produce.
      * @param inputType The {@link Class} of the input type.
      * @return The {@link Decoder} for the specified input type.
      * @throws IllegalArgumentException if no {@link Decoder} is registered for the given input type.
