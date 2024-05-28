@@ -14,7 +14,7 @@ import java.io.File;
  * }</pre>
  * </p>
  *
- * @author petchimuthu1520
+ * @author petchimuthu
  * @version 1.0
  */
 public final class DirectoryInfo {
