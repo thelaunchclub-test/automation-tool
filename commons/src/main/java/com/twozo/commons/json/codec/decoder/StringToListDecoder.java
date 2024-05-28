@@ -12,14 +12,14 @@ import java.util.List;
  * The {@link StringToListDecoder} is responsible for decoding a JSON string into a {@link List}.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value
 @NonNull
 public class StringToListDecoder implements Decoder<String, List<Object>> {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Decodes a JSON string into a List.

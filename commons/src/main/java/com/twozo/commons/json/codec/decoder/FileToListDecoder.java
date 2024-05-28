@@ -14,7 +14,7 @@ import java.util.List;
  * {@link List} of {@link Object}.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value

@@ -17,7 +17,7 @@ package com.twozo.commons.json.codec.decoder;
  * to be processed.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface Decoder<T, R> {
