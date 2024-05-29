@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * <p>
- * The {@code Container} is a utility class designed to manage the registration
+ * The {@code ErrorCodeContainer} is a utility class designed to manage the registration
  * and retrieval of prefixes associated with {@link Enum}.
  * </p>
  *
@@ -20,8 +20,8 @@ import java.util.Map;
  * Usage example:
  * <pre>
  * {@code
- * Container.register(1000, "WebDriverException");
- * String enumName = Container.get(1000);
+ * ErrorCodeContainer.register(1000, "WebDriverException");
+ * String enumName = ErrorCodeContainer.get(1000);
  * }
  * </pre>
  * </p>
@@ -30,11 +30,11 @@ import java.util.Map;
  * @version 1.0
  */
 @Value
-public class Container {
+public class ErrorCodeContainer {
 
-    private static final Map<Integer, String> container = new HashMap<>();
+    private static final Map<Integer, String> CONTAINER = new HashMap<>();
 
-    private Container() {
+    private ErrorCodeContainer() {
     }
 
     /**
@@ -58,7 +58,7 @@ public class Container {
         final String specificEnumName = get(baseCode);
 
         if (specificEnumName == null || specificEnumName.equals(enumName)) {
-            container.put(baseCode, enumName);
+            CONTAINER.put(baseCode, enumName);
         } else {
             throw new IllegalArgumentException("Prefix is already assigned");
         }
@@ -78,6 +78,6 @@ public class Container {
      * @return the {@link Enum} name associated with the given baseCode, or null if the baseCode is not registered
      */
     public static String get(final int key) {
-        return container.get(key);
+        return CONTAINER.get(key);
     }
 }
