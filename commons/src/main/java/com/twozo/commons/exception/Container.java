@@ -32,7 +32,7 @@ import java.util.Map;
 @Value
 public class Container {
 
-    private static final Map<Integer, String> prefixMap = new HashMap<>();
+    private static final Map<Integer, String> container = new HashMap<>();
 
     private Container() {
     }
@@ -43,9 +43,8 @@ public class Container {
      * </p>
      *
      * <p>
-     * Checks if the given baseCode is already registered.
-     * If the baseCode is already registered, an {@link IllegalArgumentException} is thrown.
-     * Otherwise, the baseCode and enum name are added to the prefixMap.
+     * Checks the base code, if it is invalid or already registered an {@link IllegalArgumentException} is thrown.
+     * Otherwise, the baseCode and enum name are added to the container.
      * </p>
      *
      * @param baseCode the unique baseCode to be registered
@@ -53,10 +52,13 @@ public class Container {
      * @throws IllegalArgumentException if the baseCode is already registered
      */
     public static void register(final int baseCode, final String enumName) {
+        if (baseCode % 100 != 0) {
+            throw new IllegalArgumentException("Base code must be a multiple of 100.");
+        }
         final String specificEnumName = get(baseCode);
 
         if (specificEnumName == null || specificEnumName.equals(enumName)) {
-            prefixMap.put(baseCode, enumName);
+            container.put(baseCode, enumName);
         } else {
             throw new IllegalArgumentException("Prefix is already assigned");
         }
@@ -73,9 +75,9 @@ public class Container {
      * </p>
      *
      * @param key the baseCode whose associated enumeration name is to be returned
-     * @return the {@link Enum} name associated with the given baseCode, or null if the prefix is not registered
+     * @return the {@link Enum} name associated with the given baseCode, or null if the baseCode is not registered
      */
     public static String get(final int key) {
-        return prefixMap.get(key);
+        return container.get(key);
     }
 }

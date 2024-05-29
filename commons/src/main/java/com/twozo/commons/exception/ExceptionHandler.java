@@ -13,13 +13,14 @@ import lombok.Value;
  * Example usage:
  * <pre>{@code
  * try {
- *     // Some code that may throw an exception
+ *     // Some code that may throw a WebDriverException
  *     // For example:
- *     int result = 10 / 0; // This will throw an {@link ArithmeticException}
- * } catch (ArithmeticException ae) {
- *     // Wrap the exception and add a custom message
- *     ExceptionHandler exceptionHandler = new ExceptionHandler(ae, "Division by zero occurred");
- *     // Log or handle the exceptionHandler
+ *     WebDriver driver = new ChromeDriver();
+ *     WebElement element = driver.findElement(By.id("nonexistent-element"));
+ *     element.click(); // This may throw an ELEMENT_NOT_VISIBLE_EXCEPTION
+ *
+ * } catch (NoSuchElementException exception) {
+ *     throw new ExceptionHandler(WebDriverException.ELEMENT_NOT_VISIBLE_EXCEPTION, "Element not visible during click operation");
  * }
  * }</pre>
  * </p>
