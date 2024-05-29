@@ -39,38 +39,41 @@ public class Container {
 
     /**
      * <p>
-     * Registers a prefix with its associated {@link Enum}.
+     * Registers a baseCode with its associated {@link Enum}.
      * </p>
      *
      * <p>
-     * Checks if the given prefix is already registered.
-     * If the prefix is already registered, an {@link IllegalArgumentException} is thrown.
-     * Otherwise, the prefix and enum name are added to the prefixMap.
+     * Checks if the given baseCode is already registered.
+     * If the baseCode is already registered, an {@link IllegalArgumentException} is thrown.
+     * Otherwise, the baseCode and enum name are added to the prefixMap.
      * </p>
      *
-     * @param prefix the unique prefix to be registered
-     * @param enumName the name of the {@link Enum} associated with the prefix
-     * @throws IllegalArgumentException if the prefix is already registered
+     * @param baseCode the unique baseCode to be registered
+     * @param enumName the name of the {@link Enum} associated with the baseCode
+     * @throws IllegalArgumentException if the baseCode is already registered
      */
-    public static void register(final int prefix, final String enumName) {
-        if (prefixMap.containsKey(prefix)) {
+    public static void register(final int baseCode, final String enumName) {
+        final String specificEnumName = get(baseCode);
+
+        if (specificEnumName == null || specificEnumName.equals(enumName)) {
+            prefixMap.put(baseCode, enumName);
+        } else {
             throw new IllegalArgumentException("Prefix is already assigned");
         }
-        prefixMap.put(prefix, enumName);
     }
 
     /**
      * <p>
-     * Retrieves the {@link Enum} name associated with the given prefix.
+     * Retrieves the {@link Enum} name associated with the given baseCode.
      * </p>
      *
      * <p>
-     * Returns the name of an {@link Enum} that was registered with the given prefix.
-     * If no name is registered with the given prefix, this method returns null.
+     * Returns the name of an {@link Enum} that was registered with the given baseCode.
+     * If no name is registered with the given baseCode, this method returns null.
      * </p>
      *
-     * @param key the prefix whose associated enumeration name is to be returned
-     * @return the {@link Enum} name associated with the given prefix, or null if the prefix is not registered
+     * @param key the baseCode whose associated enumeration name is to be returned
+     * @return the {@link Enum} name associated with the given baseCode, or null if the prefix is not registered
      */
     public static String get(final int key) {
         return prefixMap.get(key);

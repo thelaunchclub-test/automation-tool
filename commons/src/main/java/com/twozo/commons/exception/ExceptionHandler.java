@@ -1,6 +1,7 @@
 package com.twozo.commons.exception;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 
 /**
@@ -26,6 +27,7 @@ import lombok.Value;
  * @author Petchimuthu
  * @version 1.0
  */
+@EqualsAndHashCode(callSuper = false)
 @Value
 @AllArgsConstructor
 class ExceptionHandler extends RuntimeException {
