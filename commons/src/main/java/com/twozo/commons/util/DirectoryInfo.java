@@ -16,7 +16,7 @@ import java.io.File;
  * }</pre>
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value
