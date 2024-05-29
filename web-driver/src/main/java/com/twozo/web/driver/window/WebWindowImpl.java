@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
  * and toggling fullscreen mode.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see WebWindow
  */

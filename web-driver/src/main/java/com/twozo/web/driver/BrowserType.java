@@ -5,7 +5,7 @@ package com.twozo.web.driver;
  * Represents different types of web browsers.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 enum BrowserType {

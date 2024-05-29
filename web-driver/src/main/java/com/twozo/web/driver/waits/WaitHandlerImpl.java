@@ -18,7 +18,7 @@ import java.time.Duration;
  * an implicit wait duration for WebDriver.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see WaitHandler
  */

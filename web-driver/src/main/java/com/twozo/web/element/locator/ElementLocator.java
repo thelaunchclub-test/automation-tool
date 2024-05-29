@@ -20,7 +20,7 @@ import java.util.Collection;
  * either a single element or multiple elements on a web page.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface ElementLocator {
@@ -29,7 +29,7 @@ public interface ElementLocator {
         return switch (value) {
             case WebDriver webDriver -> new ElementLocatorForDriver(webDriver);
             case WebElement webElement -> new ElementLocatorForElement(webElement);
-            default -> throw new IllegalArgumentException("Unsupported type: " + value.getClass().getName());
+            default -> throw new IllegalArgumentException("Unsupported type ");
         };
     }
 
@@ -60,7 +60,8 @@ public interface ElementLocator {
      * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located above another element.
@@ -71,7 +72,8 @@ public interface ElementLocator {
      * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located to the left of another element.
@@ -82,7 +84,8 @@ public interface ElementLocator {
      * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located to the right of another element.
@@ -93,7 +96,8 @@ public interface ElementLocator {
      * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located near another element.
@@ -104,5 +108,6 @@ public interface ElementLocator {
      * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 }

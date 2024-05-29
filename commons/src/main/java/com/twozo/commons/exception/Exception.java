@@ -1,13 +1,13 @@
 package com.twozo.commons.exception;
 
 /**
- * The {@code CommonsException} provides functionality to retrieve error codes
+ * The {@code Exception} provides functionality to retrieve error codes
  * and error message associated with the exceptions.
  *
- * @author Petchimuthu2015
+ * @author Petchimuthu
  * @version 1.0
  */
-public interface CommonsException {
+public interface Exception {
 
     /**
      * Gets the error code associated with the exception.

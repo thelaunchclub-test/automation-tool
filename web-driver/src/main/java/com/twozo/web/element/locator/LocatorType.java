@@ -2,6 +2,9 @@ package com.twozo.web.element.locator;
 
 /**
  * Represents different types of locators for web elements.
+ *
+ * @author Petchimuthu
+ * @version 1.0
  */
 public enum LocatorType {
 

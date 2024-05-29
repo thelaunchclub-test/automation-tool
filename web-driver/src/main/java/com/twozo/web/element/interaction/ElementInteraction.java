@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
  * submitting forms, and sending keys.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface ElementInteraction {

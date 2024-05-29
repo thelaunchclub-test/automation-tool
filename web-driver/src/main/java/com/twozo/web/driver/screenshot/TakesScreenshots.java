@@ -8,7 +8,7 @@ import org.openqa.selenium.OutputType;
  * Provide a method to capture screenshots in various formats.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface TakesScreenshots {

@@ -12,7 +12,7 @@ import org.openqa.selenium.Alert;
  * such as dismissing, accepting, getting text, and sending keys.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface AlertHandler {

@@ -25,7 +25,7 @@ import java.util.Objects;
  * which is responsible for browser automation tasks.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see Driver
  */
@@ -48,7 +48,6 @@ public class DriverImpl implements Driver {
     public WebAutomationDriver getWebAutomationDriver() {
         final BrowserType browserType = Objects.requireNonNull(BrowserType.valueOf(
                 Objects.requireNonNull(propertyFileReader.getProperty()).getProperty("Browser").toUpperCase()));
-
 
         return WebAutomationDriver.getInstance(getDriver(browserType));
     }

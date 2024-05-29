@@ -14,7 +14,7 @@ import java.time.Duration;
  * an implicit wait {@link Duration} for {@link WebDriver}.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface WaitHandler {

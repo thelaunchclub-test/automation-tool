@@ -26,7 +26,7 @@ import java.util.Collection;
  * and for finding web elements using different locator strategies specified by {@link By}.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see ElementLocator
  */
@@ -60,7 +60,8 @@ public abstract class AbstractElementLocator implements ElementLocator {
      * @param knownValue the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    public abstract WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    public abstract WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located above another element.
@@ -71,7 +72,8 @@ public abstract class AbstractElementLocator implements ElementLocator {
      * @param knownValue the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    public abstract WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    public abstract WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located to the left of another element.
@@ -82,7 +84,8 @@ public abstract class AbstractElementLocator implements ElementLocator {
      * @param knownValue the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    public abstract WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    public abstract WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located to the right of another element.
@@ -93,7 +96,8 @@ public abstract class AbstractElementLocator implements ElementLocator {
      * @param knownValue the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    public abstract WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    public abstract WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * returns a {@link WebPageElement} located near another element.
@@ -104,7 +108,8 @@ public abstract class AbstractElementLocator implements ElementLocator {
      * @param knownValue the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
-    public abstract WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType knownLocatorType, final String knownValue);
+    public abstract WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType
+            knownLocatorType, final String knownValue);
 
     /**
      * Returns a {@link RelativeLocator.RelativeBy} based on the specified locator type and value.

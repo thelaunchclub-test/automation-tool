@@ -12,7 +12,7 @@ import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
  * which is responsible for browser automation tasks.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface Driver {

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
  * and navigating to a specific URL.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface WebNavigator {

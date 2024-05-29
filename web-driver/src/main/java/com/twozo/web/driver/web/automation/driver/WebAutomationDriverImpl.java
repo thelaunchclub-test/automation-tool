@@ -26,7 +26,7 @@ import org.openqa.selenium.WebDriver;
  * window management, screenshot capturing, and more.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see WebAutomationDriver
  */

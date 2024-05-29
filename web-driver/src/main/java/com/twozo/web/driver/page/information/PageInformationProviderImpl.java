@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
  * Retrieve various information about the browser, such as the current URL, page title, and page source.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see PageInformationProvider
  */

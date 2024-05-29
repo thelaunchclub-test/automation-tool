@@ -16,7 +16,7 @@ import org.openqa.selenium.WindowType;
  * opening a new window and handling browser alerts.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  */
 public interface WebTargetLocator {

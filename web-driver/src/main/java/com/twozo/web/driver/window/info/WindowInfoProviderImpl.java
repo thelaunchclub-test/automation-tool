@@ -17,7 +17,7 @@ import java.util.Set;
  * including unique identifiers for each window handle and the handle of the current window.
  * </p>
  *
- * @author petchimuthu1520
+ * @author Petchimuthu
  * @version 1.0
  */
 @Value

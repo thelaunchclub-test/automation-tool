@@ -1,7 +1,7 @@
 package com.twozo.web.exception;
 
-import com.twozo.commons.exception.CommonsException;
-import com.twozo.commons.exception.PrefixProvider;
+import com.twozo.commons.exception.BaseErrorCodeGenerator;
+import com.twozo.commons.exception.Exception;
 
 /**
  * <p>
@@ -15,8 +15,8 @@ import com.twozo.commons.exception.PrefixProvider;
  *
  * @author Petchimuthu
  * @version 1.0
- */
-public enum WebDriverException implements CommonsException {
+ */E
+public enum WebDriverException implements Exception {
 
     ELEMENT_CLICK_INTERCEPTED_EXCEPTION(1),
     ELEMENT_NOT_SELECTABLE_EXCEPTION(2),
@@ -41,7 +41,7 @@ public enum WebDriverException implements CommonsException {
      */
     @Override
     public int getErrorCode() {
-        return PrefixProvider.getCalculate(baseErrorCode, errorCodeHandler.getPrefix());
+        return BaseErrorCodeGenerator.getErrorCode(baseErrorCode, errorCodeHandler.getBaseErrorCode());
     }
 
     /**
@@ -50,7 +50,7 @@ public enum WebDriverException implements CommonsException {
      * Provides prefix values for error codes associated with WebDriver exceptions.
      * </p>
      */
-    static class ErrorCodeHandler implements PrefixProvider {
+    static class ErrorCodeHandler implements BaseErrorCodeGenerator {
 
         /**
          * <p>
@@ -60,8 +60,8 @@ public enum WebDriverException implements CommonsException {
          * @return The prefix value used in generating error codes.
          */
         @Override
-        public int getPrefix() {
-            return 1000;
+        public int getBaseErrorCode() {
+            return 100;
         }
     }
 }

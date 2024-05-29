@@ -11,11 +11,11 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code WebPageElementImpl} provides various services related to {@link WebPageElement}s.
+ * The {@code WebPageElementImpl} provides various services related to {@link WebPageElement}.
  * Encapsulates interaction, information retrieval, and element finding functionalities.
  * </p>
  *
- * @author petchimuthu
+ * @author Petchimuthu
  * @version 1.0
  * @see WebPageElement
  */
