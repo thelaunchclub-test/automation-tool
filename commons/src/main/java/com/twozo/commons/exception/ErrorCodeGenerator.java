@@ -2,28 +2,19 @@ package com.twozo.commons.exception;
 
 /**
  * <p>
- * Defines a contract for providing error code for exceptions.
+ * The {@code ErrorCodeGenerator} generates error codes by combining specific and base error codes.
  * </p>
  *
  * <p>
- * The {@code BaseErrorCodeGenerator} allows to provide base error code used in exception handling.
- * Additionally, a utility method {@link #getErrorCode(int, int)} is provided to calculate error
- * code based on a base code and a specific code.
+ * The {@code getErrorCode} calculates the complete error code by adding the specific code
+ * to the base code. This allows for a modular and flexible way of generating error codes
+ * that can be easily extended and maintained.
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
  */
-public interface BaseErrorCodeGenerator {
-
-    /**
-     * <p>
-     * Returns the base error code.
-     * </p>
-     *
-     * @return The base error code as an integer.
-     */
-    int getBaseErrorCode();
+public interface ErrorCodeGenerator {
 
     /**
      * <p>
@@ -35,7 +26,7 @@ public interface BaseErrorCodeGenerator {
      * </p>
      *
      * @param specificCode The specificCode value.
-     * @param baseCode The baseCode value.
+     * @param baseCode     The baseCode value.
      * @return The calculated error code, which is the sum of the specificCode and the baseCode.
      */
     static int getErrorCode(final int specificCode, final int baseCode) {
