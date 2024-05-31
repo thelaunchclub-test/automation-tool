@@ -4,16 +4,17 @@ import lombok.Value;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>
  * The {@code ErrorCodeContainer} is a utility class designed to manage the registration
- * and retrieval of prefixes associated with {@link Enum}.
+ * and retrieval of baseCode associated with particular {@link Exception}.
  * </p>
  *
  * <p>
- * Ensures that each prefix is uniquely assigned to an {@link Enum}
- * and prevents duplicate prefix registrations.
+ * Ensures that each baseCode is uniquely assigned to an {@link Exception}
+ * and prevents duplicate baseCode registrations.
  * </p>
  *
  * <p>
@@ -32,52 +33,52 @@ import java.util.Map;
 @Value
 public class ErrorCodeContainer {
 
-    private static final Map<Integer, String> CONTAINER = new HashMap<>();
+    private static final Map<Integer, String> ERROR_CODE_CONTAINER = new HashMap<>();
 
     private ErrorCodeContainer() {
     }
 
     /**
      * <p>
-     * Registers a baseCode with its associated {@link Enum}.
+     * Registers a baseCode with its associated {@link Exception}.
      * </p>
      *
      * <p>
-     * Checks the base code, if it is invalid or already registered an {@link IllegalArgumentException} is thrown.
-     * Otherwise, the baseCode and enum name are added to the container.
+     * Ensures that the base error code is a multiple of 100 and not already registered.
      * </p>
      *
-     * @param baseCode the unique baseCode to be registered
-     * @param enumName the name of the {@link Enum} associated with the baseCode
-     * @throws IllegalArgumentException if the baseCode is already registered
+     * @param baseCode  the unique baseCode to be registered
+     * @param exception the name of the {@link Exception} associated with the baseCode
+     * @throws StatusCode If the baseCode is not a multiple of 100 or if it's already registered.
      */
-    public static void register(final int baseCode, final String enumName) {
-        if (baseCode % 100 != 0) {
-            throw new IllegalArgumentException("Base code must be a multiple of 100.");
-        }
-        final String specificEnumName = get(baseCode);
+    public static void register(final int baseCode, final String exception) {
 
-        if (specificEnumName == null || specificEnumName.equals(enumName)) {
-            CONTAINER.put(baseCode, enumName);
+        if (baseCode % 100 != 0) {
+            throw StatusCode.get(CommonsException.INVALID_BASE_CODE_VALUE, "Base code must be a multiple of 100");
+        }
+        final String specificException = get(baseCode);
+
+        if (Objects.isNull(specificException) || specificException.equals(exception)) {
+            ERROR_CODE_CONTAINER.put(baseCode, exception);
         } else {
-            throw new IllegalArgumentException("Prefix is already assigned");
+            throw StatusCode.get(CommonsException.BASE_CODE_VALUE_ALREADY_REGISTERED, "BaseCode is already assigned");
         }
     }
 
     /**
      * <p>
-     * Retrieves the {@link Enum} name associated with the given baseCode.
+     * Retrieves the {@link Exception} name associated with the given baseCode.
      * </p>
      *
      * <p>
-     * Returns the name of an {@link Enum} that was registered with the given baseCode.
+     * Returns the name of an {@link Exception} that was registered with the given baseCode.
      * If no name is registered with the given baseCode, this method returns null.
      * </p>
      *
-     * @param key the baseCode whose associated enumeration name is to be returned
-     * @return the {@link Enum} name associated with the given baseCode, or null if the baseCode is not registered
+     * @param baseCode the baseCode whose associated Exception name is to be returned
+     * @return the {@link Exception} name associated with the given baseCode, or null if the baseCode is not registered
      */
-    public static String get(final int key) {
-        return CONTAINER.get(key);
+    public static String get(final int baseCode) {
+        return ERROR_CODE_CONTAINER.get(baseCode);
     }
 }
