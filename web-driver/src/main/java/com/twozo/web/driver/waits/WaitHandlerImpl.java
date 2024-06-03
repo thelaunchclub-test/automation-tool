@@ -10,7 +10,7 @@ import java.time.Duration;
 
 /**
  * <p>
- * The {@code WaitHandler} represents a wait handler for Selenium WebDriver.
+ * The {@code WaitHandlerImpl} represents a wait handler for Selenium WebDriver.
  * </p>
  *
  * <p>
@@ -36,7 +36,7 @@ public class WaitHandlerImpl implements WaitHandler {
      * @return a {@code WaitHandler} configured with the implicit wait {@link Duration}.
      */
     @Override
-    public WaitHandler implicitlyWait(@NonNull final Duration duration) {
+    public WaitHandler implicitlyWait(final Duration duration) {
         return WaitHandler.getInstance(timeouts.implicitlyWait(duration));
     }
 }

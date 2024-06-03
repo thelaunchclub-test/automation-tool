@@ -2,7 +2,7 @@ package com.twozo.web.driver;
 
 /**
  * <p>
- * Represents different types of web browsers.
+ * The {@code BrowserType} represents different types of web browsers.
  * </p>
  *
  * @author Petchimuthu

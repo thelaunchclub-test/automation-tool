@@ -8,6 +8,10 @@ import org.openqa.selenium.WebDriver.Navigation;
 
 /**
  * <p>
+ * The {@code WebNavigatorImpl} navigates the web browser
+ * </p>
+ *
+ * <p>
  * Allows basic browser navigation actions such as going back, forward, refreshing the page,
  * and navigating to a specific URL.
  * </p>
@@ -45,7 +49,7 @@ public class WebNavigatorImpl implements WebNavigator {
      * @param url The URL to navigate to.
      */
     @Override
-    public void to(@NonNull final String url) {
+    public void to(final String url) {
         navigation.to(url);
     }
 

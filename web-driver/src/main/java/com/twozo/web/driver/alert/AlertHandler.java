@@ -4,7 +4,7 @@ import org.openqa.selenium.Alert;
 
 /**
  * <p>
- * Interacts with browser {@link Alert}.
+ * The {@code AlertHandler} interacts with browser {@link Alert}.
  * </p>
  *
  * <p>

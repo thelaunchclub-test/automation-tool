@@ -3,13 +3,14 @@ package com.twozo.web.driver.window.info;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.Value;
+
 import org.openqa.selenium.WebDriver;
 
 import java.util.Set;
 
 /**
  * <p>
- * Provides information about browser windows.
+ * The {@code WindowInfoProviderImpl} provides information about browser windows.
  * </p>
  *
  * <p>

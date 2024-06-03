@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code InteractionImpl} interacts with {@link WebPageElement}s using Selenium WebDriver.
+ * The {@code ElementInteractionImpl} interacts with {@link WebPageElement}.
  * </p>
  *
  * <p>

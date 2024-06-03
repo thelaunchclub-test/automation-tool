@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * Provides information about a {@link WebPageElement}.
+ * The {@code ElementInformationImpl} provides information about a {@link WebPageElement}.
  * </p>
  *
  * <p>
@@ -78,7 +78,7 @@ public class ElementInformationImpl implements ElementInformation {
     /**
      * {@inheritDoc}
      *
-     * @return The text of a {@link WebElement}as a String.
+     * @return The text of a {@link WebElement} as a String.
      */
     @Override
     public String getText() {

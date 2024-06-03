@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * <p>
- * Provides information about browser windows.
+ * The {@code WindowInfoProvider} provides information about browser windows.
  * </p>
  *
  * <p>

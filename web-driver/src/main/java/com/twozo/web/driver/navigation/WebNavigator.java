@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
+ * The {@code WebNavigator} navigates the web browser
+ * </p>
+ *
+ * <p>
  * Allows basic browser navigation actions such as going back, forward, refreshing the page,
  * and navigating to a specific URL.
  * </p>

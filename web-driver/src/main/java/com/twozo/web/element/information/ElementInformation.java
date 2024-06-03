@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * Provides information about a {@link WebPageElement}.
+ * The {@code ElementInformation} provides information about a {@link WebPageElement}.
  * </p>
  *
  * <p>

@@ -36,7 +36,7 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementLocator}  for further element search within this element.
+     * @return An {@link ElementLocator} for further element search within this element.
      */
     @Override
     public ElementLocator getElementLocator() {
@@ -46,7 +46,7 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementInteraction}  for interacting with this element.
+     * @return An {@link ElementInteraction} for interacting with this element.
      */
     @Override
     public ElementInteraction interact() {
@@ -56,7 +56,7 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementInformation}  for getting information about this element.
+     * @return An {@link ElementInformation} for getting information about this element.
      */
     @Override
     public ElementInformation getInformer() {

@@ -13,7 +13,7 @@ import java.util.Collection;
 
 /**
  * <p>
- * The {@link ElementLocatorForElement} provides methods to find {@link WebPageElement}.
+ * The {@code ElementLocatorForElement} provides methods to find {@link WebPageElement}.
  * Locates both single and multiple elements.
  * </p>
  *
@@ -32,7 +32,7 @@ public class ElementLocatorForElement extends AbstractElementLocator {
      * {@inheritDoc}
      *
      * @param locatorType the type of locator to use
-     * @param value the value of the locator
+     * @param value       the value of the locator
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -44,7 +44,7 @@ public class ElementLocatorForElement extends AbstractElementLocator {
      * {@inheritDoc}
      *
      * @param locatorType the type of locator to use
-     * @param value the value of the locator
+     * @param value       the value of the locator
      * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements
      */
     @Override
@@ -55,10 +55,10 @@ public class ElementLocatorForElement extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -71,10 +71,10 @@ public class ElementLocatorForElement extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -87,10 +87,10 @@ public class ElementLocatorForElement extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -103,10 +103,10 @@ public class ElementLocatorForElement extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -119,10 +119,10 @@ public class ElementLocatorForElement extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override

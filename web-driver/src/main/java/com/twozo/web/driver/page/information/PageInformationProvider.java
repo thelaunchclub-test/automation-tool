@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * Retrieves information about the browser.
+ * The {@code PageInformationProvider} retrieves information about the browser.
  * </p>
  *
  * <p>

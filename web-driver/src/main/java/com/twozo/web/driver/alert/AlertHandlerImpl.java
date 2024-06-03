@@ -8,7 +8,7 @@ import org.openqa.selenium.Alert;
 
 /**
  * <p>
- * Interacts with browser Alerts.
+ * The {@code AlertHandlerImpl} interacts with browser {@link Alert}.
  * </p>
  *
  * <p>

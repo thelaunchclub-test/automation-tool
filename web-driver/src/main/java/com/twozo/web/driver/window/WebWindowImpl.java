@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * Interacts with the browser window,such as maximizing, minimizing,
+ * The {@code WebWindowImpl} interacts with the browser window,such as maximizing, minimizing,
  * and toggling fullscreen mode.
  * </p>
  *

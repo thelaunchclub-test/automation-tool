@@ -34,7 +34,7 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
      * {@inheritDoc}
      *
      * @param locatorType the type of locator to use
-     * @param value the value of the locator
+     * @param value       the value of the locator
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -46,7 +46,7 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
      * {@inheritDoc}
      *
      * @param locatorType the type of locator to use
-     * @param value the value of the locator
+     * @param value       the value of the locator
      * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements
      */
     @Override
@@ -57,10 +57,10 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -73,10 +73,10 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -89,10 +89,10 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
@@ -105,15 +105,15 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
     public WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType
-                                            knownLocatorType, final String knownValue) {
+            knownLocatorType, final String knownValue) {
         return new WebPageElementImpl(webDriver.findElement(with(locatorType, value).
                 toRightOf(getByValue(knownLocatorType, knownValue))));
     }
@@ -121,10 +121,10 @@ public class ElementLocatorForDriver extends AbstractElementLocator {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use for the target element
-     * @param value the value of the locator for the target element
+     * @param locatorType      the type of locator to use for the target element
+     * @param value            the value of the locator for the target element
      * @param knownLocatorType the type of locator to use for the known element
-     * @param knownValue the value of the locator for the known element
+     * @param knownValue       the value of the locator for the known element
      * @return a {@link WebPageElement} representing the located web page element
      */
     @Override
