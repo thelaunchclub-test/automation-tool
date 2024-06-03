@@ -32,7 +32,7 @@ import org.openqa.selenium.WebElement;
 @AllArgsConstructor
 public class ElementInformationImpl implements ElementInformation {
 
-    final WebElement element;
+    WebElement element;
 
     /**
      * {@inheritDoc}

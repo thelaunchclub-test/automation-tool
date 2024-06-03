@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 /**
  * <p>
  * The {@code WebPageElement} provides various services related to {@link WebPageElement}.
- * Encapsulates interaction, information retrieval, and element finding functionalities.
+ * Such as interaction, information retrieval, and element finding functionalities.
  * </p>
  *
  * @author Petchimuthu
@@ -23,28 +23,31 @@ public interface WebPageElement {
 
     /**
      * <p>
-     * Returns an {@link ElementLocator} specific to the context of this {@link WebPageElement}.
+     * Returns an {@link ElementLocator} specific to the context of the {@link WebPageElement}.
      * </p>
      *
-     * @return An {@link ElementLocator} for further element search within this element.
+     * @return An {@link ElementLocator} for further element search within the element.
      */
     ElementLocator getElementLocator();
 
     /**
      * <p>
-     * Returns an {@link ElementInteraction} for performing actions on this {@link WebPageElement}.
+     * Returns an {@link ElementInteraction} for performing actions on the {@link WebPageElement}
+     * such as clicking, submitting, and sending keys.
      * </p>
      *
-     * @return An {@link ElementInteraction} for interacting with this element.
+     * @return An {@link ElementInteraction} for interacting with the element.
      */
     ElementInteraction interact();
 
     /**
      * <p>
-     * Returns an {@link ElementInformation} for retrieving information about this {@link WebPageElement}.
+     * Returns an {@link ElementInformation} for retrieving information about the {@link WebPageElement}
+     * such as the tag name, attribute value, selection status, enabled status, text content, and
+     * display status of the web element.
      * </p>
      *
-     * @return An {@link ElementInformation} for getting information about this element.
+     * @return An {@link ElementInformation} for getting information about the element.
      */
     ElementInformation getInformer();
 }

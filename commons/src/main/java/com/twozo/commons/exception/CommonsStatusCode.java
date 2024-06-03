@@ -1,5 +1,7 @@
 package com.twozo.commons.exception;
 
+import lombok.Value;
+
 /**
  * <p>
  * The {@code CommonsStatusCode} represents a set of custom statuses specific to the Commons.
@@ -30,6 +32,7 @@ package com.twozo.commons.exception;
  * </pre>
  * </p>
  *
+ * @author Petchimuthu
  * @version 1.0
  * @see StatusCode
  */
@@ -38,12 +41,15 @@ public enum CommonsStatusCode implements StatusCode {
     INVALID_BASE_CODE_VALUE(1),
     BASE_CODE_VALUE_ALREADY_REGISTERED(2);
 
-    private static final StatusCodeProvider statusCodeProvider = new StatusCodeProvider(new StatusCodeCalculatorImpl());
+    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider(new StatusCodeCalculatorImpl());
     private static final int BASE_STATUS_CODE = 100;
     private static boolean isBaseCodeRegistered = false;
 
     private final int specificCode;
 
+    CommonsStatusCode(final int specificCode) {
+        this.specificCode = specificCode;
+    }
 
     static {
         register();
@@ -51,8 +57,7 @@ public enum CommonsStatusCode implements StatusCode {
 
     /**
      * <p>
-     * Registers the base code if it's not already registered.
-     * Ensures that the base code is registered only once.
+     * Registers the base code if it's not already registered. Ensures that the base code is registered only once.
      * </p>
      */
     private static void register() {
@@ -60,10 +65,6 @@ public enum CommonsStatusCode implements StatusCode {
             StatusCodeContainer.register(BASE_STATUS_CODE, CommonsStatusCode.class.getSimpleName());
             isBaseCodeRegistered = true;
         }
-    }
-
-    CommonsStatusCode(final int specificCode) {
-        this.specificCode = specificCode;
     }
 
     /**
@@ -75,6 +76,6 @@ public enum CommonsStatusCode implements StatusCode {
      */
     @Override
     public int getStatusCode() {
-        return statusCodeProvider.get(BASE_STATUS_CODE, specificCode);
+        return STATUS_CODE_PROVIDER.get(BASE_STATUS_CODE, specificCode);
     }
 }

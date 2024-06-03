@@ -9,42 +9,58 @@ package com.twozo.web.element.locator;
 public enum LocatorType {
 
     /**
-     * finds element by using Id
+     * <p>
+     * Finds the element by using id.
+     * </p>
      */
     ID,
 
     /**
-     * finds element by using name
+     * <p>
+     * Finds the element by using name.
+     * </p>
      */
     NAME,
 
     /**
-     * finds element by using class name
+     * <p>
+     * Finds the element by using class name.
+     * </p>
      */
     CLASS_NAME,
 
     /**
-     * finds element by using xpath
+     * <p>
+     * Finds the element by using xpath.
+     * </p>
      */
     XPATH,
 
     /**
-     * finds element by using css selector
+     * <p>
+     * Finds element by using css selector.
+     * </p>
      */
     CSS_SELECTOR,
 
     /**
-     * finds element by using linked text
+     * <p>
+     * Finds the element by using linked text.
+     * </p>
      */
     LINKED_TEXT,
 
     /**
-     * finds element by using partially linked text
+     * <p>
+     * Finds the element by using partially linked text.
+     * </p>
      */
     PARTIALLY_LINKED_TEXT,
 
     /**
-     * finds element by using tag name
+     * <p>
+     * Finds the element by using tag name.
+     * </p>
      */
     TAG_NAME;
 }

@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 /**
  * <p>
  * The {@code WebPageElementImpl} provides various services related to {@link WebPageElement}.
- * Encapsulates interaction, information retrieval, and element finding functionalities.
+ * Such as interaction, information retrieval, and element finding functionalities.
  * </p>
  *
  * @author Petchimuthu
@@ -36,7 +36,7 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementLocator} for further element search within this element.
+     * @return An {@link ElementLocator} for further element search within the element.
      */
     @Override
     public ElementLocator getElementLocator() {
@@ -46,7 +46,7 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementInteraction} for interacting with this element.
+     * @return An {@link ElementInteraction} for interacting with the element.
      */
     @Override
     public ElementInteraction interact() {
@@ -56,7 +56,7 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementInformation} for getting information about this element.
+     * @return An {@link ElementInformation} for getting information about the element.
      */
     @Override
     public ElementInformation getInformer() {

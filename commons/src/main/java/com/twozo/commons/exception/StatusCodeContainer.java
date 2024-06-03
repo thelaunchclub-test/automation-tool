@@ -1,5 +1,7 @@
 package com.twozo.commons.exception;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.HashMap;
@@ -30,13 +32,11 @@ import java.util.Objects;
  * @author Petchimuthu
  * @version 1.0
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Value
 public class StatusCodeContainer {
 
     private static final Map<Integer, String> ERROR_CODE_CONTAINER = new HashMap<>();
-
-    private StatusCodeContainer() {
-    }
 
     /**
      * <p>

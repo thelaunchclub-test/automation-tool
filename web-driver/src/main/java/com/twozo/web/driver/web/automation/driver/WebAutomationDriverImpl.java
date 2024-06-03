@@ -16,6 +16,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import java.time.Duration;
+
 /**
  * <p>
  * The {@code WebAutomationDriverImpl} provides various interactions for web automation,
@@ -67,7 +69,8 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link PageInformationProvider} for retrieving page information.
+     * @return A {@link PageInformationProvider} for retrieving various information about the browser,
+     * such as the current URL, page title, and page source.
      */
     @Override
     public PageInformationProvider getPageInformationProvider() {
@@ -87,7 +90,9 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WebTargetLocator} for targeting different window.
+     * @return A {@link WebTargetLocator} for targeting different windows in the browser,
+     * such as switching to a specific window by name, opening a new window and handling
+     * browser alerts.
      */
     @Override
     public WebTargetLocator getWebTargetLocator() {
@@ -97,7 +102,8 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WebWindow} for controlling browser web window actions.
+     * @return A {@link WebWindow} for interacts with the browser window,such as maximizing,
+     * minimizing,and toggling fullscreen mode.
      */
     @Override
     public WebWindow getWebWindowHandler() {
@@ -107,7 +113,8 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WindowInfoProvider} for retrieving information about the browser window.
+     * @return A {@link WindowInfoProvider} for retrieving information about browser windows,
+     * including unique identifiers for each window handle and the handle of the current window.
      */
     @Override
     public WindowInfoProvider getWindowInfoProvider() {
@@ -117,7 +124,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WaitHandler} for handling waits.
+     * @return A {@link WaitHandler} for to configure and manage waits in {@link WebDriver}.
      */
     @Override
     public WaitHandler getWaitHandler() {

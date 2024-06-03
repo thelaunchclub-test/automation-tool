@@ -1,5 +1,8 @@
 package com.twozo.commons.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Value;
+
 /**
  * <p>
  * The {@code StatusCodeProvider} provides a mechanism to calculate status codes based on
@@ -21,13 +24,11 @@ package com.twozo.commons.exception;
  * @version 1.0
  * @see StatusCodeCalculator
  */
+@Value
+@AllArgsConstructor
 public class StatusCodeProvider {
 
-    private final StatusCodeCalculator statusCodeCalculator;
-
-    public StatusCodeProvider(final StatusCodeCalculator statusCodeCalculator) {
-        this.statusCodeCalculator = statusCodeCalculator;
-    }
+    StatusCodeCalculator statusCodeCalculator;
 
     /**
      * Calculates the status code based on the given base code and specific code.

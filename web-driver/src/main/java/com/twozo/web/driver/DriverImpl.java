@@ -3,6 +3,7 @@ package com.twozo.web.driver;
 import com.twozo.commons.util.PropertyFileReader;
 import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
 
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.Value;
 
@@ -31,6 +32,7 @@ import java.util.Objects;
  */
 @Value
 @NonNull
+@AllArgsConstructor
 public class DriverImpl implements Driver {
 
     PropertyFileReader propertyFileReader;

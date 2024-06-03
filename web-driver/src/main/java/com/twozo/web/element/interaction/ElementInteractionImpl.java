@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
  * </p>
  *
  * <p>
- * Encapsulates common interactions with web page elements such as clicking,
+ * Interactions with web page elements such as clicking,
  * submitting forms, and sending keys.
  * </p>
  *

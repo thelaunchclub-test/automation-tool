@@ -1,5 +1,7 @@
 package com.twozo.commons.exception;
 
+import lombok.Value;
+
 /**
  * <p>
  * The {@code StatusCodeCalculator} generates error codes by combining specific and base error codes.
@@ -15,6 +17,7 @@ package com.twozo.commons.exception;
  * @version 1.0
  * @see StatusCodeCalculator
  */
+@Value
 public class StatusCodeCalculatorImpl implements StatusCodeCalculator {
     /**
      * {@inheritDoc}

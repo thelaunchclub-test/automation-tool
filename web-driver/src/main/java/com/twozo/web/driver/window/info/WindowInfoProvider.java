@@ -10,8 +10,8 @@ import java.util.Set;
  * </p>
  *
  * <p>
- * Retrieves information about browser windows,
- * including unique identifiers for each window handle and the handle of the current window.
+ * Retrieves information about browser windows, including unique identifiers for each window handle
+ * and the handle of the current window.
  * </p>
  *
  * @author Petchimuthu
