@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * <p>
- * The {@code ErrorCodeContainer} is a utility class designed to manage the registration
+ * The {@code StatusCodeContainer} is a utility class designed to manage the registration
  * and retrieval of baseCode associated with particular {@link Exception}.
  * </p>
  *
@@ -21,8 +21,8 @@ import java.util.Objects;
  * Usage example:
  * <pre>
  * {@code
- * ErrorCodeContainer.register(1000, "WebDriverException");
- * String enumName = ErrorCodeContainer.get(1000);
+ * StatusCodeContainer.register(1000, "WebDriverException");
+ * String enumName = StatusCodeContainer.get(1000);
  * }
  * </pre>
  * </p>
@@ -31,11 +31,11 @@ import java.util.Objects;
  * @version 1.0
  */
 @Value
-public class ErrorCodeContainer {
+public class StatusCodeContainer {
 
     private static final Map<Integer, String> ERROR_CODE_CONTAINER = new HashMap<>();
 
-    private ErrorCodeContainer() {
+    private StatusCodeContainer() {
     }
 
     /**
@@ -54,14 +54,14 @@ public class ErrorCodeContainer {
     public static void register(final int baseCode, final String exception) {
 
         if (baseCode % 100 != 0) {
-            throw StatusCode.get(CommonsException.INVALID_BASE_CODE_VALUE, "Base code must be a multiple of 100");
+            throw Exception.get(CommonsStatusCode.INVALID_BASE_CODE_VALUE, "Base code must be a multiple of 100");
         }
         final String specificException = get(baseCode);
 
         if (Objects.isNull(specificException) || specificException.equals(exception)) {
             ERROR_CODE_CONTAINER.put(baseCode, exception);
         } else {
-            throw StatusCode.get(CommonsException.BASE_CODE_VALUE_ALREADY_REGISTERED, "BaseCode is already assigned");
+            throw Exception.get(CommonsStatusCode.BASE_CODE_VALUE_ALREADY_REGISTERED, "BaseCode is already assigned");
         }
     }
 
@@ -72,7 +72,7 @@ public class ErrorCodeContainer {
      *
      * <p>
      * Returns the name of an {@link Exception} that was registered with the given baseCode.
-     * If no name is registered with the given baseCode, this method returns null.
+     * If no name is registered with the given baseCode, returns null.
      * </p>
      *
      * @param baseCode the baseCode whose associated Exception name is to be returned
