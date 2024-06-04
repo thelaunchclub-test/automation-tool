@@ -12,8 +12,7 @@ import java.util.Collection;
 
 /**
  * <p>
- * The {@code ElementLocatorForElement} provides methods to find {@link WebPageElement}.
- * Locates both single and multiple elements.
+ * Provides methods to find {@link WebPageElement}. Locates both single and multiple elements.
  * </p>
  *
  * @author Petchimuthu

@@ -1,6 +1,7 @@
 package com.twozo.web.driver.waits;
 
 import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
+
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;

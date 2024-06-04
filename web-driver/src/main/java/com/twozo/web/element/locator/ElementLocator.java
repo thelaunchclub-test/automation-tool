@@ -10,14 +10,35 @@ import java.util.Collection;
 
 /**
  * <p>
- * Represents an element finder, providing methods to locate multiple
- * elements and a single element based on a given {@link By} locator.
+ * Represents an element finder, providing methods to locate multiple elements and a single element based
+ * on a given {@link By} locator.
  * </p>
  *
  * <p>
- * The {@code ElementLocator} defines methods for finding web page elements
- * based on a specified {@link By} locator. Provides flexibility to locate
- * either a single element or multiple elements on a web page.
+ * The {@code ElementLocator} defines methods for finding web page elements based on a specified {@link By} locator.
+ * Provides flexibility to locate either a single element or multiple elements on a web page.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>
+ * {@code
+ * // Create an instance of ElementLocator.
+ * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
+ *
+ * // Locate a single web page element by ID
+ * WebPageElement singleElement = elementLocator.getWebPageElement(LocatorType.ID, "element-id");
+ *
+ * // Locate multiple web page elements by class name
+ * Collection<WebPageElement> multipleElements = elementLocator.getWebPageElements(LocatorType.CLASS_NAME, "element-class");
+ *
+ * // Locate a web page element below another element
+ * WebPageElement elementBelow = elementLocator.withBelowElement(LocatorType.CSS_SELECTOR, "below-element-css", LocatorType.ID, "above-element-id");
+ *
+ * // Locate a web page element near another element
+ * WebPageElement elementNear = elementLocator.withNearElement(LocatorType.NAME, "near-element-name", LocatorType.XPATH, "reference-element-xpath");
+ * }
+ * </pre>
  * </p>
  *
  * @author Petchimuthu

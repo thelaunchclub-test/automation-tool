@@ -6,41 +6,28 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * Provides information about a {@link WebPageElement}.
- * </p>
- *
- * <p>
- * Retrieves various information about a {@link WebPageElement}
- * represented by a {@link WebElement}.
- * </p>
- *
- * <p>
- * Provides methods to get information such as the tag name, attribute value, selection status,
- * enabled status, text content, and display status of the web element.
- * </p>
+ * Provides methods to retrieve information about a {@link WebPageElement}.
+ * Includes methods to get the tag name, attributes, visibility, selection state,
+ * and other properties of a web element.
+ *</p>
  *
  * <p>
  * Example usage:
- * <pre>{@code
- * // Instantiate a PageInformationProvider using the WebAutomationDriver.
- * PageInformationProvider pageInformationProvider = webAutomationDriver.getPageInformationProvider();
+ * <pre>
+ * {@code
+ * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
+ * ElementInformation elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").getInformer();
  *
- * // Navigate to a specific URL
- * pageInformationProvider.get("https://www.example.com");
- *
- * // Get the current URL
- * String currentUrl = pageInformationProvider.getCurrentUrl();
- * System.out.println("Current URL: " + currentUrl);
- *
- * // Get the title of the current web page
- * String pageTitle = pageInformationProvider.getTitle();
- * System.out.println("Page Title: " + pageTitle);
- *
- * // Get the page source
- * String pageSource = pageInformationProvider.getPageSource();
- * System.out.println("Page Source: " + pageSource);
- * }</pre>
+ * String tagName = elementInfo.getTagName(); // Gets the tag name of the element
+ * String classAttribute = elementInfo.getAttribute("class"); // Gets the value of the 'class' attribute
+ * boolean isSelected = elementInfo.isSelected(); // Checks if the element is selected
+ * boolean isEnabled = elementInfo.isEnabled(); // Checks if the element is enabled
+ * String text = elementInfo.getText(); // Gets the visible text of the element
+ * boolean isDisplayed = elementInfo.isDisplayed(); // Checks if the element is displayed
+ * }
+ * </pre>
  * </p>
+ *
  * @author Petchimuthu
  * @version 1.0
  */

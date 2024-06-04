@@ -9,17 +9,26 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code ElementInformationImpl} provides information about a {@link WebPageElement}.
- * </p>
+ * Provides methods to retrieve information about a {@link WebPageElement}.
+ * Includes methods to get the tag name, attributes, visibility, selection state,
+ * and other properties of a web element.
+ *</p>
  *
  * <p>
- * Retrieves various information about a web page element
- * represented by a {@link WebElement}.
- * </p>
+ * Example usage:
+ * <pre>
+ * {@code
+ * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
+ * ElementInformation elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").getInformer();
  *
- * <p>
- * Provides methods to get information such as the tag name, attribute value, selection status,
- * enabled status, text content, and display status of the web element.
+ * String tagName = elementInfo.getTagName(); // Gets the tag name of the element
+ * String classAttribute = elementInfo.getAttribute("class"); // Gets the value of the 'class' attribute
+ * boolean isSelected = elementInfo.isSelected(); // Checks if the element is selected
+ * boolean isEnabled = elementInfo.isEnabled(); // Checks if the element is enabled
+ * String text = elementInfo.getText(); // Gets the visible text of the element
+ * boolean isDisplayed = elementInfo.isDisplayed(); // Checks if the element is displayed
+ * }
+ * </pre>
  * </p>
  *
  * @author Petchimuthu

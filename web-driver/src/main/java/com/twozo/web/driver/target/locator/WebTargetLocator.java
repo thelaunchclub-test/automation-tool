@@ -8,7 +8,7 @@ import org.openqa.selenium.WindowType;
 
 /**
  * <p>
- * The {@code WebTargetLocator} targets different windows in the browser.
+ * Targets different windows in the browser.
  * </p>
  *
  * <p>

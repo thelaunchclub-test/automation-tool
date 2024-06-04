@@ -1,7 +1,7 @@
 package com.twozo.web.element.locator;
 
 /**
- * The {@code LocatorType} represents different types of locators for web elements.
+ * Represents different types of locators for web elements.
  *
  * @author Petchimuthu
  * @version 1.0

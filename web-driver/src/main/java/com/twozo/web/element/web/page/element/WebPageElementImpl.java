@@ -11,8 +11,27 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code WebPageElementImpl} provides various services related to {@link WebPageElement}.
+ * The {@code WebPageElement} provides various services related to {@link WebPageElement}.
  * Such as interaction, information retrieval, and element finding functionalities.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>
+ * {@code
+ * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
+ * WebPageElement webPageElement = elementLocator.getWebPageElement(LocatorType.Id,"id");
+ *
+ * // Get an ElementLocator specific to the context of the WebPageElement
+ * ElementLocator locator = webPageElement.getElementLocator();
+ *
+ * // Get an ElementInteraction for performing actions on the WebPageElement
+ * ElementInteraction interaction = webPageElement.interact();
+ *
+ * // Get an ElementInformation for retrieving information about the WebPageElement
+ * ElementInformation information = webPageElement.getInformer();
+ * }
+ * </pre>
  * </p>
  *
  * @author Petchimuthu

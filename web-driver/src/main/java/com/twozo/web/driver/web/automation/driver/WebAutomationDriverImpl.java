@@ -19,8 +19,8 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * The {@code WebAutomationDriver} provides various interactions for web automation,
- * including navigation, element locating, window management, screenshot capturing, and more.
+ * Provides various interactions for web automation, including navigation, element locating,
+ * window management, screenshot capturing, and more.
  * </p>
  *
  * <p>

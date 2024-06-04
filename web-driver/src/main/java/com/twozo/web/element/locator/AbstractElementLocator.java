@@ -13,7 +13,7 @@ import java.util.Collection;
 
 /**
  * <p>
- * The {@code AbstractElementLocator} provides common functionality for element finders.
+ * Provides common functionality for element finders.
  * </p>
  *
  * <p>

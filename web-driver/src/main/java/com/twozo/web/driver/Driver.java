@@ -8,8 +8,8 @@ import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
  * </p>
  *
  * <p>
- * Defines methods for obtaining {@link WebAutomationDriver},
- * which is responsible for browser automation tasks.
+ * Defines methods for obtaining {@link WebAutomationDriver}, which is responsible for browser
+ * automation tasks.
  * </p>
  *
  * @author Petchimuthu
