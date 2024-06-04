@@ -1,7 +1,6 @@
-package com.twozo.commons.exception.status.code;
+package com.twozo.commons.exception.status;
 
-import com.twozo.commons.exception.internal.impl.StatusCodeGeneratorImpl;
-import com.twozo.commons.exception.status.code.service.StatusCode;
+import com.twozo.commons.exception.service.StatusCode;
 
 /**
  * <p>
@@ -36,8 +35,8 @@ public enum CommonsStatusCode implements StatusCode {
     INVALID_BASE_CODE(1),
     BASE_CODE_ALREADY_REGISTERED(2);
 
-    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider(new StatusCodeGeneratorImpl());
-    private static final int BASE_STATUS_CODE = 100;
+    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider();
+    private static final int BASE_CODE = 100;
     private static boolean isBaseCodeRegistered = false;
 
     private final int specificCode;
@@ -57,7 +56,7 @@ public enum CommonsStatusCode implements StatusCode {
      */
     private static void register() {
         if (!isBaseCodeRegistered) {
-            StatusCodeContainer.register(BASE_STATUS_CODE, CommonsStatusCode.class.getSimpleName());
+            StatusCodeContainer.register(BASE_CODE, CommonsStatusCode.class.getSimpleName());
             isBaseCodeRegistered = true;
         }
     }
@@ -71,6 +70,6 @@ public enum CommonsStatusCode implements StatusCode {
      */
     @Override
     public int getStatusCode() {
-        return STATUS_CODE_PROVIDER.get(BASE_STATUS_CODE, specificCode);
+        return STATUS_CODE_PROVIDER.get(BASE_CODE, specificCode);
     }
 }

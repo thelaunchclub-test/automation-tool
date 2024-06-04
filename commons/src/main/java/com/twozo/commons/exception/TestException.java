@@ -1,17 +1,16 @@
 package com.twozo.commons.exception;
 
-import com.twozo.commons.exception.status.code.service.StatusCode;
+import com.twozo.commons.exception.service.StatusCode;
+
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Value;
 
 /**
  * <p>
- * Manages statuses with associated status codes and custom messages.
+ * Manages statuses with associated status codes and messages.
  * </p>
  *
  * <p>
- * Provides additional context through custom messages and causes. Ensures a standardized way of
+ * Provides additional context through messages and causes. Ensures a standardized way of
  * handling and reporting issues in the application by associating each status
  * with a specific status code.
  * </p>
@@ -33,13 +32,10 @@ import lombok.Value;
  * @version 1.0
  * @see RuntimeException
  */
-@EqualsAndHashCode(callSuper = false)
-@Value
 @AllArgsConstructor
-public
-class TestException extends RuntimeException {
+public final class TestException extends RuntimeException {
 
-    StatusCode statusCode;
+    private final StatusCode statusCode;
 
     public TestException(final StatusCode statusCode, final String message) {
         super(message);
@@ -70,11 +66,11 @@ class TestException extends RuntimeException {
 
     /**
      * <p>
-     * Creates {@code TestException} with the specified status code and custom message.
+     * Creates {@code TestException} with the specified status code and message.
      * </p>
      *
      * @param statusCode The {@link StatusCode} associated with the status.
-     * @param message    The custom message describing the status.
+     * @param message    The message describing the status.
      * @return An {@code TestException}.
      */
     public static TestException get(final StatusCode statusCode, final String message) {
@@ -96,11 +92,11 @@ class TestException extends RuntimeException {
 
     /**
      * <p>
-     * Creates {@code TestException} with the specified status code, custom message, and cause.
+     * Creates {@code TestException} with the specified status code, message, and cause.
      * </p>
      *
      * @param statusCode The {@link StatusCode} associated with the status.
-     * @param message    The custom message describing the status.
+     * @param message    The message describing the status.
      * @param cause      The cause of the status.
      * @return An {@code TestException}.
      */
@@ -110,10 +106,10 @@ class TestException extends RuntimeException {
 
     /**
      * <p>
-     * Retrieves the custom message associated with the {@code TestException}.
+     * Retrieves the message associated with the {@code TestException}.
      * </p>
      *
-     * @return The custom message.
+     * @return The message.
      */
     @Override
     public String getMessage() {
