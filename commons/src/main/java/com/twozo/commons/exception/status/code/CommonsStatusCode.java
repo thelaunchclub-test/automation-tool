@@ -1,22 +1,17 @@
-package com.twozo.commons.exception;
+package com.twozo.commons.exception.status.code;
 
-import lombok.Value;
+import com.twozo.commons.exception.internal.impl.StatusCodeGeneratorImpl;
+import com.twozo.commons.exception.status.code.service.StatusCode;
 
 /**
  * <p>
- * The {@code CommonsStatusCode} represents a set of custom statuses specific to the Commons.
+ * Standardizes handling of common statuses like invalid and duplicate inputs with specific codes
+ * for effective identification.
  * </p>
  *
  * <p>
- * Provides a standardized way to handle status that are commonly encountered in Commons,
- * such as invalid input and duplicate input scenarios. Each type corresponds to a specific status code
- * which helps in identifying and managing statuses more effectively.
- * </p>
- *
- * <p>
- * The status codes for these statuses are generated dynamically based on a base code and a specific code
- * unique to each status type. Ensures that each status has a distinct and recognizable code.
- * The base code is registered only once to prevent redundancy.
+ * Dynamically generates unique codes using a base and specific code for each type, with the base code
+ * registered once to avoid redundancy.
  * </p>
  *
  * <p>
@@ -24,10 +19,10 @@ import lombok.Value;
  * <pre>
  * {@code
  * // Throwing an INVALID_BASE_CODE_VALUE status
- * throw Exception.get(CommonsStatusCode.INVALID_BASE_CODE_VALUE);
+ * throw TestException.get(CommonsStatusCode.INVALID_BASE_CODE_VALUE);
  *
  * // Throwing a BASE_CODE_VALUE_ALREADY_REGISTERED status
- * throw Exception.get(CommonsStatusCode.BASE_CODE_VALUE_ALREADY_REGISTERED);
+ * throw TestException.get(CommonsStatusCode.BASE_CODE_VALUE_ALREADY_REGISTERED);
  * }
  * </pre>
  * </p>
@@ -38,10 +33,10 @@ import lombok.Value;
  */
 public enum CommonsStatusCode implements StatusCode {
 
-    INVALID_BASE_CODE_VALUE(1),
-    BASE_CODE_VALUE_ALREADY_REGISTERED(2);
+    INVALID_BASE_CODE(1),
+    BASE_CODE_ALREADY_REGISTERED(2);
 
-    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider(new StatusCodeCalculatorImpl());
+    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider(new StatusCodeGeneratorImpl());
     private static final int BASE_STATUS_CODE = 100;
     private static boolean isBaseCodeRegistered = false;
 

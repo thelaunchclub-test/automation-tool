@@ -1,20 +1,30 @@
-package com.twozo.commons.exception;
+package com.twozo.commons.exception.status.code.service;
 
 /**
  * <p>
- * The {@code StatusCodeCalculator} generates error codes by combining specific and base error codes.
+ * Generates error codes by combining specific and base error codes.
  * </p>
  *
  * <p>
- * The {@code getStatusCode} calculates the complete error code by adding the specific code
+ * The {@link #calculate(int, int)} calculates the complete error code by adding the specific code
  * to the base code. Allows for a modular and flexible way of generating error codes
  * that can be easily extended and maintained.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * StatusCodeGenerator generator = new StatusCodeGeneratorImpl();
+ * int baseCode = 1000;
+ * int specificCode = 200;
+ * int statusCode = generator.calculate(specificCode, baseCode); // Returns 1200
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
  */
-public interface StatusCodeCalculator {
+public interface StatusCodeGenerator {
 
     /**
      * <p>
