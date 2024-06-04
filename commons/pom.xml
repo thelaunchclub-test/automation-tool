@@ -14,11 +14,12 @@
     <artifactId>commons</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>commons</name>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>compile</scope>
+            <version>1.18.32</version>
         </dependency>
     </dependencies>
 

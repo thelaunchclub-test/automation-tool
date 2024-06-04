@@ -1,6 +1,7 @@
-package com.twozo.commons.exception.status.code;
+package com.twozo.commons.exception.status;
 
 import com.twozo.commons.exception.TestException;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Value;
@@ -36,7 +37,7 @@ import java.util.Objects;
 @Value
 public class StatusCodeContainer {
 
-    private static final Map<Integer, String> ERROR_CODE_CONTAINER = new HashMap<>();
+    private static final Map<Integer, String> STATUS_CODE_CONTAINER = new HashMap<>();
 
     /**
      * <p>
@@ -58,7 +59,7 @@ public class StatusCodeContainer {
         final String specificException = get(baseCode);
 
         if (Objects.isNull(specificException) || specificException.equals(exception)) {
-            ERROR_CODE_CONTAINER.put(baseCode, exception);
+            STATUS_CODE_CONTAINER.put(baseCode, exception);
         } else {
             throw TestException.get(CommonsStatusCode.BASE_CODE_ALREADY_REGISTERED, "BaseCode is already assigned");
         }
@@ -78,6 +79,6 @@ public class StatusCodeContainer {
      * @return the {@link TestException} name associated with the given baseCode, or null if the baseCode is not registered
      */
     public static String get(final int baseCode) {
-        return ERROR_CODE_CONTAINER.get(baseCode);
+        return STATUS_CODE_CONTAINER.get(baseCode);
     }
 }
