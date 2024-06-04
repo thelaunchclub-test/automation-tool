@@ -39,10 +39,10 @@ public enum CommonsStatusCode implements StatusCode {
     private static final int BASE_CODE = 100;
     private static boolean isBaseCodeRegistered = false;
 
-    private final int specificCode;
+    private final int code;
 
-    CommonsStatusCode(final int specificCode) {
-        this.specificCode = specificCode;
+    CommonsStatusCode(final int code) {
+        this.code = code;
     }
 
     static {
@@ -70,6 +70,6 @@ public enum CommonsStatusCode implements StatusCode {
      */
     @Override
     public int getStatusCode() {
-        return STATUS_CODE_PROVIDER.get(BASE_CODE, specificCode);
+        return STATUS_CODE_PROVIDER.get(BASE_CODE, code);
     }
 }
