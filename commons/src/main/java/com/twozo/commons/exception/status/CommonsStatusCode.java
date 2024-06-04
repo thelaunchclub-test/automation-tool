@@ -57,6 +57,7 @@ public enum CommonsStatusCode implements StatusCode {
      * </p>
      */
     private static void register() {
+
         if (!isBaseCodeRegistered) {
             StatusCodeRegistry.register(BASE_CODE, CommonsStatusCode.class.getSimpleName());
             isBaseCodeRegistered = true;
