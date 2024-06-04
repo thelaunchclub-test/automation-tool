@@ -18,7 +18,7 @@ import java.util.Objects;
 
 /**
  * <p>
- * The {@code DriverImpl} represents a driver, which provides a {@link WebAutomationDriver}.
+ * Represents a driver, which provides a {@link WebAutomationDriver}.
  * </p>
  *
  * <p>

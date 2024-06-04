@@ -7,11 +7,34 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * The {@code PageInformationProviderImpl} retrieves information about the browser.
+ * Retrieves information about the browser.
  * </p>
  *
  * <p>
  * Retrieve various information about the browser, such as the current URL, page title, and page source.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Instantiate a PageInformationProvider using the WebAutomationDriver.
+ * PageInformationProvider pageInformationProvider = webAutomationDriver.getPageInformationProvider();
+ *
+ * // Navigate to a specific URL
+ * pageInformationProvider.get("https://www.example.com");
+ *
+ * // Get the current URL
+ * String currentUrl = pageInformationProvider.getCurrentUrl();
+ * System.out.println("Current URL: " + currentUrl);
+ *
+ * // Get the title of the current web page
+ * String pageTitle = pageInformationProvider.getTitle();
+ * System.out.println("Page Title: " + pageTitle);
+ *
+ * // Get the page source
+ * String pageSource = pageInformationProvider.getPageSource();
+ * System.out.println("Page Source: " + pageSource);
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu

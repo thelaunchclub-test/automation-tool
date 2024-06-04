@@ -4,8 +4,16 @@ import org.openqa.selenium.OutputType;
 
 /**
  * <p>
- * The {@code TakesScreenshots} defines a contract for components capable of taking screenshots.
- * Provide a method to capture screenshots in various formats.
+ * Defines a contract for components capable of taking screenshots. Provides a method
+ * to capture screenshots in various formats.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Assuming driver implements TakesScreenshot
+ * TakesScreenshots screenshot = webAutomationDriver.getScreenshot(OutputType.FILE);
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu

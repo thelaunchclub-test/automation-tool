@@ -11,12 +11,29 @@ import org.openqa.selenium.WindowType;
 
 /**
  * <p>
- * The {@code WebTargetLocatorImpl} targets different windows in the browser.
+ * The {@code WebTargetLocator} targets different windows in the browser.
  * </p>
  *
  * <p>
  * Targets different windows in the browser, such as switching to a specific window by name,
  * opening a new window and handling browser alerts.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Create a WebTargetLocator instance
+ * WebTargetLocator targetLocator = webAutomationDriver.getWebTargetLocator();
+ *
+ * // Switch to a window by name
+ * WebAutomationDriver window = targetLocator.getWindow("windowName");
+ *
+ * // Open a new window of a specified type
+ * WebAutomationDriver newWindow = targetLocator.getNewWindow(WindowType.TAB);
+ *
+ * // Get the alert handler for handling browser alerts
+ * AlertHandler alertHandler = targetLocator.getAlertHandler();
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu

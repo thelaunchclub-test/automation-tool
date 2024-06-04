@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code ElementInformation} provides information about a {@link WebPageElement}.
+ * Provides information about a {@link WebPageElement}.
  * </p>
  *
  * <p>
@@ -19,6 +19,28 @@ import org.openqa.selenium.WebElement;
  * enabled status, text content, and display status of the web element.
  * </p>
  *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Instantiate a PageInformationProvider using the WebAutomationDriver.
+ * PageInformationProvider pageInformationProvider = webAutomationDriver.getPageInformationProvider();
+ *
+ * // Navigate to a specific URL
+ * pageInformationProvider.get("https://www.example.com");
+ *
+ * // Get the current URL
+ * String currentUrl = pageInformationProvider.getCurrentUrl();
+ * System.out.println("Current URL: " + currentUrl);
+ *
+ * // Get the title of the current web page
+ * String pageTitle = pageInformationProvider.getTitle();
+ * System.out.println("Page Title: " + pageTitle);
+ *
+ * // Get the page source
+ * String pageSource = pageInformationProvider.getPageSource();
+ * System.out.println("Page Source: " + pageSource);
+ * }</pre>
+ * </p>
  * @author Petchimuthu
  * @version 1.0
  */

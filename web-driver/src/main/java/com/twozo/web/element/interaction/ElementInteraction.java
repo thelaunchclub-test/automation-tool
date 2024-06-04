@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code ElementInteraction} interacts with {@link WebPageElement}.
+ * Interacts with {@link WebPageElement}.
  * </p>
  *
  * <p>

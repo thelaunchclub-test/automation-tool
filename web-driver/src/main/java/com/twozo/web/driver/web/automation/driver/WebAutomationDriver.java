@@ -17,6 +17,28 @@ import org.openqa.selenium.WebDriver;
  * including navigation, element locating, window management, screenshot capturing, and more.
  * </p>
  *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Navigate to a specific URL
+ * automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
+ *
+ * // Find and interact with web elements
+ * WebPageElement element = automationDriver.getElementLocator().getWebPageElement(LocatorType.ID,"name"));
+ * element.click();
+ *
+ * // Take a screenshot
+ * File screenshot = automationDriver.getScreenshotAs(OutputType.FILE);
+ *
+ * // Perform window management operations
+ * WebWindow window = automationDriver.getWebWindowHandler();
+ * window.maximize();
+ *
+ * // Retrieve page information
+ * String pageTitle = automationDriver.getPageInformationProvider().getTitle();
+ * }</pre>
+ * </p>
+ *
  * @author Petchimuthu
  * @version 1.0
  * @see TakesScreenshots
@@ -57,7 +79,7 @@ public interface WebAutomationDriver extends TakesScreenshots {
     /**
      * <p>
      * Returns {@link WebTargetLocator} for targeting to a specific window by name,
-     * opening a new window
+     * opening a new window.
      * </p>
      *
      * @return A {@link WebTargetLocator} for targeting different window.
@@ -93,7 +115,7 @@ public interface WebAutomationDriver extends TakesScreenshots {
 
     /**
      * <p>
-     * Closes the current browser getWebWindowHandler.
+     * Closes the current browser.
      * </p>
      */
     void close();

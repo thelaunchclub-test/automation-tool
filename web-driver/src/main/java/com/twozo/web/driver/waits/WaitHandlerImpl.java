@@ -1,5 +1,6 @@
 package com.twozo.web.driver.waits;
 
+import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
@@ -9,12 +10,19 @@ import java.time.Duration;
 
 /**
  * <p>
- * The {@code WaitHandlerImpl} represents a wait handler for Selenium WebDriver.
+ * Provides methods to configure and manage waits. Allow setting an implicit wait
+ * {@link Duration} for {@link WebAutomationDriver}.
  * </p>
  *
  * <p>
- * Provides methods to configure and manage waits in WebDriver. Allow setting
- * an implicit wait duration for WebDriver.
+ * Example usage:
+ * <pre>{@code
+ * // Create a WaitHandler instance
+ * WaitHandler waitHandler = webAutomationDriver.getWaitHandler();
+ *
+ * // Set an implicit wait duration of 10 seconds
+ * waitHandler.implicitlyWait(Duration.ofSeconds(10));
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu

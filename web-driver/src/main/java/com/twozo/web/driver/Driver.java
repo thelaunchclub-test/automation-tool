@@ -4,7 +4,7 @@ import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
 
 /**
  * <p>
- * The {@code Driver} represents a driver, which provides a {@link WebAutomationDriver}.
+ * Represents a driver, which provides a {@link WebAutomationDriver}.
  * </p>
  *
  * <p>

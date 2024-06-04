@@ -10,7 +10,7 @@ import java.util.Collection;
 
 /**
  * <p>
- * The {@code ElementLocator} represents an element finder, providing methods to locate multiple
+ * Represents an element finder, providing methods to locate multiple
  * elements and a single element based on a given {@link By} locator.
  * </p>
  *

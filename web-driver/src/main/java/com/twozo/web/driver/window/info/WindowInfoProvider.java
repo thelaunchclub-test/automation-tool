@@ -6,12 +6,21 @@ import java.util.Set;
 
 /**
  * <p>
- * The {@code WindowInfoProvider} provides information about browser windows.
+ * Retrieves information about browser windows, including unique identifiers for each window handle
+ * and the handle of the current window.
  * </p>
  *
  * <p>
- * Retrieves information about browser windows, including unique identifiers for each window handle
- * and the handle of the current window.
+ * Example usage:
+ * <pre>{@code
+ * WindowInfoProvider windowInfoProvider = webAutomationDriver.getWindowInfoProvider();
+ *
+ * // Get handles of all currently open windows
+ * Set<String> windowHandles = windowInfoProvider.getWindowHandles();
+ *
+ * // Get the handle of the currently focused window
+ * String currentWindowHandle = windowInfoProvider.getWindowHandle();
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu

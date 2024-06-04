@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * The {@code PageInformationProvider} retrieves information about the browser.
+ * Retrieves information about the browser.
  * </p>
  *
  * <p>
@@ -33,6 +33,7 @@ import org.openqa.selenium.WebDriver;
  * System.out.println("Page Source: " + pageSource);
  * }</pre>
  * </p>
+ *
  * @author Petchimuthu
  * @version 1.0
  */

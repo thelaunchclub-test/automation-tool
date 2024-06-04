@@ -3,6 +3,7 @@ package com.twozo.web.driver.web.automation.driver;
 import com.twozo.web.driver.Driver;
 import com.twozo.web.driver.navigation.WebNavigator;
 import com.twozo.web.driver.page.information.PageInformationProvider;
+import com.twozo.web.driver.screenshot.TakesScreenshots;
 import com.twozo.web.driver.target.locator.WebTargetLocator;
 import com.twozo.web.driver.waits.WaitHandler;
 import com.twozo.web.driver.window.WebWindow;
@@ -18,8 +19,30 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * The {@code WebAutomationDriverImpl} provides various interactions for web automation,
+ * The {@code WebAutomationDriver} provides various interactions for web automation,
  * including navigation, element locating, window management, screenshot capturing, and more.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Navigate to a specific URL
+ * automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
+ *
+ * // Find and interact with web elements
+ * WebPageElement element = automationDriver.getElementLocator().getWebPageElement(LocatorType.ID,"name"));
+ * element.click();
+ *
+ * // Take a screenshot
+ * File screenshot = automationDriver.getScreenshotAs(OutputType.FILE);
+ *
+ * // Perform window management operations
+ * WebWindow window = automationDriver.getWebWindowHandler();
+ * window.maximize();
+ *
+ * // Retrieve page information
+ * String pageTitle = automationDriver.getPageInformationProvider().getTitle();
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu
