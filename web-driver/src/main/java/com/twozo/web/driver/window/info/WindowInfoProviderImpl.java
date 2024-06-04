@@ -2,7 +2,6 @@ package com.twozo.web.driver.window.info;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebDriver;
 
@@ -21,12 +20,11 @@ import java.util.Set;
  * @author Petchimuthu
  * @version 1.0
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class WindowInfoProviderImpl implements WindowInfoProvider {
+public final class WindowInfoProviderImpl implements WindowInfoProvider {
 
-    WebDriver driver;
+    private final WebDriver driver;
 
     /**
      * {@inheritDoc}

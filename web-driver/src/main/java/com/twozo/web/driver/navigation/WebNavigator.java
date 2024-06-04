@@ -4,12 +4,32 @@ import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
- * The {@code WebNavigator} navigates the web browser
+ * Navigates the web browser
  * </p>
  *
  * <p>
  * Allows basic browser navigation actions such as going back, forward, refreshing the page,
  * and navigating to a specific URL.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * // Instantiate a WebNavigator using the WebAutomationDriver.
+ * WebNavigator webNavigator = webAutomationDriver.getWebNavigator();
+ *
+ * // Navigate back to the previous page
+ * webNavigator.back();
+ *
+ * // Navigate forward to the next page
+ * webNavigator.forward();
+ *
+ * // Navigate to a specific URL
+ * webNavigator.to("https://www.example.com");
+ *
+ * // Refresh the current page
+ * webNavigator.refresh();
+ * }</pre>
  * </p>
  *
  * @author Petchimuthu

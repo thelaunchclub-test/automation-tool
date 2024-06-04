@@ -5,7 +5,6 @@ import com.twozo.web.element.web.page.element.WebPageElementImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebElement;
 
@@ -21,12 +20,11 @@ import java.util.Collection;
  * @version 1.0
  * @see AbstractElementLocator
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class ElementLocatorForElement extends AbstractElementLocator {
+public final class ElementLocatorForElement extends AbstractElementLocator {
 
-    WebElement element;
+    private final WebElement element;
 
     /**
      * {@inheritDoc}

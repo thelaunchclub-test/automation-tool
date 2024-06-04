@@ -1,26 +1,19 @@
 package com.twozo.web.status.code;
 
-import com.twozo.commons.exception.StatusCodeProvider;
-import com.twozo.commons.exception.StatusCode;
-import com.twozo.commons.exception.StatusCodeCalculatorImpl;
-import com.twozo.commons.exception.StatusCodeContainer;
+import com.twozo.commons.exception.status.code.StatusCodeProvider;
+import com.twozo.commons.exception.status.code.service.StatusCode;
+import com.twozo.commons.exception.internal.impl.StatusCodeGeneratorImpl;
+import com.twozo.commons.exception.status.code.StatusCodeContainer;
 
 /**
  * <p>
- * The {@code WebDriverStatusCode} represents a set of custom exceptions specific to the WebDriver.
+ * Standardizes handling of common statuses like invalid and duplicate inputs with specific codes
+ * for effective identification.
  * </p>
  *
  * <p>
- * Provides a standardized way to handle exceptions that are commonly encountered in WebDriver,
- * such as element click intercepted and element not visible. Each exception type corresponds to a specific status code
- * which helps in identifying and managing statuses more effectively.
- * </p>
- *
- * <p>
- * The status codes for these exceptions are generated dynamically based on a base status code and a specific code
- * unique to each exception type. Ensures that each exception has a distinct and recognizable status
- * code.
- * The base status code is registered only once to prevent redundancy.
+ * Dynamically generates unique codes using a base and specific code
+ * for each type, with the base code registered once to avoid redundancy.
  * </p>
  *
  * <p>
@@ -46,7 +39,7 @@ public enum WebDriverStatusCode implements StatusCode {
     ELEMENT_NOT_SELECTABLE(2),
     ELEMENT_NOT_VISIBLE(3);
 
-    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider(new StatusCodeCalculatorImpl());
+    private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider(new StatusCodeGeneratorImpl());
     private static final int BASE_STATUS_CODE = 200;
     private static boolean isBaseCodeRegistered = false;
 

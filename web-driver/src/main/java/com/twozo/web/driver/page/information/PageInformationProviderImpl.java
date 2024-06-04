@@ -2,7 +2,6 @@ package com.twozo.web.driver.page.information;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebDriver;
 
@@ -19,12 +18,11 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0
  * @see PageInformationProvider
  */
-@Value
 @NonNull
 @AllArgsConstructor
 public final class PageInformationProviderImpl implements PageInformationProvider {
 
-    WebDriver driver;
+    private final WebDriver driver;
 
     /**
      * {@inheritDoc}

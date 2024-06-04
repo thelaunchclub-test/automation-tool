@@ -5,7 +5,6 @@ import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
@@ -24,13 +23,12 @@ import org.openqa.selenium.WindowType;
  * @version 1.0
  * @see WebTargetLocator
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class WebTargetLocatorImpl implements WebTargetLocator {
+public final class WebTargetLocatorImpl implements WebTargetLocator {
 
-    WebDriver driver;
-    WebDriver.TargetLocator targetLocator;
+    private final WebDriver driver;
+    private final WebDriver.TargetLocator targetLocator;
 
     /**
      * {@inheritDoc}

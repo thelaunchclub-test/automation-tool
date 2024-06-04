@@ -2,7 +2,6 @@ package com.twozo.web.driver.waits;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebDriver;
 
@@ -22,12 +21,11 @@ import java.time.Duration;
  * @version 1.0
  * @see WaitHandler
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class WaitHandlerImpl implements WaitHandler {
+public final class WaitHandlerImpl implements WaitHandler {
 
-    WebDriver.Timeouts timeouts;
+    private final WebDriver.Timeouts timeouts;
 
     /**
      * {@inheritDoc}

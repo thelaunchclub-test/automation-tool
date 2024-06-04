@@ -4,7 +4,6 @@ import com.twozo.web.element.web.page.element.WebPageElement;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebElement;
 
@@ -22,12 +21,11 @@ import org.openqa.selenium.WebElement;
  * @version 1.0
  * @see ElementInteraction
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class ElementInteractionImpl implements ElementInteraction {
+public final class ElementInteractionImpl implements ElementInteraction {
 
-    WebElement element;
+    private final WebElement element;
 
     /**
      * {@inheritDoc}

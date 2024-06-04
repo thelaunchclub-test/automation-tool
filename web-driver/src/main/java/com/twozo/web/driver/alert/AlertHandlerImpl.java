@@ -2,13 +2,12 @@ package com.twozo.web.driver.alert;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.Alert;
 
 /**
  * <p>
- * The {@code AlertHandlerImpl} interacts with browser {@link Alert}.
+ * Interacts with browser {@link Alert}.
  * </p>
  *
  * <p>
@@ -20,12 +19,11 @@ import org.openqa.selenium.Alert;
  * @version 1.0
  * @see AlertHandler
  */
-@Value
 @NonNull
 @AllArgsConstructor
 public class AlertHandlerImpl implements AlertHandler {
 
-    Alert alert;
+    private final Alert alert;
 
     /**
      * {@inheritDoc}

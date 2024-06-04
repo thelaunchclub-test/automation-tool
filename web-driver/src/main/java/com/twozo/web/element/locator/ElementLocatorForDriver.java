@@ -4,9 +4,7 @@ import com.twozo.web.element.web.page.element.WebPageElement;
 import com.twozo.web.element.web.page.element.WebPageElementImpl;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebDriver;
 
@@ -22,13 +20,11 @@ import java.util.Collection;
  * @version 1.0
  * @see AbstractElementLocator
  */
-@EqualsAndHashCode(callSuper = true)
-@Value
 @NonNull
 @AllArgsConstructor
-public class ElementLocatorForDriver extends AbstractElementLocator {
+public final class ElementLocatorForDriver extends AbstractElementLocator {
 
-    WebDriver webDriver;
+    private final WebDriver webDriver;
 
     /**
      * {@inheritDoc}

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver.Navigation;
 
 /**
  * <p>
- * The {@code WebNavigatorImpl} navigates the web browser
+ * Navigates the web browser
  * </p>
  *
  * <p>
@@ -20,12 +20,11 @@ import org.openqa.selenium.WebDriver.Navigation;
  * @version 1.0
  * @see WebNavigator
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class WebNavigatorImpl implements WebNavigator {
+public final class WebNavigatorImpl implements WebNavigator {
 
-    Navigation navigation;
+    private final Navigation navigation;
 
     /**
      * {@inheritDoc}

@@ -4,7 +4,6 @@ import com.twozo.web.element.web.page.element.WebPageElement;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import lombok.Value;
 
 import org.openqa.selenium.WebElement;
 
@@ -27,12 +26,11 @@ import org.openqa.selenium.WebElement;
  * @version 1.0
  * @see ElementInformation
  */
-@Value
 @NonNull
 @AllArgsConstructor
-public class ElementInformationImpl implements ElementInformation {
+public final class ElementInformationImpl implements ElementInformation {
 
-    WebElement element;
+    private final WebElement element;
 
     /**
      * {@inheritDoc}
