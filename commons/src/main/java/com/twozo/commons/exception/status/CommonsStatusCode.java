@@ -1,5 +1,7 @@
 package com.twozo.commons.exception.status;
 
+import com.twozo.commons.exception.provider.StatusCodeProvider;
+import com.twozo.commons.exception.registry.StatusCodeRegistry;
 import com.twozo.commons.exception.service.StatusCode;
 
 /**
@@ -56,7 +58,7 @@ public enum CommonsStatusCode implements StatusCode {
      */
     private static void register() {
         if (!isBaseCodeRegistered) {
-            StatusCodeContainer.register(BASE_CODE, CommonsStatusCode.class.getSimpleName());
+            StatusCodeRegistry.register(BASE_CODE, CommonsStatusCode.class.getSimpleName());
             isBaseCodeRegistered = true;
         }
     }

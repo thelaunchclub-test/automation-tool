@@ -1,8 +1,8 @@
 package com.twozo.web.status;
 
-import com.twozo.commons.exception.status.StatusCodeProvider;
+import com.twozo.commons.exception.provider.StatusCodeProvider;
 import com.twozo.commons.exception.service.StatusCode;
-import com.twozo.commons.exception.status.StatusCodeContainer;
+import com.twozo.commons.exception.registry.StatusCodeRegistry;
 
 /**
  * <p>
@@ -60,7 +60,7 @@ public enum WebDriverStatusCode implements StatusCode {
      */
     private static void register() {
         if (!isBaseCodeRegistered) {
-            StatusCodeContainer.register(BASE_CODE, WebDriverStatusCode.class.getSimpleName());
+            StatusCodeRegistry.register(BASE_CODE, WebDriverStatusCode.class.getSimpleName());
             isBaseCodeRegistered = true;
         }
     }
