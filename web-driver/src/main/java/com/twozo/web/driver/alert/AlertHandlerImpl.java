@@ -1,5 +1,7 @@
 package com.twozo.web.driver.alert;
 
+import com.twozo.web.driver.service.AlertHandler;
+
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
@@ -18,20 +20,10 @@ import org.openqa.selenium.Alert;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Instantiate a AlertHandler using the WebAutomationDriver.
  * AlertHandler alertHandler = webAutomationDriver.getTargetLocator().getAlertHandler();
- *
- * // Dismiss the alert
  * alertHandler.dismiss();
- *
- * // Accept the alert
  * alertHandler.accept();
- *
- * // Get the text of the alert
- * String alertText = alertHandler.getText();
- * System.out.println("Alert Text: " + alertText);
- *
- * // Send keys to the alert
+ * String alertText = alertHandler.getText();*
  * alertHandler.sendKeys("Some text");
  * }</pre>
  * </p>

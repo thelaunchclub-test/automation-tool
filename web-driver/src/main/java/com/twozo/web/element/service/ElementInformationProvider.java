@@ -1,6 +1,6 @@
-package com.twozo.web.element.information;
+package com.twozo.web.element.service;
 
-import com.twozo.web.element.web.page.element.WebPageElement;
+import com.twozo.web.element.information.ElementInformationProviderImpl;
 
 import org.openqa.selenium.WebElement;
 
@@ -15,15 +15,14 @@ import org.openqa.selenium.WebElement;
  * Example usage:
  * <pre>
  * {@code
- * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
- * ElementInformation elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").getInformer();
- *
- * String tagName = elementInfo.getTagName(); // Gets the tag name of the element
- * String classAttribute = elementInfo.getAttribute("class"); // Gets the value of the 'class' attribute
- * boolean isSelected = elementInfo.isSelected(); // Checks if the element is selected
- * boolean isEnabled = elementInfo.isEnabled(); // Checks if the element is enabled
- * String text = elementInfo.getText(); // Gets the visible text of the element
- * boolean isDisplayed = elementInfo.isDisplayed(); // Checks if the element is displayed
+ * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
+ * ElementInformationProvider elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").getInformer();
+ * String tagName = elementInfo.getTagName();
+ * String classAttribute = elementInfo.getAttribute("class");
+ * boolean isSelected = elementInfo.isSelected();
+ * boolean isEnabled = elementInfo.isEnabled();
+ * String text = elementInfo.getText();
+ * boolean isDisplayed = elementInfo.isDisplayed();
  * }
  * </pre>
  * </p>
@@ -31,10 +30,10 @@ import org.openqa.selenium.WebElement;
  * @author Petchimuthu
  * @version 1.0
  */
-public interface ElementInformation {
+public interface ElementInformationProvider {
 
-    static ElementInformation getInstance(final WebElement element) {
-        return new ElementInformationImpl(element);
+    static ElementInformationProvider getInstance(final WebElement element) {
+        return new ElementInformationProviderImpl(element);
     }
 
     /**

@@ -11,7 +11,6 @@ import org.openqa.selenium.OutputType;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Assuming driver implements TakesScreenshot
  * TakesScreenshots screenshot = webAutomationDriver.getScreenshot(OutputType.FILE);
  * }</pre>
  * </p>

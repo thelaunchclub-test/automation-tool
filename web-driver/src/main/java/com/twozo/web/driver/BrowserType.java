@@ -11,27 +11,37 @@ package com.twozo.web.driver;
 enum BrowserType {
 
     /**
+     * <p>
      * Google Chrome browser.
+     * </p>
      */
     CHROME,
 
     /**
+     * <p>
      * Mozilla Firefox browser.
+     * </p>
      */
     FIREFOX,
 
     /**
+     * <p>
      * Apple Safari browser.
+     * </p>
      */
     SAFARI,
 
     /**
+     * <p>
      * Internet Explorer browser.
+     * </p>
      */
     INTERNET_EXPLORER,
 
     /**
+     * <p>
      * Microsoft Edge browser.
+     * </p>
      */
     EDGE;
 }

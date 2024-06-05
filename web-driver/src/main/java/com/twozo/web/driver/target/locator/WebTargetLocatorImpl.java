@@ -1,12 +1,14 @@
 package com.twozo.web.driver.target.locator;
 
-import com.twozo.web.driver.alert.AlertHandler;
-import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
+import com.twozo.web.driver.service.AlertHandler;
+import com.twozo.web.driver.service.WebTargetLocator;
+import com.twozo.web.driver.service.WebAutomationDriver;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.TargetLocator;
 import org.openqa.selenium.WindowType;
 
 /**
@@ -22,16 +24,9 @@ import org.openqa.selenium.WindowType;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Create a WebTargetLocator instance
  * WebTargetLocator targetLocator = webAutomationDriver.getWebTargetLocator();
- *
- * // Switch to a window by name
  * WebAutomationDriver window = targetLocator.getWindow("windowName");
- *
- * // Open a new window of a specified type
  * WebAutomationDriver newWindow = targetLocator.getNewWindow(WindowType.TAB);
- *
- * // Get the alert handler for handling browser alerts
  * AlertHandler alertHandler = targetLocator.getAlertHandler();
  * }</pre>
  * </p>
@@ -45,7 +40,7 @@ import org.openqa.selenium.WindowType;
 public final class WebTargetLocatorImpl implements WebTargetLocator {
 
     private final WebDriver driver;
-    private final WebDriver.TargetLocator targetLocator;
+    private final TargetLocator targetLocator;
 
     /**
      * {@inheritDoc}

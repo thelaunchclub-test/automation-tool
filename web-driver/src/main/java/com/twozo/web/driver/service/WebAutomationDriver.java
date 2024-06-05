@@ -1,13 +1,8 @@
-package com.twozo.web.driver.web.automation.driver;
+package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.navigation.WebNavigator;
-import com.twozo.web.driver.page.information.PageInformationProvider;
 import com.twozo.web.driver.screenshot.TakesScreenshots;
-import com.twozo.web.driver.target.locator.WebTargetLocator;
-import com.twozo.web.driver.waits.WaitHandler;
-import com.twozo.web.driver.window.WebWindow;
-import com.twozo.web.driver.window.info.WindowInfoProvider;
-import com.twozo.web.element.locator.ElementLocator;
+import com.twozo.web.driver.web.automation.driver.WebAutomationDriverImpl;
+import com.twozo.web.element.service.ElementFinder;
 
 import org.openqa.selenium.WebDriver;
 
@@ -20,21 +15,12 @@ import org.openqa.selenium.WebDriver;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Navigate to a specific URL
  * automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
- *
- * // Find and interact with web elements
- * WebPageElement element = automationDriver.getElementLocator().getWebPageElement(LocatorType.ID,"name"));
+ * WebPageElement element = automationDriver.getElementFinder().getWebPageElement(LocatorType.ID,"name"));
  * element.click();
- *
- * // Take a screenshot
  * File screenshot = automationDriver.getScreenshotAs(OutputType.FILE);
- *
- * // Perform window management operations
  * WebWindow window = automationDriver.getWebWindowHandler();
  * window.maximize();
- *
- * // Retrieve page information
  * String pageTitle = automationDriver.getPageInformationProvider().getTitle();
  * }</pre>
  * </p>
@@ -69,12 +55,12 @@ public interface WebAutomationDriver extends TakesScreenshots {
 
     /**
      * <p>
-     * Returns {@link ElementLocator} for finding web elements.
+     * Returns {@link ElementFinder} for finding web elements.
      * </p>
      *
-     * @return An {@link ElementLocator} for finding web elements.
+     * @return An {@link ElementFinder} for finding web elements.
      */
-    ElementLocator getElementLocator();
+    ElementFinder getElementFinder();
 
     /**
      * <p>

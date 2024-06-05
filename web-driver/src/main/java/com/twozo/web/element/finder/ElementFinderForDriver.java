@@ -1,6 +1,8 @@
-package com.twozo.web.element.locator;
+package com.twozo.web.element.finder;
 
-import com.twozo.web.element.web.page.element.WebPageElement;
+import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.locator.LocatorType;
+import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.element.web.page.element.WebPageElementImpl;
 
 import lombok.AllArgsConstructor;
@@ -12,16 +14,17 @@ import java.util.Collection;
 
 /**
  * <p>
- * Provides methods to find {@link WebPageElement}. Locates both single and multiple elements.
+ * Provides methods to find {@link WebPageElement} from {@link WebAutomationDriver}.
+ * Locates both single and multiple elements.
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
- * @see AbstractElementLocator
+ * @see AbstractElementFinder
  */
 @NonNull
 @AllArgsConstructor
-public final class ElementLocatorForDriver extends AbstractElementLocator {
+public final class ElementFinderForDriver extends AbstractElementFinder {
 
     private final WebDriver webDriver;
 

@@ -1,6 +1,6 @@
-package com.twozo.web.driver;
+package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
+import com.twozo.web.driver.DriverImpl;
 
 /**
  * <p>

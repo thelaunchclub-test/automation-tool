@@ -1,6 +1,8 @@
-package com.twozo.web.element.locator;
+package com.twozo.web.element.finder;
 
-import com.twozo.web.element.web.page.element.WebPageElement;
+import com.twozo.web.element.locator.LocatorType;
+import com.twozo.web.element.service.ElementFinder;
+import com.twozo.web.element.service.WebPageElement;
 
 import lombok.NonNull;
 
@@ -17,21 +19,20 @@ import java.util.Collection;
  * </p>
  *
  * <p>
- * The {@code AbstractElementLocator} provides common functionality
- * for finding web elements and converting them to {@link WebPageElement}.
+ * Provides common functionality for finding web elements and converting them to {@link WebPageElement}.
  * </p>
  *
  * <p>
  * Defines methods for converting {@link WebElement} to {@link WebPageElement}
- * and for finding web elements using different locator strategies specified by {@link By}.
+ * and for finding web page elements using different finding strategies specified by {@link By}.
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
- * @see ElementLocator
+ * @see ElementFinder
  */
 @NonNull
-public abstract class AbstractElementLocator implements ElementLocator {
+public abstract class AbstractElementFinder implements ElementFinder {
 
     /**
      * returns a {@link WebPageElement} based on the given locator type and value.

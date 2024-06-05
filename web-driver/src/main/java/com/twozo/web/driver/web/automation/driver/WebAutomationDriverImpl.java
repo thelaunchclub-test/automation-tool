@@ -1,14 +1,15 @@
 package com.twozo.web.driver.web.automation.driver;
 
-import com.twozo.web.driver.Driver;
-import com.twozo.web.driver.navigation.WebNavigator;
-import com.twozo.web.driver.page.information.PageInformationProvider;
-import com.twozo.web.driver.screenshot.TakesScreenshots;
-import com.twozo.web.driver.target.locator.WebTargetLocator;
-import com.twozo.web.driver.waits.WaitHandler;
-import com.twozo.web.driver.window.WebWindow;
-import com.twozo.web.driver.window.info.WindowInfoProvider;
-import com.twozo.web.element.locator.ElementLocator;
+import com.twozo.web.driver.service.Driver;
+import com.twozo.web.driver.service.PageInformationProvider;
+import com.twozo.web.driver.service.WaitHandler;
+import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.driver.service.WebNavigator;
+import com.twozo.web.driver.service.WebTargetLocator;
+import com.twozo.web.driver.service.WebWindow;
+import com.twozo.web.driver.service.WindowInfoProvider;
+
+import com.twozo.web.element.service.ElementFinder;
 
 import lombok.NonNull;
 import lombok.Value;
@@ -26,21 +27,12 @@ import org.openqa.selenium.WebDriver;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Navigate to a specific URL
  * automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
- *
- * // Find and interact with web elements
- * WebPageElement element = automationDriver.getElementLocator().getWebPageElement(LocatorType.ID,"name"));
+ * WebPageElement element = automationDriver.getElementFinder().getWebPageElement(LocatorType.ID,"name"));
  * element.click();
- *
- * // Take a screenshot
  * File screenshot = automationDriver.getScreenshotAs(OutputType.FILE);
- *
- * // Perform window management operations
  * WebWindow window = automationDriver.getWebWindowHandler();
  * window.maximize();
- *
- * // Retrieve page information
  * String pageTitle = automationDriver.getPageInformationProvider().getTitle();
  * }</pre>
  * </p>
@@ -61,14 +53,14 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     WindowInfoProvider windowInfoProvider;
     WaitHandler waitHandler;
     TakesScreenshot takesScreenshots;
-    ElementLocator elementLocator;
+    ElementFinder elementFinder;
     Driver driverProvider;
 
     public WebAutomationDriverImpl(final WebDriver driver) {
         this.driver = driver;
         this.webNavigator = WebNavigator.getInstance(driver.navigate());
         this.pageInformationProvider = PageInformationProvider.getInstance(driver);
-        this.elementLocator = ElementLocator.getInstance(driver);
+        this.elementFinder = ElementFinder.getInstance(driver);
         this.webTargetLocator = WebTargetLocator.getInstance(driver, driver.switchTo());
         this.webWindow = WebWindow.getInstance(driver.manage().window());
         this.windowInfoProvider = WindowInfoProvider.getInstance(driver);
@@ -101,11 +93,10 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementLocator} for finding web elements.
+     * @return An {@link ElementFinder} for finding web elements.
      */
-    @Override
-    public ElementLocator getElementLocator() {
-        return elementLocator;
+    public ElementFinder getElementFinder() {
+        return elementFinder;
     }
 
     /**

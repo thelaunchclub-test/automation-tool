@@ -1,6 +1,8 @@
-package com.twozo.web.driver.navigation;
+package com.twozo.web.driver.service;
 
-import org.openqa.selenium.WebDriver;
+import com.twozo.web.driver.navigation.WebNavigatorImpl;
+
+import org.openqa.selenium.WebDriver.Navigation;
 
 /**
  * <p>
@@ -15,19 +17,10 @@ import org.openqa.selenium.WebDriver;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Instantiate a WebNavigator using the WebAutomationDriver.
  * WebNavigator webNavigator = webAutomationDriver.getWebNavigator();
- *
- * // Navigate back to the previous page
  * webNavigator.back();
- *
- * // Navigate forward to the next page
  * webNavigator.forward();
- *
- * // Navigate to a specific URL
  * webNavigator.to("https://www.example.com");
- *
- * // Refresh the current page
  * webNavigator.refresh();
  * }</pre>
  * </p>
@@ -37,7 +30,7 @@ import org.openqa.selenium.WebDriver;
  */
 public interface WebNavigator {
 
-    static WebNavigator getInstance(final WebDriver.Navigation navigation) {
+    static WebNavigator getInstance(final Navigation navigation) {
         return new WebNavigatorImpl(navigation);
     }
 

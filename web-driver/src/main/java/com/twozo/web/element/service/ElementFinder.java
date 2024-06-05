@@ -1,6 +1,8 @@
-package com.twozo.web.element.locator;
+package com.twozo.web.element.service;
 
-import com.twozo.web.element.web.page.element.WebPageElement;
+import com.twozo.web.element.finder.ElementFinderForDriver;
+import com.twozo.web.element.finder.ElementFinderForElement;
+import com.twozo.web.element.locator.LocatorType;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +17,7 @@ import java.util.Collection;
  * </p>
  *
  * <p>
- * The {@code ElementLocator} defines methods for finding web page elements based on a specified {@link By} locator.
+ * Defines methods for finding web page elements based on a specified {@link By} locator.
  * Provides flexibility to locate either a single element or multiple elements on a web page.
  * </p>
  *
@@ -23,20 +25,14 @@ import java.util.Collection;
  * Example usage:
  * <pre>
  * {@code
- * // Create an instance of ElementLocator.
- * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
- *
- * // Locate a single web page element by ID
+ * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
  * WebPageElement singleElement = elementLocator.getWebPageElement(LocatorType.ID, "element-id");
- *
- * // Locate multiple web page elements by class name
- * Collection<WebPageElement> multipleElements = elementLocator.getWebPageElements(LocatorType.CLASS_NAME, "element-class");
- *
- * // Locate a web page element below another element
- * WebPageElement elementBelow = elementLocator.withBelowElement(LocatorType.CSS_SELECTOR, "below-element-css", LocatorType.ID, "above-element-id");
- *
- * // Locate a web page element near another element
- * WebPageElement elementNear = elementLocator.withNearElement(LocatorType.NAME, "near-element-name", LocatorType.XPATH, "reference-element-xpath");
+ * Collection<WebPageElement> multipleElements = elementLocator.getWebPageElements
+ *                                          (LocatorType.CLASS_NAME, "element-class");
+ * WebPageElement elementBelow = elementLocator.withBelowElement(LocatorType.CSS_SELECTOR, "below-element-css",
+ *                                          LocatorType.ID, "above-element-id");
+ * WebPageElement elementNear = elementLocator.withNearElement(LocatorType.NAME, "near-element-name",
+ *                                          LocatorType.XPATH, "reference-element-xpath");
  * }
  * </pre>
  * </p>
@@ -44,12 +40,12 @@ import java.util.Collection;
  * @author Petchimuthu
  * @version 1.0
  */
-public interface ElementLocator {
+public interface ElementFinder {
 
-    static ElementLocator getInstance(final Object value) {
+    static ElementFinder getInstance(final Object value) {
         return switch (value) {
-            case WebDriver webDriver -> new ElementLocatorForDriver(webDriver);
-            case WebElement webElement -> new ElementLocatorForElement(webElement);
+            case WebDriver webDriver -> new ElementFinderForDriver(webDriver);
+            case WebElement webElement -> new ElementFinderForElement(webElement);
             default -> throw new IllegalArgumentException("Unsupported type ");
         };
     }

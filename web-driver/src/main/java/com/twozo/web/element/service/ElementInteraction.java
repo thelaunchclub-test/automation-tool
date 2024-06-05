@@ -1,6 +1,6 @@
-package com.twozo.web.element.interaction;
+package com.twozo.web.element.service;
 
-import com.twozo.web.element.web.page.element.WebPageElement;
+import com.twozo.web.element.interaction.ElementInteractionImpl;
 
 import org.openqa.selenium.WebElement;
 
@@ -13,12 +13,11 @@ import org.openqa.selenium.WebElement;
  * Example usage:
  * <pre>
  * {@code
- * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
+ * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
  * ElementInteraction elementInteraction = elementLocator.getWebPageElement(LocatorType.Id,"id").interact();
- *
- * elementInteraction.click(); // Simulates a mouse click on the element
- * elementInteraction.submit(); // Submits a form if the element is a form element
- * elementInteraction.sendKeys("text to send"); // Sends the specified keys to the element
+ * elementInteraction.click();
+ * elementInteraction.submit();
+ * elementInteraction.sendKeys("text to send");
  * }
  * </pre>
  * </p>

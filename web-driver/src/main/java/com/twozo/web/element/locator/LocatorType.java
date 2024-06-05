@@ -1,7 +1,9 @@
 package com.twozo.web.element.locator;
 
 /**
+ * <p>
  * Represents different types of locators for web elements.
+ * </p>
  *
  * @author Petchimuthu
  * @version 1.0

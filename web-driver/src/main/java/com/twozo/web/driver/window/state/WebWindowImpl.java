@@ -1,9 +1,12 @@
-package com.twozo.web.driver.window;
+package com.twozo.web.driver.window.state;
+
+import com.twozo.web.driver.service.WebWindow;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Window;
+
 
 /**
  * <p>
@@ -15,14 +18,8 @@ import org.openqa.selenium.WebDriver;
  * Example usage:
  * <pre>{@code
  * WebWindow webWindow = webAutomationDriver.getWebWindow();
- *
- * // Maximize the browser window
  * webWindow.maximize();
- *
- * // Minimize the browser window
  * webWindow.minimize();
- *
- * // Toggle fullscreen mode for the browser window
  * webWindow.fullscreen();
  * }</pre>
  * </p>
@@ -35,7 +32,7 @@ import org.openqa.selenium.WebDriver;
 @AllArgsConstructor
 public final class WebWindowImpl implements WebWindow {
 
-    private final WebDriver.Window window;
+    private final Window window;
 
     /**
      * {@inheritDoc}

@@ -1,5 +1,7 @@
 package com.twozo.web.driver.page.information;
 
+import com.twozo.web.driver.service.PageInformationProvider;
+
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
@@ -17,23 +19,12 @@ import org.openqa.selenium.WebDriver;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Instantiate a PageInformationProvider using the WebAutomationDriver.
  * PageInformationProvider pageInformationProvider = webAutomationDriver.getPageInformationProvider();
- *
- * // Navigate to a specific URL
  * pageInformationProvider.get("https://www.example.com");
- *
- * // Get the current URL
  * String currentUrl = pageInformationProvider.getCurrentUrl();
  * System.out.println("Current URL: " + currentUrl);
- *
- * // Get the title of the current web page
  * String pageTitle = pageInformationProvider.getTitle();
- * System.out.println("Page Title: " + pageTitle);
- *
- * // Get the page source
  * String pageSource = pageInformationProvider.getPageSource();
- * System.out.println("Page Source: " + pageSource);
  * }</pre>
  * </p>
  *

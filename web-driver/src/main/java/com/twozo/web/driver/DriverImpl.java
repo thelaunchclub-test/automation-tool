@@ -1,7 +1,8 @@
 package com.twozo.web.driver;
 
 import com.twozo.commons.util.PropertyFileReader;
-import com.twozo.web.driver.web.automation.driver.WebAutomationDriver;
+import com.twozo.web.driver.service.Driver;
+import com.twozo.web.driver.service.WebAutomationDriver;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;

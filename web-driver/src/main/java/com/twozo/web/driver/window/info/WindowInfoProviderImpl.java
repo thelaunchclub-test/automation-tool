@@ -1,5 +1,7 @@
 package com.twozo.web.driver.window.info;
 
+import com.twozo.web.driver.service.WindowInfoProvider;
+
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
@@ -17,11 +19,7 @@ import java.util.Set;
  * Example usage:
  * <pre>{@code
  * WindowInfoProvider windowInfoProvider = webAutomationDriver.getWindowInfoProvider();
- *
- * // Get handles of all currently open windows
  * Set<String> windowHandles = windowInfoProvider.getWindowHandles();
- *
- * // Get the handle of the currently focused window
  * String currentWindowHandle = windowInfoProvider.getWindowHandle();
  * }</pre>
  * </p>

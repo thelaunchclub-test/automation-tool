@@ -1,9 +1,10 @@
 package com.twozo.web.element.web.page.element;
 
-import com.twozo.web.element.locator.ElementLocator;
-import com.twozo.web.element.information.ElementInformation;
-import com.twozo.web.element.interaction.ElementInteraction;
+import com.twozo.web.element.service.ElementFinder;
+import com.twozo.web.element.service.ElementInformationProvider;
+import com.twozo.web.element.service.ElementInteraction;
 
+import com.twozo.web.element.service.WebPageElement;
 import lombok.NonNull;
 import lombok.Value;
 
@@ -19,17 +20,11 @@ import org.openqa.selenium.WebElement;
  * Example usage:
  * <pre>
  * {@code
- * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
- * WebPageElement webPageElement = elementLocator.getWebPageElement(LocatorType.Id,"id");
- *
- * // Get an ElementLocator specific to the context of the WebPageElement
- * ElementLocator locator = webPageElement.getElementLocator();
- *
- * // Get an ElementInteraction for performing actions on the WebPageElement
+ * ElementFinder elementFinder = webAutomationDriver.getElementFinder();
+ * WebPageElement webPageElement = elementFinder.getWebPageElement(LocatorType.Id,"id");
+ * ElementFinder locator = webPageElement.getElementFinder();
  * ElementInteraction interaction = webPageElement.interact();
- *
- * // Get an ElementInformation for retrieving information about the WebPageElement
- * ElementInformation information = webPageElement.getInformer();
+ * ElementInformationProvider information = webPageElement.getInformer();
  * }
  * </pre>
  * </p>
@@ -43,23 +38,22 @@ import org.openqa.selenium.WebElement;
 public class WebPageElementImpl implements WebPageElement {
 
     ElementInteraction elementInteraction;
-    ElementInformation elementInformation;
-    ElementLocator elementLocator;
+    ElementInformationProvider elementInformation;
+    ElementFinder elementFinder;
 
     public WebPageElementImpl(final WebElement webElement) {
         this.elementInteraction = ElementInteraction.getInstance(webElement);
-        this.elementInformation = ElementInformation.getInstance(webElement);
-        this.elementLocator = ElementLocator.getInstance(webElement);
+        this.elementInformation = ElementInformationProvider.getInstance(webElement);
+        this.elementFinder = ElementFinder.getInstance(webElement);
     }
 
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementLocator} for further element search within the element.
+     * @return An {@link ElementFinder} for further element search within the element.
      */
-    @Override
-    public ElementLocator getElementLocator() {
-        return elementLocator;
+    public ElementFinder getElementFinder() {
+        return elementFinder;
     }
 
     /**
@@ -75,10 +69,10 @@ public class WebPageElementImpl implements WebPageElement {
     /**
      * {@inheritDoc}
      *
-     * @return An {@link ElementInformation} for getting information about the element.
+     * @return An {@link ElementInformationProvider} for getting information about the element.
      */
     @Override
-    public ElementInformation getInformer() {
+    public ElementInformationProvider getElementInformationProvider() {
         return elementInformation;
     }
 }

@@ -1,4 +1,6 @@
-package com.twozo.web.driver.window;
+package com.twozo.web.driver.service;
+
+import com.twozo.web.driver.window.state.WebWindowImpl;
 
 import org.openqa.selenium.WebDriver;
 
@@ -12,14 +14,8 @@ import org.openqa.selenium.WebDriver;
  * Example usage:
  * <pre>{@code
  * WebWindow webWindow = webAutomationDriver.getWebWindow();
- *
- * // Maximize the browser window
  * webWindow.maximize();
- *
- * // Minimize the browser window
  * webWindow.minimize();
- *
- * // Toggle fullscreen mode for the browser window
  * webWindow.fullscreen();
  * }</pre>
  * </p>

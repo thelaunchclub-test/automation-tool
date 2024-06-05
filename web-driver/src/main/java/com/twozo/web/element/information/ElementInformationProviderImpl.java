@@ -1,6 +1,7 @@
 package com.twozo.web.element.information;
 
-import com.twozo.web.element.web.page.element.WebPageElement;
+import com.twozo.web.element.service.ElementInformationProvider;
+import com.twozo.web.element.service.WebPageElement;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -18,26 +19,27 @@ import org.openqa.selenium.WebElement;
  * Example usage:
  * <pre>
  * {@code
- * ElementLocator elementLocator = webAutomationDriver.getElementLocator();
- * ElementInformation elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").getInformer();
+ * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
+ * ElementInformationProvider elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").
+ *                                              getElementInformationProvider();
  *
- * String tagName = elementInfo.getTagName(); // Gets the tag name of the element
- * String classAttribute = elementInfo.getAttribute("class"); // Gets the value of the 'class' attribute
- * boolean isSelected = elementInfo.isSelected(); // Checks if the element is selected
- * boolean isEnabled = elementInfo.isEnabled(); // Checks if the element is enabled
- * String text = elementInfo.getText(); // Gets the visible text of the element
- * boolean isDisplayed = elementInfo.isDisplayed(); // Checks if the element is displayed
+ * String tagName = elementInfo.getTagName();
+ * String classAttribute = elementInfo.getAttribute("class");
+ * boolean isSelected = elementInfo.isSelected();
+ * boolean isEnabled = elementInfo.isEnabled();
+ * String text = elementInfo.getText();
+ * boolean isDisplayed = elementInfo.isDisplayed();
  * }
  * </pre>
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
- * @see ElementInformation
+ * @see ElementInformationProvider
  */
 @NonNull
 @AllArgsConstructor
-public final class ElementInformationImpl implements ElementInformation {
+public final class ElementInformationProviderImpl implements ElementInformationProvider {
 
     private final WebElement element;
 

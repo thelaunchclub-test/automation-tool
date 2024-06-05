@@ -1,4 +1,6 @@
-package com.twozo.web.driver.alert;
+package com.twozo.web.driver.service;
+
+import com.twozo.web.driver.alert.AlertHandlerImpl;
 
 import org.openqa.selenium.Alert;
 
@@ -15,20 +17,10 @@ import org.openqa.selenium.Alert;
  * <p>
  * Example usage:
  * <pre>{@code
- * // Instantiate a AlertHandler using the WebAutomationDriver.
  * AlertHandler alertHandler = webAutomationDriver.getTargetLocator().getAlertHandler();
- *
- * // Dismiss the alert
  * alertHandler.dismiss();
- *
- * // Accept the alert
  * alertHandler.accept();
- *
- * // Get the text of the alert
  * String alertText = alertHandler.getText();
- * System.out.println("Alert Text: " + alertText);
- *
- * // Send keys to the alert
  * alertHandler.sendKeys("Some text");
  * }</pre>
  * </p>

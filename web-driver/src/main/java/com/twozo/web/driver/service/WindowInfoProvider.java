@@ -1,4 +1,6 @@
-package com.twozo.web.driver.window.info;
+package com.twozo.web.driver.service;
+
+import com.twozo.web.driver.window.info.WindowInfoProviderImpl;
 
 import org.openqa.selenium.WebDriver;
 
@@ -14,11 +16,7 @@ import java.util.Set;
  * Example usage:
  * <pre>{@code
  * WindowInfoProvider windowInfoProvider = webAutomationDriver.getWindowInfoProvider();
- *
- * // Get handles of all currently open windows
  * Set<String> windowHandles = windowInfoProvider.getWindowHandles();
- *
- * // Get the handle of the currently focused window
  * String currentWindowHandle = windowInfoProvider.getWindowHandle();
  * }</pre>
  * </p>

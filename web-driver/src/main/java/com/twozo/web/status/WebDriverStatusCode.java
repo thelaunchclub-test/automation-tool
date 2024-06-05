@@ -20,10 +20,10 @@ import com.twozo.commons.exception.registry.StatusCodeRegistry;
  * <pre>
  * {@code
  * // Throwing an ELEMENT_CLICK_INTERCEPTED exception
- * throw StatusCode.get(WebDriverStatusCode.ELEMENT_CLICK_INTERCEPTED);
+ * throw TestException.get(WebDriverStatusCode.ELEMENT_CLICK_INTERCEPTED);
  *
  * // Throwing a ELEMENT_NOT_VISIBLE exception
- * throw StatusCode.get(WebDriverStatusCode.ELEMENT_NOT_VISIBLE);
+ * throw TestException.get(WebDriverStatusCode.ELEMENT_NOT_VISIBLE);
  * }
  * </pre>
  * </p>
