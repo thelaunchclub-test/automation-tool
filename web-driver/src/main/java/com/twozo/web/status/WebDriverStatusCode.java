@@ -19,10 +19,7 @@ import com.twozo.commons.exception.registry.StatusCodeRegistry;
  * Example usage:
  * <pre>
  * {@code
- * // Throwing an ELEMENT_CLICK_INTERCEPTED exception
  * throw TestException.get(WebDriverStatusCode.ELEMENT_CLICK_INTERCEPTED);
- *
- * // Throwing a ELEMENT_NOT_VISIBLE exception
  * throw TestException.get(WebDriverStatusCode.ELEMENT_NOT_VISIBLE);
  * }
  * </pre>

@@ -19,14 +19,15 @@ import org.openqa.selenium.OutputType;
  * @version 1.0
  */
 public interface TakesScreenshots {
+
     /**
      * <p>
      * Captures a screenshot and returns it in the specified target format.
      * </p>
      *
-     * @param target the desired output type of the screenshot.
+     * @param outputType the desired output type of the screenshot.
      * @param <X>    the type of the screenshot output.
      * @return the screenshot in the specified format.
      */
-    <X> X getScreenshotAs(final OutputType<X> target);
+    <X> X getScreenshotAs(final OutputType<X> outputType);
 }

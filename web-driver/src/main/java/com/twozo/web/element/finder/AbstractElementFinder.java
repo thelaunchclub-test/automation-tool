@@ -35,7 +35,9 @@ import java.util.Collection;
 public abstract class AbstractElementFinder implements ElementFinder {
 
     /**
+     * <p>
      * returns a {@link WebPageElement} based on the given locator type and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -44,7 +46,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
     public abstract WebPageElement getWebPageElement(final LocatorType locatorType, final String value);
 
     /**
+     * <p>
      * Returns a {@link Collection} of {@link WebPageElement} based on the given locator type and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -53,7 +57,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
     public abstract Collection<WebPageElement> getWebPageElements(final LocatorType locatorType, final String value);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located below another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -65,7 +71,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located above another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -77,7 +85,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located to the left of another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -89,7 +99,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located to the right of another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -101,7 +113,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located near another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -113,7 +127,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * Returns a {@link RelativeLocator.RelativeBy} based on the specified locator type and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -124,7 +140,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
     }
 
     /**
+     * <p>
      * Returns {@link RelativeLocator.RelativeBy} based on the specified {@link LocatorType} and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -144,7 +162,9 @@ public abstract class AbstractElementFinder implements ElementFinder {
     }
 
     /**
+     * <p>
      * Retrieves a {@link By} based on the specified {@link LocatorType} and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -164,8 +184,10 @@ public abstract class AbstractElementFinder implements ElementFinder {
     }
 
     /**
+     * <p>
      * Retrieves a {@link Collection} of {@link WebPageElement} from the provided
      * {@link Collection} of {@link WebElement}.
+     * </p>
      *
      * @param webElements The {@link Collection} of {@link WebElement} .
      * @return A {@link Collection} of {@link WebPageElement}.

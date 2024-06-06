@@ -162,11 +162,11 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @param target The target type into which to convert the screenshot.
+     * @param outputType The target type into which to convert the screenshot.
      * @return A screenshot of the current page.
      */
     @Override
-    public <X> X getScreenshotAs(final OutputType<X> target) {
-        return takesScreenshots.getScreenshotAs(target);
+    public <X> X getScreenshotAs(final OutputType<X> outputType) {
+        return takesScreenshots.getScreenshotAs(outputType);
     }
 }

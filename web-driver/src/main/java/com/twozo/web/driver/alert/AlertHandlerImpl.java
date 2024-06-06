@@ -23,7 +23,7 @@ import org.openqa.selenium.Alert;
  * AlertHandler alertHandler = webAutomationDriver.getTargetLocator().getAlertHandler();
  * alertHandler.dismiss();
  * alertHandler.accept();
- * String alertText = alertHandler.getText();*
+ * String alertText = alertHandler.getText();
  * alertHandler.sendKeys("Some text");
  * }</pre>
  * </p>

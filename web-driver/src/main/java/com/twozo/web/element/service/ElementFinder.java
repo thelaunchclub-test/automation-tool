@@ -51,7 +51,9 @@ public interface ElementFinder {
     }
 
     /**
+     * <p>
      * returns a {@link WebPageElement} based on the given locator type and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -60,7 +62,9 @@ public interface ElementFinder {
     WebPageElement getWebPageElement(final LocatorType locatorType, final String value);
 
     /**
+     * <p>
      * Returns a {@link Collection} of {@link WebPageElement} based on the given locator type and value.
+     * </p>
      *
      * @param locatorType the type of locator to use.
      * @param value       the value of the locator.
@@ -69,7 +73,9 @@ public interface ElementFinder {
     Collection<WebPageElement> getWebPageElements(final LocatorType locatorType, final String value);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located below another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -81,7 +87,9 @@ public interface ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located above another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -93,7 +101,9 @@ public interface ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located to the left of another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -105,7 +115,9 @@ public interface ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located to the right of another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.
@@ -117,7 +129,9 @@ public interface ElementFinder {
             knownLocatorType, final String knownValue);
 
     /**
+     * <p>
      * returns a {@link WebPageElement} located near another element.
+     * </p>
      *
      * @param locatorType      the type of locator to use for the target element.
      * @param value            the value of the locator for the target element.

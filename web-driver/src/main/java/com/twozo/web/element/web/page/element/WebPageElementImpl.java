@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * The {@code WebPageElement} provides various services related to {@link WebPageElement}.
+ * Provides various services related to {@link WebPageElement}.
  * Such as interaction, information retrieval, and element finding functionalities.
  * </p>
  *
