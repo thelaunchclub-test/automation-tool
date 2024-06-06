@@ -1,7 +1,7 @@
-package com.twozo.commons.exception.status;
+package com.twozo.commons.exception.registry;
 
 import com.twozo.commons.exception.TestException;
-
+import com.twozo.commons.exception.status.CommonsStatusCode;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Value;
@@ -24,8 +24,8 @@ import java.util.Objects;
  * Usage example:
  * <pre>
  * {@code
- * StatusCodeContainer.register(1000, "WebDriverException");
- * String enumName = StatusCodeContainer.get(1000);
+ * StatusCodeRegistry.register(1000, "WebDriverException");
+ * String exception = StatusCodeRegistry.get(1000);
  * }
  * </pre>
  * </p>
@@ -35,9 +35,9 @@ import java.util.Objects;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Value
-public class StatusCodeContainer {
+public class StatusCodeRegistry {
 
-    private static final Map<Integer, String> STATUS_CODE_CONTAINER = new HashMap<>();
+    private static final Map<Integer, String> STATUS_CODE_REGISTRY = new HashMap<>();
 
     /**
      * <p>
@@ -59,7 +59,7 @@ public class StatusCodeContainer {
         final String specificException = get(baseCode);
 
         if (Objects.isNull(specificException) || specificException.equals(exception)) {
-            STATUS_CODE_CONTAINER.put(baseCode, exception);
+            STATUS_CODE_REGISTRY.put(baseCode, exception);
         } else {
             throw TestException.get(CommonsStatusCode.BASE_CODE_ALREADY_REGISTERED, "BaseCode is already assigned");
         }
@@ -79,6 +79,6 @@ public class StatusCodeContainer {
      * @return the {@link TestException} name associated with the given baseCode, or null if the baseCode is not registered
      */
     public static String get(final int baseCode) {
-        return STATUS_CODE_CONTAINER.get(baseCode);
+        return STATUS_CODE_REGISTRY.get(baseCode);
     }
 }

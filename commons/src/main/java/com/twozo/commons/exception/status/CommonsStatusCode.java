@@ -1,5 +1,7 @@
 package com.twozo.commons.exception.status;
 
+import com.twozo.commons.exception.provider.StatusCodeProvider;
+import com.twozo.commons.exception.registry.StatusCodeRegistry;
 import com.twozo.commons.exception.service.StatusCode;
 
 /**
@@ -17,11 +19,7 @@ import com.twozo.commons.exception.service.StatusCode;
  * Example usage:
  * <pre>
  * {@code
- * // Throwing an INVALID_BASE_CODE_VALUE status
  * throw TestException.get(CommonsStatusCode.INVALID_BASE_CODE_VALUE);
- *
- * // Throwing a BASE_CODE_VALUE_ALREADY_REGISTERED status
- * throw TestException.get(CommonsStatusCode.BASE_CODE_VALUE_ALREADY_REGISTERED);
  * }
  * </pre>
  * </p>
@@ -55,8 +53,9 @@ public enum CommonsStatusCode implements StatusCode {
      * </p>
      */
     private static void register() {
+
         if (!isBaseCodeRegistered) {
-            StatusCodeContainer.register(BASE_CODE, CommonsStatusCode.class.getSimpleName());
+            StatusCodeRegistry.register(BASE_CODE, CommonsStatusCode.class.getSimpleName());
             isBaseCodeRegistered = true;
         }
     }

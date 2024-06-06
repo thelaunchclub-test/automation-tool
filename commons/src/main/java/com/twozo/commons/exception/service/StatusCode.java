@@ -17,11 +17,7 @@ package com.twozo.commons.exception.service;
  * Example usage:
  * <pre>
  * {@code
- * // Throwing an INVALID_BASE_CODE_VALUE status
  * throw TestException.get(CommonsStatusCode.INVALID_BASE_CODE_VALUE);
- *
- * // Throwing a ELEMENT_NOT_VISIBLE status
- * throw TestException.get(WebDriverStatusCode.ELEMENT_NOT_VISIBLE);
  * }
  * </pre>
  * </p>

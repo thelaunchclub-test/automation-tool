@@ -1,7 +1,6 @@
 package com.twozo.commons.exception;
 
 import com.twozo.commons.exception.service.StatusCode;
-
 import lombok.AllArgsConstructor;
 
 /**
@@ -19,11 +18,7 @@ import lombok.AllArgsConstructor;
  * Example usage:
  * <pre>
  * {@code
- * // Throwing an INVALID_BASE_CODE_VALUE status
  * throw TestException.get(CommonsStatusCode.INVALID_BASE_CODE_VALUE);
- *
- * // Throwing a BASE_CODE_VALUE_ALREADY_REGISTERED status
- * throw TestException.get(CommonsStatusCode.BASE_CODE_VALUE_ALREADY_REGISTERED);
  * }
  * </pre>
  * </p>
