@@ -1,8 +1,8 @@
 package com.twozo.commons.exception.registry;
 
 import com.twozo.commons.exception.TestException;
-
 import com.twozo.commons.exception.status.CommonsStatusCode;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Value;
@@ -26,7 +26,7 @@ import java.util.Objects;
  * <pre>
  * {@code
  * StatusCodeRegistry.register(1000, "WebDriverException");
- * String enumName = StatusCodeRegistry.get(1000);
+ * String exception = StatusCodeRegistry.get(1000);
  * }
  * </pre>
  * </p>
