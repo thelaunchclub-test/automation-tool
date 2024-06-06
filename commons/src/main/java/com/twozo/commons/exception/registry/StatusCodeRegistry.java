@@ -2,6 +2,7 @@ package com.twozo.commons.exception.registry;
 
 import com.twozo.commons.exception.TestException;
 import com.twozo.commons.exception.status.CommonsStatusCode;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.Value;
