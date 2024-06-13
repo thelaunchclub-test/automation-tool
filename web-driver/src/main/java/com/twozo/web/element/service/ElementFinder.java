@@ -29,9 +29,9 @@ import java.util.Collection;
  * WebPageElement singleElement = elementLocator.getWebPageElement(LocatorType.ID, "element-id");
  * Collection<WebPageElement> multipleElements = elementLocator.getWebPageElements
  *                                          (LocatorType.CLASS_NAME, "element-class");
- * WebPageElement elementBelow = elementLocator.withBelowElement(LocatorType.CSS_SELECTOR, "below-element-css",
+ * WebPageElement elementBelow = elementLocator.findBelowElement(LocatorType.CSS_SELECTOR, "below-element-css",
  *                                          LocatorType.ID, "above-element-id");
- * WebPageElement elementNear = elementLocator.withNearElement(LocatorType.NAME, "near-element-name",
+ * WebPageElement elementNear = elementLocator.findNearElement(LocatorType.NAME, "near-element-name",
  *                                          LocatorType.XPATH, "reference-element-xpath");
  * }
  * </pre>
@@ -83,7 +83,7 @@ public interface ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType
+    WebPageElement findBelowElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -97,7 +97,7 @@ public interface ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType
+    WebPageElement findAboveElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -111,7 +111,7 @@ public interface ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType
+    WebPageElement findLeftElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -125,7 +125,7 @@ public interface ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType
+    WebPageElement findRightElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -139,6 +139,6 @@ public interface ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType
+    WebPageElement findNearElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 }

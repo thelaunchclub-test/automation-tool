@@ -67,7 +67,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    public abstract WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType
+    public abstract WebPageElement findBelowElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -81,7 +81,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    public abstract WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType
+    public abstract WebPageElement findAboveElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -95,7 +95,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    public abstract WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType
+    public abstract WebPageElement findLeftElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -109,7 +109,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    public abstract WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType
+    public abstract WebPageElement findRightElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**
@@ -123,7 +123,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param knownValue       the value of the locator for the known element.
      * @return a {@link WebPageElement} representing the located web page element.
      */
-    public abstract WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType
+    public abstract WebPageElement findNearElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue);
 
     /**

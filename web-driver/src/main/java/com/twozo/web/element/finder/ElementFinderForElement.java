@@ -61,7 +61,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement withBelowElement(final LocatorType locatorType, final String value, final LocatorType
+    public WebPageElement findBelowElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue) {
         return new WebPageElementImpl(element.findElement(with(locatorType, value).
                 below(getByValue(knownLocatorType, knownValue))));
@@ -77,7 +77,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement withAboveElement(final LocatorType locatorType, final String value, final LocatorType
+    public WebPageElement findAboveElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue) {
         return new WebPageElementImpl(element.findElement(with(locatorType, value).
                 above(getByValue(knownLocatorType, knownValue))));
@@ -93,7 +93,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement withLeftElement(final LocatorType locatorType, final String value, final LocatorType
+    public WebPageElement findLeftElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue) {
         return new WebPageElementImpl(element.findElement(with(locatorType, value).
                 toLeftOf(getByValue(knownLocatorType, knownValue))));
@@ -109,7 +109,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement withRightElement(final LocatorType locatorType, final String value, final LocatorType
+    public WebPageElement findRightElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue) {
         return new WebPageElementImpl(element.findElement(with(locatorType, value).
                 toRightOf(getByValue(knownLocatorType, knownValue))));
@@ -125,7 +125,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement withNearElement(final LocatorType locatorType, final String value, final LocatorType
+    public WebPageElement findNearElement(final LocatorType locatorType, final String value, final LocatorType
             knownLocatorType, final String knownValue) {
         return new WebPageElementImpl(element.findElement(with(locatorType, value).
                 near(getByValue(knownLocatorType, knownValue))));
