@@ -10,7 +10,7 @@ import java.util.Properties;
  * provides methods to retrieve key-value pairs from a configuration file.
  * </p>
  *
- * @author petchimuthu1520
+ * @author Petchimuthu
  * @version 1.0
  */
 public final class PropertyFileReader {
