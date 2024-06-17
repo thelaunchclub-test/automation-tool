@@ -13,8 +13,8 @@ import org.openqa.selenium.WebElement;
  * Example usage:
  * <pre>
  * {@code
- * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
- * ElementInteraction elementInteraction = elementLocator.getWebPageElement(LocatorType.Id,"id").interact();
+ * ElementFinder elementFinder = webAutomationDriver.getElementFinder();
+ * ElementInteraction elementInteraction = elementFinder.getWebPageElement(LocatorType.Id,"id").interact();
  * elementInteraction.click();
  * elementInteraction.submit();
  * elementInteraction.sendKeys("text to send");

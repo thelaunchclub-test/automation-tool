@@ -1,21 +1,21 @@
 package com.twozo.web.element.service;
 
 import com.twozo.web.element.web.page.element.WebPageElementImpl;
+
 import org.openqa.selenium.WebElement;
 
 /**
  * <p>
- * Provides various services related to {@link WebPageElement}. Such as interaction, information
- * retrieval, and element finding functionalities.
+ * Provides various services related to {@link WebPageElement}.
+ * Such as interaction, information retrieval, and element finding functionalities.
  * </p>
  *
  * <p>
  * Example usage:
  * <pre>
  * {@code
- * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
- * WebPageElement webPageElement = elementLocator.getWebPageElement(LocatorType.Id,"id");
- * ElementFinder locator = webPageElement.getElementFinder();
+ * ElementFinder elementFinder = webAutomationDriver.getElementFinder();
+ * WebPageElement webPageElement = elementFinder.getWebPageElement(LocatorType.Id,"id");
  * ElementInteraction interaction = webPageElement.interact();
  * ElementInformationProvider information = webPageElement.getInformer();
  * }
@@ -24,6 +24,7 @@ import org.openqa.selenium.WebElement;
  *
  * @author Petchimuthu
  * @version 1.0
+ * @see WebPageElement
  */
 public interface WebPageElement {
 

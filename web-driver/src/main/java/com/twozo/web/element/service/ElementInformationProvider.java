@@ -9,18 +9,19 @@ import org.openqa.selenium.WebElement;
  * Provides methods to retrieve information about a {@link WebPageElement}.
  * Includes methods to get the tag name, attributes, visibility, selection state,
  * and other properties of a web element.
- *</p>
+ * </p>
  *
  * <p>
  * Example usage:
  * <pre>
  * {@code
- * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
- * ElementInformationProvider elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").getInformer();
- * String tagName = elementInfo.getTagName();
- * String classAttribute = elementInfo.getAttribute("class");
- * boolean isSelected = elementInfo.isSelected();
- * boolean isEnabled = elementInfo.isEnabled();
+ * ElementFinder elementFinder = webAutomationDriver.getElementFinder();
+ * ElementInformationProvider elementInformationProvider = elementFinder.getWebPageElement(LocatorType.Id,"id").
+ *                                                          getInformer();
+ * String tagName = elementInformationProvider.getTagName();
+ * String classAttribute = elementInformationProvider.getAttribute("class");
+ * boolean isSelected = elementInformationProvider.isSelected();
+ * boolean isEnabled = elementInformationProvider.isEnabled();
  * String text = elementInfo.getText();
  * boolean isDisplayed = elementInfo.isDisplayed();
  * }

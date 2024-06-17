@@ -67,7 +67,7 @@ public final class WebTargetLocatorImpl implements WebTargetLocator {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link AlertHandler} to interact with browser alert.
+     * @return An {@link AlertHandler} to interact with browser alert.
      */
     @Override
     public AlertHandler getAlertHandler() {

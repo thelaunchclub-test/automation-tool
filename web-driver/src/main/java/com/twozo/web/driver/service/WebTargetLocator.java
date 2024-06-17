@@ -60,7 +60,7 @@ public interface WebTargetLocator {
      * Switches to the browser alert.
      * </p>
      *
-     * @return A {@link AlertHandler} interact with browser alert.
+     * @return An {@link AlertHandler} interact with browser alert.
      */
     AlertHandler getAlertHandler();
 }

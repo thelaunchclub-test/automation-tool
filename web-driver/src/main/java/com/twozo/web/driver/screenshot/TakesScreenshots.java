@@ -25,9 +25,9 @@ public interface TakesScreenshots {
      * Captures a screenshot and returns it in the specified target format.
      * </p>
      *
-     * @param outputType the desired output type of the screenshot.
-     * @param <X>    the type of the screenshot output.
-     * @return the screenshot in the specified format.
+     * @param outputType The desired output type of the screenshot.
+     * @param <X>    The type of the screenshot output.
+     * @return The screenshot in the specified format.
      */
     <X> X getScreenshotAs(final OutputType<X> outputType);
 }

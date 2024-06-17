@@ -41,7 +41,7 @@ public interface WindowInfoProvider {
 
     /**
      * <p>
-     * Retrieves the handle of the currently focused getWebWindowHandler.
+     * Retrieves the handle of the currently focused web window.
      * </p>
      *
      * @return A {@link String} representing the current window.

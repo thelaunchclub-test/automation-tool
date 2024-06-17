@@ -19,14 +19,13 @@ import org.openqa.selenium.WebElement;
  * Example usage:
  * <pre>
  * {@code
- * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
- * ElementInformationProvider elementInfo = elementLocator.getWebPageElement(LocatorType.Id,"id").
- *                                              getElementInformationProvider();
- *
- * String tagName = elementInfo.getTagName();
- * String classAttribute = elementInfo.getAttribute("class");
- * boolean isSelected = elementInfo.isSelected();
- * boolean isEnabled = elementInfo.isEnabled();
+ * ElementFinder elementFinder = webAutomationDriver.getElementFinder();
+ * ElementInformationProvider elementInformationProvider = elementFinder.getWebPageElement(LocatorType.Id,"id").
+ *                                                          getInformer();
+ * String tagName = elementInformationProvider.getTagName();
+ * String classAttribute = elementInformationProvider.getAttribute("class");
+ * boolean isSelected = elementInformationProvider.isSelected();
+ * boolean isEnabled = elementInformationProvider.isEnabled();
  * String text = elementInfo.getText();
  * boolean isDisplayed = elementInfo.isDisplayed();
  * }
@@ -67,7 +66,7 @@ public final class ElementInformationProviderImpl implements ElementInformationP
     /**
      * {@inheritDoc}
      *
-     * @return true if the element is selected, false otherwise.
+     * @return true If the element is selected, false otherwise.
      */
     @Override
     public boolean isSelected() {
@@ -77,7 +76,7 @@ public final class ElementInformationProviderImpl implements ElementInformationP
     /**
      * {@inheritDoc}
      *
-     * @return true if the element is enabled, false otherwise.
+     * @return true If the element is enabled, false otherwise.
      */
     @Override
     public boolean isEnabled() {
@@ -97,7 +96,7 @@ public final class ElementInformationProviderImpl implements ElementInformationP
     /**
      * {@inheritDoc}
      *
-     * @return true if the element is displayed, false otherwise.
+     * @return true If the element is displayed, false otherwise.
      */
     @Override
     public boolean isDisplayed() {

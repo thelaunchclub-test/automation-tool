@@ -45,7 +45,7 @@ public class DriverImpl implements Driver {
     /**
      * {@inheritDoc}
      *
-     * @return {@link WebAutomationDriver} for web automation.
+     * @return A {@link WebAutomationDriver} for web automation.
      */
     @Override
     public WebAutomationDriver getWebAutomationDriver() {
@@ -59,7 +59,7 @@ public class DriverImpl implements Driver {
      * {@inheritDoc}
      *
      * @param browserType The type of browser for which the driver is to be created.
-     * @return {@link RemoteWebDriver}
+     * @return A {@link RemoteWebDriver}.
      */
     private RemoteWebDriver getDriver(final BrowserType browserType) {
         return switch (browserType) {

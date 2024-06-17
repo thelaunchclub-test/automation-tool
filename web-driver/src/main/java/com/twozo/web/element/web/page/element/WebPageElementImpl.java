@@ -3,8 +3,8 @@ package com.twozo.web.element.web.page.element;
 import com.twozo.web.element.service.ElementFinder;
 import com.twozo.web.element.service.ElementInformationProvider;
 import com.twozo.web.element.service.ElementInteraction;
-
 import com.twozo.web.element.service.WebPageElement;
+
 import lombok.NonNull;
 import lombok.Value;
 
@@ -22,7 +22,6 @@ import org.openqa.selenium.WebElement;
  * {@code
  * ElementFinder elementFinder = webAutomationDriver.getElementFinder();
  * WebPageElement webPageElement = elementFinder.getWebPageElement(LocatorType.Id,"id");
- * ElementFinder locator = webPageElement.getElementFinder();
  * ElementInteraction interaction = webPageElement.interact();
  * ElementInformationProvider information = webPageElement.getInformer();
  * }

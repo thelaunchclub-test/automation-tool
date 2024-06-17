@@ -22,7 +22,7 @@ public interface Driver {
      * Returns {@link Driver} for obtaining {@link WebAutomationDriver}.
      * </p>
      *
-     * @return An {@link Driver} .
+     * @return A {@link Driver} .
      */
     static Driver getInstance() {
         return new DriverImpl();
@@ -33,7 +33,7 @@ public interface Driver {
      * Returns {@link WebAutomationDriver} for web automation.
      * </p>
      *
-     * @return {@link WebAutomationDriver} for web automation.
+     * @return A {@link WebAutomationDriver} for web automation.
      */
     WebAutomationDriver getWebAutomationDriver();
 }

@@ -1,6 +1,5 @@
 package com.twozo.web.element.finder;
 
-import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.element.web.page.element.WebPageElementImpl;
 
@@ -10,10 +9,13 @@ import lombok.NonNull;
 import org.openqa.selenium.WebElement;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * <p>
- * Provides methods to find {@link WebPageElement} from {@link WebPageElement}.
+ * Provides methods to findElement {@link WebPageElement} from {@link WebPageElement}.
  * Locates both single and multiple elements.
  * </p>
  *
@@ -30,104 +32,115 @@ public final class ElementFinderForElement extends AbstractElementFinder {
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use.
-     * @param value       the value of the locator.
+     * @param finder The {@link Finder}  containing locator type and value.
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement getWebPageElement(final LocatorType locatorType, final String value) {
-        return new WebPageElementImpl(element.findElement(getByValue(locatorType, value)));
+    public WebPageElement getWebPageElement(final Finder finder) {
+        return new WebPageElementImpl(element.findElement(getByValue(finder.locatorType(), finder.value())));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param locatorType the type of locator to use.
-     * @param value       the value of the locator.
+     * @param finder The {@link Finder}  containing locator type and value.
      * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements.
      */
     @Override
-    public Collection<WebPageElement> getWebPageElements(final LocatorType locatorType, final String value) {
-        return getCommonElements(element.findElements(getByValue(locatorType, value)));
+    public Collection<WebPageElement> getWebPageElements(final Finder finder) {
+        return getCommonElements(element.findElements(getByValue(finder.locatorType(), finder.value())));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @param finders A {@link Collection} of {@link Finder}.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findBelowElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue) {
-        return new WebPageElementImpl(element.findElement(with(locatorType, value).
-                below(getByValue(knownLocatorType, knownValue))));
+    public WebPageElement findBelowElement(final Collection<Finder> finders) {
+        final Map<Boolean, Finder> booleanFinderMap = get(finders);
+        final Finder knownFinder = booleanFinderMap.get(true);
+        final Finder unKnownFinder = booleanFinderMap.get(false);
+
+        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+                below(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @param finders A {@link Collection} of {@link Finder}.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findAboveElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue) {
-        return new WebPageElementImpl(element.findElement(with(locatorType, value).
-                above(getByValue(knownLocatorType, knownValue))));
+    public WebPageElement findAboveElement(final Collection<Finder> finders) {
+        final Map<Boolean, Finder> booleanFinderMap = get(finders);
+        final Finder knownFinder = booleanFinderMap.get(true);
+        final Finder unKnownFinder = booleanFinderMap.get(false);
+
+        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+                above(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @param finders A {@link Collection} of {@link Finder}.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findLeftElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue) {
-        return new WebPageElementImpl(element.findElement(with(locatorType, value).
-                toLeftOf(getByValue(knownLocatorType, knownValue))));
+    public WebPageElement findLeftElement(final Collection<Finder> finders) {
+        final Map<Boolean, Finder> booleanFinderMap = get(finders);
+        final Finder knownFinder = booleanFinderMap.get(true);
+        final Finder unKnownFinder = booleanFinderMap.get(false);
+
+        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+                toLeftOf(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @param finders A {@link Collection} of {@link Finder}.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findRightElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue) {
-        return new WebPageElementImpl(element.findElement(with(locatorType, value).
-                toRightOf(getByValue(knownLocatorType, knownValue))));
+    public WebPageElement findRightElement(final Collection<Finder> finders) {
+        final Map<Boolean, Finder> booleanFinderMap = get(finders);
+        final Finder knownFinder = booleanFinderMap.get(true);
+        final Finder unKnownFinder = booleanFinderMap.get(false);
+
+        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+                toRightOf(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @param finders A {@link Collection} of {@link Finder}.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findNearElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue) {
-        return new WebPageElementImpl(element.findElement(with(locatorType, value).
-                near(getByValue(knownLocatorType, knownValue))));
+    public WebPageElement findNearElement(final Collection<Finder> finders) {
+        final Map<Boolean, Finder> booleanFinderMap = get(finders);
+        final Finder knownFinder = booleanFinderMap.get(true);
+        final Finder unKnownFinder = booleanFinderMap.get(false);
+
+        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+                near(getByValue(knownFinder.locatorType(), knownFinder.value()))));
+    }
+
+    /**
+     * <p>
+     * Converts a {@link Collection} of {@link Finder} into a {@link Map} where the key is a boolean indicating
+     * whether the locator is known or not, and the value is the Finder object itself.
+     * </p>
+     *
+     * @param finders A {@link Collection} of {@link Finder} into a {@link Map}.
+     * @return A {@link Map}.
+     */
+    private Map<Boolean, Finder> get(final Collection<Finder> finders) {
+        return finders.stream().collect(Collectors.toMap(Finder::isKnown, Function.identity()));
     }
 }

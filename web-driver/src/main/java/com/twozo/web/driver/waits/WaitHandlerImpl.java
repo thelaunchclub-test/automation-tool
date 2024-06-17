@@ -36,8 +36,8 @@ public final class WaitHandlerImpl implements WaitHandler {
     /**
      * {@inheritDoc}
      *
-     * @param duration the {@link Duration} of the implicit wait.
-     * @return a {@code WaitHandler} configured with the implicit wait {@link Duration}.
+     * @param duration The {@link Duration} of the implicit wait.
+     * @return An {@code WaitHandler} configured with the implicit wait {@link Duration}.
      */
     @Override
     public WaitHandler implicitWait(final Duration duration) {

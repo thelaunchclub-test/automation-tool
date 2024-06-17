@@ -33,7 +33,9 @@ public enum WebDriverStatusCode implements StatusCode {
 
     ELEMENT_CLICK_INTERCEPTED(1),
     ELEMENT_NOT_SELECTABLE(2),
-    ELEMENT_NOT_VISIBLE(3);
+    ELEMENT_NOT_VISIBLE(3),
+    EXPECTED_PAGE_NOT_FOUND(4);
+
 
     private static final StatusCodeProvider STATUS_CODE_PROVIDER = new StatusCodeProvider();
     private static final int BASE_CODE = 200;

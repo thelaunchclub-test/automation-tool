@@ -1,8 +1,8 @@
 package com.twozo.web.element.service;
 
+import com.twozo.web.element.finder.Finder;
 import com.twozo.web.element.finder.ElementFinderForDriver;
 import com.twozo.web.element.finder.ElementFinderForElement;
-import com.twozo.web.element.locator.LocatorType;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -43,11 +43,14 @@ import java.util.Collection;
 public interface ElementFinder {
 
     static ElementFinder getInstance(final Object value) {
-        return switch (value) {
-            case WebDriver webDriver -> new ElementFinderForDriver(webDriver);
-            case WebElement webElement -> new ElementFinderForElement(webElement);
-            default -> throw new IllegalArgumentException("Unsupported type ");
-        };
+
+        if (value instanceof WebDriver) {
+            return new ElementFinderForDriver((WebDriver) value);
+        } else if (value instanceof WebElement) {
+            return new ElementFinderForElement((WebElement) value);
+        } else {
+            throw new IllegalArgumentException("Unsupported type");
+        }
     }
 
     /**
@@ -55,90 +58,61 @@ public interface ElementFinder {
      * returns a {@link WebPageElement} based on the given locator type and value.
      * </p>
      *
-     * @param locatorType the type of locator to use.
-     * @param value       the value of the locator.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement getWebPageElement(final LocatorType locatorType, final String value);
+    WebPageElement getWebPageElement(final Finder finder);
 
     /**
      * <p>
      * Returns a {@link Collection} of {@link WebPageElement} based on the given locator type and value.
      * </p>
      *
-     * @param locatorType the type of locator to use.
-     * @param value       the value of the locator.
-     * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements.
+     * @return A {@link Collection} of {@link WebPageElement} representing the located web page elements.
      */
-    Collection<WebPageElement> getWebPageElements(final LocatorType locatorType, final String value);
+    Collection<WebPageElement> getWebPageElements(final Finder finder);
 
     /**
      * <p>
      * returns a {@link WebPageElement} located below another element.
      * </p>
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findBelowElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue);
+    WebPageElement findBelowElement(final Collection<Finder> finders);
 
     /**
      * <p>
      * returns a {@link WebPageElement} located above another element.
      * </p>
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findAboveElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue);
+    WebPageElement findAboveElement(final Collection<Finder> finders);
 
     /**
      * <p>
      * returns a {@link WebPageElement} located to the left of another element.
      * </p>
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findLeftElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue);
+    WebPageElement findLeftElement(final Collection<Finder> finders);
 
     /**
      * <p>
      * returns a {@link WebPageElement} located to the right of another element.
      * </p>
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findRightElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue);
+    WebPageElement findRightElement(final Collection<Finder> finders);
 
     /**
      * <p>
      * returns a {@link WebPageElement} located near another element.
      * </p>
      *
-     * @param locatorType      the type of locator to use for the target element.
-     * @param value            the value of the locator for the target element.
-     * @param knownLocatorType the type of locator to use for the known element.
-     * @param knownValue       the value of the locator for the known element.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findNearElement(final LocatorType locatorType, final String value, final LocatorType
-            knownLocatorType, final String knownValue);
+    WebPageElement findNearElement(final Collection<Finder> finders);
 }

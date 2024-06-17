@@ -49,7 +49,7 @@ public interface WebAutomationDriver extends TakesScreenshots {
      * Returns {@link PageInformationProvider} to retrieve information about the current page of the browser.
      * </p>
      *
-     * @return An {@link PageInformationProvider} for retrieving page information.
+     * @return A {@link PageInformationProvider} for retrieving page information.
      */
     PageInformationProvider getPageInformationProvider();
 

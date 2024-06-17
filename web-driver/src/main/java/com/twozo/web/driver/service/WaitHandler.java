@@ -34,8 +34,8 @@ public interface WaitHandler {
      * Sets an implicit wait {@link Duration} for the {@link WebDriver}.
      * </p>
      *
-     * @param duration the {@link Duration} of the implicit wait.
-     * @return a {@code WaitHandler} configured with the implicit wait {@link Duration}.
+     * @param duration The {@link Duration} of the implicit wait.
+     * @return A {@code WaitHandler} configured with the implicit wait {@link Duration}.
      */
     WaitHandler implicitWait(final Duration duration);
 }
