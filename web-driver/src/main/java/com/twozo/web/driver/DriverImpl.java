@@ -36,6 +36,8 @@ import java.util.Objects;
 @AllArgsConstructor
 public class DriverImpl implements Driver {
 
+    private static final String BROWSER = "browser";
+
     PropertyFileReader propertyFileReader;
 
     public DriverImpl() {
@@ -50,7 +52,7 @@ public class DriverImpl implements Driver {
     @Override
     public WebAutomationDriver getWebAutomationDriver() {
         final BrowserType browserType = Objects.requireNonNull(BrowserType.valueOf(
-                Objects.requireNonNull(propertyFileReader.getProperty()).getProperty("Browser").toUpperCase()));
+                Objects.requireNonNull(propertyFileReader.getProperty()).getProperty(BROWSER).toUpperCase()));
 
         return WebAutomationDriver.getInstance(getDriver(browserType));
     }
