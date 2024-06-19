@@ -18,27 +18,33 @@ public class Filter extends BasePage {
     }
 
     public static Filter getInstance(final WebAutomationDriver webAutomationDriver) {
+
         if (Objects.isNull(filter)) {
             filter = new Filter(webAutomationDriver);
         }
+
         return filter;
     }
 
     public WebPageElement getSelectColumn() {
+
         if (Objects.isNull(selectColumn)) {
             selectColumn = findBelowElement(List.of(
                     new Finder(LocatorType.XPATH, "//input[@placeholder='Select Column...']", false),
                     new Finder(LocatorType.TAG_NAME, "input", true)));
         }
+
         return selectColumn;
     }
 
     public WebPageElement getSelectField() {
+
         if (Objects.isNull(selectField)) {
             selectField = findBelowElement(List.of(
                     new Finder(LocatorType.XPATH, "//p[text()='Select Field']", false),
                     new Finder(LocatorType.TAG_NAME, "p", true)));
         }
+
         return selectField;
     }
 
@@ -48,14 +54,14 @@ public class Filter extends BasePage {
         click(getSelectField());
         select("Phones");
         click(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//p[text()='is']", false),
-                new Finder(LocatorType.TAG_NAME, "p", true))));
+                new Finder(LocatorType.XPATH, "//p[text()='is']", true),
+                new Finder(LocatorType.TAG_NAME, "p", false))));
         select("starts with");
         send(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//input[@placeholder='Enter Here']", false),
-                new Finder(LocatorType.TAG_NAME, "input", true))), "9876");
+                new Finder(LocatorType.XPATH, "//input[@placeholder='Enter Here']", true),
+                new Finder(LocatorType.TAG_NAME, "input", false))), "9876");
         click(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//button[text()='Apply']", false),
-                new Finder(LocatorType.TAG_NAME, "button", true))));
+                new Finder(LocatorType.XPATH, "//button[text()='Apply']", true),
+                new Finder(LocatorType.TAG_NAME, "button", false))));
     }
 }

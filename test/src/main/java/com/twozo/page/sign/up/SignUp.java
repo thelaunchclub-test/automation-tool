@@ -2,7 +2,9 @@ package com.twozo.page.sign.up;
 
 import com.twozo.commons.exception.TestException;
 import com.twozo.page.BasePage;
-import com.twozo.page.deal.DealPage;
+import com.twozo.page.deal.Deal;
+
+import com.twozo.page.sign.in.SignIn;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.finder.Finder;
 import com.twozo.web.element.locator.LocatorType;
@@ -15,7 +17,7 @@ import java.util.Objects;
 public class SignUp extends BasePage {
 
     private static SignUp signUp;
-
+    private final Deal deal;
     private WebPageElement signUpButton;
     private WebPageElement emailField;
     private WebPageElement nextButton;
@@ -33,104 +35,132 @@ public class SignUp extends BasePage {
         super(webAutomationDriver);
         click(getSignUpButton());
 
-        if (!isDisplayed(findElement(new Finder(LocatorType.XPATH, "//p[contains(text(), 'Create')]", true)))) {
+        if (!isDisplayed(findByXpath("//p[contains(text(), 'Create')]"))) {
             throw TestException.get(WebDriverStatusCode.EXPECTED_PAGE_NOT_FOUND);
         }
+
+        this.deal = Deal.getInstance(webAutomationDriver);
     }
 
     public static SignUp getInstance(final WebAutomationDriver webAutomationDriver) {
+
         if (Objects.isNull(signUp)) {
             signUp = new SignUp(webAutomationDriver);
         }
+
         return signUp;
     }
 
     public WebPageElement getSignUpButton() {
+
         if (Objects.isNull(signUpButton)) {
-            signUpButton = findElement(new Finder(LocatorType.XPATH, "//*[text()='Sign Up']", true));
+            signUpButton = findByText("Sign Up");
         }
+
         return signUpButton;
     }
 
     public WebPageElement getEmailField() {
+
         if (Objects.isNull(emailField)) {
-            emailField = findElement(new Finder(LocatorType.NAME, "email", true));
+            emailField = findByXpath("//*[@name='email']");
         }
+
         return emailField;
     }
 
     public WebPageElement getNextButton() {
+
         if (Objects.isNull(nextButton)) {
-            nextButton = findElement(new Finder(LocatorType.XPATH, "//*[text()='Next']", true));
+            nextButton = findByText("Next");
         }
+
         return nextButton;
     }
 
     public WebPageElement getSignInButton() {
+
         if (Objects.isNull(signInButton)) {
-            signInButton = findElement(new Finder(LocatorType.XPATH, "//*[text()='Sign In']", true));
+            signInButton = findByText("Sign In");
         }
+
         return signInButton;
     }
 
     public WebPageElement getNameField() {
+
         if (Objects.isNull(nameField)) {
-            nameField = findElement(new Finder(LocatorType.XPATH, "//*[contains(@placeholder,'name')]", true));
+            nameField = findByXpath("//*[contains(@placeholder,'name')]");
         }
+
         return nameField;
     }
 
     public WebPageElement getPasswordField() {
+
         if (Objects.isNull(passwordField)) {
-            passwordField = findElement(new Finder(LocatorType.NAME, "password", true));
+            passwordField = findByXpath("//*[@name='password']");
         }
+
         return passwordField;
     }
 
     public WebPageElement getConfirmPasswordField() {
+
         if (Objects.isNull(confirmPasswordField)) {
-            confirmPasswordField = findElement(new Finder(LocatorType.NAME, "confirmPassword", true));
+            confirmPasswordField = findByXpath("//*[@name='confirmPassword']");
         }
+
         return confirmPasswordField;
     }
 
     public WebPageElement getCreateAccountButton() {
+
         if (Objects.isNull(createAccountButton)) {
-            createAccountButton = findElement(new Finder(LocatorType.XPATH, "//*[text()='Create Account']", true));
+            createAccountButton = findByText("Create Account");
         }
+
         return createAccountButton;
     }
 
     public WebPageElement getCompanyField() {
+
         if (Objects.isNull(companyField)) {
-            companyField = findElement(new Finder(LocatorType.XPATH, "//*[contains(@placeholder,'company')]", true));
+            companyField = findByXpath("//*[contains(@placeholder,'company')]");
         }
+
         return companyField;
     }
 
     public WebPageElement getJobRoleDropDown() {
+
         if (Objects.isNull(jobRoleDropDown)) {
-            jobRoleDropDown = findElement(new Finder(LocatorType.XPATH, "//*[text()='Select']", true));
+            jobRoleDropDown = findByText("Select");
         }
+
         return jobRoleDropDown;
     }
 
     public Collection<WebPageElement> getJobRoles() {
+
         if (Objects.isNull(jobRoles)) {
             jobRoles = findElements(new Finder(LocatorType.TAG_NAME, "li", true));
         }
+
         return jobRoles;
     }
 
     public WebPageElement getCompleteSignUpButton() {
+
         if (Objects.isNull(completeSignUpButton)) {
-            completeSignUpButton = findElement(new Finder(LocatorType.XPATH, "//*[text()='Complete Signup']", true));
+            completeSignUpButton = findByText("Complete Signup");
         }
+
         return completeSignUpButton;
     }
 
-    public DealPage signUp(final String email, final String name, final String password, final String confirmPassword,
-                           final String company, final String jobRole) {
+    public Deal signUp(final String email, final String name, final String password, final String confirmPassword,
+                       final String company, final String jobRole) {
         send(getEmailField(), email);
         click(getNextButton());
         send(getNameField(), name);
@@ -142,6 +172,13 @@ public class SignUp extends BasePage {
         select(jobRole);
         click(getCompleteSignUpButton());
 
-        return DealPage.getInstance(webAutomationDriver);
+        return deal;
+    }
+
+    public SignIn signIn() {
+        click(getSignInButton());
+
+        return SignIn.getInstance(webAutomationDriver);
+
     }
 }

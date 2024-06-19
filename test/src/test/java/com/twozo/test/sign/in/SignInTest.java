@@ -9,7 +9,7 @@ public class SignInTest extends BaseTest {
     @Test
     public void signInWithValidCredential() {
         final SignIn signIn = SignIn.getInstance(webAutomationDriver);
-        signIn.signIn("abcd@gmail.com", "New$Password123");
+        signIn.signIn("abcde@gmail.com", "New$Password123");
 
     }
 

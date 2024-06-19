@@ -7,12 +7,12 @@ import org.testng.annotations.Test;
 
 public class SignUpTest extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void signUpWithValidDetails() {
         SignIn signIn = SignIn.getInstance(webAutomationDriver);
 
-        signIn.switchToSignUp().signUp("abcde@gmail.com", "New User", "New$Password123",
-                "New$Password123", "abcde", "Marketing");
+        signIn.switchToSignUp().signUp("aei@gmail.com", "New User", "New$Password123",
+                "New$Password123", "aei", "Marketing");
 
         //assertTrue(signUp.switchToDeal().isDealPageDisplayed());
     }

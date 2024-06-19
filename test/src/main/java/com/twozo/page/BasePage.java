@@ -54,6 +54,14 @@ public class BasePage {
         return elementFinder.findRightElement(finders);
     }
 
+    protected WebPageElement findByXpath(final String xpath){
+        return findElement(new Finder(LocatorType.XPATH, xpath, true));
+    }
+
+    protected WebPageElement findByText(final String value) {
+        return findByXpath(String.format("//*[text()='%s']", value));
+    }
+
     protected final void send(final WebPageElement webPageElement, final String value) {
         webPageElement.interact().sendKeys(value);
     }
@@ -64,18 +72,18 @@ public class BasePage {
         click(findBelowElement(List.of(
                 new Finder(LocatorType.XPATH, "//button[@aria-label='Choose date']", false),
                 finder)));
-        click(findElement(new Finder(LocatorType.XPATH, "//button[@aria-label='calendar view is open, switch to year view']", true)));
-        click(findElement(new Finder(LocatorType.XPATH, String.format(xpath, year), true)));
+        click(findByXpath("//button[@aria-label='calendar view is open, switch to year view']"));
+        click(findByText(String.format(xpath, year)));
         final WebPageElement div = findLeftElement(List.of(
                 new Finder(LocatorType.TAG_NAME, "div", false),
                 new Finder(LocatorType.XPATH,
                         "//button[@aria-label='calendar view is open, switch to year view']", true)));
 
         while (!getText(div).equals(String.format("%s %d", month.getName(), year))) {
-            click(findElement(new Finder(LocatorType.XPATH, "//button[@aria-label='Next month']", true)));
+            click(findByXpath("//button[@aria-label='Next month']"));
         }
 
-        click(findElement(new Finder(LocatorType.XPATH, String.format(xpath, date), true)));
+        click(findByXpath(String.format(xpath, date)));
     }
 
     protected final void click(final WebPageElement webPageElement) {

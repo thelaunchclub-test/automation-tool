@@ -56,16 +56,16 @@ public class AddActivity extends BasePage {
         final String xpath = "//button[text()='%d']";
         final String calendarIcon = "(//button[contains(@aria-label,'Choose date')])[%d]";
 
-        click(findElement(new Finder(LocatorType.XPATH, String.format(calendarIcon, datePickerCount), true)));
-        click(findElement(new Finder(LocatorType.XPATH, "//button[@aria-label='calendar view is open, switch to year view']", true)));
-        click(findElement(new Finder(LocatorType.XPATH, String.format(xpath, year), true)));
+        click(findByXpath(String.format(calendarIcon, datePickerCount)));
+        click(findByXpath("//button[@aria-label='calendar view is open, switch to year view']"));
+        click(findByXpath(String.format(xpath, year)));
         final WebPageElement div = findLeftElement(List.of(new Finder(LocatorType.TAG_NAME, "div", false), new Finder(LocatorType.XPATH,
                 "//button[@aria-label='calendar view is open, switch to year view']", true)));
 
         while (!getText(div).equals(String.format("%s %d", month.getName(), year))) {
-            click(findElement(new Finder(LocatorType.XPATH, "//button[@aria-label='Next month']", true)));
+            click(findByXpath("//button[@aria-label='Next month']"));
         }
-        click(findElement(new Finder(LocatorType.XPATH, String.format(xpath, date), true)));
+        click(findByXpath(String.format(xpath, date)));
     }
 
     public WebPageElement getTitleField() {
@@ -79,9 +79,7 @@ public class AddActivity extends BasePage {
     }
 
     public WebPageElement getActivityType(final String activityType) {
-        final String xpath = "//*[@aria-label='%s']";
-
-        return findElement(new Finder(LocatorType.XPATH, String.format(xpath, activityType),true));
+        return findByXpath(String.format("//*[@aria-label='%s']", activityType));
 
     }
 //

@@ -12,6 +12,8 @@ import java.util.Objects;
 public class Contact extends BasePage {
 
     private static Contact contact;
+
+    private AddContact addContact;
     private WebPageElement filterIcon;
     private WebPageElement firstName;
     private WebPageElement lastName;
@@ -36,6 +38,8 @@ public class Contact extends BasePage {
     private WebPageElement unsubscribeReason;
     private WebPageElement otherUnsubscribeReason;
     private WebPageElement tags;
+    private WebPageElement addContactButton;
+    private WebPageElement importContacts;
 
     protected Contact(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
@@ -50,16 +54,19 @@ public class Contact extends BasePage {
         return contact;
     }
 
-    private WebPageElement findElementWith(final String value) {
-        final String xpath = "//*[text()='%s']";
+    public AddContact getAddContact() {
 
-        return findElement(new Finder(LocatorType.XPATH, String.format(xpath, value),true));
+        if (Objects.isNull(addContact)) {
+            addContact = AddContact.getInstance(webAutomationDriver);
+        }
+
+        return addContact;
     }
 
     public WebPageElement getFilterIcon() {
 
         if (Objects.isNull(filterIcon)) {
-            filterIcon = findElement(new Finder(LocatorType.XPATH, "//div[@class='css-j7qwjs'][@style='cursor: pointer;']",true));
+            filterIcon = findByXpath("//div[@class='css-j7qwjs'][@style='cursor: pointer;']");
         }
 
         return filterIcon;
@@ -68,7 +75,7 @@ public class Contact extends BasePage {
     public WebPageElement getFirstName() {
 
         if (Objects.isNull(firstName)) {
-            firstName = findElementWith("First Name");
+            firstName = findByText("First Name");
         }
 
         return firstName;
@@ -77,7 +84,7 @@ public class Contact extends BasePage {
     public WebPageElement getLastName() {
 
         if (Objects.isNull(lastName)) {
-            lastName = findElementWith("Last Name");
+            lastName = findByText("Last Name");
         }
 
         return lastName;
@@ -86,7 +93,7 @@ public class Contact extends BasePage {
     public WebPageElement getEmails() {
 
         if (Objects.isNull(emails)) {
-            emails = findElementWith("Emails");
+            emails = findByText("Emails");
         }
         return emails;
     }
@@ -94,7 +101,7 @@ public class Contact extends BasePage {
     public WebPageElement getPhones() {
 
         if (Objects.isNull(phones)) {
-            phones = findElementWith("Phones");
+            phones = findByText("Phones");
         }
 
         return phones;
@@ -103,7 +110,7 @@ public class Contact extends BasePage {
     public WebPageElement getSource() {
 
         if (Objects.isNull(source)) {
-            source = findElementWith("Source");
+            source = findByText("Source");
         }
 
         return source;
@@ -112,7 +119,7 @@ public class Contact extends BasePage {
     public WebPageElement getStage() {
 
         if (Objects.isNull(stage)) {
-            stage = findElementWith("Stage");
+            stage = findByText("Stage");
         }
 
         return stage;
@@ -121,7 +128,7 @@ public class Contact extends BasePage {
     public WebPageElement getCompany() {
 
         if (Objects.isNull(company)) {
-            company = findElementWith("Company");
+            company = findByText("Company");
         }
 
         return company;
@@ -130,7 +137,7 @@ public class Contact extends BasePage {
     public WebPageElement getDepartment() {
 
         if (Objects.isNull(department)) {
-            department = findElementWith("Department");
+            department = findByText("Department");
         }
 
         return department;
@@ -139,7 +146,7 @@ public class Contact extends BasePage {
     public WebPageElement getFacebook() {
 
         if (Objects.isNull(facebook)) {
-            facebook = findElementWith("Facebook");
+            facebook = findByText("Facebook");
         }
 
         return facebook;
@@ -148,7 +155,7 @@ public class Contact extends BasePage {
     public WebPageElement getTwitter() {
 
         if (Objects.isNull(twitter)) {
-            twitter = findElementWith("Twitter");
+            twitter = findByText("Twitter");
         }
 
         return twitter;
@@ -157,7 +164,7 @@ public class Contact extends BasePage {
     public WebPageElement getLinkedIn() {
 
         if (Objects.isNull(linkedIn)) {
-            linkedIn = findElementWith("Linkedin");
+            linkedIn = findByText("Linkedin");
         }
 
         return linkedIn;
@@ -166,7 +173,7 @@ public class Contact extends BasePage {
     public WebPageElement getDateOfBirth() {
 
         if (Objects.isNull(dateOfBirth)) {
-            dateOfBirth = findElementWith("Date of Birth");
+            dateOfBirth = findByText("Date of Birth");
         }
 
         return dateOfBirth;
@@ -175,7 +182,7 @@ public class Contact extends BasePage {
     public WebPageElement getDesignation() {
 
         if (Objects.isNull(designation)) {
-            designation = findElementWith("Designation");
+            designation = findByText("Designation");
         }
 
         return designation;
@@ -184,7 +191,7 @@ public class Contact extends BasePage {
     public WebPageElement getCreatedTime() {
 
         if (Objects.isNull(createdTime)) {
-            createdTime = findElementWith("Created Time");
+            createdTime = findByText("Created Time");
         }
 
         return createdTime;
@@ -193,7 +200,7 @@ public class Contact extends BasePage {
     public WebPageElement getModifiedTime() {
 
         if (Objects.isNull(modifiedTime)) {
-            modifiedTime = findElementWith("Modified Time");
+            modifiedTime = findByText("Modified Time");
         }
 
         return modifiedTime;
@@ -202,7 +209,7 @@ public class Contact extends BasePage {
     public WebPageElement getTerritory() {
 
         if (Objects.isNull(territory)) {
-            territory = findElementWith("Territory");
+            territory = findByText("Territory");
         }
 
         return territory;
@@ -211,7 +218,7 @@ public class Contact extends BasePage {
     public WebPageElement getSalesOwner() {
 
         if (Objects.isNull(salesOwner)) {
-            salesOwner = findElementWith("Sales Owner");
+            salesOwner = findByText("Sales Owner");
         }
 
         return salesOwner;
@@ -220,7 +227,7 @@ public class Contact extends BasePage {
     public WebPageElement getCreatedBy() {
 
         if (Objects.isNull(createdBy)) {
-            createdBy = findElementWith("Created By");
+            createdBy = findByText("Created By");
         }
 
         return createdBy;
@@ -229,7 +236,7 @@ public class Contact extends BasePage {
     public WebPageElement getUpdatedBy() {
 
         if (Objects.isNull(updatedBy)) {
-            updatedBy = findElementWith("Updated By");
+            updatedBy = findByText("Updated By");
         }
 
         return updatedBy;
@@ -238,7 +245,7 @@ public class Contact extends BasePage {
     public WebPageElement getRecentNote() {
 
         if (Objects.isNull(recentNote)) {
-            recentNote = findElementWith("Recent Note");
+            recentNote = findByText("Recent Note");
         }
 
         return recentNote;
@@ -247,7 +254,7 @@ public class Contact extends BasePage {
     public WebPageElement getUnsubscribeReason() {
 
         if (Objects.isNull(unsubscribeReason)) {
-            unsubscribeReason = findElementWith("Unsubscribe reason");
+            unsubscribeReason = findByText("Unsubscribe reason");
         }
 
         return unsubscribeReason;
@@ -256,7 +263,7 @@ public class Contact extends BasePage {
     public WebPageElement getOtherUnsubscribeReason() {
 
         if (Objects.isNull(otherUnsubscribeReason)) {
-            otherUnsubscribeReason = findElementWith("Other unsubscribe reason");
+            otherUnsubscribeReason = findByText("Other unsubscribe reason");
         }
 
         return otherUnsubscribeReason;
@@ -265,18 +272,30 @@ public class Contact extends BasePage {
     public WebPageElement getTags() {
 
         if (Objects.isNull(tags)) {
-            tags = findElementWith("Tags");
+            tags = findByText("Tags");
         }
 
         return tags;
     }
 
+    public WebPageElement getAddContactButton() {
+
+        if (Objects.isNull(addContactButton)) {
+            addContactButton = findByText("Contact");
+        }
+
+        return addContactButton;
+    }
+
+    public AddContact addContact() {
+        click(getAddContactButton());
+
+        return getAddContact();
+    }
 
     public Filter switchToFilter() {
         click(getFilterIcon());
 
         return Filter.getInstance(webAutomationDriver);
     }
-
-
 }

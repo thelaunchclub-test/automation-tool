@@ -2,8 +2,6 @@ package com.twozo.page.activity;
 
 import com.twozo.page.BasePage;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.element.finder.Finder;
-import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
 import java.util.Objects;
@@ -43,7 +41,7 @@ public class Activity extends BasePage {
     private WebPageElement importActivities;
     private WebPageElement addActivity;
 
-    protected Activity(WebAutomationDriver webAutomationDriver) {
+    protected Activity(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
     }
 
@@ -56,16 +54,10 @@ public class Activity extends BasePage {
         return activity;
     }
 
-    private WebPageElement findElementWith(final String value) {
-        final String xpath = "//*[text()='%s']";
-
-        return findElement(new Finder(LocatorType.XPATH, String.format(xpath, value), true));
-    }
-
     public WebPageElement getStatus() {
 
         if (Objects.isNull(status)) {
-            status = findElement(new Finder(LocatorType.XPATH, "(//*[text()='Status'])[2]", true));
+            status = findByXpath("(//*[text()='Status'])[2]");
         }
 
         return status;
@@ -74,7 +66,7 @@ public class Activity extends BasePage {
     public WebPageElement getTitle() {
 
         if (Objects.isNull(title)) {
-            title = findElementWith("Title");
+            title = findByText("Title");
         }
 
         return title;
@@ -83,7 +75,7 @@ public class Activity extends BasePage {
     public WebPageElement getDeal() {
 
         if (Objects.isNull(deal)) {
-            deal = findElementWith("Deal");
+            deal = findByText("Deal");
         }
 
         return deal;
@@ -92,7 +84,7 @@ public class Activity extends BasePage {
     public WebPageElement getContacts() {
 
         if (Objects.isNull(contacts)) {
-            contacts = findElementWith("Contacts");
+            contacts = findByText("Contacts");
         }
 
         return contacts;
@@ -101,7 +93,7 @@ public class Activity extends BasePage {
     public WebPageElement getCompany() {
 
         if (Objects.isNull(company)) {
-            company = findElementWith("Company");
+            company = findByText("Company");
         }
 
         return company;
@@ -110,7 +102,7 @@ public class Activity extends BasePage {
     public WebPageElement getType() {
 
         if (Objects.isNull(type)) {
-            type = findElementWith("Type");
+            type = findByText("Type");
         }
 
         return type;
@@ -119,7 +111,7 @@ public class Activity extends BasePage {
     public WebPageElement getAvailability() {
 
         if (Objects.isNull(availability)) {
-            availability = findElementWith("Availability");
+            availability = findByText("Availability");
         }
 
         return availability;
@@ -128,7 +120,7 @@ public class Activity extends BasePage {
     public WebPageElement getDescription() {
 
         if (Objects.isNull(description)) {
-            description = findElementWith("Description");
+            description = findByText("Description");
         }
 
         return description;
@@ -137,7 +129,7 @@ public class Activity extends BasePage {
     public WebPageElement getStartTime() {
 
         if (Objects.isNull(startTime)) {
-            startTime = findElementWith("Start Time");
+            startTime = findByText("Start Time");
         }
 
         return startTime;
@@ -146,7 +138,7 @@ public class Activity extends BasePage {
     public WebPageElement getEndTime() {
 
         if (Objects.isNull(endTime)) {
-            endTime = findElementWith("End Time");
+            endTime = findByText("End Time");
         }
 
         return endTime;
@@ -155,7 +147,7 @@ public class Activity extends BasePage {
     public WebPageElement getCreatedAt() {
 
         if (Objects.isNull(createdAt)) {
-            createdAt = findElementWith("Created At");
+            createdAt = findByText("Created At");
         }
 
         return createdAt;
@@ -164,7 +156,7 @@ public class Activity extends BasePage {
     public WebPageElement getUpdatedAt() {
 
         if (Objects.isNull(updatedAt)) {
-            updatedAt = findElementWith("Updated At");
+            updatedAt = findByText("Updated At");
         }
 
         return updatedAt;
@@ -173,7 +165,7 @@ public class Activity extends BasePage {
     public WebPageElement getDuration() {
 
         if (Objects.isNull(duration)) {
-            duration = findElementWith("Duration");
+            duration = findByText("Duration");
         }
 
         return duration;
@@ -182,7 +174,7 @@ public class Activity extends BasePage {
     public WebPageElement getAssignedToUser() {
 
         if (Objects.isNull(assignedToUser)) {
-            assignedToUser = findElementWith("Assigned To User");
+            assignedToUser = findByText("Assigned To User");
         }
 
         return assignedToUser;
@@ -191,7 +183,7 @@ public class Activity extends BasePage {
     public WebPageElement getCreator() {
 
         if (Objects.isNull(creator)) {
-            creator = findElementWith("Creator");
+            creator = findByText("Creator");
         }
 
         return creator;
@@ -200,7 +192,7 @@ public class Activity extends BasePage {
     public WebPageElement getMarkedAsDoneTime() {
 
         if (Objects.isNull(markedAsDoneTime)) {
-            markedAsDoneTime = findElementWith("Marked as done time");
+            markedAsDoneTime = findByText("Marked as done time");
         }
 
         return markedAsDoneTime;
@@ -209,7 +201,7 @@ public class Activity extends BasePage {
     public WebPageElement getLastNotificationTime() {
 
         if (Objects.isNull(lastNotificationTime)) {
-            lastNotificationTime = findElementWith("Last notification time");
+            lastNotificationTime = findByText("Last notification time");
         }
 
         return lastNotificationTime;
@@ -218,7 +210,7 @@ public class Activity extends BasePage {
     public WebPageElement getReminder() {
 
         if (Objects.isNull(reminder)) {
-            reminder = findElementWith("Reminder");
+            reminder = findByText("Reminder");
         }
 
         return reminder;
@@ -227,7 +219,7 @@ public class Activity extends BasePage {
     public WebPageElement getPriority() {
 
         if (Objects.isNull(priority)) {
-            priority = findElementWith("Priority");
+            priority = findByText("Priority");
         }
 
         return priority;
@@ -236,7 +228,7 @@ public class Activity extends BasePage {
     public WebPageElement getCollaborators() {
 
         if (Objects.isNull(collaborators)) {
-            collaborators = findElementWith("Collaborators");
+            collaborators = findByText("Collaborators");
         }
 
         return collaborators;
@@ -245,7 +237,7 @@ public class Activity extends BasePage {
     public WebPageElement getLocation() {
 
         if (Objects.isNull(location)) {
-            location = findElementWith("Location");
+            location = findByText("Location");
         }
 
         return location;
@@ -254,7 +246,7 @@ public class Activity extends BasePage {
     public WebPageElement getPrivateNote() {
 
         if (Objects.isNull(privateNote)) {
-            privateNote = findElementWith("Private note");
+            privateNote = findByText("Private note");
         }
 
         return privateNote;
@@ -263,7 +255,7 @@ public class Activity extends BasePage {
     public WebPageElement getAllActivities() {
 
         if (Objects.isNull(allActivities)) {
-            allActivities = findElementWith("All Activities");
+            allActivities = findByText("All Activities");
         }
 
         return allActivities;
@@ -272,7 +264,7 @@ public class Activity extends BasePage {
     public WebPageElement getTaskType() {
 
         if (Objects.isNull(taskType)) {
-            taskType = findElementWith("Task Type");
+            taskType = findByText("Task Type");
         }
 
         return taskType;
@@ -281,7 +273,7 @@ public class Activity extends BasePage {
     public WebPageElement getDueDate() {
 
         if (Objects.isNull(dueDate)) {
-            dueDate = findElementWith("Due Date");
+            dueDate = findByText("Due Date");
         }
 
         return dueDate;
@@ -290,7 +282,7 @@ public class Activity extends BasePage {
     public WebPageElement getStatusFilter() {
 
         if (Objects.isNull(statusFilter)) {
-            statusFilter = findElementWith("Status");
+            statusFilter = findByText("Status");
         }
 
         return statusFilter;
@@ -300,7 +292,7 @@ public class Activity extends BasePage {
     public WebPageElement getListView() {
 
         if (Objects.isNull(statusFilter)) {
-            statusFilter = findElement(new Finder(LocatorType.XPATH, "//button[@value='list']", true));
+            statusFilter = findByXpath("//button[@value='list']");
         }
 
         return statusFilter;
@@ -309,7 +301,7 @@ public class Activity extends BasePage {
     public WebPageElement getCalendarView() {
 
         if (Objects.isNull(calendarView)) {
-            calendarView = findElement(new Finder(LocatorType.XPATH, "//button[@value='calendar']", true));
+            calendarView = findByXpath("//button[@value='calendar']");
         }
 
         return calendarView;
@@ -318,7 +310,7 @@ public class Activity extends BasePage {
     public WebPageElement getImportActivities() {
 
         if (Objects.isNull(importActivities)) {
-            importActivities = findElementWith("Import Activities");
+            importActivities = findByText("Import Activities");
         }
 
         return importActivities;
@@ -327,7 +319,7 @@ public class Activity extends BasePage {
     public WebPageElement getAddActivity() {
 
         if (Objects.isNull(addActivity)) {
-            addActivity = findElementWith("Activity");
+            addActivity = findByText("Activity");
         }
 
         return addActivity;
@@ -336,6 +328,7 @@ public class Activity extends BasePage {
     public AddActivity addActivity() {
         click(getCalendarView());
         click(getAddActivity());
+
         return AddActivity.getInstance(webAutomationDriver);
     }
 }
