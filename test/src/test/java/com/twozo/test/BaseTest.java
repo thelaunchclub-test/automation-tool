@@ -1,5 +1,6 @@
 package com.twozo.test;
 
+import com.twozo.page.sign.in.SignIn;
 import com.twozo.web.driver.service.Driver;
 import com.twozo.web.driver.service.WebAutomationDriver;
 
@@ -13,17 +14,20 @@ import java.time.Duration;
 public class BaseTest {
 
     protected WebAutomationDriver webAutomationDriver;
+    protected SignIn signIn;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         webAutomationDriver = Driver.getInstance().getWebAutomationDriver();
         webAutomationDriver.getWebWindowHandler().maximize();
         webAutomationDriver.getWaitHandler().implicitWait(Duration.ofSeconds(10));
         webAutomationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
+        signIn = SignIn.getInstance(webAutomationDriver);
+
     }
 
-    @AfterClass
-    public void tearDown(){
+    @AfterMethod
+    public void tearDown() {
         webAutomationDriver.quit();
     }
 }

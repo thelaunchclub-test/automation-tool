@@ -5,8 +5,7 @@ import com.twozo.page.sign.in.SignIn;
 import com.twozo.test.BaseTest;
 import org.testng.annotations.Test;
 
-
-public class DealTest extends BaseTest {
+public final class DealTest extends BaseTest {
 
     @Test
     public void addDeal() {

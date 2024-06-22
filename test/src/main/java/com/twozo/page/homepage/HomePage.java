@@ -18,7 +18,7 @@ public class HomePage extends BasePage {
 
     private static HomePage homePage;
 
-    private final WebAutomationDriver webAutomationDriver;
+    protected final WebAutomationDriver webAutomationDriver;
     private final Deal deal;
     private final Contact contact;
     private final Company company;
@@ -37,8 +37,7 @@ public class HomePage extends BasePage {
     private WebPageElement inboxIcon;
     private WebPageElement analyticsIcon;
 
-
-    protected HomePage(WebAutomationDriver webAutomationDriver) {
+    protected HomePage(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
         this.webAutomationDriver = webAutomationDriver;
         this.deal = Deal.getInstance(webAutomationDriver);

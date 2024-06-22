@@ -7,6 +7,8 @@ import com.twozo.web.driver.service.WebNavigator;
 import com.twozo.web.element.finder.Finder;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.ElementFinder;
+import com.twozo.web.element.service.ElementInformationProvider;
+import com.twozo.web.element.service.ElementInteraction;
 import com.twozo.web.element.service.WebPageElement;
 
 import java.util.Collection;
@@ -63,7 +65,11 @@ public class BasePage {
     }
 
     protected final void send(final WebPageElement webPageElement, final String value) {
-        webPageElement.interact().sendKeys(value);
+        getElementInteraction(webPageElement).sendKeys(value);
+    }
+
+    protected final void click(final WebPageElement webPageElement) {
+        getElementInteraction(webPageElement).click();
     }
 
     protected final void selectDate(final Finder finder, final Month month, final int date, final int year) {
@@ -86,16 +92,16 @@ public class BasePage {
         click(findByXpath(String.format(xpath, date)));
     }
 
-    protected final void click(final WebPageElement webPageElement) {
-        webPageElement.interact().click();
-    }
-
-    protected final boolean isDisplayed(final WebPageElement webPageElement) {
-        return webPageElement.getElementInformationProvider().isDisplayed();
+    public final boolean isDisplayed(final WebPageElement webPageElement) {
+        return getElementInformationProvider(webPageElement).isDisplayed();
     }
 
     protected final String getText(final WebPageElement webPageElement) {
-        return webPageElement.getElementInformationProvider().getText();
+        return getElementInformationProvider(webPageElement).getText();
+    }
+
+    protected String getAttribute(final WebPageElement webPageElement, String attributeName){
+        return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
 
     protected final void select(final String option) {
@@ -107,5 +113,13 @@ public class BasePage {
                 break;
             }
         }
+    }
+
+    private ElementInformationProvider getElementInformationProvider(final WebPageElement webPageElement){
+        return webPageElement.getElementInformationProvider();
+    }
+
+    private ElementInteraction getElementInteraction(final WebPageElement webPageElement){
+        return  webPageElement.interact();
     }
 }

@@ -5,7 +5,7 @@ import com.twozo.test.BaseTest;
 
 import org.testng.annotations.Test;
 
-public class SignUpTest extends BaseTest {
+public final class SignUpTest extends BaseTest {
 
     @Test(enabled = true)
     public void signUpWithValidDetails() {
