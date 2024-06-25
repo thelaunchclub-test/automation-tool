@@ -7,8 +7,11 @@ import com.twozo.web.driver.service.WebNavigator;
 import com.twozo.web.element.finder.Finder;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.ElementFinder;
+import com.twozo.web.element.service.ElementInformationProvider;
+import com.twozo.web.element.service.ElementInteraction;
 import com.twozo.web.element.service.WebPageElement;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -54,8 +57,24 @@ public class BasePage {
         return elementFinder.findRightElement(finders);
     }
 
+    protected WebPageElement findByXpath(final String xpath) {
+        return findElement(new Finder(LocatorType.XPATH, xpath, true));
+    }
+
+    protected Collection<WebPageElement> findElementsByXpath(final String xpath) {
+        return findElements(new Finder(LocatorType.XPATH, xpath, true));
+    }
+
+    protected WebPageElement findByText(final String value) {
+        return findByXpath(String.format("//*[text()='%s']", value));
+    }
+
     protected final void send(final WebPageElement webPageElement, final String value) {
-        webPageElement.interact().sendKeys(value);
+        getElementInteraction(webPageElement).sendKeys(value);
+    }
+
+    protected final void click(final WebPageElement webPageElement) {
+        getElementInteraction(webPageElement).click();
     }
 
     protected final void selectDate(final Finder finder, final Month month, final int date, final int year) {
@@ -64,30 +83,39 @@ public class BasePage {
         click(findBelowElement(List.of(
                 new Finder(LocatorType.XPATH, "//button[@aria-label='Choose date']", false),
                 finder)));
-        click(findElement(new Finder(LocatorType.XPATH, "//button[@aria-label='calendar view is open, switch to year view']", true)));
-        click(findElement(new Finder(LocatorType.XPATH, String.format(xpath, year), true)));
+        click(findByXpath("//button[@aria-label='calendar view is open, switch to year view']"));
+        click(findByText(String.format(xpath, year)));
         final WebPageElement div = findLeftElement(List.of(
                 new Finder(LocatorType.TAG_NAME, "div", false),
                 new Finder(LocatorType.XPATH,
                         "//button[@aria-label='calendar view is open, switch to year view']", true)));
 
         while (!getText(div).equals(String.format("%s %d", month.getName(), year))) {
-            click(findElement(new Finder(LocatorType.XPATH, "//button[@aria-label='Next month']", true)));
+            click(findByXpath("//button[@aria-label='Next month']"));
         }
 
-        click(findElement(new Finder(LocatorType.XPATH, String.format(xpath, date), true)));
+        click(findByXpath(String.format(xpath, date)));
     }
 
-    protected final void click(final WebPageElement webPageElement) {
-        webPageElement.interact().click();
-    }
-
-    protected final boolean isDisplayed(final WebPageElement webPageElement) {
-        return webPageElement.getElementInformationProvider().isDisplayed();
+    public final boolean isDisplayed(final WebPageElement webPageElement) {
+        return getElementInformationProvider(webPageElement).isDisplayed();
     }
 
     protected final String getText(final WebPageElement webPageElement) {
-        return webPageElement.getElementInformationProvider().getText();
+        return getElementInformationProvider(webPageElement).getText();
+    }
+
+    protected final List<String> getTexts(final Collection<WebPageElement> webPageElement) {
+        final List<String> names = new ArrayList<>();
+
+        for (WebPageElement field : webPageElement) {
+            names.add(getText(field));
+        }
+        return names;
+    }
+
+    protected String getAttribute(final WebPageElement webPageElement, String attributeName) {
+        return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
 
     protected final void select(final String option) {
@@ -99,5 +127,13 @@ public class BasePage {
                 break;
             }
         }
+    }
+
+    private ElementInformationProvider getElementInformationProvider(final WebPageElement webPageElement) {
+        return webPageElement.getElementInformationProvider();
+    }
+
+    private ElementInteraction getElementInteraction(final WebPageElement webPageElement) {
+        return webPageElement.interact();
     }
 }

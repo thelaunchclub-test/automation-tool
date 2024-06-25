@@ -1,4 +1,4 @@
 package com.twozo.test.deal;
 
-public class AddDealTest {
+public final class AddDealTest {
 }
