@@ -11,6 +11,7 @@ import com.twozo.web.element.service.ElementInformationProvider;
 import com.twozo.web.element.service.ElementInteraction;
 import com.twozo.web.element.service.WebPageElement;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -56,8 +57,12 @@ public class BasePage {
         return elementFinder.findRightElement(finders);
     }
 
-    protected WebPageElement findByXpath(final String xpath){
+    protected WebPageElement findByXpath(final String xpath) {
         return findElement(new Finder(LocatorType.XPATH, xpath, true));
+    }
+
+    protected Collection<WebPageElement> findElementsByXpath(final String xpath) {
+        return findElements(new Finder(LocatorType.XPATH, xpath, true));
     }
 
     protected WebPageElement findByText(final String value) {
@@ -100,7 +105,16 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).getText();
     }
 
-    protected String getAttribute(final WebPageElement webPageElement, String attributeName){
+    protected final List<String> getTexts(final Collection<WebPageElement> webPageElement) {
+        final List<String> names = new ArrayList<>();
+
+        for (WebPageElement field : webPageElement) {
+            names.add(getText(field));
+        }
+        return names;
+    }
+
+    protected String getAttribute(final WebPageElement webPageElement, String attributeName) {
         return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
 
@@ -115,11 +129,11 @@ public class BasePage {
         }
     }
 
-    private ElementInformationProvider getElementInformationProvider(final WebPageElement webPageElement){
+    private ElementInformationProvider getElementInformationProvider(final WebPageElement webPageElement) {
         return webPageElement.getElementInformationProvider();
     }
 
-    private ElementInteraction getElementInteraction(final WebPageElement webPageElement){
-        return  webPageElement.interact();
+    private ElementInteraction getElementInteraction(final WebPageElement webPageElement) {
+        return webPageElement.interact();
     }
 }
