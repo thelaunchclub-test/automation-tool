@@ -1,9 +1,13 @@
 package com.twozo.test.sign.in;
 
+import com.twozo.page.deal.Deal;
+import com.twozo.page.settings.Source;
 import com.twozo.test.BaseTest;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Collection;
 
 public final class SignInTest extends BaseTest {
 
@@ -148,6 +152,14 @@ public final class SignInTest extends BaseTest {
     @Test
     public void isCheckboxIsUncheckedByDefault() {
         Assert.assertTrue(signIn.isCheckboxIsUncheckedByDefault());
+    }
+
+    @Test
+    public void signIn() {
+         signIn.signIn("p@gmail.com", "A$12345a").switchToSettings();
+
+        //ravi$123.stream().collect(Coll).filter(Deal::isDisplayed).map()forEach(System.out::println);
+
     }
 }
 

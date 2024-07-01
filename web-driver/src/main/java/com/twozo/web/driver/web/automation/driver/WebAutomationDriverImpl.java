@@ -1,22 +1,18 @@
 package com.twozo.web.driver.web.automation.driver;
 
-import com.twozo.web.driver.service.Driver;
-import com.twozo.web.driver.service.PageInformationProvider;
-import com.twozo.web.driver.service.WaitHandler;
-import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.driver.service.WebNavigator;
-import com.twozo.web.driver.service.WebTargetLocator;
-import com.twozo.web.driver.service.WebWindow;
-import com.twozo.web.driver.service.WindowInfoProvider;
+import com.twozo.web.driver.service.*;
+import com.twozo.web.driver.service.ImplicitWaitHandler;
 
 import com.twozo.web.element.service.ElementFinder;
 
+import com.twozo.web.mouse.actions.MouseActions;
 import lombok.NonNull;
 import lombok.Value;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  * <p>
@@ -51,10 +47,12 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     WebTargetLocator webTargetLocator;
     WebWindow webWindow;
     WindowInfoProvider windowInfoProvider;
-    WaitHandler waitHandler;
+    ImplicitWaitHandler implicitWaitHandler;
+    ExplicitWaitHandler explicitWaitHandler;
     TakesScreenshot takesScreenshots;
     ElementFinder elementFinder;
     Driver driverProvider;
+    MouseActions mouseActions;
 
     public WebAutomationDriverImpl(final WebDriver driver) {
         this.driver = driver;
@@ -65,8 +63,10 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.webWindow = WebWindow.getInstance(driver.manage().window());
         this.windowInfoProvider = WindowInfoProvider.getInstance(driver);
         this.driverProvider = Driver.getInstance();
-        this.waitHandler = WaitHandler.getInstance(driver.manage().timeouts());
+        this.implicitWaitHandler = ImplicitWaitHandler.getInstance(driver.manage().timeouts());
+        this.explicitWaitHandler = ExplicitWaitHandler.getInstance(driver);
         this.takesScreenshots = (TakesScreenshot) driver;
+        this.mouseActions = MouseActions.getInstance(driver,new Actions(driver));
     }
 
     /**
@@ -136,11 +136,15 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WaitHandler} for to configure and manage waits in {@link WebDriver}.
+     * @return A {@link ImplicitWaitHandler} for to configure and manage waits in {@link WebDriver}.
      */
+    public ImplicitWaitHandler getImplicitWaitHandler() {
+        return implicitWaitHandler;
+    }
+
     @Override
-    public WaitHandler getWaitHandler() {
-        return waitHandler;
+    public ExplicitWaitHandler getExplicitWaitHandler() {
+        return explicitWaitHandler;
     }
 
     /**
@@ -169,4 +173,10 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     public <X> X getScreenshotAs(final OutputType<X> outputType) {
         return takesScreenshots.getScreenshotAs(outputType);
     }
+
+    @Override
+    public MouseActions getMouseActions(){
+        return mouseActions;
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.twozo.web.driver.waits;
 
-import com.twozo.web.driver.service.WaitHandler;
+import com.twozo.web.driver.service.ImplicitWaitHandler;
 import com.twozo.web.driver.service.WebAutomationDriver;
 
 import lombok.AllArgsConstructor;
@@ -18,18 +18,18 @@ import java.time.Duration;
  * <p>
  * Example usage:
  * <pre>{@code
- * WaitHandler waitHandler = webAutomationDriver.getWaitHandler();
+ * ImplicitWaitHandler waitHandler = webAutomationDriver.getImplicitWaitHandler();
  * waitHandler.implicitWait(Duration.ofSeconds(10));
  * }</pre>
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
- * @see WaitHandler
+ * @see ImplicitWaitHandler
  */
 @NonNull
 @AllArgsConstructor
-public final class WaitHandlerImpl implements WaitHandler {
+public final class ImplicitWaitHandlerImpl implements ImplicitWaitHandler {
 
     private final Timeouts timeouts;
 
@@ -37,10 +37,11 @@ public final class WaitHandlerImpl implements WaitHandler {
      * {@inheritDoc}
      *
      * @param duration The {@link Duration} of the implicit wait.
-     * @return An {@code WaitHandler} configured with the implicit wait {@link Duration}.
+     * @return An {@code ImplicitWaitHandler} configured with the implicit wait {@link Duration}.
      */
     @Override
-    public WaitHandler implicitWait(final Duration duration) {
-        return WaitHandler.getInstance(timeouts.implicitlyWait(duration));
+    public ImplicitWaitHandler implicitWait(final Duration duration) {
+        return ImplicitWaitHandler.getInstance(timeouts.implicitlyWait(duration));
     }
+
 }

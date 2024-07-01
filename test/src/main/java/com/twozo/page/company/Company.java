@@ -16,9 +16,9 @@ public class Company extends BasePage {
 
     public static Company getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(company)) {
+       // if (Objects.isNull(company)) {
             company = new Company(webAutomationDriver);
-        }
+        //}
 
         return company;
     }

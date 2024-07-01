@@ -15,10 +15,10 @@ public class AddProduct extends Product{
 
     public static AddProduct getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(addProduct)) {
+//        if (Objects.isNull(addProduct)) {
 
             addProduct = new AddProduct(webAutomationDriver);
-        }
+  //      }
 
         return addProduct;
     }

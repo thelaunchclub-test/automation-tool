@@ -43,9 +43,9 @@ public class Deal extends BasePage {
 
     public static Deal getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(deal)) {
+      //  if (Objects.isNull(deal)) {
             deal = new Deal(webAutomationDriver);
-        }
+        //}
 
         return deal;
     }

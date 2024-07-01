@@ -14,9 +14,9 @@ public class KanbanView extends Deal{
 
     public static KanbanView getInstance(final WebAutomationDriver webAutomationDriver){
 
-        if (Objects.isNull(kanbanView)) {
+       // if (Objects.isNull(kanbanView)) {
             kanbanView = new KanbanView(webAutomationDriver);
-        }
+        //}
 
         return kanbanView;
     }

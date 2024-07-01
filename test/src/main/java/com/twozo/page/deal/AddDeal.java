@@ -2,7 +2,7 @@ package com.twozo.page.deal;
 
 import com.twozo.page.Month;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.element.finder.Finder;
+import com.twozo.web.element.finder.Element;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
@@ -33,9 +33,9 @@ public class AddDeal extends Deal {
 
     public static AddDeal getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(addDeal)) {
+      //  if (Objects.isNull(addDeal)) {
             addDeal = new AddDeal(webAutomationDriver);
-        }
+        //}
 
         return addDeal;
     }
@@ -56,8 +56,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(pipelineDropdown)) {
             pipelineDropdown = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "p", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Pipeline']", true)));
+                    new Element(LocatorType.TAG_NAME, "p", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Pipeline']", true)));
         }
 
         return pipelineDropdown;
@@ -67,8 +67,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(stageDropdown)) {
             stageDropdown = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "p", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Stage']", true)));
+                    new Element(LocatorType.TAG_NAME, "p", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Stage']", true)));
         }
 
         return stageDropdown;
@@ -78,8 +78,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(wonReasonDropdown)) {
             wonReasonDropdown = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "p", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Won Reason']", true)));
+                    new Element(LocatorType.TAG_NAME, "p", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Won Reason']", true)));
         }
 
         return wonReasonDropdown;
@@ -89,8 +89,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(lostReasonDropdown)) {
             lostReasonDropdown = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "p", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Lost Reason']", true)));
+                    new Element(LocatorType.TAG_NAME, "p", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Lost Reason']", true)));
 
         }
 
@@ -101,8 +101,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(primaryContact)) {
             primaryContact = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "input", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Primary Contact']", true)));
+                    new Element(LocatorType.TAG_NAME, "input", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Primary Contact']", true)));
         }
 
         return primaryContact;
@@ -112,8 +112,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(relatedContacts)) {
             relatedContacts = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "input", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Related Contacts']", true)));
+                    new Element(LocatorType.TAG_NAME, "input", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Related Contacts']", true)));
         }
 
         return relatedContacts;
@@ -123,8 +123,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(company)) {
             company = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "input", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Company']", true)));
+                    new Element(LocatorType.TAG_NAME, "input", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Company']", true)));
         }
 
         return company;
@@ -134,8 +134,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(dealValue)) {
             dealValue = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "input", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Deal Value']", true)));
+                    new Element(LocatorType.TAG_NAME, "input", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Deal Value']", true)));
         }
 
         return dealValue;
@@ -154,8 +154,8 @@ public class AddDeal extends Deal {
 
         if (Objects.isNull(salesOwner)) {
             salesOwner = findBelowElement(List.of(
-                    new Finder(LocatorType.TAG_NAME, "p", false),
-                    new Finder(LocatorType.XPATH, "//*[text()='Sales Owner']", true)));
+                    new Element(LocatorType.TAG_NAME, "p", false),
+                    new Element(LocatorType.XPATH, "//*[text()='Sales Owner']", true)));
         }
 
         return salesOwner;
@@ -173,17 +173,17 @@ public class AddDeal extends Deal {
     public void addDeal() {
         send(getTitleField(), "title");
         click(getStageDropdown());
-        select("won");
+        dropdown("won");
         click(getWonReasonDropdown());
-        select("timing");
+        dropdown("timing");
         click(getLostReasonDropdown());
-        select("junk lead");
-        selectDate(new Finder(LocatorType.XPATH, "//*[text()='Deal Closed On']", true), Month.AUGUST, 23, 1980);
+        dropdown("junk lead");
+        selectDate(new Element(LocatorType.XPATH, "//*[text()='Deal Closed On']", true), Month.AUGUST, 23, 1980);
         send(getPrimaryContact(), "erer");
         send(getRelatedContacts(), "dfse");
         send(getDealValue(), "324");
         click(getSalesOwner());
-        select("new user");
+        dropdown("new user");
         click(getSaveButton());
     }
 }

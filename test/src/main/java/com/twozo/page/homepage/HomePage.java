@@ -52,9 +52,9 @@ public class HomePage extends BasePage {
 
     public static HomePage getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(homePage)) {
+       // if (Objects.isNull(homePage)) {
             homePage = new HomePage(webAutomationDriver);
-        }
+        //}
 
         return homePage;
     }

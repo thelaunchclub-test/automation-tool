@@ -1,11 +1,8 @@
 package com.twozo.page;
 
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.element.finder.Finder;
-import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Filter extends BasePage {
@@ -19,9 +16,9 @@ public class Filter extends BasePage {
 
     public static Filter getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(filter)) {
-            filter = new Filter(webAutomationDriver);
-        }
+        //  if (Objects.isNull(filter)) {
+        filter = new Filter(webAutomationDriver);
+        //}
 
         return filter;
     }
@@ -29,9 +26,7 @@ public class Filter extends BasePage {
     public WebPageElement getSelectColumn() {
 
         if (Objects.isNull(selectColumn)) {
-            selectColumn = findBelowElement(List.of(
-                    new Finder(LocatorType.XPATH, "//input[@placeholder='Select Column...']", false),
-                    new Finder(LocatorType.TAG_NAME, "input", true)));
+            selectColumn = findByXpath("//input[@placeholder='Select Column...']");
         }
 
         return selectColumn;
@@ -40,9 +35,7 @@ public class Filter extends BasePage {
     public WebPageElement getSelectField() {
 
         if (Objects.isNull(selectField)) {
-            selectField = findBelowElement(List.of(
-                    new Finder(LocatorType.XPATH, "//p[text()='Select Field']", false),
-                    new Finder(LocatorType.TAG_NAME, "p", true)));
+            selectField = findByXpath("//p[text()='Select Field']");
         }
 
         return selectField;
@@ -50,18 +43,9 @@ public class Filter extends BasePage {
 
     public void filter() {
         click(getSelectColumn());
-        select("contact");
+        dropdown("contact");
         click(getSelectField());
-        select("Phones");
-        click(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//p[text()='is']", true),
-                new Finder(LocatorType.TAG_NAME, "p", false))));
-        select("starts with");
-        send(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//input[@placeholder='Enter Here']", true),
-                new Finder(LocatorType.TAG_NAME, "input", false))), "9876");
-        click(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//button[text()='Apply']", true),
-                new Finder(LocatorType.TAG_NAME, "button", false))));
+        dropdown("Phones");
+
     }
 }

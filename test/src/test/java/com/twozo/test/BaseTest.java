@@ -26,7 +26,7 @@ public class BaseTest {
     public void setUp() {
         webAutomationDriver = Driver.getInstance().getWebAutomationDriver();
         webAutomationDriver.getWebWindowHandler().maximize();
-        webAutomationDriver.getWaitHandler().implicitWait(Duration.ofSeconds(10));
+        webAutomationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
         webAutomationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
         signIn = SignIn.getInstance(webAutomationDriver);
 

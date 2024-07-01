@@ -16,9 +16,9 @@ public class Analytics extends BasePage {
 
     public static Analytics getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(analytics)) {
+        //if (Objects.isNull(analytics)) {
             analytics = new Analytics(webAutomationDriver);
-        }
+       // }
 
         return analytics;
     }

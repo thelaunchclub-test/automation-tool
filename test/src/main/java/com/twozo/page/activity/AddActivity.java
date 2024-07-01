@@ -3,7 +3,7 @@ package com.twozo.page.activity;
 import com.twozo.page.BasePage;
 import com.twozo.page.Month;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.element.finder.Finder;
+import com.twozo.web.element.finder.Element;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
@@ -44,10 +44,10 @@ public class AddActivity extends BasePage {
 
     public static AddActivity getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(addActivity)) {
+       // if (Objects.isNull(addActivity)) {
 
             addActivity = new AddActivity(webAutomationDriver);
-        }
+        //}
 
         return addActivity;
     }
@@ -59,7 +59,7 @@ public class AddActivity extends BasePage {
         click(findByXpath(String.format(calendarIcon, datePickerCount)));
         click(findByXpath("//button[@aria-label='calendar view is open, switch to year view']"));
         click(findByXpath(String.format(xpath, year)));
-        final WebPageElement div = findLeftElement(List.of(new Finder(LocatorType.TAG_NAME, "div", false), new Finder(LocatorType.XPATH,
+        final WebPageElement div = findLeftElement(List.of(new Element(LocatorType.TAG_NAME, "div", false), new Element(LocatorType.XPATH,
                 "//button[@aria-label='calendar view is open, switch to year view']", true)));
 
         while (!getText(div).equals(String.format("%s %d", month.getName(), year))) {
@@ -71,7 +71,7 @@ public class AddActivity extends BasePage {
     public WebPageElement getTitleField() {
 
         if (Objects.isNull(titleField)) {
-            titleField = findBelowElement(List.of(new Finder(LocatorType.TAG_NAME, "input", false), new Finder(LocatorType.XPATH,
+            titleField = findBelowElement(List.of(new Element(LocatorType.TAG_NAME, "input", false), new Element(LocatorType.XPATH,
                     "//*[text()='Title']", true)));
         }
 
@@ -146,7 +146,7 @@ public class AddActivity extends BasePage {
 //        return;
 //    }
 //
-//    public WebPageElement getSalesOwner() {
+//    public WebPageElement getSalesOwnerField() {
 //
 //        if (Objects.isNull()) {
 //

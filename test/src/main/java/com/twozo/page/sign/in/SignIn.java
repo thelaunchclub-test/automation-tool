@@ -3,9 +3,10 @@ package com.twozo.page.sign.in;
 import com.twozo.commons.exception.TestException;
 import com.twozo.page.BasePage;
 import com.twozo.page.deal.Deal;
+import com.twozo.page.homepage.HomePage;
 import com.twozo.page.sign.up.SignUp;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.element.finder.Finder;
+import com.twozo.web.element.finder.Element;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.status.WebDriverStatusCode;
@@ -129,8 +130,8 @@ public class SignIn extends BasePage {
 
         if (Objects.isNull(rememberMeCheckBoxToCheckIfDisplayed)) {
             //rememberMeCheckBoxToCheckIfDisplayed = findByText("//*[@type='checkbox']");
-            rememberMeCheckBoxToCheckIfDisplayed = findLeftElement(List.of(new Finder(LocatorType.XPATH, "//*[text()='Remember Me']"
-                    , true), new Finder(LocatorType.TAG_NAME, "svg", false)));
+            rememberMeCheckBoxToCheckIfDisplayed = findLeftElement(List.of(new Element(LocatorType.XPATH, "//*[text()='Remember Me']"
+                    , true), new Element(LocatorType.TAG_NAME, "svg", false)));
         }
 
         return rememberMeCheckBoxToCheckIfDisplayed;
@@ -217,12 +218,12 @@ public class SignIn extends BasePage {
         return passwordPlaceholder;
     }
 
-    public Deal signIn(final String email, final String password) {
+    public HomePage signIn(final String email, final String password) {
         send(getEmailField(), email);
         send(getPasswordField(), password);
         click(getSignInButton());
 
-        return getDeal();
+        return HomePage.getInstance(webAutomationDriver);
     }
 
     public WebPageElement getEmailValidationText() {
@@ -368,5 +369,9 @@ public class SignIn extends BasePage {
 
     public boolean isCheckboxIsUncheckedByDefault() {
         return getAttribute(getRememberMeCheckBoxToCheckIfDisplayed(), "style").equals("fill: none;");
+    }
+
+    public void check(){
+        hover(new Element(LocatorType.XPATH,"//*[text()='Sign In']",true));
     }
 }
