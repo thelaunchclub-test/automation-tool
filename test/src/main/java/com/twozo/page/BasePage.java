@@ -1,15 +1,16 @@
 package com.twozo.page;
 
+import com.twozo.web.driver.service.ExplicitWaitHandler;
 import com.twozo.web.driver.service.PageInformationProvider;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.driver.service.WebNavigator;
-
-import com.twozo.web.element.finder.Finder;
+import com.twozo.web.element.finder.Element;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.ElementFinder;
 import com.twozo.web.element.service.ElementInformationProvider;
 import com.twozo.web.element.service.ElementInteraction;
 import com.twozo.web.element.service.WebPageElement;
+import com.twozo.web.mouse.actions.MouseActions;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,48 +22,52 @@ public class BasePage {
     protected ElementFinder elementFinder;
     protected WebNavigator webNavigator;
     protected PageInformationProvider pageInformationProvider;
+    protected MouseActions mouseActions;
+    protected ExplicitWaitHandler explicitWaitHandler;
 
     protected BasePage(final WebAutomationDriver webAutomationDriver) {
         this.webAutomationDriver = webAutomationDriver;
         this.elementFinder = webAutomationDriver.getElementFinder();
         this.webNavigator = webAutomationDriver.getWebNavigator();
         this.pageInformationProvider = webAutomationDriver.getPageInformationProvider();
+        this.mouseActions = webAutomationDriver.getMouseActions();
+        this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
     }
 
-    protected final WebPageElement findElement(final Finder finder) {
-        return elementFinder.getWebPageElement(finder);
+    protected final WebPageElement findElement(final Element element) {
+        return elementFinder.getWebPageElement(element);
     }
 
-    protected final Collection<WebPageElement> findElements(final Finder finder) {
-        return elementFinder.getWebPageElements(finder);
+    protected final Collection<WebPageElement> findElements(final Element element) {
+        return elementFinder.getWebPageElements(element);
     }
 
-    protected final WebPageElement findAboveElement(final Collection<Finder> finders) {
-        return elementFinder.findAboveElement(finders);
+    protected final WebPageElement findAboveElement(final Collection<Element> elements) {
+        return elementFinder.findAboveElement(elements);
     }
 
-    protected final WebPageElement findBelowElement(final Collection<Finder> finders) {
-        return elementFinder.findBelowElement(finders);
+    protected final WebPageElement findBelowElement(final Collection<Element> elements) {
+        return elementFinder.findBelowElement(elements);
     }
 
-    protected final WebPageElement findNearElement(final Collection<Finder> finders) {
-        return elementFinder.findNearElement(finders);
+    protected final WebPageElement findNearElement(final Collection<Element> elements) {
+        return elementFinder.findNearElement(elements);
     }
 
-    protected final WebPageElement findLeftElement(final Collection<Finder> finders) {
-        return elementFinder.findLeftElement(finders);
+    protected final WebPageElement findLeftElement(final Collection<Element> elements) {
+        return elementFinder.findLeftElement(elements);
     }
 
-    protected final WebPageElement findRightElement(final Collection<Finder> finders) {
-        return elementFinder.findRightElement(finders);
+    protected final WebPageElement findRightElement(final Collection<Element> elements) {
+        return elementFinder.findRightElement(elements);
     }
 
-    protected WebPageElement findByXpath(final String xpath) {
-        return findElement(new Finder(LocatorType.XPATH, xpath, true));
+    public WebPageElement findByXpath(final String xpath) {
+        return findElement(new Element(LocatorType.XPATH, xpath, true));
     }
 
     protected Collection<WebPageElement> findElementsByXpath(final String xpath) {
-        return findElements(new Finder(LocatorType.XPATH, xpath, true));
+        return findElements(new Element(LocatorType.XPATH, xpath, true));
     }
 
     protected WebPageElement findByText(final String value) {
@@ -77,17 +82,17 @@ public class BasePage {
         getElementInteraction(webPageElement).click();
     }
 
-    protected final void selectDate(final Finder finder, final Month month, final int date, final int year) {
+    protected final void selectDate(final Element element, final Month month, final int date, final int year) {
         final String xpath = "//button[text()='%d']";
 
         click(findBelowElement(List.of(
-                new Finder(LocatorType.XPATH, "//button[@aria-label='Choose date']", false),
-                finder)));
+                new Element(LocatorType.XPATH, "//button[@aria-label='Choose date']", false),
+                element)));
         click(findByXpath("//button[@aria-label='calendar view is open, switch to year view']"));
         click(findByText(String.format(xpath, year)));
         final WebPageElement div = findLeftElement(List.of(
-                new Finder(LocatorType.TAG_NAME, "div", false),
-                new Finder(LocatorType.XPATH,
+                new Element(LocatorType.TAG_NAME, "div", false),
+                new Element(LocatorType.XPATH,
                         "//button[@aria-label='calendar view is open, switch to year view']", true)));
 
         while (!getText(div).equals(String.format("%s %d", month.getName(), year))) {
@@ -118,9 +123,20 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
 
-    protected final void select(final String option) {
+    protected final void dropdown(final String option) {
+        select(option, "li");
+    }
 
-        for (final WebPageElement element : findElements(new Finder(LocatorType.TAG_NAME, "li", true))) {
+    protected final void dropdownMenu(final String option) {
+        select(option, "div");
+    }
+
+    protected final void hover(final Element element) {
+        mouseActions.moveToElement(element).build().perform();
+    }
+
+    private void select(final String option, final String dropdownType) {
+        for (final WebPageElement element : findElements(new Element(LocatorType.TAG_NAME, dropdownType, true))) {
 
             if (getText(element).equalsIgnoreCase(option)) {
                 click(element);

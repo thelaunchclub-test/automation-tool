@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.waits.WaitHandlerImpl;
+import com.twozo.web.driver.waits.ImplicitWaitHandlerImpl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Timeouts;
@@ -15,7 +15,7 @@ import java.time.Duration;
  * <p>
  * Example usage:
  * <pre>{@code
- * WaitHandler waitHandler = webAutomationDriver.getWaitHandler();
+ * ImplicitWaitHandler waitHandler = webAutomationDriver.getImplicitWaitHandler();
  * waitHandler.implicitWait(Duration.ofSeconds(10));
  * }</pre>
  * </p>
@@ -23,10 +23,10 @@ import java.time.Duration;
  * @author Petchimuthu
  * @version 1.0
  */
-public interface WaitHandler {
+public interface ImplicitWaitHandler {
 
-    static WaitHandler getInstance(final Timeouts timeouts) {
-        return new WaitHandlerImpl(timeouts);
+    static ImplicitWaitHandler getInstance(final Timeouts timeouts) {
+        return new ImplicitWaitHandlerImpl(timeouts);
     }
 
     /**
@@ -35,7 +35,8 @@ public interface WaitHandler {
      * </p>
      *
      * @param duration The {@link Duration} of the implicit wait.
-     * @return A {@code WaitHandler} configured with the implicit wait {@link Duration}.
+     * @return A {@code ImplicitWaitHandler} configured with the implicit wait {@link Duration}.
      */
-    WaitHandler implicitWait(final Duration duration);
+    ImplicitWaitHandler implicitWait(final Duration duration);
+
 }

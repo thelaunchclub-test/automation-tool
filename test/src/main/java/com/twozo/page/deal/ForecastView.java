@@ -14,9 +14,9 @@ public class ForecastView extends Deal{
 
     public static ForecastView getInstance(final WebAutomationDriver webAutomationDriver){
 
-        if (Objects.isNull(forecastView)) {
+     //   if (Objects.isNull(forecastView)) {
             forecastView = new ForecastView(webAutomationDriver);
-        }
+       // }
 
         return forecastView;
     }

@@ -11,5 +11,5 @@ import com.twozo.web.element.service.WebPageElement;
  * @author Petchimuthu
  * @version 1.0
  */
-public record Finder(LocatorType locatorType, String value, boolean isKnown) {
+public record Element(LocatorType locatorType, String value, boolean isKnown) {
 }

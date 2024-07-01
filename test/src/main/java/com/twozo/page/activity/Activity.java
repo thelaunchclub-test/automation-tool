@@ -47,9 +47,9 @@ public class Activity extends BasePage {
 
     public static Activity getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(activity)) {
+        //if (Objects.isNull(activity)) {
             activity = new Activity(webAutomationDriver);
-        }
+        //}
 
         return activity;
     }

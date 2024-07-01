@@ -4,9 +4,10 @@ import com.twozo.commons.exception.TestException;
 import com.twozo.page.BasePage;
 import com.twozo.page.deal.Deal;
 
+import com.twozo.page.homepage.HomePage;
 import com.twozo.page.sign.in.SignIn;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.element.finder.Finder;
+import com.twozo.web.element.finder.Element;
 import com.twozo.web.element.locator.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.status.WebDriverStatusCode;
@@ -44,9 +45,9 @@ public class SignUp extends BasePage {
 
     public static SignUp getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(signUp)) {
+      //  if (Objects.isNull(signUp)) {
             signUp = new SignUp(webAutomationDriver);
-        }
+        //}
 
         return signUp;
     }
@@ -144,7 +145,7 @@ public class SignUp extends BasePage {
     public Collection<WebPageElement> getJobRoles() {
 
         if (Objects.isNull(jobRoles)) {
-            jobRoles = findElements(new Finder(LocatorType.TAG_NAME, "li", true));
+            jobRoles = findElements(new Element(LocatorType.TAG_NAME, "li", true));
         }
 
         return jobRoles;
@@ -159,8 +160,8 @@ public class SignUp extends BasePage {
         return completeSignUpButton;
     }
 
-    public Deal signUp(final String email, final String name, final String password, final String confirmPassword,
-                       final String company, final String jobRole) {
+    public HomePage signUp(final String email, final String name, final String password, final String confirmPassword,
+                           final String company, final String jobRole) {
         send(getEmailField(), email);
         click(getNextButton());
         send(getNameField(), name);
@@ -169,10 +170,10 @@ public class SignUp extends BasePage {
         click(getCreateAccountButton());
         send(getCompanyField(), company);
         click(getJobRoleDropDown());
-        select(jobRole);
+        dropdown(jobRole);
         click(getCompleteSignUpButton());
 
-        return deal;
+        return HomePage.getInstance(webAutomationDriver);
     }
 
     public SignIn signIn() {

@@ -39,11 +39,13 @@ public class WebPageElementImpl implements WebPageElement {
     ElementInteraction elementInteraction;
     ElementInformationProvider elementInformation;
     ElementFinder elementFinder;
+    WebElement webElement;
 
     public WebPageElementImpl(final WebElement webElement) {
         this.elementInteraction = ElementInteraction.getInstance(webElement);
         this.elementInformation = ElementInformationProvider.getInstance(webElement);
         this.elementFinder = ElementFinder.getInstance(webElement);
+        this.webElement = webElement;
     }
 
     /**
@@ -74,4 +76,5 @@ public class WebPageElementImpl implements WebPageElement {
     public ElementInformationProvider getElementInformationProvider() {
         return elementInformation;
     }
+
 }

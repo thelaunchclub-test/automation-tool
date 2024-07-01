@@ -32,115 +32,115 @@ public final class ElementFinderForElement extends AbstractElementFinder {
     /**
      * {@inheritDoc}
      *
-     * @param finder The {@link Finder}  containing locator type and value.
+     * @param element The {@link Element}  containing locator type and value.
      * @return a {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement getWebPageElement(final Finder finder) {
-        return new WebPageElementImpl(element.findElement(getByValue(finder.locatorType(), finder.value())));
+    public WebPageElement getWebPageElement(final Element element) {
+        return new WebPageElementImpl(this.element.findElement(getByValue(element.locatorType(), element.value())));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param finder The {@link Finder}  containing locator type and value.
+     * @param element The {@link Element}  containing locator type and value.
      * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements.
      */
     @Override
-    public Collection<WebPageElement> getWebPageElements(final Finder finder) {
-        return getCommonElements(element.findElements(getByValue(finder.locatorType(), finder.value())));
+    public Collection<WebPageElement> getWebPageElements(final Element element) {
+        return getCommonElements(this.element.findElements(getByValue(element.locatorType(), element.value())));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param finders A {@link Collection} of {@link Finder}.
+     * @param elements A {@link Collection} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findBelowElement(final Collection<Finder> finders) {
-        final Map<Boolean, Finder> booleanFinderMap = get(finders);
-        final Finder knownFinder = booleanFinderMap.get(true);
-        final Finder unKnownFinder = booleanFinderMap.get(false);
+    public WebPageElement findBelowElement(final Collection<Element> elements) {
+        final Map<Boolean, Element> booleanFinderMap = get(elements);
+        final Element knownElement = booleanFinderMap.get(true);
+        final Element unKnownElement = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
-                below(getByValue(knownFinder.locatorType(), knownFinder.value()))));
+        return new WebPageElementImpl(element.findElement(with(unKnownElement.locatorType(), unKnownElement.value()).
+                below(getByValue(knownElement.locatorType(), knownElement.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param finders A {@link Collection} of {@link Finder}.
+     * @param elements A {@link Collection} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findAboveElement(final Collection<Finder> finders) {
-        final Map<Boolean, Finder> booleanFinderMap = get(finders);
-        final Finder knownFinder = booleanFinderMap.get(true);
-        final Finder unKnownFinder = booleanFinderMap.get(false);
+    public WebPageElement findAboveElement(final Collection<Element> elements) {
+        final Map<Boolean, Element> booleanFinderMap = get(elements);
+        final Element knownElement = booleanFinderMap.get(true);
+        final Element unKnownElement = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
-                above(getByValue(knownFinder.locatorType(), knownFinder.value()))));
+        return new WebPageElementImpl(element.findElement(with(unKnownElement.locatorType(), unKnownElement.value()).
+                above(getByValue(knownElement.locatorType(), knownElement.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param finders A {@link Collection} of {@link Finder}.
+     * @param elements A {@link Collection} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findLeftElement(final Collection<Finder> finders) {
-        final Map<Boolean, Finder> booleanFinderMap = get(finders);
-        final Finder knownFinder = booleanFinderMap.get(true);
-        final Finder unKnownFinder = booleanFinderMap.get(false);
+    public WebPageElement findLeftElement(final Collection<Element> elements) {
+        final Map<Boolean, Element> booleanFinderMap = get(elements);
+        final Element knownElement = booleanFinderMap.get(true);
+        final Element unKnownElement = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
-                toLeftOf(getByValue(knownFinder.locatorType(), knownFinder.value()))));
+        return new WebPageElementImpl(element.findElement(with(unKnownElement.locatorType(), unKnownElement.value()).
+                toLeftOf(getByValue(knownElement.locatorType(), knownElement.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param finders A {@link Collection} of {@link Finder}.
+     * @param elements A {@link Collection} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findRightElement(final Collection<Finder> finders) {
-        final Map<Boolean, Finder> booleanFinderMap = get(finders);
-        final Finder knownFinder = booleanFinderMap.get(true);
-        final Finder unKnownFinder = booleanFinderMap.get(false);
+    public WebPageElement findRightElement(final Collection<Element> elements) {
+        final Map<Boolean, Element> booleanFinderMap = get(elements);
+        final Element knownElement = booleanFinderMap.get(true);
+        final Element unKnownElement = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
-                toRightOf(getByValue(knownFinder.locatorType(), knownFinder.value()))));
+        return new WebPageElementImpl(element.findElement(with(unKnownElement.locatorType(), unKnownElement.value()).
+                toRightOf(getByValue(knownElement.locatorType(), knownElement.value()))));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param finders A {@link Collection} of {@link Finder}.
+     * @param elements A {@link Collection} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findNearElement(final Collection<Finder> finders) {
-        final Map<Boolean, Finder> booleanFinderMap = get(finders);
-        final Finder knownFinder = booleanFinderMap.get(true);
-        final Finder unKnownFinder = booleanFinderMap.get(false);
+    public WebPageElement findNearElement(final Collection<Element> elements) {
+        final Map<Boolean, Element> booleanFinderMap = get(elements);
+        final Element knownElement = booleanFinderMap.get(true);
+        final Element unKnownElement = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
-                near(getByValue(knownFinder.locatorType(), knownFinder.value()))));
+        return new WebPageElementImpl(element.findElement(with(unKnownElement.locatorType(), unKnownElement.value()).
+                near(getByValue(knownElement.locatorType(), knownElement.value()))));
     }
 
     /**
      * <p>
-     * Converts a {@link Collection} of {@link Finder} into a {@link Map} where the key is a boolean indicating
+     * Converts a {@link Collection} of {@link Element} into a {@link Map} where the key is a boolean indicating
      * whether the locator is known or not, and the value is the Finder object itself.
      * </p>
      *
-     * @param finders A {@link Collection} of {@link Finder} into a {@link Map}.
+     * @param elements A {@link Collection} of {@link Element} into a {@link Map}.
      * @return A {@link Map}.
      */
-    private Map<Boolean, Finder> get(final Collection<Finder> finders) {
-        return finders.stream().collect(Collectors.toMap(Finder::isKnown, Function.identity()));
+    private Map<Boolean, Element> get(final Collection<Element> elements) {
+        return elements.stream().collect(Collectors.toMap(Element::isKnown, Function.identity()));
     }
 }

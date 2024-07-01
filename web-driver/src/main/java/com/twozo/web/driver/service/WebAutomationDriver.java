@@ -4,6 +4,7 @@ import com.twozo.web.driver.screenshot.TakesScreenshots;
 import com.twozo.web.driver.web.automation.driver.WebAutomationDriverImpl;
 import com.twozo.web.element.service.ElementFinder;
 
+import com.twozo.web.mouse.actions.MouseActions;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -92,12 +93,16 @@ public interface WebAutomationDriver extends TakesScreenshots {
 
     /**
      * <p>
-     * Returns {@link WaitHandler} for handling waits.
+     * Returns {@link ImplicitWaitHandler} for handling waits.
      * </p>
      *
-     * @return A {@link WaitHandler} for handling waits.
+     * @return A {@link ImplicitWaitHandler} for handling waits.
      */
-    WaitHandler getWaitHandler();
+    ImplicitWaitHandler getImplicitWaitHandler();
+
+    ExplicitWaitHandler getExplicitWaitHandler();
+
+    MouseActions getMouseActions();
 
     /**
      * <p>

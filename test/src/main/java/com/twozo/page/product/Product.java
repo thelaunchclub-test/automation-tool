@@ -16,9 +16,9 @@ public class Product extends BasePage {
 
     public static Product getInstance(final WebAutomationDriver webAutomationDriver){
 
-        if (Objects.isNull(product)) {
+      //  if (Objects.isNull(product)) {
             product = new Product(webAutomationDriver);
-        }
+        //}
 
         return product;
     }

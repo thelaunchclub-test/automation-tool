@@ -16,9 +16,9 @@ public class Inbox extends BasePage {
 
     public static Inbox getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(inbox)) {
+       // if (Objects.isNull(inbox)) {
             inbox = new Inbox(webAutomationDriver);
-        }
+        //}
 
         return inbox;
     }

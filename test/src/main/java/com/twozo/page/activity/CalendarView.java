@@ -14,10 +14,10 @@ public class CalendarView extends Activity {
 
     public static CalendarView getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(calendarView)) {
+      //  if (Objects.isNull(calendarView)) {
 
             calendarView = new CalendarView(webAutomationDriver);
-        }
+        //}
 
         return calendarView;
     }

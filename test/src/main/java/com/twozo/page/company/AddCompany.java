@@ -15,9 +15,9 @@ public class AddCompany extends Company {
 
     public static AddCompany getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        if (Objects.isNull(addCompany)) {
+       // if (Objects.isNull(addCompany)) {
             addCompany = new AddCompany(webAutomationDriver);
-        }
+        //}
 
         return addCompany;
     }
