@@ -41,23 +41,6 @@ public enum CommonsErrorCode implements ErrorCodeProvider {
         this.code = code;
     }
 
-//    static {
-//        register();
-//    }
-//
-//    /**
-//     * <p>
-//     * Registers the base code if it's not already registered. Ensures that the base code is registered only once.
-//     * </p>
-//     */
-//    private static void register() {
-//
-//        if (!isBaseCodeRegistered) {
-//            ErrorCodeRegistry.register(BASE_CODE, CommonsErrorCode.class.getSimpleName());
-//            isBaseCodeRegistered = true;
-//        }
-//    }
-
     /**
      * {@inheritDoc}
      *
