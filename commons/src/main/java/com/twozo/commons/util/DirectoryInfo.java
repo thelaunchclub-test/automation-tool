@@ -1,7 +1,5 @@
 package com.twozo.commons.util;
 
-import lombok.Value;
-
 import java.io.File;
 
 /**
@@ -19,8 +17,7 @@ import java.io.File;
  * @author Petchimuthu
  * @version 1.0
  */
-@Value
-public class DirectoryInfo {
+public final class DirectoryInfo {
 
     private static final String separator = File.separator;
     private static final String USER_HOME = System.getProperty("user.home");
