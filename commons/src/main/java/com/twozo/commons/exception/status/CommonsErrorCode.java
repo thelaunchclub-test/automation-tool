@@ -33,7 +33,6 @@ public enum CommonsErrorCode implements ErrorCodeProvider {
 
     private static final PrefixProvider PREFIX_PROVIDER = new PrefixProvider();
     private static final int BASE_CODE = 0x1000;
-    private static boolean isBaseCodeRegistered = false;
 
     private final int code;
 
