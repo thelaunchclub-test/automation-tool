@@ -10,14 +10,14 @@ import java.io.File;
  * <p>
  * Example usage:
  * <pre>{@code
- * String seleniumDir = DirectoryInfo.getAutomationToolDirectory();
+ * String seleniumDir = DirectoryUtility.getAutomationToolDirectory();
  * }</pre>
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
  */
-public final class DirectoryInfo {
+public final class DirectoryUtility {
 
     private static final String separator = File.separator;
     private static final String USER_HOME = System.getProperty("user.home");
