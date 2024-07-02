@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.navigation.WebNavigatorImpl;
+import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 
 import org.openqa.selenium.WebDriver.Navigation;
 
@@ -29,10 +29,6 @@ import org.openqa.selenium.WebDriver.Navigation;
  * @version 1.0
  */
 public interface WebNavigator {
-
-    static WebNavigator getInstance(final Navigation navigation) {
-        return new WebNavigatorImpl(navigation);
-    }
 
     /**
      * <p>

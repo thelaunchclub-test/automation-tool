@@ -1,4 +1,4 @@
-package com.twozo.web.driver.navigation;
+package com.twozo.web.driver.internal.navigation;
 
 import com.twozo.web.driver.service.WebNavigator;
 

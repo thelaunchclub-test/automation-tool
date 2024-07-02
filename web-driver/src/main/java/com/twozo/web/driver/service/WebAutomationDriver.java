@@ -1,10 +1,7 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.screenshot.TakesScreenshots;
-import com.twozo.web.driver.web.automation.driver.WebAutomationDriverImpl;
+import com.twozo.web.driver.service.screenshot.ScreenshotProvider;
 import com.twozo.web.element.service.ElementFinder;
-
-import org.openqa.selenium.WebDriver;
 
 /**
  * <p>
@@ -27,13 +24,9 @@ import org.openqa.selenium.WebDriver;
  *
  * @author Petchimuthu
  * @version 1.0
- * @see TakesScreenshots
+ * @see ScreenshotProvider
  */
-public interface WebAutomationDriver extends TakesScreenshots {
-
-    static WebAutomationDriver getInstance(final WebDriver driver) {
-        return new WebAutomationDriverImpl(driver);
-    }
+public interface WebAutomationDriver {
 
     /**
      * <p>
@@ -98,6 +91,8 @@ public interface WebAutomationDriver extends TakesScreenshots {
      * @return A {@link WaitHandler} for handling waits.
      */
     WaitHandler getWaitHandler();
+
+    ScreenshotProvider getScreenshotProvider();
 
     /**
      * <p>

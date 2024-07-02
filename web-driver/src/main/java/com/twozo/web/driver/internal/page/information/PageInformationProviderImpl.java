@@ -1,4 +1,4 @@
-package com.twozo.web.driver.page.information;
+package com.twozo.web.driver.internal.page.information;
 
 import com.twozo.web.driver.service.PageInformationProvider;
 

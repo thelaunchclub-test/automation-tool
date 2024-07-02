@@ -1,4 +1,4 @@
-package com.twozo.web.driver.waits;
+package com.twozo.web.driver.internal.wait;
 
 import com.twozo.web.driver.service.WaitHandler;
 import com.twozo.web.driver.service.WebAutomationDriver;

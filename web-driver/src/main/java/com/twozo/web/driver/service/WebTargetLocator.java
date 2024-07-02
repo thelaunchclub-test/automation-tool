@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.target.locator.WebTargetLocatorImpl;
+import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.TargetLocator;
@@ -30,10 +30,6 @@ import org.openqa.selenium.WindowType;
  * @version 1.0
  */
 public interface WebTargetLocator {
-
-    static WebTargetLocator getInstance(final WebDriver driver, final TargetLocator targetLocator) {
-        return new WebTargetLocatorImpl(driver, targetLocator);
-    }
 
     /**
      * <p>

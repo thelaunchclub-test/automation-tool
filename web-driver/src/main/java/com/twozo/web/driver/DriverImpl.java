@@ -1,6 +1,8 @@
 package com.twozo.web.driver;
 
 import com.twozo.commons.util.PropertyFileReader;
+import com.twozo.web.driver.internal.web.automation.driver.WebAutomationDriverImpl;
+import com.twozo.web.driver.model.BrowserType;
 import com.twozo.web.driver.service.Driver;
 import com.twozo.web.driver.service.WebAutomationDriver;
 
@@ -52,7 +54,7 @@ public class DriverImpl implements Driver {
         final BrowserType browserType = Objects.requireNonNull(BrowserType.valueOf(
                 Objects.requireNonNull(propertyFileReader.getProperty()).getProperty("Browser").toUpperCase()));
 
-        return WebAutomationDriver.getInstance(getDriver(browserType));
+        return new WebAutomationDriverImpl(getDriver(browserType));
     }
 
     /**

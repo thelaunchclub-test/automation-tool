@@ -1,4 +1,4 @@
-package com.twozo.web.driver.screenshot;
+package com.twozo.web.driver.service.screenshot;
 
 import org.openqa.selenium.OutputType;
 
@@ -11,14 +11,14 @@ import org.openqa.selenium.OutputType;
  * <p>
  * Example usage:
  * <pre>{@code
- * TakesScreenshots screenshot = webAutomationDriver.getScreenshot(OutputType.FILE);
+ * ScreenshotProvider screenshot = webAutomationDriver.getScreenshot(OutputType.FILE);
  * }</pre>
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
  */
-public interface TakesScreenshots {
+public interface ScreenshotProvider {
 
     /**
      * <p>

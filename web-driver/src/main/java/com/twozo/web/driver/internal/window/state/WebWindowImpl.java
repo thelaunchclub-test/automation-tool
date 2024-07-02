@@ -1,4 +1,4 @@
-package com.twozo.web.driver.window.state;
+package com.twozo.web.driver.internal.window.state;
 
 import com.twozo.web.driver.service.WebWindow;
 

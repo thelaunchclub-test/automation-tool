@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.alert.AlertHandlerImpl;
+import com.twozo.web.driver.internal.target.locator.alert.AlertHandlerImpl;
 
 import org.openqa.selenium.Alert;
 
@@ -29,10 +29,6 @@ import org.openqa.selenium.Alert;
  * @version 1.0
  */
 public interface AlertHandler {
-
-    static AlertHandler getInstance(final Alert alert) {
-        return new AlertHandlerImpl(alert);
-    }
 
     /**
      * <p>

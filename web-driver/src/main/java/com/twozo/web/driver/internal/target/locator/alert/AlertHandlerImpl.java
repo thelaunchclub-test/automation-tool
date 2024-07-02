@@ -1,4 +1,4 @@
-package com.twozo.web.driver.alert;
+package com.twozo.web.driver.internal.target.locator.alert;
 
 import com.twozo.web.driver.service.AlertHandler;
 

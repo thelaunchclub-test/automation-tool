@@ -1,4 +1,4 @@
-package com.twozo.web.driver.window.info;
+package com.twozo.web.driver.internal.window.info;
 
 import com.twozo.web.driver.service.WindowInfoProvider;
 

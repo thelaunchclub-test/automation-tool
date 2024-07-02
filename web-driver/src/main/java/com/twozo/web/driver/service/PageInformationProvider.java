@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.page.information.PageInformationProviderImpl;
+import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 
 import org.openqa.selenium.WebDriver;
 
@@ -29,10 +29,6 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0
  */
 public interface PageInformationProvider {
-
-    static PageInformationProvider getInstance(final WebDriver driver) {
-        return new PageInformationProviderImpl(driver);
-    }
 
     /**
      * <p>

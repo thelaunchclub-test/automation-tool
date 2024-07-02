@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.window.state.WebWindowImpl;
+import com.twozo.web.driver.internal.window.state.WebWindowImpl;
 
 import org.openqa.selenium.WebDriver;
 
@@ -24,10 +24,6 @@ import org.openqa.selenium.WebDriver;
  * @version 1.0
  */
 public interface WebWindow {
-
-    static WebWindow getInstance(final WebDriver.Window window) {
-        return new WebWindowImpl(window);
-    }
 
     /**
      * <p>

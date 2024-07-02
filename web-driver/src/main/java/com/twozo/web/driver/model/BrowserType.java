@@ -1,4 +1,4 @@
-package com.twozo.web.driver;
+package com.twozo.web.driver.model;
 
 /**
  * <p>
@@ -8,7 +8,7 @@ package com.twozo.web.driver;
  * @author Petchimuthu
  * @version 1.0
  */
-enum BrowserType {
+public enum BrowserType {
 
     /**
      * <p>

@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.window.info.WindowInfoProviderImpl;
+import com.twozo.web.driver.internal.window.info.WindowInfoProviderImpl;
 
 import org.openqa.selenium.WebDriver;
 
@@ -25,10 +25,6 @@ import java.util.Set;
  * @version 1.0
  */
 public interface WindowInfoProvider {
-
-    static WindowInfoProvider getInstance(final WebDriver driver) {
-        return new WindowInfoProviderImpl(driver);
-    }
 
     /**
      * <p>

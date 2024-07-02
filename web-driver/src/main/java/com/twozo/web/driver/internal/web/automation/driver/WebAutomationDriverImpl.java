@@ -1,5 +1,13 @@
-package com.twozo.web.driver.web.automation.driver;
+package com.twozo.web.driver.internal.web.automation.driver;
 
+import com.twozo.web.driver.DriverImpl;
+import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
+import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
+import com.twozo.web.driver.internal.screenshot.ScreenshotProviderImpl;
+import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
+import com.twozo.web.driver.internal.wait.WaitHandlerImpl;
+import com.twozo.web.driver.internal.window.info.WindowInfoProviderImpl;
+import com.twozo.web.driver.internal.window.state.WebWindowImpl;
 import com.twozo.web.driver.service.Driver;
 import com.twozo.web.driver.service.PageInformationProvider;
 import com.twozo.web.driver.service.WaitHandler;
@@ -9,13 +17,14 @@ import com.twozo.web.driver.service.WebTargetLocator;
 import com.twozo.web.driver.service.WebWindow;
 import com.twozo.web.driver.service.WindowInfoProvider;
 
+import com.twozo.web.driver.service.screenshot.ScreenshotProvider;
+import com.twozo.web.element.finder.ElementFinderForDriver;
 import com.twozo.web.element.service.ElementFinder;
 
 import lombok.NonNull;
 import lombok.Value;
 
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -52,21 +61,21 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     WebWindow webWindow;
     WindowInfoProvider windowInfoProvider;
     WaitHandler waitHandler;
-    TakesScreenshot takesScreenshots;
+    ScreenshotProvider screenshotProvider;
     ElementFinder elementFinder;
     Driver driverProvider;
 
     public WebAutomationDriverImpl(final WebDriver driver) {
         this.driver = driver;
-        this.webNavigator = WebNavigator.getInstance(driver.navigate());
-        this.pageInformationProvider = PageInformationProvider.getInstance(driver);
-        this.elementFinder = ElementFinder.getInstance(driver);
-        this.webTargetLocator = WebTargetLocator.getInstance(driver, driver.switchTo());
-        this.webWindow = WebWindow.getInstance(driver.manage().window());
-        this.windowInfoProvider = WindowInfoProvider.getInstance(driver);
-        this.driverProvider = Driver.getInstance();
-        this.waitHandler = WaitHandler.getInstance(driver.manage().timeouts());
-        this.takesScreenshots = (TakesScreenshot) driver;
+        this.webNavigator = new WebNavigatorImpl(driver.navigate());
+        this.pageInformationProvider = new PageInformationProviderImpl(driver);
+        this.elementFinder = new ElementFinderForDriver(driver);
+        this.webTargetLocator = new WebTargetLocatorImpl(driver, driver.switchTo());
+        this.webWindow = new WebWindowImpl(driver.manage().window());
+        this.windowInfoProvider = new WindowInfoProviderImpl(driver);
+        this.driverProvider = new DriverImpl();
+        this.waitHandler = new WaitHandlerImpl(driver.manage().timeouts());
+        this.screenshotProvider = new ScreenshotProviderImpl(driver);
     }
 
     /**
@@ -143,6 +152,11 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         return waitHandler;
     }
 
+    @Override
+    public ScreenshotProvider getScreenshotProvider() {
+        return screenshotProvider;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -157,16 +171,5 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     @Override
     public void quit() {
         driver.quit();
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param outputType The target type into which to convert the screenshot.
-     * @return A screenshot of the current page.
-     */
-    @Override
-    public <X> X getScreenshotAs(final OutputType<X> outputType) {
-        return takesScreenshots.getScreenshotAs(outputType);
     }
 }

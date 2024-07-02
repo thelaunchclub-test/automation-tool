@@ -1,5 +1,7 @@
-package com.twozo.web.driver.target.locator;
+package com.twozo.web.driver.internal.target.locator;
 
+import com.twozo.web.driver.internal.target.locator.alert.AlertHandlerImpl;
+import com.twozo.web.driver.internal.web.automation.driver.WebAutomationDriverImpl;
 import com.twozo.web.driver.service.AlertHandler;
 import com.twozo.web.driver.service.WebTargetLocator;
 import com.twozo.web.driver.service.WebAutomationDriver;
@@ -50,7 +52,7 @@ public final class WebTargetLocatorImpl implements WebTargetLocator {
      */
     @Override
     public WebAutomationDriver getWindow(final String name) {
-        return WebAutomationDriver.getInstance(targetLocator.window(name));
+        return new WebAutomationDriverImpl(targetLocator.window(name));
     }
 
     /**
@@ -61,7 +63,7 @@ public final class WebTargetLocatorImpl implements WebTargetLocator {
      */
     @Override
     public WebAutomationDriver getNewWindow(final WindowType windowType) {
-        return WebAutomationDriver.getInstance(targetLocator.newWindow(windowType));
+        return new WebAutomationDriverImpl(targetLocator.newWindow(windowType));
     }
 
     /**
@@ -71,6 +73,6 @@ public final class WebTargetLocatorImpl implements WebTargetLocator {
      */
     @Override
     public AlertHandler getAlertHandler() {
-        return AlertHandler.getInstance(driver.switchTo().alert());
+        return new AlertHandlerImpl(driver.switchTo().alert());
     }
 }
