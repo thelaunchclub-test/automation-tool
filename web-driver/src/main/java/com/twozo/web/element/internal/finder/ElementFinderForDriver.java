@@ -1,12 +1,14 @@
-package com.twozo.web.element.finder;
+package com.twozo.web.element.internal.finder;
 
+import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.model.Finder;
 import com.twozo.web.element.service.WebPageElement;
-import com.twozo.web.element.web.page.element.WebPageElementImpl;
+import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
 
 import java.util.Collection;
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.stream.Collectors;
 
 /**
  * <p>
- * Provides methods to findElement {@link WebPageElement} from {@link WebPageElement}.
+ * Provides methods to findElement {@link WebPageElement} from {@link WebAutomationDriver}.
  * Locates both single and multiple elements.
  * </p>
  *
@@ -25,30 +27,30 @@ import java.util.stream.Collectors;
  */
 @NonNull
 @AllArgsConstructor
-public final class ElementFinderForElement extends AbstractElementFinder {
+public final class ElementFinderForDriver extends AbstractElementFinder {
 
-    private final WebElement element;
+    private final WebDriver webDriver;
 
     /**
      * {@inheritDoc}
      *
      * @param finder The {@link Finder}  containing locator type and value.
-     * @return a {@link WebPageElement} representing the located web page element.
+     * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
     public WebPageElement getWebPageElement(final Finder finder) {
-        return new WebPageElementImpl(element.findElement(getByValue(finder.locatorType(), finder.value())));
+        return new WebPageElementImpl(webDriver.findElement(getByValue(finder.locatorType(), finder.value())));
     }
 
     /**
      * {@inheritDoc}
      *
      * @param finder The {@link Finder}  containing locator type and value.
-     * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements.
+     * @return A {@link Collection} of {@link WebPageElement} representing the located web page elements.
      */
     @Override
     public Collection<WebPageElement> getWebPageElements(final Finder finder) {
-        return getCommonElements(element.findElements(getByValue(finder.locatorType(), finder.value())));
+        return getCommonElements(webDriver.findElements(getByValue(finder.locatorType(), finder.value())));
     }
 
     /**
@@ -63,7 +65,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
         final Finder knownFinder = booleanFinderMap.get(true);
         final Finder unKnownFinder = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+        return new WebPageElementImpl(webDriver.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
                 below(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
@@ -79,7 +81,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
         final Finder knownFinder = booleanFinderMap.get(true);
         final Finder unKnownFinder = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+        return new WebPageElementImpl(webDriver.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
                 above(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
@@ -95,7 +97,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
         final Finder knownFinder = booleanFinderMap.get(true);
         final Finder unKnownFinder = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+        return new WebPageElementImpl(webDriver.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
                 toLeftOf(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
@@ -111,7 +113,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
         final Finder knownFinder = booleanFinderMap.get(true);
         final Finder unKnownFinder = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+        return new WebPageElementImpl(webDriver.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
                 toRightOf(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
@@ -127,7 +129,7 @@ public final class ElementFinderForElement extends AbstractElementFinder {
         final Finder knownFinder = booleanFinderMap.get(true);
         final Finder unKnownFinder = booleanFinderMap.get(false);
 
-        return new WebPageElementImpl(element.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
+        return new WebPageElementImpl(webDriver.findElement(with(unKnownFinder.locatorType(), unKnownFinder.value()).
                 near(getByValue(knownFinder.locatorType(), knownFinder.value()))));
     }
 
@@ -144,3 +146,4 @@ public final class ElementFinderForElement extends AbstractElementFinder {
         return finders.stream().collect(Collectors.toMap(Finder::isKnown, Function.identity()));
     }
 }
+

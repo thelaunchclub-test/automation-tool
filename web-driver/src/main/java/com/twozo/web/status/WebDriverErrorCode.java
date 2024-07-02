@@ -37,32 +37,13 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
 
 
     private static final PrefixProvider PREFIX_PROVIDER = new PrefixProvider();
-    private static final int BASE_CODE = 200;
-    private static boolean isBaseCodeRegistered = false;
+    private static final int BASE_CODE = 0x2000;
 
     private final int code;
 
     WebDriverErrorCode(final int code) {
         this.code = code;
     }
-//
-//    static {
-//        register();
-//    }
-//
-//    /**
-//     * <p>
-//     * Registers the base status code if it's not already registered.
-//     * Ensures that the base status code is registered only once.
-//     * </p>
-//     */
-//    private static void register() {
-//        if (!isBaseCodeRegistered) {
-//            StatusCodeRegistry.register(BASE_CODE, WebDriverErrorCode.class.getSimpleName());
-//            isBaseCodeRegistered = true;
-//        }
-//    }
-
 
     /**
      * <p>
@@ -72,7 +53,7 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
      * @return The error code.
      */
     @Override
-    public int getErrorCode(final int code) {
+    public int getErrorCode() {
         return PREFIX_PROVIDER.get(BASE_CODE, code);
     }
 }

@@ -1,6 +1,7 @@
-package com.twozo.web.element.finder;
+package com.twozo.web.element.internal.finder;
 
-import com.twozo.web.element.locator.LocatorType;
+import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
+import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.ElementFinder;
 import com.twozo.web.element.service.WebPageElement;
 
@@ -104,7 +105,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
         final Collection<WebPageElement> webPageElements = new ArrayList<>();
 
         for (final WebElement element : webElements) {
-            webPageElements.add(WebPageElement.getInstance(element));
+            webPageElements.add(new WebPageElementImpl(element));
         }
 
         return webPageElements;

@@ -1,6 +1,6 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.information.ElementInformationProviderImpl;
+import com.twozo.web.element.internal.information.ElementInformationProviderImpl;
 
 import org.openqa.selenium.WebElement;
 
@@ -32,10 +32,6 @@ import org.openqa.selenium.WebElement;
  * @version 1.0
  */
 public interface ElementInformationProvider {
-
-    static ElementInformationProvider getInstance(final WebElement element) {
-        return new ElementInformationProviderImpl(element);
-    }
 
     /**
      * <p>

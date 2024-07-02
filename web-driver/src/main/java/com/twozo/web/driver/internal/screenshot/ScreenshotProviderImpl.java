@@ -23,7 +23,7 @@ public class ScreenshotProviderImpl implements ScreenshotProvider {
      * @return The screenshot in the specified format.
      */
     @Override
-    public <X> X getScreenshotAs(OutputType<X> outputType) {
+    public <X> X getScreenshotAs(final OutputType<X> outputType) {
 
         return ((TakesScreenshot) webDriver).getScreenshotAs(outputType);
 

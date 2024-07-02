@@ -1,6 +1,6 @@
 package com.twozo.web.driver.internal.web.automation.driver;
 
-import com.twozo.web.driver.DriverImpl;
+import com.twozo.web.driver.service.DriverImpl;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 import com.twozo.web.driver.internal.screenshot.ScreenshotProviderImpl;
@@ -18,13 +18,12 @@ import com.twozo.web.driver.service.WebWindow;
 import com.twozo.web.driver.service.WindowInfoProvider;
 
 import com.twozo.web.driver.service.screenshot.ScreenshotProvider;
-import com.twozo.web.element.finder.ElementFinderForDriver;
+import com.twozo.web.element.internal.finder.ElementFinderForDriver;
 import com.twozo.web.element.service.ElementFinder;
 
 import lombok.NonNull;
 import lombok.Value;
 
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 
 /**

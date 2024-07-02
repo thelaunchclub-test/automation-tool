@@ -1,4 +1,4 @@
-package com.twozo.web.element.locator;
+package com.twozo.web.element.model;
 
 /**
  * <p>

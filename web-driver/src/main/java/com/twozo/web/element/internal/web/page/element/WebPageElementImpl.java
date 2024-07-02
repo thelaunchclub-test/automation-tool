@@ -1,5 +1,8 @@
-package com.twozo.web.element.web.page.element;
+package com.twozo.web.element.internal.web.page.element;
 
+import com.twozo.web.element.internal.finder.ElementFinderForElement;
+import com.twozo.web.element.internal.information.ElementInformationProviderImpl;
+import com.twozo.web.element.internal.interaction.ElementInteractionImpl;
 import com.twozo.web.element.service.ElementFinder;
 import com.twozo.web.element.service.ElementInformationProvider;
 import com.twozo.web.element.service.ElementInteraction;
@@ -41,9 +44,9 @@ public class WebPageElementImpl implements WebPageElement {
     ElementFinder elementFinder;
 
     public WebPageElementImpl(final WebElement webElement) {
-        this.elementInteraction = ElementInteraction.getInstance(webElement);
-        this.elementInformation = ElementInformationProvider.getInstance(webElement);
-        this.elementFinder = ElementFinder.getInstance(webElement);
+        this.elementInteraction = new ElementInteractionImpl(webElement);
+        this.elementInformation = new ElementInformationProviderImpl(webElement);
+        this.elementFinder = new ElementFinderForElement((webElement));
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.interaction.ElementInteractionImpl;
+import com.twozo.web.element.internal.interaction.ElementInteractionImpl;
 
 import org.openqa.selenium.WebElement;
 
@@ -26,10 +26,6 @@ import org.openqa.selenium.WebElement;
  * @version 1.0
  */
 public interface ElementInteraction {
-
-    static ElementInteraction getInstance(final WebElement element) {
-        return new ElementInteractionImpl(element);
-    }
 
     /**
      * <p>

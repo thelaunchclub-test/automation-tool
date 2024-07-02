@@ -1,6 +1,6 @@
-package com.twozo.web.element.finder;
+package com.twozo.web.element.model;
 
-import com.twozo.web.element.locator.LocatorType;
+import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
 /**

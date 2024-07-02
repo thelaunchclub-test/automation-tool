@@ -1,8 +1,8 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.finder.Finder;
-import com.twozo.web.element.finder.ElementFinderForDriver;
-import com.twozo.web.element.finder.ElementFinderForElement;
+import com.twozo.web.element.model.Finder;
+import com.twozo.web.element.internal.finder.ElementFinderForDriver;
+import com.twozo.web.element.internal.finder.ElementFinderForElement;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -41,17 +41,6 @@ import java.util.Collection;
  * @version 1.0
  */
 public interface ElementFinder {
-
-    static ElementFinder getInstance(final Object value) {
-
-        if (value instanceof WebDriver) {
-            return new ElementFinderForDriver((WebDriver) value);
-        } else if (value instanceof WebElement) {
-            return new ElementFinderForElement((WebElement) value);
-        } else {
-            throw new IllegalArgumentException("Unsupported type");
-        }
-    }
 
     /**
      * <p>

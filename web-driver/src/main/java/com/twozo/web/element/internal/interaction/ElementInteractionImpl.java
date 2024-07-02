@@ -1,4 +1,4 @@
-package com.twozo.web.element.interaction;
+package com.twozo.web.element.internal.interaction;
 
 import com.twozo.web.element.service.ElementInteraction;
 import com.twozo.web.element.service.WebPageElement;

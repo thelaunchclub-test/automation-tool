@@ -1,4 +1,4 @@
-package com.twozo.web.element.information;
+package com.twozo.web.element.internal.information;
 
 import com.twozo.web.element.service.ElementInformationProvider;
 import com.twozo.web.element.service.WebPageElement;

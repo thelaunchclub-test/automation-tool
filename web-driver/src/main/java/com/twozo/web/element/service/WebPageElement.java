@@ -1,6 +1,6 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.web.page.element.WebPageElementImpl;
+import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
 
 import org.openqa.selenium.WebElement;
 
@@ -27,10 +27,6 @@ import org.openqa.selenium.WebElement;
  * @see WebPageElement
  */
 public interface WebPageElement {
-
-    static WebPageElement getInstance(final WebElement element) {
-        return new WebPageElementImpl(element);
-    }
 
     /**
      * <p>
