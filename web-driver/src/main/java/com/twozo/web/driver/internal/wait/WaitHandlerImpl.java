@@ -41,6 +41,6 @@ public final class WaitHandlerImpl implements WaitHandler {
      */
     @Override
     public WaitHandler implicitWait(final Duration duration) {
-        return WaitHandler.getInstance(timeouts.implicitlyWait(duration));
+        return new WaitHandlerImpl(timeouts.implicitlyWait(duration));
     }
 }

@@ -1,9 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.window.state.WebWindowImpl;
-
-import org.openqa.selenium.WebDriver;
-
 /**
  * <p>
  * Interacts with the browser window,such as maximizing, minimizing,

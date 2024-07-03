@@ -1,9 +1,5 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
-
-import org.openqa.selenium.WebElement;
-
 /**
  * <p>
  * Provides various services related to {@link WebPageElement}.

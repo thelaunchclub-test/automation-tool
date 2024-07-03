@@ -1,4 +1,4 @@
-package com.twozo.web.driver.service;
+package com.twozo.web.driver.internal.driver;
 
 import com.twozo.commons.util.PropertyFileReader;
 import com.twozo.web.driver.internal.web.automation.driver.WebAutomationDriverImpl;

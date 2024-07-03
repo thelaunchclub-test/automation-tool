@@ -1,5 +1,7 @@
 package com.twozo.web.driver.service;
 
+import com.twozo.web.driver.internal.driver.DriverImpl;
+
 /**
  * <p>
  * Represents a driver, which provides a {@link WebAutomationDriver}.

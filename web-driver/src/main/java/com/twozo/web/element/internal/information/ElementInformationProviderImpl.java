@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
  * Provides methods to retrieve information about a {@link WebPageElement}.
  * Includes methods to get the tag name, attributes, visibility, selection state,
  * and other properties of a web element.
- *</p>
+ * </p>
  *
  * <p>
  * Example usage:

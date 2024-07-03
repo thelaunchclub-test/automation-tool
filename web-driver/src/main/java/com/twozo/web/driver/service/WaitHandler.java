@@ -1,9 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.wait.WaitHandlerImpl;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Timeouts;
 
 import java.time.Duration;
 

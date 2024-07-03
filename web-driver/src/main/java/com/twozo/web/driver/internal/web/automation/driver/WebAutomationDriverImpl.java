@@ -1,9 +1,9 @@
 package com.twozo.web.driver.internal.web.automation.driver;
 
-import com.twozo.web.driver.service.DriverImpl;
+import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
+import com.twozo.web.driver.internal.driver.DriverImpl;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
-import com.twozo.web.driver.internal.screenshot.ScreenshotProviderImpl;
 import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
 import com.twozo.web.driver.internal.wait.WaitHandlerImpl;
 import com.twozo.web.driver.internal.window.info.WindowInfoProviderImpl;
@@ -17,7 +17,7 @@ import com.twozo.web.driver.service.WebTargetLocator;
 import com.twozo.web.driver.service.WebWindow;
 import com.twozo.web.driver.service.WindowInfoProvider;
 
-import com.twozo.web.driver.service.screenshot.ScreenshotProvider;
+import com.twozo.web.driver.service.ScreenCapturer;
 import com.twozo.web.element.internal.finder.ElementFinderForDriver;
 import com.twozo.web.element.service.ElementFinder;
 
@@ -60,7 +60,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     WebWindow webWindow;
     WindowInfoProvider windowInfoProvider;
     WaitHandler waitHandler;
-    ScreenshotProvider screenshotProvider;
+    ScreenCapturer screenCapturer;
     ElementFinder elementFinder;
     Driver driverProvider;
 
@@ -74,7 +74,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.windowInfoProvider = new WindowInfoProviderImpl(driver);
         this.driverProvider = new DriverImpl();
         this.waitHandler = new WaitHandlerImpl(driver.manage().timeouts());
-        this.screenshotProvider = new ScreenshotProviderImpl(driver);
+        this.screenCapturer = new ScreenCapturerImpl(driver);
     }
 
     /**
@@ -151,9 +151,14 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         return waitHandler;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return A {@link ScreenCapturer} for capturing the screen.
+     */
     @Override
-    public ScreenshotProvider getScreenshotProvider() {
-        return screenshotProvider;
+    public ScreenCapturer getScreenCapturer() {
+        return screenCapturer;
     }
 
     /**

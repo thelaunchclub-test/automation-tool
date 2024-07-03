@@ -1,9 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
-
-import org.openqa.selenium.WebDriver;
-
 /**
  * <p>
  * Retrieves information about the browser.

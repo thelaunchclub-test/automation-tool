@@ -1,9 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
-
-import org.openqa.selenium.WebDriver.Navigation;
-
 /**
  * <p>
  * Navigates the web browser

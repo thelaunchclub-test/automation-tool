@@ -1,7 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.target.locator.alert.AlertHandlerImpl;
-
 import org.openqa.selenium.Alert;
 
 /**

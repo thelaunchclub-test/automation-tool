@@ -1,9 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.TargetLocator;
 import org.openqa.selenium.WindowType;
 
 /**

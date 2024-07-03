@@ -1,9 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.internal.window.info.WindowInfoProviderImpl;
-
-import org.openqa.selenium.WebDriver;
-
 import java.util.Set;
 
 /**

@@ -1,12 +1,8 @@
 package com.twozo.web.element.service;
 
 import com.twozo.web.element.model.Finder;
-import com.twozo.web.element.internal.finder.ElementFinderForDriver;
-import com.twozo.web.element.internal.finder.ElementFinderForElement;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.util.Collection;
 

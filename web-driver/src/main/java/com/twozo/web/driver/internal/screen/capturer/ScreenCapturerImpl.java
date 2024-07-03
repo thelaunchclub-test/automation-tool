@@ -1,16 +1,17 @@
-package com.twozo.web.driver.internal.screenshot;
+package com.twozo.web.driver.internal.screen.capturer;
 
-import com.twozo.web.driver.service.screenshot.ScreenshotProvider;
+import com.twozo.web.driver.service.ScreenCapturer;
+
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 @NonNull
 @AllArgsConstructor
-public class ScreenshotProviderImpl implements ScreenshotProvider {
+public class ScreenCapturerImpl implements ScreenCapturer {
 
     private final WebDriver webDriver;
 
@@ -24,8 +25,6 @@ public class ScreenshotProviderImpl implements ScreenshotProvider {
      */
     @Override
     public <X> X getScreenshotAs(final OutputType<X> outputType) {
-
         return ((TakesScreenshot) webDriver).getScreenshotAs(outputType);
-
     }
 }

@@ -1,7 +1,5 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.internal.interaction.ElementInteractionImpl;
-
 import org.openqa.selenium.WebElement;
 
 /**

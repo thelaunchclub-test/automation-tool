@@ -35,7 +35,6 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
     ELEMENT_NOT_VISIBLE(3),
     EXPECTED_PAGE_NOT_FOUND(4);
 
-
     private static final PrefixProvider PREFIX_PROVIDER = new PrefixProvider();
     private static final int BASE_CODE = 0x2000;
 

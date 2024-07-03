@@ -1,6 +1,5 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.web.driver.service.screenshot.ScreenshotProvider;
 import com.twozo.web.element.service.ElementFinder;
 
 /**
@@ -24,7 +23,7 @@ import com.twozo.web.element.service.ElementFinder;
  *
  * @author Petchimuthu
  * @version 1.0
- * @see ScreenshotProvider
+ * @see ScreenCapturer
  */
 public interface WebAutomationDriver {
 
@@ -92,7 +91,14 @@ public interface WebAutomationDriver {
      */
     WaitHandler getWaitHandler();
 
-    ScreenshotProvider getScreenshotProvider();
+    /**
+     * <p>
+     * Returns {@link ScreenCapturer} for capturing the screen.
+     * </p>
+     *
+     * @return A {@link ScreenCapturer} for capturing the screen.
+     */
+    ScreenCapturer getScreenCapturer();
 
     /**
      * <p>
