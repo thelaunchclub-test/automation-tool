@@ -25,7 +25,7 @@ public final class DirectoryUtility {
     private static final String AUTOMATION_TOOL = String.format("%s%s%s", USER_HOME, separator, "automation tool");
     private static final String FILE = String.format("%s%s%s", AUTOMATION_TOOL, separator,"file");
     private static final String JSON = String.format("%s%s%s", AUTOMATION_TOOL, separator,"json");
-    private static final String CONF = USER_DIRECTORY + File.separator + "src";
+    private static final String CONF = USER_DIRECTORY + File.separator + "src"+"main"+"resources";
 
     /**
      * Returns the path of the user's home directory.
