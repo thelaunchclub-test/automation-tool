@@ -1,30 +1,31 @@
 package com.twozo.web.driver.internal.web.automation.driver;
 
-import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
-import com.twozo.web.driver.internal.driver.DriverImpl;
+import com.twozo.commons.util.PropertyFileReader;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
+import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
 import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
 import com.twozo.web.driver.internal.wait.WaitHandlerImpl;
 import com.twozo.web.driver.internal.window.info.WindowInfoProviderImpl;
 import com.twozo.web.driver.internal.window.state.WebWindowImpl;
-import com.twozo.web.driver.service.Driver;
-import com.twozo.web.driver.service.PageInformationProvider;
-import com.twozo.web.driver.service.WaitHandler;
-import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.driver.service.WebNavigator;
-import com.twozo.web.driver.service.WebTargetLocator;
-import com.twozo.web.driver.service.WebWindow;
-import com.twozo.web.driver.service.WindowInfoProvider;
-
-import com.twozo.web.driver.service.ScreenCapturer;
+import com.twozo.web.driver.model.BrowserType;
+import com.twozo.web.driver.service.*;
 import com.twozo.web.element.internal.finder.ElementFinderForDriver;
 import com.twozo.web.element.service.ElementFinder;
 
 import lombok.NonNull;
 import lombok.Value;
 
+import lombok.experimental.SuperBuilder;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -51,7 +52,10 @@ import org.openqa.selenium.WebDriver;
  */
 @Value
 @NonNull
+@SuperBuilder
 public class WebAutomationDriverImpl implements WebAutomationDriver {
+
+    private static final PropertyFileReader PROPERTY_FILE_READER = PropertyFileReader.getInstance();
 
     WebDriver driver;
     WebNavigator webNavigator;
@@ -62,7 +66,6 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     WaitHandler waitHandler;
     ScreenCapturer screenCapturer;
     ElementFinder elementFinder;
-    Driver driverProvider;
 
     public WebAutomationDriverImpl(final WebDriver driver) {
         this.driver = driver;
@@ -72,9 +75,35 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.webTargetLocator = new WebTargetLocatorImpl(driver, driver.switchTo());
         this.webWindow = new WebWindowImpl(driver.manage().window());
         this.windowInfoProvider = new WindowInfoProviderImpl(driver);
-        this.driverProvider = new DriverImpl();
         this.waitHandler = new WaitHandlerImpl(driver.manage().timeouts());
         this.screenCapturer = new ScreenCapturerImpl(driver);
+    }
+
+    public WebAutomationDriverImpl() {
+        this.driver = getDriver(getBrowserType());
+        this.webNavigator = new WebNavigatorImpl(driver.navigate());
+        this.pageInformationProvider = new PageInformationProviderImpl(driver);
+        this.elementFinder = new ElementFinderForDriver(driver);
+        this.webTargetLocator = new WebTargetLocatorImpl(driver, driver.switchTo());
+        this.webWindow = new WebWindowImpl(driver.manage().window());
+        this.windowInfoProvider = new WindowInfoProviderImpl(driver);
+        this.waitHandler = new WaitHandlerImpl(driver.manage().timeouts());
+        this.screenCapturer = new ScreenCapturerImpl(driver);
+    }
+
+    private BrowserType getBrowserType() {
+        return Objects.requireNonNull(BrowserType.valueOf(
+                Objects.requireNonNull(PROPERTY_FILE_READER.getProperty()).getProperty("Browser").toUpperCase()));
+    }
+
+    private static RemoteWebDriver getDriver(final BrowserType browserType) {
+        return switch (browserType) {
+            case EDGE -> new EdgeDriver();
+            case CHROME -> new ChromeDriver();
+            case FIREFOX -> new FirefoxDriver();
+            case SAFARI -> new SafariDriver();
+            case INTERNET_EXPLORER -> new InternetExplorerDriver();
+        };
     }
 
     /**
@@ -176,4 +205,6 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     public void quit() {
         driver.quit();
     }
+
+
 }

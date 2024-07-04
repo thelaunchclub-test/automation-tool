@@ -1,5 +1,6 @@
 package com.twozo.web.driver.service;
 
+import com.twozo.web.driver.internal.web.automation.driver.WebAutomationDriverImpl;
 import com.twozo.web.element.service.ElementFinder;
 
 /**
@@ -21,11 +22,14 @@ import com.twozo.web.element.service.ElementFinder;
  * }</pre>
  * </p>
  *
- * @author Petchimuthu
  * @version 1.0
  * @see ScreenCapturer
  */
 public interface WebAutomationDriver {
+
+    static WebAutomationDriver get() {
+        return new WebAutomationDriverImpl();
+    }
 
     /**
      * <p>

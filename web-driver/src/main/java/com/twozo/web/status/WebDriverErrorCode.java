@@ -3,6 +3,8 @@ package com.twozo.web.status;
 import com.twozo.commons.exception.provider.PrefixProvider;
 import com.twozo.commons.exception.service.ErrorCodeProvider;
 
+import java.util.Optional;
+
 /**
  * <p>
  * Standardizes handling of common statuses like invalid and duplicate inputs with specific codes
@@ -53,6 +55,6 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
      */
     @Override
     public int getErrorCode() {
-        return PREFIX_PROVIDER.get(BASE_CODE, code);
+        return PREFIX_PROVIDER.get(Optional.of(BASE_CODE), Optional.of(code));
     }
 }
