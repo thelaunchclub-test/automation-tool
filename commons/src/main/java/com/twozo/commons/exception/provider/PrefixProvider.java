@@ -1,7 +1,12 @@
 package com.twozo.commons.exception.provider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
+
 /**
- *  <p>
+ * <p>
  * Provides functionality to calculate a error code based on a given error code and a specific error code.
  * Performs a simple arithmetic operation to derive a error code.
  * </p>
@@ -16,16 +21,23 @@ package com.twozo.commons.exception.provider;
  */
 public final class PrefixProvider {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PrefixProvider.class);
+
     /**
      * <p>
      * Calculates the status code based on the given error code and specific error code.
      * </p>
      *
-     * @param baseCode     The base code value.
+     * @param baseCode          The base code value.
      * @param specificErrorCode The specific code value.
      * @return The calculated status code.
      */
-    public int get(final int baseCode, final int specificErrorCode) {
-        return baseCode + specificErrorCode;
+    public int get(final Optional<Integer> baseCode, final Optional<Integer> specificErrorCode) {
+        final int base = baseCode.orElse(0);
+        final int specific = specificErrorCode.orElse(0);
+
+        LOGGER.info("Calculating error code with baseCode and specificErrorCode");
+
+        return base + specific;
     }
 }

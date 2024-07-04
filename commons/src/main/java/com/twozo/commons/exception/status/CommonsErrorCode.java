@@ -3,6 +3,11 @@ package com.twozo.commons.exception.status;
 import com.twozo.commons.exception.provider.PrefixProvider;
 import com.twozo.commons.exception.service.ErrorCodeProvider;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
+
 /**
  * <p>
  * Standardizes handling of common errors like invalid and duplicate inputs with specific error codes
@@ -31,32 +36,15 @@ public enum CommonsErrorCode implements ErrorCodeProvider {
     INVALID_BASE_CODE(1),
     BASE_CODE_ALREADY_REGISTERED(2);
 
+    private static final Logger logger = LoggerFactory.getLogger(CommonsErrorCode.class);
     private static final PrefixProvider PREFIX_PROVIDER = new PrefixProvider();
     private static final int BASE_CODE = 0x1000;
-    private static boolean isBaseCodeRegistered = false;
 
     private final int code;
 
     CommonsErrorCode(final int code) {
         this.code = code;
     }
-
-//    static {
-//        register();
-//    }
-//
-//    /**
-//     * <p>
-//     * Registers the base code if it's not already registered. Ensures that the base code is registered only once.
-//     * </p>
-//     */
-//    private static void register() {
-//
-//        if (!isBaseCodeRegistered) {
-//            ErrorCodeRegistry.register(BASE_CODE, CommonsErrorCode.class.getSimpleName());
-//            isBaseCodeRegistered = true;
-//        }
-//    }
 
     /**
      * {@inheritDoc}
@@ -65,6 +53,8 @@ public enum CommonsErrorCode implements ErrorCodeProvider {
      */
     @Override
     public int getErrorCode() {
-        return PREFIX_PROVIDER.get(BASE_CODE, code);
+        logger.error("Generates ErrorCode with base code and specific code");
+
+        return PREFIX_PROVIDER.get(Optional.of(BASE_CODE), Optional.of(code));
     }
 }
