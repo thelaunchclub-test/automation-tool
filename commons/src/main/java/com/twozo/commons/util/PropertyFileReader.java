@@ -1,9 +1,17 @@
 package com.twozo.commons.util;
 
+import com.twozo.commons.exception.ErrorCode;
+import com.twozo.commons.exception.status.CommonsErrorCode;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.Objects;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -15,26 +23,7 @@ import java.util.Properties;
  */
 public final class PropertyFileReader {
 
-    private static PropertyFileReader propertyFileReader;
-
-    private PropertyFileReader() {
-    }
-
-    /**
-     * <p>
-     * Retrieves {@link PropertyFileReader}.
-     * </p>
-     *
-     * @return The {@link PropertyFileReader}.
-     */
-    public static PropertyFileReader getInstance() {
-
-        if (Objects.isNull(propertyFileReader)) {
-            propertyFileReader = new PropertyFileReader();
-        }
-
-        return propertyFileReader;
-    }
+    private static final Logger LOGGER = LoggerFactory.getLogger(PropertyFileReader.class);
 
     /**
      * <p>
@@ -43,16 +32,23 @@ public final class PropertyFileReader {
      *
      * @return {@link Properties} containing the key-value pairs from the configuration file.
      */
-    public Properties getProperty() {
+    public static Map<String, String> get(final String fileName) {
+        final File file = new File(DirectoryUtility.getConfDirectory(), fileName);
+
+        if (!file.exists()) {
+            LOGGER.info("The given file path is not found");
+            throw ErrorCode.get(CommonsErrorCode.FILE_NOT_FOUND);
+        }
         final Properties properties = new Properties();
 
-        try (final FileInputStream fileInputStream = new FileInputStream(new File(DirectoryUtility.
-                getConfDirectory(), "config.properties").getAbsolutePath())) {
-            properties.load(fileInputStream);
-        } catch (Exception e) {
-            System.err.println("Error loading getProperty file: " + e.getMessage());
+        try (final FileReader reader = new FileReader(file)) {
+            properties.load(reader);
+        } catch (IOException e) {
+            LOGGER.info("The file can't be read");
+            throw ErrorCode.get(CommonsErrorCode.CANNOT_READ);
         }
 
-        return properties;
+        return properties.stringPropertyNames().stream()
+                .collect(Collectors.toMap(key -> key, properties::getProperty));
     }
 }
