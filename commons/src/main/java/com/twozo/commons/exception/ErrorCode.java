@@ -4,9 +4,6 @@ import com.twozo.commons.exception.service.ErrorCodeProvider;
 
 import lombok.AllArgsConstructor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * <p>
  * Manages errors with associated error codes and messages.
@@ -34,8 +31,6 @@ import org.slf4j.LoggerFactory;
 @AllArgsConstructor
 public final class ErrorCode extends RuntimeException {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ErrorCode.class);
-
     private final ErrorCodeProvider errorCodeProvider;
 
     public ErrorCode(final ErrorCodeProvider errorCodeProvider, final String message) {
@@ -62,8 +57,6 @@ public final class ErrorCode extends RuntimeException {
      * @return An{@code ErrorCode} .
      */
     public static ErrorCode get(final ErrorCodeProvider errorCodeProvider) {
-        LOGGER.error("Creating ErrorCode using error code provider");
-
         return new ErrorCode(errorCodeProvider);
     }
 
@@ -77,8 +70,6 @@ public final class ErrorCode extends RuntimeException {
      * @return An {@code ErrorCode}.
      */
     public static ErrorCode get(final ErrorCodeProvider errorCodeProvider, final String message) {
-        LOGGER.error("Creating ErrorCode using error code provider and message");
-
         return new ErrorCode(errorCodeProvider, message);
     }
 
@@ -92,8 +83,6 @@ public final class ErrorCode extends RuntimeException {
      * @return An {@code ErrorCode}.
      */
     public static ErrorCode get(final ErrorCodeProvider errorCodeProvider, final Throwable cause) {
-        LOGGER.error("Creating ErrorCode using error code provider and cause");
-
         return new ErrorCode(errorCodeProvider, cause);
     }
 
@@ -108,14 +97,17 @@ public final class ErrorCode extends RuntimeException {
      * @return An {@code ErrorCode}.
      */
     public static ErrorCode get(final ErrorCodeProvider errorCodeProvider, final String message, final Throwable cause) {
-        LOGGER.error("Creating ErrorCode using error code provider, message and cause");
-
         return new ErrorCode(errorCodeProvider, message, cause);
     }
 
+    /**
+     * <p>
+     * Retrieves the error code from the error code provider.
+     * </p>
+     *
+     * @return The error code.
+     */
     public int getErrorCode() {
-        LOGGER.error("Returns error code using error code provider");
-
         return errorCodeProvider.getErrorCode();
     }
 
@@ -128,8 +120,6 @@ public final class ErrorCode extends RuntimeException {
      */
     @Override
     public String getMessage() {
-        LOGGER.error("Returns message");
-
         return super.getMessage();
     }
 
