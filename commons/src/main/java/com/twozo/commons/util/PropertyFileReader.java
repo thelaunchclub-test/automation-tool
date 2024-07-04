@@ -46,7 +46,7 @@ public final class PropertyFileReader {
     public Properties getProperty() {
         final Properties properties = new Properties();
 
-        try (final FileInputStream fileInputStream = new FileInputStream(new File(DirectoryInfo.
+        try (final FileInputStream fileInputStream = new FileInputStream(new File(DirectoryUtility.
                 getConfDirectory(), "config.properties").getAbsolutePath())) {
             properties.load(fileInputStream);
         } catch (Exception e) {
