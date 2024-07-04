@@ -7,7 +7,6 @@ import lombok.NonNull;
 
 import org.openqa.selenium.WebDriver.Window;
 
-
 /**
  * <p>
  * Interacts with the browser window,such as maximizing, minimizing,

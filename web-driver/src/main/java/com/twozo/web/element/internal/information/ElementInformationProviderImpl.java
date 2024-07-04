@@ -59,7 +59,7 @@ public final class ElementInformationProviderImpl implements ElementInformationP
      * @return The attribute value as a {@link String}.
      */
     @Override
-    public String getAttribute(final String name) {
+    public String getAttribute(@NonNull final String name) {
         return element.getAttribute(name);
     }
 

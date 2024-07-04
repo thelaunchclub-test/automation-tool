@@ -70,7 +70,7 @@ public class AlertHandlerImpl implements AlertHandler {
      * @param keys The text to be sent to the {@link Alert}.
      */
     @Override
-    public void sendKeys(final String keys) {
+    public void sendKeys(@NonNull final String keys) {
         alert.sendKeys(keys);
     }
 }

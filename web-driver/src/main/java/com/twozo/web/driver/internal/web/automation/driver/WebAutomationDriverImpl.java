@@ -67,7 +67,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     ScreenCapturer screenCapturer;
     ElementFinder elementFinder;
 
-    public WebAutomationDriverImpl(final WebDriver driver) {
+    public WebAutomationDriverImpl(@NonNull final WebDriver driver) {
         this.driver = driver;
         this.webNavigator = new WebNavigatorImpl(driver.navigate());
         this.pageInformationProvider = new PageInformationProviderImpl(driver);
@@ -91,12 +91,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.screenCapturer = new ScreenCapturerImpl(driver);
     }
 
-    private BrowserType getBrowserType() {
-        return Objects.requireNonNull(BrowserType.valueOf(
-                Objects.requireNonNull(PROPERTY_FILE_READER.getProperty()).getProperty("Browser").toUpperCase()));
-    }
-
-    private static RemoteWebDriver getDriver(final BrowserType browserType) {
+    private static RemoteWebDriver getDriver(@NonNull final BrowserType browserType) {
         return switch (browserType) {
             case EDGE -> new EdgeDriver();
             case CHROME -> new ChromeDriver();
@@ -104,6 +99,11 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
             case SAFARI -> new SafariDriver();
             case INTERNET_EXPLORER -> new InternetExplorerDriver();
         };
+    }
+
+    private BrowserType getBrowserType() {
+        return Objects.requireNonNull(BrowserType.valueOf(
+                Objects.requireNonNull(PROPERTY_FILE_READER.getProperty()).getProperty("Browser").toUpperCase()));
     }
 
     /**
@@ -205,6 +205,4 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     public void quit() {
         driver.quit();
     }
-
-
 }

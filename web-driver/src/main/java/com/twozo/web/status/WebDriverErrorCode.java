@@ -3,7 +3,7 @@ package com.twozo.web.status;
 import com.twozo.commons.exception.provider.PrefixProvider;
 import com.twozo.commons.exception.service.ErrorCodeProvider;
 
-import java.util.Optional;
+import lombok.NonNull;
 
 /**
  * <p>
@@ -42,7 +42,7 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
 
     private final int code;
 
-    WebDriverErrorCode(final int code) {
+    WebDriverErrorCode(@NonNull final int code) {
         this.code = code;
     }
 
@@ -55,6 +55,6 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
      */
     @Override
     public int getErrorCode() {
-        return PREFIX_PROVIDER.get(Optional.of(BASE_CODE), Optional.of(code));
+        return PREFIX_PROVIDER.get(BASE_CODE, code);
     }
 }

@@ -51,7 +51,7 @@ public final class WebTargetLocatorImpl implements WebTargetLocator {
      * @return A {@link WebAutomationDriver} representing the targeted window.
      */
     @Override
-    public WebAutomationDriver getWindow(final String name) {
+    public WebAutomationDriver getWindow(@NonNull final String name) {
         return new WebAutomationDriverImpl(targetLocator.window(name));
     }
 
@@ -62,7 +62,7 @@ public final class WebTargetLocatorImpl implements WebTargetLocator {
      * @return A {@link WebAutomationDriver} representing the new window.
      */
     @Override
-    public WebAutomationDriver getNewWindow(final WindowType windowType) {
+    public WebAutomationDriver getNewWindow(@NonNull final WindowType windowType) {
         return new WebAutomationDriverImpl(targetLocator.newWindow(windowType));
     }
 

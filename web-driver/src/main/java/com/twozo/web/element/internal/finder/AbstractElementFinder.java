@@ -44,7 +44,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param value       The value of the locator.
      * @return A {@link RelativeLocator.RelativeBy} representing the specified locator.
      */
-    protected RelativeLocator.RelativeBy with(final LocatorType locatorType, final String value) {
+    protected RelativeLocator.RelativeBy with(@NonNull final LocatorType locatorType, @NonNull final String value) {
         return getRelativeByValue(locatorType, value);
     }
 
@@ -57,7 +57,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param value       The value of the locator.
      * @return A {@link RelativeLocator.RelativeBy} representing the specified locator.
      */
-    protected RelativeLocator.RelativeBy getRelativeByValue(final LocatorType locatorType, final String value) {
+    protected RelativeLocator.RelativeBy getRelativeByValue(@NonNull final LocatorType locatorType, @NonNull final String value) {
         return switch (locatorType) {
             case ID -> RelativeLocator.with(By.id(value));
             case NAME -> RelativeLocator.with(By.name(value));
@@ -79,7 +79,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param value       The value of the locator.
      * @return A {@link By} representing the locator.
      */
-    protected By getByValue(final LocatorType locatorType, final String value) {
+    protected By getByValue(@NonNull final LocatorType locatorType, @NonNull final String value) {
         return switch (locatorType) {
             case ID -> By.id(value);
             case NAME -> By.name(value);
@@ -101,7 +101,7 @@ public abstract class AbstractElementFinder implements ElementFinder {
      * @param webElements The {@link Collection} of {@link WebElement} .
      * @return A {@link Collection} of {@link WebPageElement}.
      */
-    protected Collection<WebPageElement> getCommonElements(final Collection<WebElement> webElements) {
+    protected Collection<WebPageElement> getCommonElements(@NonNull final Collection<WebElement> webElements) {
         final Collection<WebPageElement> webPageElements = new ArrayList<>();
 
         for (final WebElement element : webElements) {

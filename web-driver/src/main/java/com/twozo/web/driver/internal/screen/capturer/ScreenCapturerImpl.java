@@ -24,7 +24,7 @@ public class ScreenCapturerImpl implements ScreenCapturer {
      * @return The screenshot in the specified format.
      */
     @Override
-    public <X> X getScreenshotAs(final OutputType<X> outputType) {
+    public <X> X getScreenshotAs(@NonNull final OutputType<X> outputType) {
         return ((TakesScreenshot) webDriver).getScreenshotAs(outputType);
     }
 }

@@ -60,7 +60,7 @@ public final class WebNavigatorImpl implements WebNavigator {
      * @param url The URL to navigate to.
      */
     @Override
-    public void to(final String url) {
+    public void to(@NonNull final String url) {
         navigation.to(url);
     }
 

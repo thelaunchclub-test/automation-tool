@@ -59,7 +59,7 @@ public final class ElementInteractionImpl implements ElementInteraction {
      * @param keysToSend The character sequences to be sent.
      */
     @Override
-    public void sendKeys(final CharSequence... keysToSend) {
+    public void sendKeys(@NonNull final CharSequence... keysToSend) {
         element.sendKeys(keysToSend);
     }
 }

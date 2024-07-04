@@ -44,7 +44,7 @@ public final class PageInformationProviderImpl implements PageInformationProvide
      * @param url The URL to navigate to.
      */
     @Override
-    public void get(final String url) {
+    public void get(@NonNull final String url) {
         driver.get(url);
     }
 

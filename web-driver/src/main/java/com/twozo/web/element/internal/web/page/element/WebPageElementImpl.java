@@ -43,7 +43,7 @@ public class WebPageElementImpl implements WebPageElement {
     ElementInformationProvider elementInformation;
     ElementFinder elementFinder;
 
-    public WebPageElementImpl(final WebElement webElement) {
+    public WebPageElementImpl(@NonNull final WebElement webElement) {
         this.elementInteraction = new ElementInteractionImpl(webElement);
         this.elementInformation = new ElementInformationProviderImpl(webElement);
         this.elementFinder = new ElementFinderForElement((webElement));

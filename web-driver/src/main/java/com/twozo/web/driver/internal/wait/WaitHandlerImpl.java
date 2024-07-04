@@ -40,7 +40,7 @@ public final class WaitHandlerImpl implements WaitHandler {
      * @return An {@code WaitHandler} configured with the implicit wait {@link Duration}.
      */
     @Override
-    public WaitHandler implicitWait(final Duration duration) {
+    public WaitHandler implicitWait(@NonNull final Duration duration) {
         return new WaitHandlerImpl(timeouts.implicitlyWait(duration));
     }
 }
