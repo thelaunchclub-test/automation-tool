@@ -36,7 +36,7 @@ public final class PropertyFileReader {
         final File file = new File(DirectoryUtility.getConfDirectory(), fileName);
 
         if (!file.exists()) {
-            LOGGER.info("The given file path is not found");
+            LOGGER.error("Commons util : The given file path '{}' is not found", file.getAbsolutePath());
             throw ErrorCode.get(CommonsErrorCode.FILE_NOT_FOUND);
         }
         final Properties properties = new Properties();
@@ -44,7 +44,7 @@ public final class PropertyFileReader {
         try (final FileReader reader = new FileReader(file)) {
             properties.load(reader);
         } catch (IOException e) {
-            LOGGER.info("The file can't be read");
+            LOGGER.error("Commons util : The file '{}' can't be read", file.getAbsolutePath());
             throw ErrorCode.get(CommonsErrorCode.CANNOT_READ);
         }
 
