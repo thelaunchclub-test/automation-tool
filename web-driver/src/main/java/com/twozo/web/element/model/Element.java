@@ -12,5 +12,5 @@ import lombok.NonNull;
  * @author Petchimuthu
  * @version 1.0
  */
-public record Finder(@NonNull LocatorType locatorType, @NonNull String value, @NonNull boolean isKnown) {
+public record Element(@NonNull LocatorType locatorType, @NonNull String value, boolean isKnown) {
 }

@@ -3,8 +3,6 @@ package com.twozo.web.status;
 import com.twozo.commons.exception.provider.PrefixProvider;
 import com.twozo.commons.exception.service.ErrorCodeProvider;
 
-import lombok.NonNull;
-
 /**
  * <p>
  * Standardizes handling of common statuses like invalid and duplicate inputs with specific codes
@@ -42,7 +40,7 @@ public enum WebDriverErrorCode implements ErrorCodeProvider {
 
     private final int code;
 
-    WebDriverErrorCode(@NonNull final int code) {
+    WebDriverErrorCode(final int code) {
         this.code = code;
     }
 

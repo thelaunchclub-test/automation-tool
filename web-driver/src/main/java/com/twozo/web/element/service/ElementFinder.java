@@ -1,7 +1,8 @@
 package com.twozo.web.element.service;
 
-import com.twozo.web.element.model.Finder;
+import com.twozo.web.element.model.Element;
 
+import lombok.NonNull;
 import org.openqa.selenium.By;
 
 import java.util.Collection;
@@ -45,7 +46,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement getWebPageElement(final Finder finder);
+    WebPageElement getWebPageElement(final Element element);
 
     /**
      * <p>
@@ -54,7 +55,7 @@ public interface ElementFinder {
      *
      * @return A {@link Collection} of {@link WebPageElement} representing the located web page elements.
      */
-    Collection<WebPageElement> getWebPageElements(final Finder finder);
+    Collection<WebPageElement> getWebPageElements(final Element element);
 
     /**
      * <p>
@@ -63,7 +64,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findBelowElement(final Collection<Finder> finders);
+    WebPageElement findBelowElement(final Collection<Element> elements);
 
     /**
      * <p>
@@ -72,7 +73,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findAboveElement(final Collection<Finder> finders);
+    WebPageElement findAboveElement(final Collection<Element> elements);
 
     /**
      * <p>
@@ -81,7 +82,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findLeftElement(final Collection<Finder> finders);
+    WebPageElement findLeftElement(final Collection<Element> elements);
 
     /**
      * <p>
@@ -90,7 +91,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findRightElement(final Collection<Finder> finders);
+    WebPageElement findRightElement(final Collection<Element> elements);
 
     /**
      * <p>
@@ -99,5 +100,5 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findNearElement(final Collection<Finder> finders);
+    WebPageElement findNearElement(final Collection<Element> elements);
 }

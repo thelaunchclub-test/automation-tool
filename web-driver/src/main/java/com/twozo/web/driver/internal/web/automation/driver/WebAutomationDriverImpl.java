@@ -5,7 +5,8 @@ import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
 import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
-import com.twozo.web.driver.internal.wait.WaitHandlerImpl;
+import com.twozo.web.driver.internal.wait.ExplicitWaitHandlerImpl;
+import com.twozo.web.driver.internal.wait.ImplicitWaitHandlerImpl;
 import com.twozo.web.driver.internal.window.info.WindowInfoProviderImpl;
 import com.twozo.web.driver.internal.window.state.WebWindowImpl;
 import com.twozo.web.driver.model.BrowserType;
@@ -16,7 +17,6 @@ import com.twozo.web.element.service.ElementFinder;
 import lombok.NonNull;
 import lombok.Value;
 
-import lombok.experimental.SuperBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -52,7 +52,6 @@ import java.util.Objects;
  */
 @Value
 @NonNull
-@SuperBuilder
 public class WebAutomationDriverImpl implements WebAutomationDriver {
 
     private static final PropertyFileReader PROPERTY_FILE_READER = PropertyFileReader.getInstance();
@@ -63,7 +62,8 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     WebTargetLocator webTargetLocator;
     WebWindow webWindow;
     WindowInfoProvider windowInfoProvider;
-    WaitHandler waitHandler;
+    ImplicitWaitHandler implicitWaitHandler;
+    ExplicitWaitHandler explicitWaitHandler;
     ScreenCapturer screenCapturer;
     ElementFinder elementFinder;
 
@@ -75,7 +75,8 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.webTargetLocator = new WebTargetLocatorImpl(driver, driver.switchTo());
         this.webWindow = new WebWindowImpl(driver.manage().window());
         this.windowInfoProvider = new WindowInfoProviderImpl(driver);
-        this.waitHandler = new WaitHandlerImpl(driver.manage().timeouts());
+        this.implicitWaitHandler = new ImplicitWaitHandlerImpl(driver.manage().timeouts());
+        this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
     }
 
@@ -87,7 +88,8 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.webTargetLocator = new WebTargetLocatorImpl(driver, driver.switchTo());
         this.webWindow = new WebWindowImpl(driver.manage().window());
         this.windowInfoProvider = new WindowInfoProviderImpl(driver);
-        this.waitHandler = new WaitHandlerImpl(driver.manage().timeouts());
+        this.implicitWaitHandler = new ImplicitWaitHandlerImpl(driver.manage().timeouts());
+        this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
     }
 
@@ -119,8 +121,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link PageInformationProvider} for retrieving various information about the browser,
-     * such as the current URL, page title, and page source.
+     * @return A {@link PageInformationProvider} for retrieving page information.
      */
     @Override
     public PageInformationProvider getPageInformationProvider() {
@@ -139,9 +140,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WebTargetLocator} for targeting different windows in the browser,
-     * such as switching to a specific window by name, opening a new window and handling
-     * browser alerts.
+     * @return A {@link WebTargetLocator} for targeting different window.
      */
     @Override
     public WebTargetLocator getWebTargetLocator() {
@@ -151,8 +150,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WebWindow} for interacts with the browser window,such as maximizing,
-     * minimizing,and toggling fullscreen mode.
+     * @return A {@link WebWindow} for controlling browser web window actions.
      */
     @Override
     public WebWindow getWebWindowHandler() {
@@ -162,8 +160,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WindowInfoProvider} for retrieving information about browser windows,
-     * including unique identifiers for each window handle and the handle of the current window.
+     * @return A {@link WindowInfoProvider} for retrieving information about the browser window.
      */
     @Override
     public WindowInfoProvider getWindowInfoProvider() {
@@ -173,11 +170,21 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     /**
      * {@inheritDoc}
      *
-     * @return A {@link WaitHandler} for to configure and manage waits in {@link WebDriver}.
+     * @return An {@link ImplicitWaitHandler} for implicit waits.
      */
     @Override
-    public WaitHandler getWaitHandler() {
-        return waitHandler;
+    public ImplicitWaitHandler getImplicitWaitHandler() {
+        return implicitWaitHandler;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return An {@link ExplicitWaitHandler} for explicit waits.
+     */
+    @Override
+    public ExplicitWaitHandler getExplicitWaitHandler() {
+        return explicitWaitHandler;
     }
 
     /**

@@ -23,7 +23,6 @@ import com.twozo.web.element.service.ElementFinder;
  * </p>
  *
  * @version 1.0
- * @see ScreenCapturer
  */
 public interface WebAutomationDriver {
 
@@ -88,12 +87,21 @@ public interface WebAutomationDriver {
 
     /**
      * <p>
-     * Returns {@link WaitHandler} for handling waits.
+     * Returns {@link ImplicitWaitHandler} for implicit waits.
      * </p>
      *
-     * @return A {@link WaitHandler} for handling waits.
+     * @return An {@link ImplicitWaitHandler} for implicit waits.
      */
-    WaitHandler getWaitHandler();
+    ImplicitWaitHandler getImplicitWaitHandler();
+
+    /**
+     * <p>
+     * Returns {@link ExplicitWaitHandler} for explicit waits.
+     * </p>
+     *
+     * @return An {@link ExplicitWaitHandler} for explicit waits.
+     */
+    ExplicitWaitHandler getExplicitWaitHandler();
 
     /**
      * <p>
