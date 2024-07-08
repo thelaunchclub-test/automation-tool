@@ -10,22 +10,22 @@ import java.io.File;
  * <p>
  * Example usage:
  * <pre>{@code
- * String seleniumDir = DirectoryUtility.getAutomationToolDirectory();
+ * String automationDirectory = EnvUtility.getAutomationDirectory();
  * }</pre>
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
  */
-public final class DirectoryUtility {
+public final class EnvUtility {
 
-    private static final String separator = File.separator;
+    private static final String SEPARATOR = File.separator;
     private static final String USER_HOME = System.getProperty("user.home");
     private static final String USER_DIRECTORY = System.getProperty("user.dir");
-    private static final String AUTOMATION_TOOL = String.format("%s%s%s", USER_HOME, separator, "automation tool");
-    private static final String FILE = String.format("%s%s%s", AUTOMATION_TOOL, separator,"file");
-    private static final String JSON = String.format("%s%s%s", AUTOMATION_TOOL, separator,"json");
-    private static final String CONF = USER_DIRECTORY + File.separator + "src"+"main"+"resources";
+    private static final String AUTOMATION_DIRECTORY = String.format("%s%s%s", USER_HOME, SEPARATOR, "automation");
+    private static final String FILE = String.format("%s%s%s", AUTOMATION_DIRECTORY, SEPARATOR, "file");
+    private static final String JSON = String.format("%s%s%s", AUTOMATION_DIRECTORY, SEPARATOR, "json");
+    private static final String CONF = String.format("%s%s%s%s%s", USER_DIRECTORY, SEPARATOR, "src", "main", "resources");
 
     /**
      * Returns the path of the user's home directory.
@@ -50,12 +50,12 @@ public final class DirectoryUtility {
      *
      * @return the path of the selenium directory
      */
-    public static String getAutomationToolDirectory() {
-        return AUTOMATION_TOOL;
+    public static String getAutomationDirectory() {
+        return AUTOMATION_DIRECTORY;
     }
 
     /**
-     * Returns the path of the file directory located in the automation tool directory.
+     * Returns the path of the file directory located in the automation directory.
      *
      * @return the path of the file directory
      */
@@ -64,7 +64,7 @@ public final class DirectoryUtility {
     }
 
     /**
-     * Returns the path of the JSON directory located in the automation tool directory.
+     * Returns the path of the JSON directory located in the automation directory.
      *
      * @return the path of the JSON directory
      */
