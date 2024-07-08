@@ -1,6 +1,8 @@
 package com.twozo.extent.report.reporter.model;
 
 import com.aventstack.extentreports.reporter.configuration.ViewName;
+
+import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.internal.extent.ExtentReporterImpl;
 
 import java.util.ArrayList;
@@ -8,11 +10,13 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Defines the different entities available in the navigation bar of the {@link ExtentReporterImpl}.
  * <p>
- * Represents a distinct section or entity within the {@link ExtentReporterImpl}, which can be accessed and managed
- * through the navigation. Determines the order and available variables
- * within the {@link ExtentReporterImpl}.
+ * Defines the different entities available in the navigation bar of the {@link ExtentReporterImpl}.
+ * </p>
+ *
+ * <p>
+ * Represents a distinct section or entity within the {@link AbstractExtentReporter}, which can be accessed and managed
+ * through the navigation.
  * </p>
  *
  * <p>
@@ -23,14 +27,6 @@ import java.util.List;
  *     <li>Helps in maintaining a clear structure and access control within the report interface.</li>
  * </ul>
  * </p>
- *
- * <p>
- * Example usage:
- * <pre>{@code
- * NavigationBar currentSection = NavigationBar.DASHBOARD;
- * }</pre>
- * </p>
- * Demonstrates how to use the enum to switch between different sections of the report.
  *
  * @version 1.0
  * @author Navin Jones
@@ -79,11 +75,9 @@ public enum NavigationBar {
      * Converts a collection of {@link NavigationBar} values to a list of corresponding {@link ViewName} values.
      * </p>
      *
-     * @param navigationBars The collection of {@link NavigationBar } enum values to be converted.
-     * @return A list of corresponding {@link ViewName} values.
+     * @param navigationBars The collection of {@link NavigationBar } values to be converted.
+     * @return               A list of corresponding {@link ViewName} values.
      *
-     * @see NavigationBar
-     * @see ViewName
      */
     public static List<ViewName> getNavigationBar(final Collection<NavigationBar> navigationBars) {
         final List<ViewName> viewName = new ArrayList<>();

@@ -14,4 +14,7 @@ public final class LabelFields {
     public static final String SPAN_BADGE_START = "<span class='badge";
     public static final String TAG_END = "'>";
     public static final String SPAN_CLOSE_TAG = "</span>";
+
+    private LabelFields() {
+    }
 }

@@ -25,7 +25,7 @@ public class HtmListFormatter {
      *
      * @param object The value from which to generate the list items.
      * @param list   The type of list to generate.
-     * @return The HTML representation of the list.
+     * @return       The HTML representation of the list.
      */
     protected String getList(final Object object, final ListFormat list) {
         final String listType;

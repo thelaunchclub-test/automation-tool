@@ -18,4 +18,7 @@ public final class ListFields {
     public static final String LIST_ITEM_OPEN_TAG = "<li>";
     public static final String COLON = ":";
     public static final String LIST_ITEM_END_TAG = "</li>";
+
+    private ListFields() {
+    }
 }

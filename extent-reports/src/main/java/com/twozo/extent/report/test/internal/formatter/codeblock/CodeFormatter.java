@@ -15,6 +15,8 @@ import freemarker.template.TemplateException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,8 +25,10 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * <p>
  * Provides functionality to format code as plain text or as JSON, based on the specified templates
  * and language.
+ * </p>
  *
  * <p>
  * Example usage:
@@ -45,8 +49,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Setter
 public final class CodeFormatter implements Formatter {
 
-    public static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(0);
-    public static final FreemarkerTemplate FREEMARKER_TEMPLATE = new FreemarkerTemplate(ExtentReports.class, "markup/", "UTF-8");
+    private static final Logger LOGGER = LoggerFactory.getLogger(CodeFormatter.class);
+    private static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(0);
+    private static final FreemarkerTemplate FREEMARKER_TEMPLATE = new FreemarkerTemplate(ExtentReports.class, "markup/", "UTF-8");
 
     private transient Template templateCodeBlock;
     private transient Template templateCodeBlockJson;
@@ -67,7 +72,7 @@ public final class CodeFormatter implements Formatter {
                 templateCodeBlock = FREEMARKER_TEMPLATE.createTemplate(CodeFields.DEFAULT_TEMPLATE_FILE_NAME);
                 templateCodeBlockJson = FREEMARKER_TEMPLATE.createTemplate(CodeFields.JSON_TEMPLATE_FILE_NAME);
             } catch (IOException exception) {
-                exception.printStackTrace();
+                LOGGER.error("CodeFormatter : The template was not set {}", exception.getMessage());
             }
         }
     }
@@ -106,8 +111,8 @@ public final class CodeFormatter implements Formatter {
 
         try {
             return FREEMARKER_TEMPLATE.getSource(template, templateDataMap);
-        } catch (TemplateException | IOException e) {
-            e.printStackTrace();
+        } catch (TemplateException | IOException exception) {
+            LOGGER.error("CodeFormatter : The template was not initialized {}", exception.getMessage());
         }
 
         return null;

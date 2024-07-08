@@ -11,14 +11,14 @@ package com.twozo.extent.report.test.model;
  */
 public enum ListFormat {
 
-    /**
+    /*
      * <p>
      * Represents an ordered list.
      * </p>
      */
     OL,
 
-    /**
+    /*
      * <p>
      * Represents an unordered list.
      * </p>

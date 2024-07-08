@@ -51,14 +51,14 @@ public final class LogImpl implements Log {
         final Status convertStatus = LogStatus.getStatus(logStatus);
 
         extentTest.log(convertStatus, logMessage);
-        LOGGER.info("Extent Report: ");
+        LOGGER.info("Extent Report: The Log was set successfully{}", convertStatus);
     }
 
     /**
      * {@inheritDoc}
      *
      * @param message The message to be logged.
-     * @return The {@link Log}.
+     * @return        The {@link Log}.
      */
     @Override
     public Log info(final String message) {

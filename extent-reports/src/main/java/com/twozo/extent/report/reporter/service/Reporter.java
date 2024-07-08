@@ -1,6 +1,5 @@
 package com.twozo.extent.report.reporter.service;
 
-import com.aventstack.extentreports.observer.ExtentObserver;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import com.twozo.extent.report.reporter.internal.spark.SparkReporter;
@@ -28,8 +27,7 @@ public interface Reporter {
 
     /**
      * <p>
-     * Flushes the {@link ReportService},and closing the report.
-     * Should be called after all test logs are added to ensure the report is complete.
+     * Flushes the {@link Reporter},and closing the {@link Reporter}.
      * </p>
      */
     void flush();
@@ -50,7 +48,7 @@ public interface Reporter {
      * </p>
      *
      * @param name The testName of the {@link ReportTest}.
-     * @return The newly created {@link ReportTest}.
+     * @return     The newly created {@link ReportTest}.
      */
     ReportTest createTest(String name);
 
@@ -61,7 +59,7 @@ public interface Reporter {
      *
      * @param name        The testName of the test.
      * @param description The description of the test.
-     * @return The newly created test.
+     * @return            The newly created test.
      */
     ReportTest createTest(String name, String description);
 
@@ -72,5 +70,5 @@ public interface Reporter {
      *
      * @return {@link ExtentSparkReporter} used for report generation.
      */
-    ExtentObserver getExtentSparkReporter();
+    ExtentSparkReporter getExtentSparkReporter();
 }

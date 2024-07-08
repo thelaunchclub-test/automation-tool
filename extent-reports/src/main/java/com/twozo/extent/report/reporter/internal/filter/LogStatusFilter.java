@@ -61,7 +61,7 @@ public final class LogStatusFilter<T extends AbstractExtentReporter> {
      * </p>
      *
      * @param status Represents the {@link Collection} of {@link LogStatus} values used to filter logs.
-     * @return {@link LogStatusFilter}
+     * @return       {@link LogStatusFilter}
      */
     public LogStatusFilter<T> as(final Collection<LogStatus> status) {
         this.statuses = new HashSet<>(status);
@@ -77,7 +77,7 @@ public final class LogStatusFilter<T extends AbstractExtentReporter> {
      * </p>
      *
      * @param statuses The {@link LogStatus} values to maintain order based on filter criteria.
-     * @return {@link LogStatusFilter}.
+     * @return         {@link LogStatusFilter}.
      */
     public LogStatusFilter<T> as(final LogStatus... statuses) {
         return as(Set.of(statuses));

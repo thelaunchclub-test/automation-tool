@@ -4,7 +4,9 @@ import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 
 /**
+ * <p>
  * Generates report generator for generating reports.
+ * </p>
  *
  * @author Navin Jones
  * @version 1.0

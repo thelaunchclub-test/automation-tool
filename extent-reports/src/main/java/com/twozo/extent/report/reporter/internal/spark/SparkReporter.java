@@ -8,6 +8,7 @@ import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.internal.filter.LogStatusFilter;
 import com.twozo.extent.report.reporter.internal.order.OrderSummary;
 import com.twozo.extent.report.reporter.model.Styles;
+import com.twozo.extent.report.reporter.service.Reporter;
 import com.twozo.extent.report.test.model.LogStatus;
 
 import lombok.Getter;
@@ -17,21 +18,13 @@ import org.slf4j.LoggerFactory;
 
 /**
  * <p>
- * Manages the generation of HTML reports. Provides a range of methods to customize and control the
- * reporting process, Ensures that the generated reports are comprehensive and tailored to specific requirements.
+ * Provides a range of methods to customize and control the {@link Reporter}.
+ * Ensures that the generated {@link Reporter} are comprehensive and tailored to specific requirements.
  * </p>
  *
  * <p>
- * Creates visually appealing reports, allowing for customization of document titles, report names, themes, and more.
- * Integrates functionality for filtering logs based on their statuses and defining the order of report sections.
- * </p>
- *
- * <p>
- * Example usage:
- * <pre>{@code
- *
- *     getReporter.attachReporter(new ExtentSparkReporter("path/to/report.html"));
- * }</pre>
+ * Creates visually appealing {@link Reporter}, allowing for customization of document titles, report names, themes, and more.
+ * Integrates functionality for filtering logs based on their {@link LogStatus} and defining the order of report sections.
  * </p>
  *
  * <p>
@@ -123,26 +116,7 @@ public final class SparkReporter extends AbstractExtentReporter {
 
     /**
      * <p>
-     * Attaches the {@link SparkReporter} to the {@link AbstractExtentReporter}.
-     * </p>
-     */
-    public void attach() {
-        reports.attachReporter(extentSparkReporter);
-    }
-
-    /**
-     * <p>
-     * Flushes the {@link SparkReporter}.
-     * </P>
-     */
-    public void save() {
-        reports.flush();
-    }
-
-    /**
-     * <p>
      * Applies specific {@link LogStatus} criteria to the getReporter.
-     * Allows filtering of test logs based on their statuses, such as PASS, FAIL, SKIP, etc.
      * </p>
      *
      * @return The {@link LogStatusFilter} associated with {@link SparkReporter}.
@@ -153,7 +127,7 @@ public final class SparkReporter extends AbstractExtentReporter {
 
     /**
      * <p>
-     * Allows the report layout, specifying the order in which different sections (e.g., TEST, LOG) should appear.
+     * Allows the report layout, specifying the order in which different sections should appear.
      * </P>
      *
      * @return {@link OrderSummary} associated with {@link SparkReporter}.

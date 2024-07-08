@@ -4,8 +4,9 @@ import com.aventstack.extentreports.markuputils.Markup;
 
 /**
  * <p>
- *
- * <p>
+ * Provides additional functionality for formatting text
+ * and other elements within the application.
+ * </p>
  *
  * @version 1.0
  * @Author Navin Jones

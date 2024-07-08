@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * <p>
- * Provides the core functionalities for managing reports and test executions within the
- * Decides which getReporter and tests are executed.
+ * Provides the core functionalities for managing reports and test executions.
+ * Decides which Reporter and tests are executed.
  * </p>
  *
  * <p>
@@ -28,14 +28,6 @@ import org.slf4j.LoggerFactory;
  *     <li>Creates and manages {@link ReportTest}</li>
  *     <li>Flushes the report to write logs and close the report.</li>
  * </ul>
- * </p>
- *
- * <p>
- * Example usage:
- * <pre>{@code
- * CustomExtentReporter getReporter = new CustomExtentReporter("path/to/report");
- * getReporter.generateReport();
- * }</pre>
  * </p>
  *
  * @author Navin Jones
@@ -81,7 +73,7 @@ public abstract class AbstractExtentReporter implements Reporter {
      */
     @Override
     public ReportTest createTest(final String name) {
-        ExtentTest extentTest = reports.createTest(name);
+        final ExtentTest extentTest = reports.createTest(name);
 
         return new ReportTestImpl(extentTest);
     }
@@ -95,7 +87,7 @@ public abstract class AbstractExtentReporter implements Reporter {
      */
     @Override
     public ReportTest createTest(final String name, final String description) {
-        ExtentTest extentTest = reports.createTest(name, description);
+        final ExtentTest extentTest = reports.createTest(name, description);
 
         return new ReportTestImpl(extentTest);
     }
@@ -116,7 +108,7 @@ public abstract class AbstractExtentReporter implements Reporter {
      * @return The {@link ExtentSparkReporter}
      */
     @Override
-    public ExtentObserver getExtentSparkReporter() {
+    public ExtentSparkReporter getExtentSparkReporter() {
         return getExtentSparkReporter();
     }
 }

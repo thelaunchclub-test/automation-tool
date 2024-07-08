@@ -29,17 +29,13 @@ public enum Styles {
      * </p>
      *
      * @param styles {@link Styles} value to convert
-     * @return The corresponding {@link Styles} based on the style
+     * @return       The corresponding {@link Styles} based on the style
      */
     public static Theme getTheme(final Styles styles) {
 
-        switch (styles) {
-            case DARK:
-                return Theme.DARK;
-            case LIGHT:
-                return Theme.STANDARD;
-            default:
-                throw new IllegalArgumentException("Unknown style: " + styles);
-        }
+        return switch (styles) {
+            case DARK -> Theme.DARK;
+            case LIGHT -> Theme.STANDARD;
+        };
     }
 }

@@ -1,10 +1,13 @@
 package com.twozo.extent.report.reporter.service;
 
 import com.twozo.extent.report.reporter.util.PropertyReader;
+
 import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.internal.extent.ExtentReporterImpl;
+
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 import com.twozo.extent.report.reporter.model.ReportType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,13 +27,14 @@ import java.util.Objects;
 public final class ReporterFactory implements ReportService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReporterFactory.class);
+
     /**
      * <p>
-     * Creates an {@link Reporter} based on the given ExtentReportType.
+     * Creates an {@link Reporter} based on the given {@link ExtentReportType}.
      * </p>
      *
      * @param type Type of {@link Reporter} to create.
-     * @return A new {@link AbstractExtentReporter}.
+     * @return     A new {@link AbstractExtentReporter}.
      */
     private static Reporter createReporter(final ExtentReportType type) {
 
@@ -47,31 +51,38 @@ public final class ReporterFactory implements ReportService {
     }
 
     /**
+     * <p>
      * Selects the appropriate {@link ReportService} based on the given ReportType.
+     * </p>
      *
      * @param reportType The type of {@link ReportService} to select.
-     * @return A new instance of {@link ReportType}.
      */
-    private static Reporter selectReporter(final ReportType reportType) {
+    private static void selectReporter(final ReportType reportType) {
 
-        return switch (reportType) {
+        switch (reportType) {
             case EXTENT_REPORT -> new ExtentReporterImpl();
-            case TESTNG_REPORTER, JUNIT_REPORTER, CALLIOPE_PRO -> throw new UnsupportedOperationException("TestNG reporter not implemented yet");
-        };
+            case TESTNG_REPORTER, JUNIT_REPORTER, CALLIOPE_PRO -> {
+                LOGGER.error("ReporterFactory : Reporter not implemented yet");
+                throw new UnsupportedOperationException("Reporter not implemented yet");
+            }
+        }
     }
 
     /**
+     * <p>
      * Chooses the appropriate {@link ReportService} based on the given {@link ReportType}.
+     * </p>
      *
      * @param reportType The type of {@link ReportService} to choose.
-     * @return The selected {@link ReportService}.
      */
-    public static Reporter chooseReporter(final ReportType reportType) {
-        return selectReporter(reportType);
+    public static void chooseReporter(final ReportType reportType) {
+        selectReporter(reportType);
     }
 
     /**
+     * <p>
      * Creates a default {@link ExtentReportType} reporter.
+     * </p>
      *
      * @return A new {@link AbstractExtentReporter}.
      */
@@ -83,7 +94,9 @@ public final class ReporterFactory implements ReportService {
     }
 
     /**
+     * <p>
      * Retrieves the {@link ExtentReportType} from the properties file.
+     * </p>
      *
      * @return The {@link ExtentReportType} value based on the 'extentReportType' property.
      */
@@ -91,7 +104,6 @@ public final class ReporterFactory implements ReportService {
 
         try {
             final Map<String, String> properties = PropertyReader.get("ReportConfig.properties");
-
             final String reportType = properties.get("extentReportType");
 
             if (Objects.nonNull(reportType) && reportType.equalsIgnoreCase("SPARK")) {

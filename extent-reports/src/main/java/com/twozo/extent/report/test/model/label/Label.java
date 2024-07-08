@@ -63,12 +63,10 @@ public record Label(String text, ColourType color, ColourType textColor) impleme
     }
 
     /**
-     * <p>
+     * Provides the text color based on the ColourType.
      *
-     * </p>
-     *
-     * @param colourType
-     * @return
+     * @param colourType The ColourType for the text.
+     * @return           The CSS class for the text color.
      */
     private String getTextColor(final ColourType colourType) {
 

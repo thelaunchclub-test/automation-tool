@@ -15,16 +15,6 @@ import lombok.Builder;
  * as a format element.
  * </p>
  *
- * <p>
- * Example usage:
- * <pre>{@code
- * Map<String, Integer> orderedMap = Map.of("Apple", 3, "Banana", 5, "Orange", 2);
- * OrderedListFormatter orderList = OrderedListFormatter.builder()
- *     .value(map)
- *     .build();
- * }</pre>
- * </p>
- *
  * @version 1.0
  * @author Navin Jones
  * @see HtmListFormatter

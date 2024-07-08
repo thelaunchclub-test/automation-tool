@@ -15,4 +15,7 @@ public final class CodeFields {
     public static final String JSON_TEMPLATE_FILE_NAME = "codeblock.json.ftl";
     public static final String DEFAULT_TEMPLATE_FILE_NAME = "codeblock.ftl";
     public static final String EMPTY_STRING = "";
+
+    private CodeFields() {
+    }
 }

@@ -20,4 +20,7 @@ public class TableFields {
     public static final String TABLE_ROW_CLOSE = "</tr>";
     public static final String TABLE_CELL_START = "<td>";
     public static final String TABLE_CELL_CLOSE = "</td>";
+
+    private TableFields() {
+    }
 }

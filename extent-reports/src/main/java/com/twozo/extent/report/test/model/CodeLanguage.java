@@ -10,14 +10,14 @@ package com.twozo.extent.report.test.model;
  */
 public enum CodeLanguage {
 
-    /**
+    /*
      * <p>
      * Represents the JSON (JavaScript Object Notation) language.
      * </p>
      */
     JSON,
 
-    /**
+    /*
      * <p>
      * Represents the XML (Extensible Markup Language) language.
      * </p>
