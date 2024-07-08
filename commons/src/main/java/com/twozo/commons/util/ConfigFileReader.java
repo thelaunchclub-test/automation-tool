@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
  * @author Petchimuthu
  * @version 1.0
  */
-public final class PropertyFileReader {
+public final class ConfigFileReader {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PropertyFileReader.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConfigFileReader.class);
 
     /**
      * <p>
@@ -33,18 +33,18 @@ public final class PropertyFileReader {
      * @return {@link Properties} containing the key-value pairs from the configuration file.
      */
     public static Map<String, String> get(final String fileName) {
-        final File file = new File(DirectoryUtility.getConfDirectory(), fileName);
+        final File file = new File(EnvUtility.getConfDirectory(), fileName);
 
         if (!file.exists()) {
-            LOGGER.error("Commons util : The given file path '{}' is not found", file.getAbsolutePath());
+            LOGGER.error("Commons : The given file path '{}' is not found", file.getAbsolutePath());
             throw ErrorCode.get(CommonsErrorCode.FILE_NOT_FOUND);
         }
         final Properties properties = new Properties();
 
         try (final FileReader reader = new FileReader(file)) {
             properties.load(reader);
-        } catch (IOException e) {
-            LOGGER.error("Commons util : The file '{}' can't be read", file.getAbsolutePath());
+        } catch (IOException exception) {
+            LOGGER.error("Commons : The file '{}' can't be read", file.getAbsolutePath());
             throw ErrorCode.get(CommonsErrorCode.CANNOT_READ);
         }
 
