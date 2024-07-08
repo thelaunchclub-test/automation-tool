@@ -22,7 +22,7 @@ import lombok.Builder;
  * </p>
  *
  * @version 1.0
- * @Author Navin Jones
+ * @author Navin Jones
  * @see HtmListFormatter
  * @see Formatter
  */

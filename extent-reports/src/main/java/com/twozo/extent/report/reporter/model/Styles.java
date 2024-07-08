@@ -20,7 +20,8 @@ public enum Styles {
     /*
      * Represents a light visual style
      */
-    LIGHT;
+    LIGHT,
+    ;
 
     /**
      * <p>
@@ -31,6 +32,7 @@ public enum Styles {
      * @return The corresponding {@link Styles} based on the style
      */
     public static Theme getTheme(final Styles styles) {
+
         switch (styles) {
             case DARK:
                 return Theme.DARK;

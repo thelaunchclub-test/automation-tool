@@ -4,6 +4,8 @@ import com.twozo.extent.report.test.service.Formatter;
 import com.twozo.extent.report.test.internal.formatter.fields.TableFields;
 
 import lombok.Builder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 
@@ -11,7 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
-import java.util.logging.Logger;
+
 
 /**
  * <p>
@@ -35,7 +37,8 @@ import java.util.logging.Logger;
 @Builder
 public final class TableFormatter implements Formatter {
 
-    //    private static Logger logger = Logger.getLogger(TableFormatter.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(TableFormatter.class);
+
     private final String[][] tableData;
     private final Object sourceObject;
     private final String[] headerRow;

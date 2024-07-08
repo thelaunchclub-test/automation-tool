@@ -16,7 +16,7 @@ public enum ColourType {
      * Represents the color red.
      * </p>
      */
-    RED("red"),
+    RED("red-text"),
 
     /**
      * <p>

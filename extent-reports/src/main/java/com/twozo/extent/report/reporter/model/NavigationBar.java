@@ -77,11 +77,6 @@ public enum NavigationBar {
     /**
      * <p>
      * Converts a collection of {@link NavigationBar} values to a list of corresponding {@link ViewName} values.
-     * Uses for retrieving the appropriate view names for the navigation bar in the report.
-     * </p>
-     *
-     * <p>
-     * Demonstrates how to convert a collection of {@link NavigationBar} enums to a list of {@link ViewName}.
      * </p>
      *
      * @param navigationBars The collection of {@link NavigationBar } enum values to be converted.

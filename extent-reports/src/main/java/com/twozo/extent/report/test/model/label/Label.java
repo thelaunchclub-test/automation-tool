@@ -48,11 +48,11 @@ public record Label(String text, ColourType color, ColourType textColor) impleme
         if (Objects.isNull(text) || text.isEmpty()) {
             return LabelFields.EMPTY;
         }
-        final String textColorClass = getTextColor(textColor());
+        final String textColors = getTextColor(textColor());
         final StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(LabelFields.SPAN_BADGE_START)
-                .append(textColorClass)
+                .append(textColors)
                 .append(LabelFields.EMPTY)
                 .append(color.toString().toLowerCase())
                 .append(LabelFields.TAG_END)
@@ -73,7 +73,7 @@ public record Label(String text, ColourType color, ColourType textColor) impleme
     private String getTextColor(final ColourType colourType) {
 
         if (Objects.isNull(colourType)) {
-            return "black-text";
+            return ColourType.BLACK.getColorName();
         }
 
         return colourType.getColorName();

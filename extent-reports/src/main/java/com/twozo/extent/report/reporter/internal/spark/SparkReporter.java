@@ -44,11 +44,12 @@ import org.slf4j.LoggerFactory;
  * @see AbstractExtentReporter
  */
 @Getter
-public class SparkReporter extends AbstractExtentReporter {
+public final class SparkReporter extends AbstractExtentReporter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SparkReporter.class);
-    protected final ExtentSparkReporter extentSparkReporter;
-    public final LogStatusFilter<SparkReporter> filter;
+
+    private final ExtentSparkReporter extentSparkReporter;
+    private final LogStatusFilter<SparkReporter> filter;
     private final OrderSummary<SparkReporter> viewOrder;
 
     public SparkReporter(final String path) {
@@ -69,8 +70,8 @@ public class SparkReporter extends AbstractExtentReporter {
 
         try {
             extentSparkReporter.loadXMLConfig(xmlPath);
-        } catch (final Exception exception) {
-            LOGGER.error("ERROR: {SparkReporter}", exception.getMessage());
+        } catch (Exception exception) {
+            LOGGER.error("Spark: No file found {}", exception.getMessage());
         }
     }
 
@@ -112,22 +113,11 @@ public class SparkReporter extends AbstractExtentReporter {
      * sets the Theme for the {@link SparkReporter}.
      * </p>
      *
-     * @param styles The name of the Theme.
+     * @param styles The Theme to set.
      */
     public void setTheme(final Styles styles) {
         final Theme theme = Styles.getTheme(styles);
 
-        config().setTheme(theme);
-    }
-
-    /**
-     * <p>
-     * Sets the theme for the {@link AbstractExtentReporter}.
-     * </p>
-     *
-     * @param theme The theme to set.
-     */
-    public void setTheme(final Theme theme) {
         config().setTheme(theme);
     }
 

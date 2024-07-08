@@ -1,12 +1,13 @@
-package com.twozo.extent.report.test.service;
+package com.twozo.extent.report.test.model;
 
 import com.twozo.extent.report.test.internal.formatter.table.TableFormatter;
-import com.twozo.extent.report.test.model.CodeLanguage;
+
 import com.twozo.extent.report.test.internal.formatter.codeblock.CodeFormatter;
 import com.twozo.extent.report.test.model.label.ColourType;
 import com.twozo.extent.report.test.model.label.Label;
 import com.twozo.extent.report.test.internal.formatter.list.OrderedListFormatter;
 import com.twozo.extent.report.test.internal.formatter.list.UnOrderListFormatter;
+import com.twozo.extent.report.test.service.Formatter;
 
 import java.util.Objects;
 

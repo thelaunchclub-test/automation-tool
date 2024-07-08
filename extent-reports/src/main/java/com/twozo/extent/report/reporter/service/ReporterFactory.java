@@ -5,6 +5,8 @@ import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.internal.extent.ExtentReporterImpl;
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 import com.twozo.extent.report.reporter.model.ReportType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
@@ -19,8 +21,9 @@ import java.util.Objects;
  * @version 1.0
  * @see ReportService
  */
-public class ReporterFactory implements ReportService {
+public final class ReporterFactory implements ReportService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReporterFactory.class);
     /**
      * <p>
      * Creates an {@link Reporter} based on the given ExtentReportType.
@@ -30,12 +33,16 @@ public class ReporterFactory implements ReportService {
      * @return A new {@link AbstractExtentReporter}.
      */
     private static Reporter createReporter(final ExtentReportType type) {
-        switch (type) {
-            case SPARK, KLOV, AVENT, EMAIL:
 
+        switch (type) {
+            case SPARK, KLOV, AVENT, EMAIL -> {
                 return new ExtentReporterImpl();
-            default:
+            }
+            default -> {
+                String errorMessage = "ReporterFactory : Unknown reporter type" + type;
+                LOGGER.error(errorMessage);
                 throw new IllegalArgumentException("Unknown reporter type: " + type);
+            }
         }
     }
 
@@ -46,6 +53,7 @@ public class ReporterFactory implements ReportService {
      * @return A new instance of {@link ReportType}.
      */
     private static Reporter selectReporter(final ReportType reportType) {
+
         return switch (reportType) {
             case EXTENT_REPORT -> new ExtentReporterImpl();
             case TESTNG_REPORTER, JUNIT_REPORTER, CALLIOPE_PRO -> throw new UnsupportedOperationException("TestNG reporter not implemented yet");
@@ -69,7 +77,6 @@ public class ReporterFactory implements ReportService {
      */
     @Override
     public Reporter createReporter() {
-
         createReporter(get());
 
         return createReporter();
@@ -81,6 +88,7 @@ public class ReporterFactory implements ReportService {
      * @return The {@link ExtentReportType} value based on the 'extentReportType' property.
      */
     private static ExtentReportType get() {
+
         try {
             final Map<String, String> properties = PropertyReader.get("ReportConfig.properties");
 
@@ -92,8 +100,8 @@ public class ReporterFactory implements ReportService {
                 throw new IllegalArgumentException("Invalid or missing extentReportType in properties file.");
             }
         } catch (IOException exception) {
-            exception.printStackTrace();
-            throw new RuntimeException("Failed to read properties file.", exception);
+            LOGGER.error("Spark : Failed to read property File {}" , exception.getMessage());
+            throw new RuntimeException(exception);
         }
     }
 
@@ -103,9 +111,9 @@ public class ReporterFactory implements ReportService {
      * @return The {@link ReportType} enum value based on the 'report' property.
      */
     public static ReportType getReport() {
+
         try {
             final Map<String, String> properties = PropertyReader.get("ReportConfig.properties");
-
             final String reportType = properties.get("report");
 
             if (Objects.nonNull(reportType) && reportType.equalsIgnoreCase("EXTENT_REPORT")) {
@@ -114,7 +122,7 @@ public class ReporterFactory implements ReportService {
                 throw new IllegalArgumentException("Invalid or missing extentReportType in properties file.");
             }
         } catch (IOException exception) {
-            exception.printStackTrace();
+            LOGGER.error("Reporter factory : Failed to read properties file" , exception);
             throw new RuntimeException("Failed to read properties file.", exception);
         }
     }
@@ -126,6 +134,7 @@ public class ReporterFactory implements ReportService {
      */
     public static Reporter selectReporter() {
         chooseReporter(getReport());
+
         return createReporter(get());
     }
 }

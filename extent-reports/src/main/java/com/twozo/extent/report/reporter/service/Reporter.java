@@ -3,6 +3,7 @@ package com.twozo.extent.report.reporter.service;
 import com.aventstack.extentreports.observer.ExtentObserver;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import com.twozo.extent.report.reporter.internal.spark.SparkReporter;
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 import com.twozo.extent.report.test.service.ReportTest;
 
@@ -18,7 +19,7 @@ public interface Reporter {
 
     /**
      * <p>
-     * Attaches the {@link ExtentReportType} into {@link Reporter}.
+     * Attaches the {@link ExtentReportType} into {@link SparkReporter}.
      * </p>
      *
      * @param reporters The {@link ExtentReportType}

@@ -3,8 +3,6 @@ package com.twozo.extent.report.reporter.service;
 import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 
-import java.io.IOException;
-
 /**
  * Generates report generator for generating reports.
  *
@@ -18,5 +16,5 @@ public interface ReportService<T extends Reporter> {
      *
      * @return A new {@link AbstractExtentReporter}.
      */
-    T createReporter() throws IOException;
+    T createReporter();
 }

@@ -28,5 +28,6 @@ public enum ExtentReportType {
     /*
      * Integration with email systems to send reports via email.
      */
-    EMAIL;
+    EMAIL,
+    ;
 }

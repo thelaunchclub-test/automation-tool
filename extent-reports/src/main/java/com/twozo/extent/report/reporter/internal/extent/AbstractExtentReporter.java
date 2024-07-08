@@ -3,22 +3,23 @@ package com.twozo.extent.report.reporter.internal.extent;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.observer.ExtentObserver;
-
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import com.twozo.extent.report.reporter.internal.spark.SparkReporter;
 import com.twozo.extent.report.reporter.model.ExtentReportType;
-import com.twozo.extent.report.reporter.service.ReportService;
 import com.twozo.extent.report.reporter.service.Reporter;
-import com.twozo.extent.report.test.service.ReportTest;
 import com.twozo.extent.report.test.internal.ReportTestImpl;
+import com.twozo.extent.report.test.service.ReportTest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Serves as the foundation for creating
+ * <p>
  * Provides the core functionalities for managing reports and test executions within the
  * Decides which getReporter and tests are executed.
+ * </p>
+ *
  * <p>
  * Key Features:
  * <ul>
@@ -44,7 +45,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractExtentReporter implements Reporter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractExtentReporter.class);
-    protected static ExtentReports reports;
+    protected final ExtentReports reports;
 
     protected AbstractExtentReporter() {
         reports = new ExtentReports();
@@ -60,7 +61,7 @@ public abstract class AbstractExtentReporter implements Reporter {
 
         for (final Reporter reporter : reporters) {
             reports.attachReporter(reporter.getExtentSparkReporter());
-            LOGGER.info("The Report was Attached successfully", reporters);
+            LOGGER.info("Spark : The Report was Attached successfully {}", reporter);
         }
     }
 
@@ -119,4 +120,3 @@ public abstract class AbstractExtentReporter implements Reporter {
         return getExtentSparkReporter();
     }
 }
-

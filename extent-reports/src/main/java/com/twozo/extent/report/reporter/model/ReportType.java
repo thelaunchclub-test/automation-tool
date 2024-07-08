@@ -36,7 +36,8 @@ public enum ReportType {
      * Calliope report.
      * Specific reporting tool for advanced reporting needs.
      */
-    CALLIOPE_PRO("calliope report");
+    CALLIOPE_PRO("calliope report"),
+    ;
 
     @Getter
     private final String name;
