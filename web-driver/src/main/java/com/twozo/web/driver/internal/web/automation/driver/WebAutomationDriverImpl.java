@@ -1,6 +1,6 @@
 package com.twozo.web.driver.internal.web.automation.driver;
 
-import com.twozo.commons.util.PropertyFileReader;
+import com.twozo.commons.util.ConfigFileReader;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
@@ -14,6 +14,9 @@ import com.twozo.web.driver.service.*;
 import com.twozo.web.element.internal.finder.ElementFinderForDriver;
 import com.twozo.web.element.service.ElementFinder;
 
+import com.twozo.web.mouse.internal.actions.MouseActionsImpl;
+import com.twozo.web.mouse.service.actions.MouseActions;
+
 import lombok.NonNull;
 import lombok.Value;
 
@@ -22,9 +25,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -54,7 +59,7 @@ import java.util.Objects;
 @NonNull
 public class WebAutomationDriverImpl implements WebAutomationDriver {
 
-    private static final PropertyFileReader PROPERTY_FILE_READER = PropertyFileReader.getInstance();
+    private static final Map<String, String> map = ConfigFileReader.get("Config.Properties");
 
     WebDriver driver;
     WebNavigator webNavigator;
@@ -65,6 +70,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     ImplicitWaitHandler implicitWaitHandler;
     ExplicitWaitHandler explicitWaitHandler;
     ScreenCapturer screenCapturer;
+    MouseActions mouseActions;
     ElementFinder elementFinder;
 
     public WebAutomationDriverImpl(@NonNull final WebDriver driver) {
@@ -78,6 +84,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.implicitWaitHandler = new ImplicitWaitHandlerImpl(driver.manage().timeouts());
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
+        this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
     }
 
     public WebAutomationDriverImpl() {
@@ -91,6 +98,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.implicitWaitHandler = new ImplicitWaitHandlerImpl(driver.manage().timeouts());
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
+        this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
     }
 
     private static RemoteWebDriver getDriver(@NonNull final BrowserType browserType) {
@@ -105,7 +113,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
 
     private BrowserType getBrowserType() {
         return Objects.requireNonNull(BrowserType.valueOf(
-                Objects.requireNonNull(PROPERTY_FILE_READER.getProperty()).getProperty("Browser").toUpperCase()));
+                Objects.requireNonNull(map.get("Browser").toUpperCase())));
     }
 
     /**
@@ -195,6 +203,18 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     @Override
     public ScreenCapturer getScreenCapturer() {
         return screenCapturer;
+    }
+
+    /**
+     * <p>
+     * Returns {@link ScreenCapturer} for capturing the screen.
+     * </p>
+     *
+     * @return A {@link ScreenCapturer} for capturing the screen.
+     */
+    @Override
+    public MouseActions getMouseActionsHandler() {
+        return mouseActions;
     }
 
     /**

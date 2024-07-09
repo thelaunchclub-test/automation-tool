@@ -2,6 +2,7 @@ package com.twozo.web.driver.service;
 
 import com.twozo.web.driver.internal.web.automation.driver.WebAutomationDriverImpl;
 import com.twozo.web.element.service.ElementFinder;
+import com.twozo.web.mouse.service.actions.MouseActions;
 
 /**
  * <p>
@@ -111,6 +112,15 @@ public interface WebAutomationDriver {
      * @return A {@link ScreenCapturer} for capturing the screen.
      */
     ScreenCapturer getScreenCapturer();
+
+    /**
+     * <p>
+     * Returns {@link ScreenCapturer} for capturing the screen.
+     * </p>
+     *
+     * @return A {@link ScreenCapturer} for capturing the screen.
+     */
+    MouseActions getMouseActionsHandler();
 
     /**
      * <p>
