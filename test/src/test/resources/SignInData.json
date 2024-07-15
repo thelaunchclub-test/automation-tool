@@ -1,0 +1,22 @@
+[
+  {
+    "testCaseID": "TC1",
+    "input": {
+      "userName": "ravi@gmail.com",
+      "password": "Ravi$123"
+    },
+    "expectedOutput": {
+      "result": "success"
+    }
+  },
+  {
+    "testCaseID": "TC2",
+    "input": {
+      "userName": "value3",
+      "password": "value4"
+    },
+    "expectedOutput": {
+      "result": "failure"
+    }
+  }
+]
