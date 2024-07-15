@@ -1,4 +1,4 @@
-package com.twozo.commons.exception.status;
+package com.twozo.commons.exception.errorcode;
 
 import com.twozo.commons.exception.provider.PrefixProvider;
 import com.twozo.commons.exception.service.ErrorCodeProvider;
