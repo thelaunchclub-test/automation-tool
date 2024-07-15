@@ -2,7 +2,6 @@ package com.twozo.extent.report.reporter.util;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.extent.report.reporter.error.code.ExtentReportErrorCode;
-import lombok.Getter;
 import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
