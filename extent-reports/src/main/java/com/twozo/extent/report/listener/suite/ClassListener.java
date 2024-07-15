@@ -1,6 +1,7 @@
 package com.twozo.extent.report.listener.suite;
 
-import com.twozo.commons.listener.TestNgListener;
+
+import com.twozo.extent.report.listener.TestNgListener;
 import org.testng.ITestClass;
 
 public interface ClassListener extends TestNgListener {

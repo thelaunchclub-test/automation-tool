@@ -1,6 +1,6 @@
 package com.twozo.extent.report.listener.report;
 
-import com.twozo.commons.listener.TestNgListener;
+import com.twozo.extent.report.listener.TestNgListener;
 import org.testng.ISuite;
 import org.testng.reporters.IReporterConfig;
 import org.testng.reporters.PojoReporterConfig;
