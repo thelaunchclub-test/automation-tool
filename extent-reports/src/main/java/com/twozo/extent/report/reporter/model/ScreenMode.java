@@ -10,7 +10,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
  * @author Navin Jones
  * @version 1.0
  */
-public enum Styles {
+public enum ScreenMode {
 
     /*
      * Represents a dark visual style
@@ -25,15 +25,15 @@ public enum Styles {
 
     /**
      * <p>
-     * Converts a {@link Theme} value to a corresponding {@link Styles} value.
+     * Converts a {@link Theme} value to a corresponding {@link ScreenMode} value.
      * </p>
      *
-     * @param styles {@link Styles} value to convert
-     * @return       The corresponding {@link Styles} based on the style
+     * @param screenMode {@link ScreenMode} value to convert
+     * @return       The corresponding {@link ScreenMode} based on the style
      */
-    public static Theme getTheme(final Styles styles) {
+    public static Theme getTheme(final ScreenMode screenMode) {
 
-        return switch (styles) {
+        return switch (screenMode) {
             case DARK -> Theme.DARK;
             case LIGHT -> Theme.STANDARD;
         };

@@ -33,7 +33,6 @@ import org.slf4j.LoggerFactory;
 public final class LogImpl implements Log {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogImpl.class);
-
     private final ExtentTest extentTest;
 
     public LogImpl(final ExtentTest extentTest) {

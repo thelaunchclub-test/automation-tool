@@ -4,6 +4,8 @@ import com.twozo.extent.report.test.model.ListFormat;
 import com.twozo.extent.report.test.service.Formatter;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
 
 /**
  * <p>
@@ -26,10 +28,12 @@ import lombok.Builder;
  * @see HtmListFormatter
  * @see Formatter
  */
+@EqualsAndHashCode(callSuper = true)
 @Builder
-public final class UnOrderListFormatter extends HtmListFormatter implements Formatter {
+@Value
+public class UnOrderListFormatter extends HtmListFormatter implements Formatter {
 
-    private final Object value;
+    transient Object value;
 
     /**<P>
      * Generates an unOrdered list using the value.

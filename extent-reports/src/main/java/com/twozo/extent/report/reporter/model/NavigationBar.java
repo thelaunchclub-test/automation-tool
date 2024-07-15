@@ -3,7 +3,7 @@ package com.twozo.extent.report.reporter.model;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
 
 import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
-import com.twozo.extent.report.reporter.internal.extent.ExtentReporterImpl;
+import com.twozo.extent.report.reporter.internal.extent.ExtentReporterInitializer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- * Defines the different entities available in the navigation bar of the {@link ExtentReporterImpl}.
+ * Defines the different entities available in the navigation bar of the {@link ExtentReporterInitializer}.
  * </p>
  *
  * <p>
@@ -76,10 +76,9 @@ public enum NavigationBar {
      * </p>
      *
      * @param navigationBars The collection of {@link NavigationBar } values to be converted.
-     * @return               A list of corresponding {@link ViewName} values.
-     *
+     * @return A list of corresponding {@link ViewName} values.
      */
-    public static List<ViewName> getNavigationBar(final Collection<NavigationBar> navigationBars) {
+    public static List<ViewName> get(final Collection<NavigationBar> navigationBars) {
         final List<ViewName> viewName = new ArrayList<>();
 
         for (final NavigationBar navigationBar : navigationBars) {

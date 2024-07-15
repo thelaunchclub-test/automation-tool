@@ -1,5 +1,9 @@
 package com.twozo.extent.report.reporter.util;
 
+import com.twozo.commons.exception.ErrorCode;
+import com.twozo.extent.report.reporter.error.code.ExtentReportErrorCode;
+import lombok.Getter;
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,9 +23,13 @@ import java.util.stream.Collectors;
  * @author Navin Jones
  * @version 1.0
  */
-public final class PropertyReader {
+@Value
+public class PropertyReader {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PropertyReader.class);
+
+    private PropertyReader() {
+    }
 
     /**
      * <p>
@@ -35,9 +43,8 @@ public final class PropertyReader {
         final File file = new File(ENVUtility.getConf(), fileName);
 
         if (!file.exists()) {
-            final String loggerMessage = "PropertyReader : Properties file not found: " + fileName;
-            LOGGER.error(loggerMessage);
-            throw new IOException("Properties file not found: " + fileName);
+            LOGGER.error("PropertyReader : Properties file not found" + fileName);
+            throw ErrorCode.get(ExtentReportErrorCode.FILE_NOT_FOUND);
         }
 
         final Properties properties = new Properties();

@@ -1,19 +1,23 @@
 package com.twozo.extent.report.reporter.service;
 
+import com.twozo.commons.exception.ErrorCode;
+import com.twozo.extent.report.reporter.error.code.ExtentReportErrorCode;
 import com.twozo.extent.report.reporter.util.PropertyReader;
 
-import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
-import com.twozo.extent.report.reporter.internal.extent.ExtentReporterImpl;
+import com.twozo.extent.report.reporter.internal.extent.ExtentReporterInitializer;
 
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 import com.twozo.extent.report.reporter.model.ReportType;
 
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
+
+import static com.twozo.extent.report.reporter.internal.extent.ExtentReporterInitializer.map;
 
 /**
  * <p>
@@ -22,99 +26,32 @@ import java.util.Objects;
  *
  * @author Navin Jones
  * @version 1.0
- * @see ReportService
+ * @see ReporterService
  */
-public final class ReporterFactory implements ReportService {
+@Value
+public class ReporterFactory implements ReporterService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReporterFactory.class);
+    private static final String FILENAME = "ReportConfig.properties";
+    private static final String REPORTER = "report";
+    private static final String EXTENT_REPORT = "EXTENT_REPORT";
 
     /**
      * <p>
-     * Creates an {@link Reporter} based on the given {@link ExtentReportType}.
+     * Selects the appropriate {@link ReporterService} based on the given ReportType.
      * </p>
      *
-     * @param type Type of {@link Reporter} to create.
-     * @return     A new {@link AbstractExtentReporter}.
+     * @param reportType The type of {@link ReporterService} to select.
      */
-    private static Reporter createReporter(final ExtentReportType type) {
+    private static Reporter selectReporter(final ReportType reportType) {
 
-        switch (type) {
-            case SPARK, KLOV, AVENT, EMAIL -> {
-                return new ExtentReporterImpl();
-            }
-            default -> {
-                String errorMessage = "ReporterFactory : Unknown reporter type" + type;
-                LOGGER.error(errorMessage);
-                throw new IllegalArgumentException("Unknown reporter type: " + type);
-            }
-        }
-    }
-
-    /**
-     * <p>
-     * Selects the appropriate {@link ReportService} based on the given ReportType.
-     * </p>
-     *
-     * @param reportType The type of {@link ReportService} to select.
-     */
-    private static void selectReporter(final ReportType reportType) {
-
-        switch (reportType) {
-            case EXTENT_REPORT -> new ExtentReporterImpl();
+        return switch (reportType) {
+            case EXTENT_REPORT -> ExtentReporterInitializer.createReporter();
             case TESTNG_REPORTER, JUNIT_REPORTER, CALLIOPE_PRO -> {
                 LOGGER.error("ReporterFactory : Reporter not implemented yet");
                 throw new UnsupportedOperationException("Reporter not implemented yet");
             }
-        }
-    }
-
-    /**
-     * <p>
-     * Chooses the appropriate {@link ReportService} based on the given {@link ReportType}.
-     * </p>
-     *
-     * @param reportType The type of {@link ReportService} to choose.
-     */
-    public static void chooseReporter(final ReportType reportType) {
-        selectReporter(reportType);
-    }
-
-    /**
-     * <p>
-     * Creates a default {@link ExtentReportType} reporter.
-     * </p>
-     *
-     * @return A new {@link AbstractExtentReporter}.
-     */
-    @Override
-    public Reporter createReporter() {
-        createReporter(get());
-
-        return createReporter();
-    }
-
-    /**
-     * <p>
-     * Retrieves the {@link ExtentReportType} from the properties file.
-     * </p>
-     *
-     * @return The {@link ExtentReportType} value based on the 'extentReportType' property.
-     */
-    private static ExtentReportType get() {
-
-        try {
-            final Map<String, String> properties = PropertyReader.get("ReportConfig.properties");
-            final String reportType = properties.get("extentReportType");
-
-            if (Objects.nonNull(reportType) && reportType.equalsIgnoreCase("SPARK")) {
-                return ExtentReportType.SPARK;
-            } else {
-                throw new IllegalArgumentException("Invalid or missing extentReportType in properties file.");
-            }
-        } catch (IOException exception) {
-            LOGGER.error("Spark : Failed to read property File {}" , exception.getMessage());
-            throw new RuntimeException(exception);
-        }
+        };
     }
 
     /**
@@ -125,28 +62,32 @@ public final class ReporterFactory implements ReportService {
     public static ReportType getReport() {
 
         try {
-            final Map<String, String> properties = PropertyReader.get("ReportConfig.properties");
-            final String reportType = properties.get("report");
+            final Map<String, String> properties = PropertyReader.get(FILENAME);
+            final String reportType = properties.get(REPORTER);
 
-            if (Objects.nonNull(reportType) && reportType.equalsIgnoreCase("EXTENT_REPORT")) {
+            if (Objects.nonNull(reportType) && reportType.equalsIgnoreCase(EXTENT_REPORT)) {
                 return ReportType.EXTENT_REPORT;
             } else {
-                throw new IllegalArgumentException("Invalid or missing extentReportType in properties file.");
+                LOGGER.error("ReporterFactory : Invalid or missing extentReportType in properties file");
+                throw ErrorCode.get(ExtentReportErrorCode.INVALID_REPORTER);
             }
         } catch (IOException exception) {
-            LOGGER.error("Reporter factory : Failed to read properties file" , exception);
-            throw new RuntimeException("Failed to read properties file.", exception);
+            LOGGER.error("Reporter factory : Failed to read properties file {}" , exception.getMessage());
+            throw ErrorCode.get(ExtentReportErrorCode.FILE_NOT_FOUND);
         }
     }
 
     /**
      * Creates a default {@link ExtentReportType}.
      *
-     * @return A new {@link ExtentReporterImpl} for {@link ExtentReportType}.
+     * @return A new {@link ExtentReporterInitializer} for {@link ExtentReportType}.
      */
-    public static Reporter selectReporter() {
-        chooseReporter(getReport());
+    public static Reporter create() {
+       return selectReporter(ReportType.get(map.get(REPORTER)));
+    }
 
-        return createReporter(get());
+    @Override
+    public Reporter createReporter() {
+        return create();
     }
 }

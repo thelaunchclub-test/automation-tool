@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>extent-reports</module>
-        <module>listeners</module>
     </modules>
 
     <properties>
@@ -31,9 +30,7 @@
             <version>1.7.36</version>
         </dependency>
     </dependencies>
-    <modules>
-        <module>commons</module>
-    </modules>
+
 
     <dependencyManagement>
         <dependencies>

@@ -40,7 +40,7 @@ public final class TableFormatter implements Formatter {
     private static Logger LOGGER = LoggerFactory.getLogger(TableFormatter.class);
 
     private final String[][] tableData;
-    private final Object sourceObject;
+    private final transient Object sourceObject;
     private final String[] headerRow;
     private String tableAttributes;
 
@@ -64,7 +64,7 @@ public final class TableFormatter implements Formatter {
         try {
             return generateTableFromObject();
         } catch (Exception exception) {
-            exception.printStackTrace();
+            LOGGER.error("Table Formatter : Table was not created {}", exception.getMessage());
         }
 
         return TableFields.EMPTY;

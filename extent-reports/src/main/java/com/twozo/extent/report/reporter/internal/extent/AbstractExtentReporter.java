@@ -2,7 +2,6 @@ package com.twozo.extent.report.reporter.internal.extent;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.observer.ExtentObserver;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import com.twozo.extent.report.reporter.internal.spark.SparkReporter;
@@ -53,7 +52,7 @@ public abstract class AbstractExtentReporter implements Reporter {
 
         for (final Reporter reporter : reporters) {
             reports.attachReporter(reporter.getExtentSparkReporter());
-            LOGGER.info("Spark : The Report was Attached successfully {}", reporter);
+            LOGGER.info("AbstractExtentReporter : The Report was Attached successfully {}", reporter);
         }
     }
 
@@ -68,8 +67,8 @@ public abstract class AbstractExtentReporter implements Reporter {
     /**
      * {@inheritDoc}
      *
-     * @param name The testName of the {@link ReportTest}.
-     * @return The newly created {@link ReportTest}.
+     * @param name The Name of the {@link ReportTest}.
+     * @return     The newly created {@link ReportTest}.
      */
     @Override
     public ReportTest createTest(final String name) {
@@ -81,9 +80,9 @@ public abstract class AbstractExtentReporter implements Reporter {
     /**
      *{@inheritDoc}
      *
-     * @param name        The testName of the test.
-     * @param description The description of the test.
-     * @return The newly created test.
+     * @param name        The Name of the {@link ReportTest}.
+     * @param description The description of the {@link ReportTest}.
+     * @return            The newly created test.
      */
     @Override
     public ReportTest createTest(final String name, final String description) {
@@ -105,6 +104,7 @@ public abstract class AbstractExtentReporter implements Reporter {
 
     /**
      * {@inheritDoc}
+     * 
      * @return The {@link ExtentSparkReporter}
      */
     @Override

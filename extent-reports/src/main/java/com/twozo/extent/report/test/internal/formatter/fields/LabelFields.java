@@ -1,5 +1,7 @@
 package com.twozo.extent.report.test.internal.formatter.fields;
 
+import lombok.Value;
+
 /**
  * <p>
  * Serves as a container constants used for generating HTML labels and badges.
@@ -8,7 +10,8 @@ package com.twozo.extent.report.test.internal.formatter.fields;
  * @author Navin Jones
  * @version 1.0
  */
-public final class LabelFields {
+@Value
+public class LabelFields {
 
     public static final String EMPTY = " ";
     public static final String SPAN_BADGE_START = "<span class='badge";

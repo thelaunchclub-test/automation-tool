@@ -7,7 +7,7 @@ import com.aventstack.extentreports.reporter.configuration.StatusFilter;
 import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.internal.spark.SparkReporter;
 
-import com.twozo.extent.report.reporter.service.ReportService;
+import com.twozo.extent.report.reporter.service.ReporterService;
 import com.twozo.extent.report.test.model.LogStatus;
 
 import lombok.Getter;
@@ -85,10 +85,10 @@ public final class LogStatusFilter<T extends AbstractExtentReporter> {
 
     /**
      * <p>
-     * Gets the {@link ReportService} .
+     * Gets the {@link ReporterService} .
      * </p>
      *
-     * @return {@link ReportService}
+     * @return {@link ReporterService}
      */
     public T getStatusReporter() {
         return reporter;

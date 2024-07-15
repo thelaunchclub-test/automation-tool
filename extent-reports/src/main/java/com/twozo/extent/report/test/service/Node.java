@@ -70,5 +70,11 @@ public interface Node {
      */
     Node createNode(final GherkinKeyword gherkinKeyword, final String nodeName, final String description);
 
+    /**
+     * Returns the {@link Log} for this class.
+     *
+     * @return {@link Log} specific to this class.
+     */
     Log getLog();
+
 }

@@ -1,5 +1,7 @@
 package com.twozo.extent.report.reporter.util;
 
+import lombok.Value;
+
 import java.io.File;
 
 /**
@@ -10,14 +12,15 @@ import java.io.File;
  * @author Navin Jones
  * @version 1.0
  */
-public final class ENVUtility {
+@Value
+public class ENVUtility {
 
-    private static final String separator = File.separator;
+    private static final String SEPARATOR = File.separator;
     private static final String USER_HOME = System.getProperty("user.home");
     private static final String USER_DIRECTORY = System.getProperty("user.dir");
-    private static final String AUTOMATION_TOOL = String.format("%s%s%s", USER_DIRECTORY, separator, "automation-tool");
-    private static final String EXTENT_REPORT = String.format("%s%s%s", AUTOMATION_TOOL, separator, "extent-reports");
-    private static final String CONF = String.format("%s%s%s%s%s%s%s", EXTENT_REPORT, separator, "src",separator, "main",separator, "resources");
+    private static final String AUTOMATION_TOOL = String.format("%s%s%s", USER_DIRECTORY, SEPARATOR, "automation-tool");
+    private static final String EXTENT_REPORT = String.format("%s%s%s", AUTOMATION_TOOL, SEPARATOR, "extent-reports");
+    private static final String CONF = String.format("%s%s%s%s%s%s%s", EXTENT_REPORT, SEPARATOR, "src", SEPARATOR, "main", SEPARATOR, "resources");
 
     private ENVUtility() {
     }

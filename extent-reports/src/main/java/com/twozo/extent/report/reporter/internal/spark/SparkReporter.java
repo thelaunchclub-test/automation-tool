@@ -7,12 +7,14 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.twozo.extent.report.reporter.internal.extent.AbstractExtentReporter;
 import com.twozo.extent.report.reporter.internal.filter.LogStatusFilter;
 import com.twozo.extent.report.reporter.internal.order.OrderSummary;
-import com.twozo.extent.report.reporter.model.Styles;
+import com.twozo.extent.report.reporter.model.ScreenMode;
 import com.twozo.extent.report.reporter.service.Reporter;
 import com.twozo.extent.report.test.model.LogStatus;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,14 +38,16 @@ import org.slf4j.LoggerFactory;
  * @version 1.0
  * @see AbstractExtentReporter
  */
+@EqualsAndHashCode(callSuper = true)
 @Getter
-public final class SparkReporter extends AbstractExtentReporter {
+@Value
+public class SparkReporter extends AbstractExtentReporter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SparkReporter.class);
 
-    private final ExtentSparkReporter extentSparkReporter;
-    private final LogStatusFilter<SparkReporter> filter;
-    private final OrderSummary<SparkReporter> viewOrder;
+    ExtentSparkReporter extentSparkReporter;
+    LogStatusFilter<SparkReporter> filter;
+    OrderSummary<SparkReporter> viewOrder;
 
     public SparkReporter(final String path) {
         super();
@@ -64,13 +68,13 @@ public final class SparkReporter extends AbstractExtentReporter {
         try {
             extentSparkReporter.loadXMLConfig(xmlPath);
         } catch (Exception exception) {
-            LOGGER.error("Spark: No file found {}", exception.getMessage());
+            LOGGER.error("SparkReporter : No xml file found {}", exception.getMessage());
         }
     }
 
     /**
      * <p>
-     * Delegates the call to the config() method of the {@link SparkReporter}.
+     * Configuration method of the {@link SparkReporter}.
      * </p>
      *
      * @return {@link ExtentSparkReporter} value containing the configuration settings.
@@ -86,7 +90,7 @@ public final class SparkReporter extends AbstractExtentReporter {
      *
      * @param title The title to set.
      */
-    public void setDocumentTitle(final String title) {
+    public void setTitle(final String title) {
         config().setDocumentTitle(title);
     }
 
@@ -106,10 +110,10 @@ public final class SparkReporter extends AbstractExtentReporter {
      * sets the Theme for the {@link SparkReporter}.
      * </p>
      *
-     * @param styles The Theme to set.
+     * @param screenMode The Theme to set.
      */
-    public void setTheme(final Styles styles) {
-        final Theme theme = Styles.getTheme(styles);
+    public void setTheme(final ScreenMode screenMode) {
+        final Theme theme = ScreenMode.getTheme(screenMode);
 
         config().setTheme(theme);
     }

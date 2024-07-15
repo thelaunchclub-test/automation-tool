@@ -11,7 +11,7 @@ import com.twozo.extent.report.reporter.model.ExtentReportType;
  * @author Navin Jones
  * @version 1.0
  */
-public interface ReportService<T extends Reporter> {
+public interface ReporterService<T extends Reporter> {
 
     /**
      * Creates a default {@link ExtentReportType} reporter.

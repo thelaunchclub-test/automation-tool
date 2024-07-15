@@ -1,5 +1,7 @@
 package com.twozo.extent.report.test.internal.formatter.fields;
 
+import lombok.Value;
+
 /**
  * <p>
  * Serves as a container for constants that are commonly used for constructing HTML list elements.
@@ -8,7 +10,8 @@ package com.twozo.extent.report.test.internal.formatter.fields;
  * @author Navin Jones
  * @version 1.0
  */
-public final class ListFields {
+@Value
+public class ListFields {
 
     public static final String UNORDERED_LIST = "ul";
     public static final String ORDERED_LIST = "ol";

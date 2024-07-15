@@ -58,7 +58,7 @@ public final class OrderSummary<T extends AbstractExtentReporter> {
      * @return              The current {@link OrderSummary}, with the view order updated.
      */
     public OrderSummary<T> setViewOrder(final Collection<NavigationBar> navigationBar) {
-        viewOrder.as(NavigationBar.getNavigationBar(navigationBar));
+        viewOrder.as(NavigationBar.get(navigationBar));
 
         return this;
     }

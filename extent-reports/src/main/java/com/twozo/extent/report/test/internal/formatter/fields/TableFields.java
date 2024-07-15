@@ -1,5 +1,7 @@
 package com.twozo.extent.report.test.internal.formatter.fields;
 
+import lombok.Value;
+
 /**
  * <p>
  * Provides various constants used for constructing HTML table elements.
@@ -8,6 +10,7 @@ package com.twozo.extent.report.test.internal.formatter.fields;
  * @author Navin Jones
  * @version 1.0
  */
+@Value
 public class TableFields {
 
     public static final String EMPTY = "";
