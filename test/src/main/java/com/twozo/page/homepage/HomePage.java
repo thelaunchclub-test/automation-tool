@@ -1,7 +1,5 @@
 package com.twozo.page.homepage;
 
-import com.twozo.commons.exception.ErrorCode;
-import com.twozo.commons.exception.errorcode.CommonsErrorCode;
 import com.twozo.page.BasePage;
 import com.twozo.page.activity.Activity;
 import com.twozo.page.analytics.Analytics;
@@ -11,7 +9,6 @@ import com.twozo.page.deal.Deal;
 import com.twozo.page.inbox.Inbox;
 import com.twozo.page.product.Product;
 import com.twozo.page.settings.Settings;
-import com.twozo.page.url.settings.URL;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.service.WebPageElement;
 
@@ -55,8 +52,8 @@ public class HomePage extends BasePage {
 
     public static HomePage getInstance(final WebAutomationDriver webAutomationDriver) {
 
-       // if (Objects.isNull(homePage)) {
-            homePage = new HomePage(webAutomationDriver);
+        // if (Objects.isNull(homePage)) {
+        homePage = new HomePage(webAutomationDriver);
         //}
 
         return homePage;
@@ -73,9 +70,9 @@ public class HomePage extends BasePage {
 
     public WebPageElement getContactIcon() {
 
-        if (Objects.isNull(contactIcon)) {
+     //   if (Objects.isNull(contactIcon)) {
             contactIcon = findByOrder(2);
-        }
+       // }
 
         return contactIcon;
     }

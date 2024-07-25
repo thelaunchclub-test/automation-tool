@@ -5,7 +5,6 @@ import com.twozo.web.driver.service.WebAutomationDriver;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-
 import org.openqa.selenium.WebDriver.Timeouts;
 
 import java.time.Duration;

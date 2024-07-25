@@ -1,9 +1,6 @@
 package com.twozo.page.company;
 
-import com.twozo.page.contact.AddContact;
 import com.twozo.web.driver.service.WebAutomationDriver;
-
-import java.util.Objects;
 
 public class AddCompany extends Company {
 

@@ -1,0 +1,90 @@
+[
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "a",
+      "fieldType": "Text"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "b",
+      "fieldType": "Large Text"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "C",
+      "fieldType": "Number"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "D",
+      "fieldType": "Owner"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "E",
+      "fieldType": "Company"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "F",
+      "fieldType": "Contact"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "G",
+      "fieldType": "Phone"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "H",
+      "fieldType": "Email"
+    },
+    "output": {
+      "result": "pass"
+    }
+  }
+]

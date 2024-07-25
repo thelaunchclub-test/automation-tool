@@ -22,4 +22,13 @@ public class FieldElement {
     public static final String SPECIFIC_BLOCK = "((//*[@class='css-11x1d9z'])[%d]/div/div/div/p)[1]";
     public static final String MENU_BLOCK = "(//*[@class='css-u4p24i'])[%d]";
     public static final String CUSTOM_FIELD_NAME = "(//*[@type='text'])[2]";
+    public static final String SYSTEM_FIELD_SEARCH_RESULT = "//*[@class='MuiBox-root css-2pd7af']/div";
+    public static final String UNCHECKED = "//*[@style='fill: none;']";
+    public static final String CHECKED = "//*[@checked]";
+    public static final String CHECKBOX = "//*[@type='checkbox']";
+    public static final String SPECIFIC_FIELD_COLUMN_SETTINGS_CHECKBOX = "//*[@class='css-eawmf1']//*[text()='%s']/../..//*[@type='checkbox']";
+    public static final String EDIT_ICON = "//button[1]";
+    public static final String DELETE_ICON = "//button[2]";
+    public static final String EYE_ICON = "//button[1]";
+
 }

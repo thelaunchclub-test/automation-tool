@@ -19,6 +19,6 @@ public class XPathBuilder {
     }
 
     public static String getXpathByContains(final String value){
-        return String.format("//*[ contains (text(),'%s')",value);
+        return String.format("//*[ contains (text(),'%s')]",value);
     }
 }

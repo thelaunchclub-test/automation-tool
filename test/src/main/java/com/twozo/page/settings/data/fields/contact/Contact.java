@@ -1,9 +1,9 @@
 package com.twozo.page.settings.data.fields.contact;
 
 import com.twozo.commons.exception.ErrorCode;
-import com.twozo.page.settings.Settings;
-import com.twozo.page.settings.data.fields.Button;
-import com.twozo.page.settings.data.fields.FieldType;
+import com.twozo.page.settings.data.fields.DataField;
+import com.twozo.page.settings.data.fields.FieldStatus;
+import com.twozo.page.settings.data.fields.contact.field.ContactDataField;
 import com.twozo.page.settings.data.fields.field.*;
 import com.twozo.page.url.settings.URL;
 import com.twozo.page.xpath.XPathBuilder;
@@ -12,17 +12,11 @@ import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.status.WebDriverErrorCode;
+import org.openqa.selenium.NoSuchElementException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.*;
 
-public class Contact extends Settings {
-
-    private static final String TWO_STRING_FORMAT = "%s%s";
-    private static final String THREE_STRING_FORMAT = "%s%s%s";
-    private static final String OPEN_PARENTHESIS = "(";
+public class Contact extends DataField {
 
     private static Contact contact;
 
@@ -44,22 +38,19 @@ public class Contact extends Settings {
     private SystemField designationField;
     private SystemField salesOwnerField;
     private SystemField facebookField;
-    private SystemField twitterField;
+    private SystemField linkedInField;
 
-    private WebPageElement addSystemFieldsButton;
-    private WebPageElement addSelectedFieldsButton;
-    private WebPageElement addCustomFieldButton;
-    private WebPageElement customFieldName;
-    private WebPageElement selectCustomFieldType;
-    private WebPageElement customFieldAddButton;
-    private WebPageElement choice;
-    private WebPageElement addChoice;
-
-    private WebPageElement breadCrumb;
+    private WebPageElement activeContactTab;
+    private WebPageElement activeCompanyTab;
+    private WebPageElement activeDealTab;
+    private WebPageElement activeProductTab;
+    private WebPageElement columnSettingsButton;
+    private Element systemFieldSearchResults;
 
     protected Contact(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
-        if (getURL().equals(URL.CONTACT)) {
+
+        if (!getURL().equals(URL.CONTACT)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -71,74 +62,64 @@ public class Contact extends Settings {
     }
 
     public String getFirstNameDiv() {
-        firstNameDiv = initializeElement(firstNameDiv, () -> getFieldBlock(ContactSystemField.FIRST_NAME));
+        firstNameDiv = initializeElement(firstNameDiv, () -> getFieldBlock(ContactDataField.FIRST_NAME));
 
         return firstNameDiv;
     }
 
     public String getLastNameDiv() {
-        lastNameDiv = initializeElement(lastNameDiv, () -> getFieldBlock(ContactSystemField.LAST_NAME));
+        lastNameDiv = initializeElement(lastNameDiv, () -> getFieldBlock(ContactDataField.LAST_NAME));
 
         return lastNameDiv;
     }
 
     public String getEmailDiv() {
-        emailDiv = initializeElement(emailDiv, () -> getFieldBlock(ContactSystemField.EMAILS));
+        emailDiv = initializeElement(emailDiv, () -> getFieldBlock(ContactDataField.EMAILS));
 
         return emailDiv;
     }
 
     public String getPhonesDiv() {
-        phonesDiv = initializeElement(phonesDiv, () -> getFieldBlock(ContactSystemField.PHONES));
+        phonesDiv = initializeElement(phonesDiv, () -> getFieldBlock(ContactDataField.PHONES));
 
         return phonesDiv;
     }
 
     public String getCompanyDiv() {
-        companyDiv = initializeElement(companyDiv, () -> getFieldBlock(ContactSystemField.COMPANY));
+        companyDiv = initializeElement(companyDiv, () -> getFieldBlock(ContactDataField.COMPANY));
 
         return companyDiv;
     }
 
     public String getDesignationDiv() {
-        designationDiv = initializeElement(designationDiv, () -> getFieldBlock(ContactSystemField.DESIGNATION));
+        designationDiv = initializeElement(designationDiv, () -> getFieldBlock(ContactDataField.DESIGNATION));
 
         return designationDiv;
     }
 
     public String getSalesOwnerDiv() {
-        salesOwnerDiv = initializeElement(salesOwnerDiv, () -> getFieldBlock(ContactSystemField.SALES_OWNER));
+        salesOwnerDiv = initializeElement(salesOwnerDiv, () -> getFieldBlock(ContactDataField.SALES_OWNER));
 
         return salesOwnerDiv;
     }
 
     public String getFacebookDiv() {
-        facebookDiv = initializeElement(facebookDiv, () -> getFieldBlock(ContactSystemField.FACEBOOK));
+        facebookDiv = initializeElement(facebookDiv, () -> getFieldBlock(ContactDataField.FACEBOOK));
 
         return facebookDiv;
     }
 
     public String getTwitterDiv() {
-        twitterDiv = initializeElement(twitterDiv, () -> getFieldBlock(ContactSystemField.TWITTER));
+        twitterDiv = initializeElement(twitterDiv, () -> getFieldBlock(ContactDataField.TWITTER));
         return twitterDiv;
-    }
-
-    private String format(final String div, final String element) {
-
-        return String.format(TWO_STRING_FORMAT, div, element);
-    }
-
-    private String getPathOfSpecificCheckbox(final String div, final String element) {
-
-        return String.format(THREE_STRING_FORMAT, OPEN_PARENTHESIS, div, element);
     }
 
     private SystemField getFirstNameField() {
         firstNameField = initializeElement(firstNameField, () -> new SystemField(
                 findByXpath(format(getFirstNameDiv(), FieldElement.NON_DRAGGABLE)),
-                findByXpath(format(getFirstNameDiv(), XPathBuilder.getXPathByText(ContactSystemField.FIRST_NAME.getName()))),
+                findByXpath(format(getFirstNameDiv(), XPathBuilder.getXPathByText(ContactDataField.FIRST_NAME.getName()))),
                 findByXpath(format(getFirstNameDiv(), FieldTypePath.TEXT)),
-                findByXpath(getPathOfSpecificCheckbox(getFirstNameDiv(), FieldElement.REQUIRED_CHECKED)),
+                findByXpath(getPathOfSpecificCheckbox(getFirstNameDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getFirstNameDiv(), FieldElement.REQUIRED_CHECKED)),
                 null));
 
@@ -148,7 +129,7 @@ public class Contact extends Settings {
     private SystemField getLastNameField() {
         lastNameField = initializeElement(lastNameField, () -> new SystemField(
                 findByXpath(format(getLastNameDiv(), FieldElement.NON_DRAGGABLE)),
-                findByXpath(format(getLastNameDiv(), XPathBuilder.getXPathByText(ContactSystemField.LAST_NAME.getName()))),
+                findByXpath(format(getLastNameDiv(), XPathBuilder.getXPathByText(ContactDataField.LAST_NAME.getName()))),
                 findByXpath(format(getLastNameDiv(), FieldTypePath.TEXT)),
                 findByXpath(getPathOfSpecificCheckbox(getLastNameDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getLastNameDiv(), FieldElement.REQUIRED_UNCHECKED)), null));
@@ -159,7 +140,7 @@ public class Contact extends Settings {
     private SystemField getEmailsField() {
         emailsField = initializeElement(emailsField, () -> new SystemField(
                 findByXpath(format(getEmailDiv(), FieldElement.NON_DRAGGABLE)),
-                findByXpath(format(getEmailDiv(), XPathBuilder.getXPathByText(ContactSystemField.EMAILS.getName()))),
+                findByXpath(format(getEmailDiv(), XPathBuilder.getXPathByText(ContactDataField.EMAILS.getName()))),
                 findByXpath(format(getEmailDiv(), FieldTypePath.EMAILS)),
                 findByXpath(getPathOfSpecificCheckbox(getEmailDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getEmailDiv(), FieldElement.REQUIRED_CHECKED)),
@@ -171,7 +152,7 @@ public class Contact extends Settings {
     private SystemField getPhonesField() {
         phonesField = initializeElement(phonesField, () -> new SystemField(
                 findByXpath(format(getPhonesDiv(), FieldElement.NON_DRAGGABLE)),
-                findByXpath(format(getPhonesDiv(), XPathBuilder.getXPathByText(ContactSystemField.PHONES.getName()))),
+                findByXpath(format(getPhonesDiv(), XPathBuilder.getXPathByText(ContactDataField.PHONES.getName()))),
                 findByXpath(format(getPhonesDiv(), FieldTypePath.PHONES)),
                 findByXpath(getPathOfSpecificCheckbox(getPhonesDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getPhonesDiv(), FieldElement.REQUIRED_CHECKED)),
@@ -183,7 +164,7 @@ public class Contact extends Settings {
     private SystemField getCompanyField() {
         companyField = initializeElement(companyField, () -> new SystemField(
                 findByXpath(format(getCompanyDiv(), FieldElement.DRAGGABLE)),
-                findByXpath(format(getCompanyDiv(), XPathBuilder.getXPathByText(ContactSystemField.COMPANY.getName()))),
+                findByXpath(format(getCompanyDiv(), XPathBuilder.getXPathByText(ContactDataField.COMPANY.getName()))),
                 findByXpath(format(getCompanyDiv(), FieldTypePath.COMPANY)),
                 findByXpath(getPathOfSpecificCheckbox(getCompanyDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getCompanyDiv(), FieldElement.REQUIRED_UNCHECKED)),
@@ -195,7 +176,7 @@ public class Contact extends Settings {
     private SystemField getDesignationField() {
         designationField = initializeElement(designationField, () -> new SystemField(
                 findByXpath(format(getDesignationDiv(), FieldElement.DRAGGABLE)),
-                findByXpath(format(getDesignationDiv(), XPathBuilder.getXPathByText(ContactSystemField.DESIGNATION.getName()))),
+                findByXpath(format(getDesignationDiv(), XPathBuilder.getXPathByText(ContactDataField.DESIGNATION.getName()))),
                 findByXpath(format(getDesignationDiv(), FieldTypePath.TEXT)),
                 findByXpath(getPathOfSpecificCheckbox(getDesignationDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getDesignationDiv(), FieldElement.REQUIRED_UNCHECKED)),
@@ -207,7 +188,7 @@ public class Contact extends Settings {
     private SystemField getSalesOwnerField() {
         salesOwnerField = initializeElement(salesOwnerField, () -> new SystemField(
                 findByXpath(format(getSalesOwnerDiv(), FieldElement.DRAGGABLE)),
-                findByXpath(format(getSalesOwnerDiv(), XPathBuilder.getXPathByText(ContactSystemField.SALES_OWNER.getName()))),
+                findByXpath(format(getSalesOwnerDiv(), XPathBuilder.getXPathByText(ContactDataField.SALES_OWNER.getName()))),
                 findByXpath(format(getSalesOwnerDiv(), FieldTypePath.OWNER)),
                 findByXpath(getPathOfSpecificCheckbox(getSalesOwnerDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getSalesOwnerDiv(), FieldElement.REQUIRED_CHECKED)),
@@ -219,7 +200,7 @@ public class Contact extends Settings {
     private SystemField getFacebookField() {
         facebookField = initializeElement(facebookField, () -> new SystemField(
                 findByXpath(format(getFacebookDiv(), FieldElement.DRAGGABLE)),
-                findByXpath(format(getFacebookDiv(), XPathBuilder.getXPathByText(ContactSystemField.FACEBOOK.getName()))),
+                findByXpath(format(getFacebookDiv(), XPathBuilder.getXPathByText(ContactDataField.FACEBOOK.getName()))),
                 findByXpath(format(getFacebookDiv(), FieldTypePath.TEXT)),
                 findByXpath(getPathOfSpecificCheckbox(getFacebookDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getFacebookDiv(), FieldElement.REQUIRED_UNCHECKED)),
@@ -228,76 +209,53 @@ public class Contact extends Settings {
         return facebookField;
     }
 
-    private SystemField getTwitterField() {
-        twitterField = initializeElement(twitterField, () -> new SystemField(
+    private SystemField getLinkedInField() {
+        linkedInField = initializeElement(linkedInField, () -> new SystemField(
                 findByXpath(format(getTwitterDiv(), FieldElement.DRAGGABLE)),
-                findByXpath(format(getTwitterDiv(), XPathBuilder.getXPathByText(ContactSystemField.TWITTER.getName()))),
+                findByXpath(format(getTwitterDiv(), XPathBuilder.getXPathByText(ContactDataField.LINKED_IN.getName()))),
                 findByXpath(format(getTwitterDiv(), FieldTypePath.TEXT)),
                 findByXpath(getPathOfSpecificCheckbox(getTwitterDiv(), FieldElement.ADD_VIEW_CHECKED)),
                 findByXpath(getPathOfSpecificCheckbox(getTwitterDiv(), FieldElement.REQUIRED_UNCHECKED)),
                 null));
 
-        return twitterField;
+        return linkedInField;
     }
 
-    public WebPageElement getAddSystemFieldsButton() {
-        addSystemFieldsButton = initializeElement(addSystemFieldsButton, () -> findByText(Button.SYSTEM_FIELDS));
 
-        return addSystemFieldsButton;
+    public WebPageElement getActiveContactTab() {
+        activeContactTab = initializeElement(activeContactTab, () ->
+                findByXpath("//*[@value='Contact' and @aria-pressed='true']"));
+
+        return activeContactTab;
     }
 
-    public WebPageElement getAddSelectedFieldsButton() {
-        addSelectedFieldsButton = initializeElement(addSelectedFieldsButton, () -> findByText(Button.ADD_SELECTED_FIELDS));
+    public WebPageElement getActiveCompanyTab() {
+        activeCompanyTab = initializeElement(activeCompanyTab, () ->
+                findByXpath("//*[@value='Company' and @aria-pressed='true']"));
 
-        return addSelectedFieldsButton;
+        return activeCompanyTab;
     }
 
-    public WebPageElement getAddCustomFieldButton() {
-        addCustomFieldButton = initializeElement(addCustomFieldButton, () -> findByText(Button.CUSTOM_FIELD));
+    public WebPageElement getActiveDealTab() {
+        activeDealTab = initializeElement(activeDealTab, () ->
+                findByXpath("//*[@value='Deal' and @aria-pressed='true']"));
 
-        return addCustomFieldButton;
+        return activeDealTab;
     }
 
-    public WebPageElement getCustomFieldName() {
-        customFieldName = initializeElement(customFieldName, () -> findByXpath(FieldElement.CUSTOM_FIELD_NAME));
+    public WebPageElement getActiveProductTab() {
+        activeProductTab = initializeElement(activeProductTab, () ->
+                findByXpath("//*[@value='Product' and @aria-pressed='true']"));
 
-        return customFieldName;
+        return activeProductTab;
     }
 
-    public WebPageElement getSelectCustomFieldType() {
-        selectCustomFieldType = initializeElement(selectCustomFieldType, () -> findByXpath(Button.CUSTOM_FIELDS_FIELD_TYPE));
-
-        return selectCustomFieldType;
+    public WebPageElement getColumnSettingsButton() {
+        return findByXpath("//*[@class='css-181x7hd']");
     }
 
-    public WebPageElement getCustomFieldAddButton() {
-        customFieldAddButton = initializeElement(customFieldAddButton, () -> findByXpath(FieldElement.ADD_BUTTON));
-
-        return customFieldAddButton;
-    }
-
-    public WebPageElement getChoice() {
-        choice = initializeElement(choice, () -> findByText(Button.CHOICE));
-
-        return choice;
-    }
-
-    public WebPageElement getAddChoice() {
-        addChoice = initializeElement(addChoice, () -> findByText(Button.ADD_CHOICE));
-
-        return addChoice;
-    }
-
-    public WebPageElement getBreadCrumb() {
-        breadCrumb = initializeElement(breadCrumb, () -> findRightElement(List.of(new Element(LocatorType.XPATH,
-                buildXpathByText("Admin Settings"), true), new Element(LocatorType.TAG_NAME, "svg",
-                false))));
-
-        return breadCrumb;
-    }
-
-    private <T> T initializeElement(T element, Supplier<T> initializer) {
-        return Objects.isNull(element) ? initializer.get() : element;
+    public WebPageElement getAnUnExpectedErrorMessage() {
+        return findByText("An unexpected error occurred. Please try again later.");
     }
 
     private boolean check(final SystemField systemField) {
@@ -319,7 +277,7 @@ public class Contact extends Settings {
         return true;
     }
 
-    private String getFieldBlock(final ContactSystemField contactSystemFieldName) {
+    private String getFieldBlock(final Field contactSystemFieldName) {
         int rowNumber = 1;
 
         while (!contactSystemFieldName.getName().equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
@@ -339,96 +297,21 @@ public class Contact extends Settings {
         return String.format(FieldElement.FIELD_BLOCK, rowNumber);
     }
 
-    private String getFieldBlock(final DefaultContactDataFields defaultContactDataFields) {
+    private String getFieldBlock(final ContactDataField contactDataField) {
         int rowNumber = 1;
 
-        while (!defaultContactDataFields.getName().equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
+        while (!contactDataField.getName().equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
             rowNumber++;
         }
 
         return String.format(FieldElement.FIELD_BLOCK, rowNumber);
     }
 
-    public String getMenuBlock(final String fieldName) {
-        int rowNumber = 1;
-
-        while (!fieldName.equals(getText(findByXpath(String.format(FieldElement.MENU_BLOCK, rowNumber))))) {
-            rowNumber++;
-        }
-
-        return String.format(FieldElement.MENU_BLOCK, rowNumber);
-    }
-
-    public void checkSystemFields() {
-        check(getFirstNameField());
-        check(getLastNameField());
-        check(getEmailsField());
-        check(getPhonesField());
-        check(getCompanyField());
-        check(getDesignationField());
-        check(getSalesOwnerField());
-        check(getFacebookField());
-        check(getTwitterField());
-    }
-
-    public void addSystemField(String contactSystemField) {
-        click(getAddSystemFieldsButton());
-        click(getAddSystemFieldToList(contactSystemField));
-        click(getAddSelectedFieldsButton());
-    }
-
-    public void addCustomField(final String customFieldName, final String fieldType) {
-        String path = "(((//*[@data-rbd-droppable-id='%s-choices']/div/div/div/div)[%d])/div/div)[2]/div/div/div/input";
-
-        click(getAddCustomFieldButton());
-        send(getCustomFieldName(), customFieldName);
-        click(getSelectCustomFieldType());
-        dropdown(fieldType);
-
-        if (fieldType.equalsIgnoreCase(FieldType.DROPDOWN) || fieldType.equalsIgnoreCase(FieldType.MULTI_SELECT)) {
-
-            click(getChoice());
-            click(getAddChoice());
-
-            if (fieldType.equalsIgnoreCase(FieldType.DROPDOWN)) {
-                send(findByXpath(String.format(path, FieldType.DROPDOWN, 1)), "afd");
-            } else {
-                click(findByXpath(String.format(path, FieldType.MULTI_SELECT, 1)));
-                send(findByXpath(String.format(path, FieldType.MULTI_SELECT, 1)), "ad");
-                click(findByXpath(String.format(path, FieldType.MULTI_SELECT, 2)));
-                send(findByXpath(String.format(path, FieldType.MULTI_SELECT, 2)), "ado");
-            }
-        }
-
-        click(getCustomFieldAddButton());
-    }
-
-    public void check() {
-        hover(new Element(LocatorType.XPATH, "//*[text()='Facebook']", true));
-    }
 
     private WebPageElement getAddSystemFieldToList(final String fieldName) {
         return findByXpath(format(getMenuBlock(fieldName), "//*[@type='checkbox']"));
     }
 
-    public void addAllSystemFields() {
-        click(getAddSystemFieldsButton());
-        final ContactSystemField[] values = ContactSystemField.values();
-
-        System.out.println(values.length);
-
-        for (final ContactSystemField specificField : values) {
-
-            if ("fill: none;".equals(getAttribute(findByXpath(String.format("(%s//div//span//*)[2]", getMenuBlock(specificField.getName()))), "style"))) {
-                click(findByXpath(format(getMenuBlock(specificField.getName()), "//*[@type='checkbox']")));
-            }
-        }
-        click(getAddSelectedFieldsButton());
-    }
-
-    public String buildXpathByText(final String text) {
-        return XPathBuilder.getXPathByText(text);
-    }
 
     private boolean checkFieldType(final String xpath, String fieldType) {
         return fieldType.equals(getText(findRightElement(List.of(new Element(LocatorType.XPATH, xpath, true),
@@ -439,84 +322,555 @@ public class Contact extends Settings {
         return XPathBuilder.getXPathByText(systemField.getName());
     }
 
-    public void checkSystemFieldsFieldType() {
-//        boolean p = "Text".equals(getText(findRightElement(List.of(new Element(LocatorType.XPATH, "//*[text()='First Name']", true),
-//                new Element(LocatorType.TAG_NAME, "p", false)))));
+    private boolean isNonDraggableIconDisplayed(String divBlockName) {
+        return isDisplayed(findByXpath(format(divBlockName, FieldElement.NON_DRAGGABLE)));
+    }
+
+//    private Element getElement(String systemField) {
+//        return new Element(LocatorType.XPATH, buildXpathByText(systemField), true);
+//        click(findRightElement(List.of(new Element(LocatorType.XPATH, format(getFieldBlock(systemField), buildXpathByText("Required")),
+//                true), new Element(LocatorType.TAG_NAME, "button", false))));
+//    }
+
+    public boolean verifyBreadCrumb() {
+        return isDisplayed(getBreadCrumb());
+    }
+
+    public boolean verifyActiveContactTab() {
+        return isDisplayed(getActiveContactTab());
+    }
+
+    public boolean switchBetweenTabs() {
+        click(getContact());
+
+        if (!isDisplayed(getActiveContactTab())) {
+            return false;
+        }
+        click(getCompany());
+
+        if (!isDisplayed(getActiveCompanyTab())) {
+            return false;
+        }
+        click(getProduct());
+
+        if (!isDisplayed(getActiveProductTab())) {
+            return false;
+        }
+        click(getDeal());
+
+        return isDisplayed(getActiveDealTab());
+    }
+
+    public boolean verifyDefaultSystemFields() {
+        final List<SystemField> fields = List.of(
+                getFirstNameField(),
+                getLastNameField(),
+                getEmailsField(),
+                getPhonesField(),
+                getCompanyField(),
+                getDesignationField(),
+                getSalesOwnerField(),
+                getFacebookField(),
+                getLinkedInField()
+        );
+
+        for (SystemField field : fields) {
+            if (!check(field)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean verifySystemFieldTabsDoesNotHideOtherTabs() {
+        click(getAddSystemFieldsButton());
+        final boolean displayed = isDisplayed(getAddSystemFieldsButton());
+
+        return displayed;
+    }
+
+    public boolean verifySearchResult(final String systemFieldName) {
+        click(getAddSystemFieldsButton());
+        send(getAddSystemFieldSearchBar(), systemFieldName);
+
+        for (WebPageElement webPageElement : findElements(getSystemFieldSearchResults())) {
+
+            if (getText(webPageElement).contains(systemFieldName)) {
+                return true;
+            } else {
+                return getText(findByXpath(FieldElement.SYSTEM_FIELD_SEARCH_RESULT)).equals("No Results");
+            }
+        }
+
+        return false;
+    }
+
+//    public boolean verifyNoSearchResult(final String invalidFieldName) {
+//        click(getAddSystemFieldsButton());
+//        send(getAddSystemFieldSearchBar(), invalidFieldName);
 //
-//        System.out.println(getText(findRightElement(List.of(new Element(LocatorType.XPATH, "//*[text()='First Name']", true),
-//                new Element(LocatorType.TAG_NAME, "p", false)))));
-//        checkFieldType("//*[text()='First Name']","Text");
-//        checkFieldType("//*[text()='Last Name']","Text");
+//        return getText(findByXpath(FieldElement.SYSTEM_FIELD_SEARCH_RESULT)).equals("No Results");
+//    }
 
-        checkFieldType(getField(ContactSystemField.FIRST_NAME), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.LAST_NAME), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.EMAILS), FieldType.EMAIL);
-//        checkFieldType(getField(ContactSystemField.PHONES), FieldType.PHONE);
-//        checkFieldType(getField(ContactSystemField.COMPANY), FieldType.COMPANY);
-//        checkFieldType(getField(ContactSystemField.DESIGNATION), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.SALES_OWNER), FieldType.OWNER);
-//        checkFieldType(getField(ContactSystemField.LIFECYCLE_STAGE), FieldType.DROPDOWN);
-//        checkFieldType(getField(ContactSystemField.SOURCE), FieldType.DROPDOWN);
-//        checkFieldType(getField(ContactSystemField.TERRITORY), FieldType.DROPDOWN);
-//        checkFieldType(getField(ContactSystemField.TAGS), FieldType.MULTI_SELECT);
-//        checkFieldType(getField(ContactSystemField.DATE_OF_BIRTH), FieldType.DATE);
-//        checkFieldType(getField(ContactSystemField.DEPARTMENT), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.ADDRESS), FieldType.ADDRESS);
-//        checkFieldType(getField(ContactSystemField.FACEBOOK), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.TWITTER), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.LINKED_IN), FieldType.TEXT);
-//        checkFieldType(getField(ContactSystemField.SUBSCRIPTION_STATUS), FieldType.DROPDOWN);
-//        checkFieldType(getField(ContactSystemField.SUBSCRIPTION_TYPES), FieldType.MULTI_SELECT);
-//        checkFieldType(getField(ContactSystemField.UNSUBSCRIBE_REASON), FieldType.DROPDOWN);
-//        checkFieldType(getField(ContactSystemField.OTHER_UNSUBSCRIBE_REASON), FieldType.DROPDOWN);
-//        checkFieldType(getField(CommonAutoGeneratingFields.CREATED_BY), FieldType.OWNER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.CREATED_AT), FieldType.DATE);
-//        checkFieldType(getField(CommonAutoGeneratingFields.UPDATED_BY), FieldType.OWNER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.UPDATED_AT), FieldType.DATE);
-//        checkFieldType(getField(CommonAutoGeneratingFields.LAST_ASSIGNED_AT), FieldType.DATE);
-//        checkFieldType(getField(CommonAutoGeneratingFields.ID), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.TIME_ZONE), FieldType.DROPDOWN);
-//        checkFieldType(getField(ContactSystemField.WEB_FORM), FieldType.TEXT);
-//        checkFieldType(getField(CommonAutoGeneratingFields.RECENT_NOTE), FieldType.LARGE_TEXT);
-//        checkFieldType(getField(CommonAutoGeneratingFields.OPEN_DEALS), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.CLOSED_DEALS), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.WON_DEALS), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.LOST_DEALS), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.LAST_ACTIVITY_DATE), FieldType.DATE);
-//        checkFieldType(getField(CommonAutoGeneratingFields.NEXT_ACTIVITY_DATE), FieldType.DATE);
-//        checkFieldType(getField(CommonAutoGeneratingFields.LAST_ACTIVITY_TYPE), FieldType.TEXT);
-//        checkFieldType(getField(CommonAutoGeneratingFields.DONE_ACTIVITIES), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.UPCOMING_ACTIVITIES), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.TOTAL_ACTIVITIES), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.EMAIL_MESSAGES_COUNT), FieldType.NUMBER);
-//        checkFieldType(getField(CommonAutoGeneratingFields.LAST_EMAIL_RECEIVED), FieldType.DATE);
-//        checkFieldType(getField(CommonAutoGeneratingFields.LAST_EMAIL_SENT), FieldType.DATE);
+    public boolean addSystemField(final ContactDataField contactDataField) {
+        click(getAddSystemFieldsButton());
+        click(getAddSystemFieldToList(contactDataField.getName()));
+        click(getAddSelectedFieldsButton());
+        return true;
+        //refresh();
+
+        // return isDisplayed(findByXpath(getMenuBlock(contactSystemField.getName())));
     }
 
-    public void verifyDataFieldElements(){
-        isDisplayed(getBreadCrumb());
+    public boolean addSystemField(final String contactDataField) {
+        click(getAddSystemFieldsButton());
+        click(getAddSystemFieldToList(contactDataField));
+        click(getAddSelectedFieldsButton());
+        return true;
+        //refresh();
 
+        // return isDisplayed(findByXpath(getMenuBlock(contactSystemField.getName())));
     }
-    public void checkEyeIcon(DefaultContactDataFields[] defaultContactDataFields) {
 
-        // for (DefaultContactDataFields defaultContactDataField : defaultContactDataFields) {
+    public boolean removeSystemField(final ContactDataField contactDataField) {
+        click(getAddSystemFieldsButton());
 
-        hover(new Element(LocatorType.XPATH, buildXpathByText(ContactSystemField.LIFECYCLE_STAGE.getName()), true));
-//            System.out.println(isDisplayed(findRightElement(List.of(new Element(LocatorType.XPATH, format(getFieldBlock(defaultContactDataField),buildXpath("Required")),
-//                    true), new Element(LocatorType.TAG_NAME, "button", false)))));
+        final String contactDataFieldName = contactDataField.getName();
 
-        click(findRightElement(List.of(new Element(LocatorType.XPATH, format(getFieldBlock(ContactSystemField.LIFECYCLE_STAGE.getName()), buildXpathByText("Required")),
+        isDisplayed(findByXpath(format(getMenuBlock(contactDataFieldName), FieldElement.CHECKED)));
+        click(getAddSystemFieldToList(contactDataField.getName()));
+        click(getAddSelectedFieldsButton());
+
+        return true;
+    }
+
+    public boolean addAndRemoveSystemField(final ContactDataField contactDataFieldToBeAdded,
+                                           final ContactDataField contactDataFieldToBeRemoved) {
+        final String fieldToBeAdded = contactDataFieldToBeAdded.getName();
+        final String fieldToBeRemoved = contactDataFieldToBeRemoved.getName();
+
+        click(getAddSystemFieldsButton());
+
+        final WebPageElement systemFieldToBeAdded = findByXpath(format(getMenuBlock(fieldToBeAdded), FieldElement.UNCHECKED));
+        final WebPageElement systemFieldToBeRemoved = findByXpath(format(getMenuBlock(fieldToBeRemoved), FieldElement.CHECKED));
+
+        isDisplayed(systemFieldToBeAdded);
+        click(getAddSystemFieldToList(fieldToBeAdded));
+        isDisplayed(systemFieldToBeRemoved);
+        click(getAddSystemFieldToList(fieldToBeRemoved));
+        return true;
+    }
+
+    public boolean verifyNonDraggableFields() {
+        return isNonDraggableIconDisplayed(getFirstNameDiv()) &&
+                isNonDraggableIconDisplayed(getLastNameDiv()) &&
+                isNonDraggableIconDisplayed(getPhonesDiv()) &&
+                isNonDraggableIconDisplayed(getEmailDiv());
+    }
+
+    public boolean verifyEyeIconIsNotVisibleForDefaultFields() {
+        List<ContactDataField> defaultSystemFields = ContactDataField.getDefaultContactSystemFields();
+        for (ContactDataField value : defaultSystemFields) {
+            final String name = value.getName();
+
+            hover(new Element(LocatorType.XPATH, buildXpathByText(name), true));
+
+            try {
+                WebPageElement element = findRightElement(List.of(
+                        new Element(LocatorType.XPATH, format(getFieldBlock(name), buildXpathByText("Required")), true),
+                        new Element(LocatorType.TAG_NAME, "button", false)
+                ));
+                if (isDisplayed(element)) {
+                    return false;
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isAddViewCheckBoxEditableForMandatoryField() {
+        click(getFirstNameField().addViewCheckbox());
+        click(getLastNameField().addViewCheckbox());
+        click(getEmailsField().addViewCheckbox());
+        click(getPhonesField().addViewCheckbox());
+        click(getSalesOwnerField().addViewCheckbox());
+
+        return true;
+    }
+
+    public boolean emailOrPhoneShouldBeRequired() {
+        return isDisplayed(findByXpath(getPathOfSpecificCheckbox(getEmailDiv(), FieldElement.REQUIRED_CHECKED))) ||
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(getPhonesDiv(), FieldElement.REQUIRED_CHECKED)));
+    }
+
+    public boolean uncheckMandatoryFields() {
+
+        String[] divValues = new String[]{
+                getFirstNameDiv(),
+                getEmailDiv(),
+                getPhonesDiv(),
+                getSalesOwnerDiv()
+        };
+
+        for (final String specificDiv : divValues) {
+
+            final WebPageElement path = findByXpath(getPathOfSpecificCheckbox(getFieldBlock(specificDiv), FieldElement.REQUIRED_CHECKED));
+
+            if (isDisplayed(path)) {
+                click(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(specificDiv), FieldElement.REQUIRED_CHECKBOX)));
+
+                if (isDisplayed(findByXpath(format(getFieldBlock(specificDiv), FieldElement.UPDATE_BUTTON)))) {
+                    click(findByXpath(format(getFieldBlock(specificDiv), FieldElement.UPDATE_BUTTON)));
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean addAutoGeneratingSystemField(final Field contactAutoGeneratingField) {
+        click(getAddSystemFieldsButton());
+        click(getAddSystemFieldToList(contactAutoGeneratingField.getName()));
+        click(getAddSelectedFieldsButton());
+
+        return isDisplayed(findByXpath(getMenuBlock(contactAutoGeneratingField.getName())));
+    }
+
+    public boolean verifyAutoGeneratingSystemFieldNotEditable(final Field field) {
+        final String name = field.getName();
+
+        click(getAddSelectedFieldsButton());
+        click(getAddSystemFieldToList(name));
+        click(getAddSelectedFieldsButton());
+        click(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(name), FieldElement.ADD_VIEW_CHECKBOX)));
+        click(findByXpath(FieldElement.UPDATE_BUTTON));
+        click(findByXpath(FieldElement.CANCEL_BUTTON));
+        click(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(name), FieldElement.REQUIRED_CHECKBOX)));
+        click(findByXpath(FieldElement.UPDATE_BUTTON));
+        click(findByXpath(FieldElement.CANCEL_BUTTON));
+
+        return true;
+    }
+
+//    public void verifyAutoGeneratingFieldNotVisibleInAddContactForm() {
+//
+//        List<String> autoGeneratingFields = new ArrayList<>();
+//        autoGeneratingFields.addAll(Arrays.asList(ContactAutoGeneratingField.values()))
+//
+//        ContactAutoGeneratingField[] values = ContactAutoGeneratingField.values();
+//        CommonAutoGeneratingFields[] values1 = CommonAutoGeneratingFields.values();
+//
+//
+//    }
+
+    public boolean hideAutoGeneratingSystemField(final ContactDataField contactDataField) {
+        final String name = contactDataField.getName();
+
+        hover(new Element(LocatorType.XPATH, buildXpathByText(name), true));
+        click(findRightElement(List.of(new Element(LocatorType.XPATH, format(getFieldBlock(name), buildXpathByText("Required")),
                 true), new Element(LocatorType.TAG_NAME, "button", false))));
-        //  }
 
+
+        return isDisplayed(findByXpath(format(getMenuBlock(name), FieldElement.UNCHECKED)));
+    }
+
+    public boolean verifyEyeIcon(final ContactDataField contactDataField) {
+        final String name = contactDataField.getName();
+
+        hover(new Element(LocatorType.XPATH, buildXpathByText(name), true));
+        click(findRightElement(List.of(new Element(LocatorType.XPATH, format(getFieldBlock(name), buildXpathByText("Required")),
+                true), new Element(LocatorType.TAG_NAME, "button", false))));
+
+        click(getAddSystemFieldsButton());
+        isDisplayed(findByXpath(format(getMenuBlock(name), FieldElement.CHECKED)));
+
+        return false;
+    }
+
+    public void verifySystemFieldNotEditable(final ContactDataField contactDataField) {
+        final String name = contactDataField.getName();
+
+        click(getAddSelectedFieldsButton());
+        click(getAddSystemFieldToList(name));
+        click(getAddSelectedFieldsButton());
+        click(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(name), FieldElement.ADD_VIEW_CHECKBOX)));
+        click(findByXpath(FieldElement.UPDATE_BUTTON));
+    }
+
+    @Override
+    protected Field[] getAllFields() {
+
+        return ContactDataField.values();
+    }
+
+    public void checkSystemFieldsFieldType() {
+        for (final Field value : getAllFields()) {
+
+            checkFieldType(getField(value), value.getFieldType());
+        }
+
+    }
+
+    public boolean addAllSystemFields() {
+        click(getAddSystemFieldsButton());
+
+        for (final Field specificField : getAllFields()) {
+            final String fieldName = specificField.getName();
+
+            if ("fill: none;".equals(getAttribute(findByXpath(String.format("(%s//div//span//*)[2]", getMenuBlock(fieldName))), "style"))) {
+                click(findByXpath(format(getMenuBlock(fieldName), "//*[@type='checkbox']")));
+            }
+        }
+        click(getAddSelectedFieldsButton());
+
+        return true;
     }
 
     public void cancel() {
-        click(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(CommonAutoGeneratingFields.DONE_ACTIVITIES.getName()), FieldElement.ADD_VIEW_CHECKBOX)));
+        click(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(ContactDataField.DONE_ACTIVITIES.getName()), FieldElement.ADD_VIEW_CHECKBOX)));
         click(findByXpath(FieldElement.UPDATE_BUTTON));
         //click(findByXpath(FieldElement.CANCEL_BUTTON));
     }
 
+    public void check() {
+        hover(new Element(LocatorType.XPATH, "//*[text()='Facebook']", true));
+    }
+
+    public boolean isDefaultFieldsVisibleInSummary() {
+        List<ContactDataField> defaultSystemFields = ContactDataField.getDefaultContactSystemFields();
+        final Set<String> fieldsShouldNotBeChecked = Set.of(defaultSystemFields.get(1).getName(),
+                defaultSystemFields.get(2).getName(), defaultSystemFields.get(3).getName(),
+                defaultSystemFields.get(4).getName(), defaultSystemFields.get(5).getName());
+
+        for (final Field field : defaultSystemFields) {
+            final String name = field.getName();
+
+            if (fieldsShouldNotBeChecked.contains(name)) {
+                continue;
+            }
+
+            if (!isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(name))))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public boolean isVisibleInSummary(final String fieldName) {
+
+        return isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(fieldName))));
+    }
+
+    public boolean isDefaultFieldsVisibleInAddView() {
+        final List<ContactDataField> defaultSystemFields = ContactDataField.getDefaultContactSystemFields();
+
+        for (final Field field : defaultSystemFields) {
+
+            if (!isDisplayed(findByXpath(format("//*[@class='MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1g8cfko']",
+                    XPathBuilder.getXPathByText(field.getName()))))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isVisibleInAddForm(final String fieldName) {
+        return isDisplayed(findByXpath(format("//*[@class='MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1g8cfko']",
+                XPathBuilder.getXPathByText(fieldName))));
+    }
+
+    public boolean isDefaultFieldsVisibleInListColumnSettings() {
+        final List<ContactDataField> defaultSystemFields = ContactDataField.getDefaultContactSystemFields();
+
+        for (final Field field : defaultSystemFields) {
+
+            if (!isDisplayed(findByXpath(format("//*[@class='css-eawmf1']",
+                    XPathBuilder.getXPathByText(field.getName()))))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isVisibleInColumnSettings(final String fieldName) {
+        return isDisplayed(findByXpath(format("//*[@class='css-eawmf1']",
+                XPathBuilder.getXPathByText(fieldName))));
+    }
+
+    public void addParticularMethodToList(final String fieldName) {
+        click(findByXpath(String.format(FieldElement.SPECIFIC_FIELD_COLUMN_SETTINGS_CHECKBOX, fieldName)));
+    }
+
+    public void switchToContactSummary() {
+        WebPageElement moveToSummary = findByXpath("//*[@class='MuiTableRow-root css-rm8p5t']/td[2]");
+        click(moveToSummary);
+    }
+
+    public void switchToAddContactForm() {
+        click(findByText("Contact"));
+    }
+
+    public void switchToColumnSettings() {
+        click(getColumnSettingsButton());
+    }
+
+    public boolean checkIfGivenFieldIsInList(final String contactSystemField) {
+        //explicitWaitHandler.waitTillVisible(new Element(LocatorType.XPATH, getFieldBlock(contactSystemField), true));
+        return isDisplayed(findByXpath(getFieldBlock(contactSystemField)));
+    }
+
+    public boolean checkIfGivenFieldsAddViewIsChecked(final String fieldName) {
+        return isDisplayed(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.ADD_VIEW_CHECKED)));
+    }
+
+    public boolean isDisplayedInList(final ContactDataField contactDataField) {
+        final String fieldBlock = getFieldBlock(contactDataField);
+
+        if (isDisplayed(findByText(fieldBlock))) {
+            return isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKED)));
+        }
+        return false;
+    }
+
+//    public void addSystemFieldWithJsonData(final com.twozo.page.settings.data.fields.Field field){
+//        click(getAddSystemFieldsButton());
+//        click(getAddSystemFieldToList(field.getName()));
+//        click(getAddSelectedFieldsButton());
+//
+//    }
+
+    public boolean check(final FieldStatus fieldStatus) {
+        final boolean draggable = fieldStatus.isDraggable();
+        final String name = fieldStatus.getName();
+        final String fieldType = fieldStatus.getFieldType();
+        final boolean addView = fieldStatus.isAddView();
+        final boolean required = fieldStatus.isRequired();
+        final boolean editable = fieldStatus.isEditable();
+        final boolean deletable = fieldStatus.isDeletable();
+        final boolean hideable = fieldStatus.isHideable();
+        final String fieldName = fieldStatus.getName();
+        String fieldBlock = null;
+
+
+        try {
+            fieldBlock = getFieldBlock(fieldName);
+
+        } catch (NoSuchElementException noSuchElementException) {
+            addSystemField(fieldName);
+            fieldBlock = getFieldBlock(fieldName);
+        }
+
+        if (!draggable) {
+            isDisplayed(findByXpath(format(fieldBlock, FieldElement.NON_DRAGGABLE)));
+        }
+        if (draggable) {
+            isDisplayed(findByXpath(format(fieldBlock, FieldElement.DRAGGABLE)));
+        }
+
+        //check      isDisplayed(findByXpath(format(getEmailDiv(), XPathBuilder.getXPathByText(fieldStatus.getFieldType()))));
+
+        if (addView) {
+            try {
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKED)));
+            } catch (NoSuchElementException noSuchElementException) {
+                click(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKBOX)));
+                click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+                refresh();
+                //waitTillVisible(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKED));
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKED)));
+            }
+        }
+        if (!addView) {
+            try {
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_UNCHECKED)));
+            } catch (NoSuchElementException noSuchElementException) {
+                click(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKBOX)));
+                click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+                refresh();
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_UNCHECKED)));
+            }
+        }
+
+        if (required) {
+            try {
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKED)));
+            } catch (NoSuchElementException noSuchElementException) {
+                click(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKBOX)));
+                click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+                refresh();
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKED)));
+
+            }
+        }
+        if (!required) {
+            try {
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_UNCHECKED)));
+            } catch (NoSuchElementException noSuchElementException) {
+                click(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKBOX)));
+                click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+                refresh();
+                isDisplayed(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_UNCHECKED)));
+            }
+        }
+
+//        if (fieldStatus.isEditable()) {
+//            click(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKBOX)));
+//            click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+//        }
+//
+//        if (!fieldStatus.isEditable()){
+//            click(findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKBOX)));
+//            click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+//            isDisplayed(getAnUnExpectedErrorMessage());
+//        }
+
+        if (editable) {
+            hoverByXpath(fieldBlock);
+            isDisplayed(findByXpath(format(fieldBlock, FieldElement.EDIT_ICON)));
+        }
+
+        if (!editable) {
+            hoverByXpath(fieldBlock);
+            try {
+                isDisplayed(findByXpath(format(fieldBlock, FieldElement.EDIT_ICON)));
+            } catch (NoSuchElementException noSuchElementException) {
+
+            }
+        }
+
+        if (deletable) {
+            hoverByXpath(fieldBlock);
+            isDisplayed(findByXpath(format(fieldBlock, FieldElement.DELETE_ICON)));
+        }
+
+        if (!deletable) {
+            hoverByXpath(fieldBlock);
+            try {
+                isDisplayed(findByXpath(format(fieldBlock, FieldElement.DELETE_ICON)));
+            } catch (NoSuchElementException noSuchElementException) {
+
+            }
+        }
+
+        if (hideable) {
+            hoverByXpath(fieldBlock);
+            isDisplayed(findByXpath(format(fieldBlock, FieldElement.EYE_ICON)));
+        }
+
+        if (!hideable) {
+            hoverByXpath(fieldBlock);
+            try {
+                isDisplayed(findByXpath(format(fieldBlock, FieldElement.EYE_ICON)));
+            } catch (NoSuchElementException noSuchElementException) {
+
+            }
+        }
+
+        return true;
+    }
 
 
 }

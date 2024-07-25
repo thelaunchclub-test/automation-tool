@@ -21,7 +21,7 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
 
     public ExplicitWaitHandlerImpl(@NonNull final WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
     }
 
     @Override

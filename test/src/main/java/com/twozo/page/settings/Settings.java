@@ -2,7 +2,10 @@ package com.twozo.page.settings;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.BasePage;
+import com.twozo.page.settings.data.fields.company.Company;
 import com.twozo.page.settings.data.fields.contact.Contact;
+import com.twozo.page.settings.data.fields.deal.Deal;
+import com.twozo.page.settings.data.fields.product.Product;
 import com.twozo.page.url.URL;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.service.WebPageElement;
@@ -39,7 +42,7 @@ public class Settings extends BasePage {
         return settings;
     }
 
-    private WebPageElement getContact() {
+    public WebPageElement getContact() {
 
         if (Objects.isNull(contact)) {
             contact = findByText("Contact");
@@ -95,12 +98,28 @@ public class Settings extends BasePage {
         return getTexts(getFields());
     }
 
-    public Contact switchToContact() {
+    public Contact switchToContactDataFields() {
         click(getContact());
 
-
-
         return Contact.getInstance(webAutomationDriver);
+    }
+
+    public Company switchToCompanyDataFields() {
+        click(getCompany());
+
+        return Company.getInstance(webAutomationDriver);
+    }
+
+    public Deal switchToDealDataFields() {
+        click(getContact());
+
+        return Deal.getInstance(webAutomationDriver);
+    }
+
+    public Product switchToProductDataFields() {
+        click(getProduct());
+
+        return Product.getInstance(webAutomationDriver);
     }
 
 //    public void check() {

@@ -5,7 +5,8 @@ import com.twozo.web.driver.service.WebAutomationDriver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeMethod;
+
+import org.testng.annotations.BeforeClass;
 
 import java.time.Duration;
 
@@ -16,7 +17,7 @@ public class BaseTest {
     protected WebAutomationDriver webAutomationDriver;
     protected SignIn signIn;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         webAutomationDriver = WebAutomationDriver.get();
         LOG.info("Browser initialize");

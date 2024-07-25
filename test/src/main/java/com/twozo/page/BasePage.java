@@ -17,6 +17,8 @@ import com.twozo.web.mouse.service.actions.MouseActions;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 public class BasePage {
 
@@ -34,6 +36,10 @@ public class BasePage {
         this.pageInformationProvider = webAutomationDriver.getPageInformationProvider();
         this.mouseActions = webAutomationDriver.getMouseActionsHandler();
         this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
+    }
+
+    public void waitTillVisible(String xpath) {
+        explicitWaitHandler.waitTillVisible(new Element(LocatorType.XPATH, xpath, true));
     }
 
     protected final WebPageElement findElement(final Element element) {
@@ -88,6 +94,14 @@ public class BasePage {
         getElementInteraction(webPageElement).click();
     }
 
+    protected <T> T initializeElement(final T element, final Supplier<T> initializer) {
+        return Objects.isNull(element) ? initializer.get() : element;
+    }
+
+    protected String buildXpathByText(final String text) {
+        return XPathBuilder.getXPathByText(text);
+    }
+
     protected final void selectDate(final Element element, final String month, final int date, final int year) {
         final String xpath = "//button[text()='%d']";
 
@@ -129,6 +143,10 @@ public class BasePage {
         return pageInformationProvider.getCurrentUrl();
     }
 
+    protected String contains(final String name) {
+        return XPathBuilder.getXpathByContains(name);
+    }
+
     protected String getAttribute(final WebPageElement webPageElement, String attributeName) {
         return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
@@ -143,6 +161,10 @@ public class BasePage {
 
     protected final void hover(final Element element) {
         mouseActions.moveToElement(element).build().perform();
+    }
+
+    protected final void hoverByXpath(final String xpath) {
+        mouseActions.moveToElement(new Element(LocatorType.XPATH, xpath, true)).build().perform();
     }
 
     private void select(final String option, final String dropdownType) {
@@ -163,6 +185,10 @@ public class BasePage {
         return webPageElement.interact();
     }
 
+    protected void refresh() {
+        webNavigator.refresh();
+
+    }
 //    public WebPageElement getStatus() {
 //
 //        if (Objects.isNull(status)) {

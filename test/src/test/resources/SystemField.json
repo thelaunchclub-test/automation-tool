@@ -1,0 +1,20 @@
+[
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldNameToBeAdded": "DESIGNATION",
+      "fieldNameToBeRemoved": "TAGS",
+      "autoGeneratingFieldToBeAdded": "CREATED_BY",
+      "autoGeneratingFieldToBeRemoved": "CREATED_BY",
+      "eyeIconFor": "",
+      "fieldToBeChecked": "abc"
+
+    },
+    "output": {
+      "result": "pass"
+    }
+  }
+]
+
+

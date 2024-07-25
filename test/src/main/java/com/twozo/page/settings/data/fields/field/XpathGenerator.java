@@ -1,7 +1,6 @@
 package com.twozo.page.settings.data.fields.field;
 
 import com.twozo.page.BasePage;
-import com.twozo.page.settings.data.fields.contact.ContactSystemField;
 import com.twozo.web.driver.service.WebAutomationDriver;
 
 public class XpathGenerator extends BasePage {
@@ -10,12 +9,12 @@ public class XpathGenerator extends BasePage {
         super(webAutomationDriver);
     }
 
-    public String getFieldBlock(ContactSystemField contactSystemFieldName) {
+    public String getFieldBlock(Field field) {
 
         int rowNumber = 1;
         String xpath = "((//*[@class='css-11x1d9z'])[%d]/div/div/div/p)[1]";
 
-        while (!contactSystemFieldName.getName().equals(getText(findByXpath(String.format(xpath, rowNumber))))) {
+        while (!field.getName().equals(getText(findByXpath(String.format(xpath, rowNumber))))) {
             rowNumber++;
         }
 

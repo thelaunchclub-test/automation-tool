@@ -49,17 +49,13 @@ public class SignIn extends BasePage {
     private SignIn(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (getURL().equals( "https://app.thelaunchclub.in/")) {
+        if (!getURL().equals( "https://app.thelaunchclub.in/")) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
 
     public static SignIn getInstance(final WebAutomationDriver webAutomationDriver) {
         return new SignIn(webAutomationDriver);
-    }
-
-    private <T> T initializeElement(T element, Supplier<T> initializer) {
-        return Objects.isNull(element) ? initializer.get() : element;
     }
 
     public Deal getDeal() {

@@ -1,23 +1,19 @@
 package com.twozo.test.sign.in;
 
-import com.twozo.commons.util.JsonFileReader;
 import com.twozo.test.BaseTest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public final class SignInTest extends BaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SignInTest.class);
 
-    @DataProvider
-    public static Object[][] testCases() {
-         return new JsonFileReader().getTestCases("SignInData.json");
-    }
+//    @DataProvider
+//    public static Collection<JsonFileReader.TestCase> testCases() {
+//         return new JsonFileReader().getTestCases("SystemField.json");
+//    }
 
     @Test
     public void isLogInPageDetailsDisplayed() {
@@ -177,5 +173,18 @@ public final class SignInTest extends BaseTest {
         //ravi$123.stream().collect(Coll).filter(Deal::isDisplayed).map()forEach(System.out::println);
 
     }
+
+//    private void s(){
+//        final Collection<TestCase> testCases;
+//
+//        for (final TestCase testCase: testCases) {
+//            final Map<String, Object> k = testCase.getInput();
+//
+//            testCase.getId();
+//            k.containsKey("email");
+//
+//            k.get("password");
+//        }
+//    }
 }
 

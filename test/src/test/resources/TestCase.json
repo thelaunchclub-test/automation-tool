@@ -1,0 +1,19 @@
+[
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Address",
+      "fieldType": "Address",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": true,
+      "isDeletable": true,
+      "isHideable": true
+    },
+    "output": {
+      "result": "pass"
+    }
+  }
+]
