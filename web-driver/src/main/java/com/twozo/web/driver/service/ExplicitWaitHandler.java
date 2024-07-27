@@ -29,4 +29,14 @@ public interface ExplicitWaitHandler {
      * @param element The {@link Element} to wait for visibility.
      */
     void waitTillVisible(final Element element);
+
+    /**
+     * <p>
+     * Waits until the specified {@link Element} is clickable on the web page.
+     * checks the clickability of the given element until the condition is met or a timeout occurs.
+     * </p>
+     *
+     * @param element The {@link Element} to be clickable.
+     */
+    void WaitTillClickable(final Element element);
 }
