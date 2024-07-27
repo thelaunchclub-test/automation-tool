@@ -2,8 +2,8 @@ package com.twozo.page.settings;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.BasePage;
-import com.twozo.page.settings.data.fields.company.Company;
-import com.twozo.page.settings.data.fields.contact.Contact;
+import com.twozo.page.settings.data.fields.company.CompanyDataField;
+import com.twozo.page.settings.data.fields.contact.ContactDataField;
 import com.twozo.page.settings.data.fields.deal.Deal;
 import com.twozo.page.settings.data.fields.product.Product;
 import com.twozo.page.url.URL;
@@ -98,16 +98,16 @@ public class Settings extends BasePage {
         return getTexts(getFields());
     }
 
-    public Contact switchToContactDataFields() {
+    public ContactDataField switchToContactDataFields() {
         click(getContact());
 
-        return Contact.getInstance(webAutomationDriver);
+        return ContactDataField.getInstance(webAutomationDriver);
     }
 
-    public Company switchToCompanyDataFields() {
+    public CompanyDataField switchToCompanyDataFields() {
         click(getCompany());
 
-        return Company.getInstance(webAutomationDriver);
+        return CompanyDataField.getInstance(webAutomationDriver);
     }
 
     public Deal switchToDealDataFields() {

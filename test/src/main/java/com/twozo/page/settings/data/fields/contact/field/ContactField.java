@@ -5,7 +5,7 @@ import com.twozo.page.settings.data.fields.field.Field;
 
 import java.util.List;
 
-public enum ContactDataField implements Field {
+public enum ContactField implements Field {
 
     FIRST_NAME("First Name", FieldType.TEXT),
     LAST_NAME("Last Name", FieldType.TEXT),
@@ -56,7 +56,7 @@ public enum ContactDataField implements Field {
     private final String name;
     private final String fieldType;
 
-    ContactDataField(final String name, final String fieldType) {
+    ContactField(final String name, final String fieldType) {
         this.name = name;
         this.fieldType = fieldType;
     }
@@ -71,7 +71,7 @@ public enum ContactDataField implements Field {
         return fieldType;
     }
 
-    public static List<ContactDataField> getDefaultContactSystemFields() {
+    public static List<Field> getDefaultContactSystemFields() {
         return List.of(FIRST_NAME, LAST_NAME, EMAILS, PHONES, COMPANY, DESIGNATION, SALES_OWNER, FACEBOOK, LINKED_IN);
     }
 }

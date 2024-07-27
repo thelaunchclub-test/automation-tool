@@ -5,7 +5,7 @@ import com.twozo.page.settings.data.fields.field.Field;
 
 import java.util.List;
 
-public enum CompanyDataField implements Field {
+public enum CompanyField implements Field {
 
     NAME("Name", FieldType.TEXT),
     WEBSITE("Website", FieldType.TEXT),
@@ -50,7 +50,7 @@ public enum CompanyDataField implements Field {
     private final String name;
     private final String fieldType;
 
-    CompanyDataField(final String name, final String fieldType) {
+    CompanyField(final String name, final String fieldType) {
         this.name = name;
         this.fieldType = fieldType;
     }
@@ -65,7 +65,7 @@ public enum CompanyDataField implements Field {
         return fieldType;
     }
 
-    public static List<CompanyDataField> getDefaultCompanySystemFields() {
+    public static List<CompanyField> getDefaultCompanySystemFields() {
         return List.of(NAME, WEBSITE, SALES_OWNER, ADDRESS);
     }
 }

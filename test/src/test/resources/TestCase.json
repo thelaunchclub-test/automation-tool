@@ -9,7 +9,7 @@
       "isAddView": true,
       "isRequired": false,
       "isEditable": true,
-      "isDeletable": true,
+      "isDeletable": false,
       "isHideable": true
     },
     "output": {

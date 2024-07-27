@@ -126,6 +126,10 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).isDisplayed();
     }
 
+    protected  final boolean isSelected(final WebPageElement webPageElement){
+        return getElementInformationProvider(webPageElement).isSelected();
+    }
+
     protected final String getText(final WebPageElement webPageElement) {
         return getElementInformationProvider(webPageElement).getText();
     }

@@ -16,8 +16,8 @@ public final class SignUpTest extends BaseTest {
     public void signUpWithValidDetails() {
         final SignIn signIn = SignIn.getInstance(webAutomationDriver);
 
-        signIn.switchToSignUp().signUp("spo@gmail.com", "New User", "A$12345a",
-                "A$12345a", "spo", "Marketing");
+        signIn.switchToSignUp().signUp("inil@gmail.com", "New User", "A$12345a",
+                "A$12345a", "inil", "Marketing");
         LOG.info("Signed up successfully");
     }
 }

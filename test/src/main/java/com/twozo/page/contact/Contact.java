@@ -60,6 +60,13 @@ public class Contact extends BasePage {
 
         return addContact;
     }
+    public WebPageElement getColumnSettingsButton() {
+        return findByXpath("//*[@class='css-181x7hd']");
+    }
+
+    public void switchToColumnSettings() {
+        click(getColumnSettingsButton());
+    }
 
     public WebPageElement getFilterIcon() {
 

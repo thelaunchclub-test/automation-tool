@@ -167,12 +167,6 @@ public class HomePage extends BasePage {
 
     public Settings switchToSettings() {
         click(getSettingsIcon());
-//        try{
-//            URL.CONTACT.equals(getURL());
-//        }
-//        catch (Exception e){
-//            ErrorCode.get()
-//        }
 
         return settings;
     }

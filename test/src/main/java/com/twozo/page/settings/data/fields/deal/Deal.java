@@ -2,7 +2,6 @@ package com.twozo.page.settings.data.fields.deal;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.settings.Settings;
-import com.twozo.page.settings.data.fields.company.Company;
 import com.twozo.page.url.settings.URL;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.service.WebPageElement;
