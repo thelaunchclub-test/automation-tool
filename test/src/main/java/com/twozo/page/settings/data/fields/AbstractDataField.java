@@ -10,6 +10,7 @@ import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
+
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.Arrays;
@@ -24,19 +25,19 @@ public abstract class AbstractDataField extends Settings {
         super(webAutomationDriver);
     }
 
-    public WebPageElement getActiveContactTab() {
+    protected WebPageElement getActiveContactTab() {
         return findByXpath("//*[@value='Contact' and @aria-pressed='true']");
     }
 
-    public WebPageElement getActiveCompanyTab() {
+    protected WebPageElement getActiveCompanyTab() {
         return findByXpath("//*[@value='Company' and @aria-pressed='true']");
     }
 
-    public WebPageElement getActiveDealTab() {
+    protected WebPageElement getActiveDealTab() {
         return findByXpath("//*[@value='Deal' and @aria-pressed='true']");
     }
 
-    public WebPageElement getActiveProductTab() {
+    protected WebPageElement getActiveProductTab() {
         return findByXpath("//*[@value='Product' and @aria-pressed='true']");
     }
 
@@ -66,10 +67,10 @@ public abstract class AbstractDataField extends Settings {
         return findByXpath(format(getMenuBlock(fieldName), "//*[@type='checkbox']"));
     }
 
-    protected String getFieldBlock(final Field contactSystemFieldName) {
+    protected String getFieldBlock(final Field field) {
         int rowNumber = 1;
 
-        while (!contactSystemFieldName.getName().equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
+        while (!field.getName().equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
             rowNumber++;
         }
 
@@ -172,25 +173,18 @@ public abstract class AbstractDataField extends Settings {
             }
         }
 
-        click(findByXpath(FieldElement.ADD_BUTTON));
+        waitTillVisible(FieldElement.ADD_BUTTON);
         click(getCustomFieldAddButton());
         refresh();
 
         return true;
     }
 
-    //    public boolean verifyNoSearchResult(final String invalidFieldName) {
-//        click(getAddSystemFieldsButton());
-//        send(getAddSystemFieldSearchBar(), invalidFieldName);
-//
-//        return getText(findByXpath(FieldElement.SYSTEM_FIELD_SEARCH_RESULT)).equals("No Results");
-//    }
-
     public boolean verifySearchResult(final String systemFieldName) {
         click(getAddSystemFieldsButton());
         send(getAddSystemFieldSearchBar(), systemFieldName);
 
-        for (WebPageElement webPageElement : findElements(getSystemFieldSearchResults())) {
+        for (final WebPageElement webPageElement : findElements(getSystemFieldSearchResults())) {
 
             if (getText(webPageElement).contains(systemFieldName)) {
                 return true;
@@ -201,7 +195,6 @@ public abstract class AbstractDataField extends Settings {
 
         return false;
     }
-
 
     public boolean addSystemField(final Field field) {
         return addSystemField(field.getName());
@@ -215,7 +208,7 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-    public void verifySystemFieldNotEditable(final Field field) {
+    protected void verifySystemFieldNotEditable(final Field field) {
         final String name = field.getName();
 
         click(getAddSelectedFieldsButton());
@@ -252,7 +245,6 @@ public abstract class AbstractDataField extends Settings {
 
     public void checkSystemFieldsFieldType() {
         for (final Field value : getAllFields()) {
-
             checkFieldType(getField(value), value.getFieldType());
         }
     }
@@ -261,7 +253,6 @@ public abstract class AbstractDataField extends Settings {
         return fieldType.equals(getText(findRightElement(List.of(new Element(LocatorType.XPATH, xpath, true),
                 new Element(LocatorType.TAG_NAME, "p", false)))));
     }
-
 
     public boolean check(final FieldStatus fieldStatus) {
         final boolean draggable = fieldStatus.isDraggable();
@@ -285,7 +276,6 @@ public abstract class AbstractDataField extends Settings {
 
         final WebPageElement addViewCheckbox = findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKBOX));
         final WebPageElement requiredCheckbox = findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.REQUIRED_CHECKBOX));
-        //final WebPageElement updateButton = findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON));
 
         final boolean isChecked = isSelected(addViewCheckbox);
         final boolean isRequired = isSelected(requiredCheckbox);
@@ -371,7 +361,6 @@ public abstract class AbstractDataField extends Settings {
         click(findByXpath(format(fieldBlock, FieldElement.EYE_ICON)));
 //        click(findRightElement(List.of(new Element(LocatorType.XPATH, format(getFieldBlock(name), buildXpathByText("Required")),
 //                true), new Element(LocatorType.TAG_NAME, "button", false))));
-
         click(getAddSystemFieldsButton());
         return !isSelected(findByXpath(getPathOfSpecificCheckbox(getMenuBlock(name), FieldElement.CHECKBOX)));
     }
@@ -409,7 +398,6 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-
     public boolean verifySystemFieldTabsDoesNotHideOtherTabs() {
         click(getAddSystemFieldsButton());
         final boolean displayed = isDisplayed(getAddSystemFieldsButton());
@@ -434,7 +422,7 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-    protected void unCheck(String[] mandatoryFields) {
+    protected void unCheck(final String[] mandatoryFields) {
         for (final String specificDiv : mandatoryFields) {
 
             final WebPageElement path = findByXpath(getPathOfSpecificCheckbox(getFieldBlock(specificDiv), FieldElement.REQUIRED_CHECKBOX));
@@ -447,7 +435,6 @@ public abstract class AbstractDataField extends Settings {
                 }
             }
         }
-
     }
 
     public boolean addAndRemoveSystemField(final Field fieldToBeAdded,
@@ -511,17 +498,6 @@ public abstract class AbstractDataField extends Settings {
         click(findByXpath(String.format(FieldElement.SPECIFIC_FIELD_COLUMN_SETTINGS_CHECKBOX, fieldName)));
     }
 
-
-    protected abstract boolean verifyNonDraggableFields();
-
-    protected abstract Field[] getAllFields();
-
-    protected abstract List<Field> getDefaultFields();
-
-    protected abstract List<SystemField> getDefaultSystemFieldElements();
-
-    public abstract boolean isDefaultFieldsVisibleInSummary();
-
     public boolean verifyDefaultSystemFields() {
         for (final SystemField field : getDefaultSystemFieldElements()) {
             if (!check(field)) {
@@ -529,6 +505,14 @@ public abstract class AbstractDataField extends Settings {
             }
         }
         return true;
+    }
+
+    public boolean verifyBreadCrumb() {
+        return isDisplayed(getBreadCrumb());
+    }
+
+    public WebPageElement getAnUnExpectedErrorMessage() {
+        return findByText("An unexpected error occurred. Please try again later.");
     }
 
     protected boolean isDisplayedInList(final ContactField contactDataField) {
@@ -560,11 +544,36 @@ public abstract class AbstractDataField extends Settings {
             }
         }
         return true;
-
     }
 
+    public boolean checkIfGivenFieldsAddViewIsChecked(final String fieldName) {
+        return isSelected(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.ADD_VIEW_CHECKBOX)));
+    }
 
+    public void switchToContactSummary() {
+        final WebPageElement moveToSummary = findByXpath("//*[@class='MuiTableRow-root css-rm8p5t']/td[2]");
+
+        click(moveToSummary);
+    }
+
+    public void switchToAddContactForm() {
+        click(findByText("Contact"));
+    }
+
+    public boolean checkIfGivenFieldIsInList(final String contactSystemField) {
+        return isDisplayed(findByXpath(getFieldBlock(contactSystemField)));
+    }
+
+    protected abstract List<Field> getDefaultFields();
+
+    protected abstract Field[] getAllFields();
+
+    protected abstract boolean verifyNonDraggableFields();
+
+    protected abstract List<SystemField> getDefaultSystemFieldElements();
+
+    public abstract boolean isDefaultFieldsVisibleInSummary();
+    
     protected abstract boolean uncheckMandatoryFields();
-
 
 }

@@ -38,10 +38,13 @@ public class BasePage {
         this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
     }
 
-    public void waitTillVisible(String xpath) {
+    public void waitTillVisible(final String xpath) {
         explicitWaitHandler.waitTillVisible(new Element(LocatorType.XPATH, xpath, true));
     }
 
+    public void watTillClickable(final String xpath){
+        explicitWaitHandler.WaitTillClickable(new Element(LocatorType.XPATH,xpath,true));
+    }
     protected final WebPageElement findElement(final Element element) {
         return elementFinder.getWebPageElement(element);
     }

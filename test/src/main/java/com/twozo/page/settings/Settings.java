@@ -4,8 +4,8 @@ import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.BasePage;
 import com.twozo.page.settings.data.fields.company.CompanyDataField;
 import com.twozo.page.settings.data.fields.contact.ContactDataField;
-import com.twozo.page.settings.data.fields.deal.Deal;
-import com.twozo.page.settings.data.fields.product.Product;
+import com.twozo.page.settings.data.fields.deal.DealDataField;
+import com.twozo.page.settings.data.fields.product.ProductDataField;
 import com.twozo.page.url.URL;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.service.WebPageElement;
@@ -34,12 +34,7 @@ public class Settings extends BasePage {
     }
 
     public static Settings getInstance(final WebAutomationDriver webAutomationDriver) {
-
-        //   if (Objects.isNull(settings)) {
-        settings = new Settings(webAutomationDriver);
-        // }
-
-        return settings;
+        return new Settings(webAutomationDriver);
     }
 
     public WebPageElement getContact() {
@@ -110,20 +105,15 @@ public class Settings extends BasePage {
         return CompanyDataField.getInstance(webAutomationDriver);
     }
 
-    public Deal switchToDealDataFields() {
+    public DealDataField switchToDealDataFields() {
         click(getContact());
 
-        return Deal.getInstance(webAutomationDriver);
+        return DealDataField.getInstance(webAutomationDriver);
     }
 
-    public Product switchToProductDataFields() {
+    public ProductDataField switchToProductDataFields() {
         click(getProduct());
 
-        return Product.getInstance(webAutomationDriver);
+        return ProductDataField.getInstance(webAutomationDriver);
     }
-
-//    public void check() {
-//        click(findBelowElement(List.of(new Element(LocatorType.XPATH, "//*[text()='Email Sync']", true),
-//                new Element(LocatorType.TAG_NAME, "p", false))));
-//    }
 }

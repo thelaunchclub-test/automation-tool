@@ -1,6 +1,6 @@
 package com.twozo.test.settings.data.fields;
 
-import com.twozo.page.settings.data.fields.product.Product;
+import com.twozo.page.settings.data.fields.product.ProductDataField;
 import com.twozo.test.settings.SettingsTest;
 
 import org.testng.annotations.BeforeClass;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class ProductDataFieldTest extends SettingsTest {
 
-    Product product;
+    ProductDataField product;
 
     @BeforeClass
     public void initialize() {

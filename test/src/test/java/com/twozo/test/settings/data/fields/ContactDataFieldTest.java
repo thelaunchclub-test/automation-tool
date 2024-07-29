@@ -15,20 +15,6 @@ import org.testng.annotations.Test;
 
 public class ContactDataFieldTest extends SettingsTest {
 
-
-
-
-    //private Contact contact;
-
-    //    @BeforeMethod
-//    public void initialize() {
-//        contact = settings.switchToContactDataFields();
-//    }
-//    @AfterMethod
-//    public void clear(){
-//        contact.switchToContactDataFields();
-//    }
-
     @Test
     public void verifyBreadCrumb() {
         Assert.assertTrue(contactDataField.verifyBreadCrumb());
@@ -48,11 +34,6 @@ public class ContactDataFieldTest extends SettingsTest {
     public void verifyNavigateBackAndForthBetweenDifferentModule() {
         Assert.assertTrue(contactDataField.switchBetweenTabs());
     }
-
-//    @Test
-//    public void verifySystemFieldTabsDoesNotHideOtherTabs() {
-//        Assert.assertTrue(contact.verifySystemFieldTabsDoesNotHideOtherTabs());
-//    }
 
     @DataProvider(name = "SearchData")
     public static Object[][] getSearchData() {
@@ -200,30 +181,8 @@ public class ContactDataFieldTest extends SettingsTest {
         if (input.containsKey("fieldName") && input.containsKey("fieldType")) {
             Assert.assertTrue(contactDataField.addCustomField(input.getString("fieldName"), input.getString("fieldType")));
         }
-
-        // contact.addCustomField("a", FieldType.TEXT);
-        //contact.addCustomField("b", FieldType.LARGE_TEXT);
-//        contact.addCustomField("c", FieldType.NUMBER);
-//        contact.addCustomField("f", FieldType.OWNER);
-//        contact.addCustomField("g", FieldType.COMPANY);
-//        contact.addCustomField("h", FieldType.CONTACT);
-//        contact.addCustomField("i", FieldType.PHONE);
-//        contact.addCustomField("j", FieldType.EMAIL);
-//        contact.addCustomField("k", FieldType.MONETARY);
-//        contact.addCustomField("l", FieldType.TIME);
-//        contact.addCustomField("m", FieldType.TIME_RANGE);
-//        contact.addCustomField("n", FieldType.DATE);
-//        contact.addCustomField("o", FieldType.DATE_RANGE);
-//        contact.addCustomField("p", FieldType.DATE_TIME_RANGE);
-//        contact.addCustomField("q", FieldType.ADDRESS);
-        //contact.addCustomField("d", FieldType.DROPDOWN);
-        //contact.addCustomField("e", FieldType.MULTI_SELECT);
     }
 
-    //    @Test
-//    public void verifyEyeIcon(){
-//        Assert.assertTrue(contact.hideAutoGeneratingSystemField(ContactAutoGeneratingField.DONE_ACTIVITIES));
-//    }
     @Test(dataProvider = "SystemField")
     public void isDefaultFieldsVisibleInSummary(final Object object) {
         final TestCase testCase = (TestCase) object;
@@ -239,9 +198,6 @@ public class ContactDataFieldTest extends SettingsTest {
 
     //    @Test(dataProvider = "SystemField")
     public void isVisibleInSummary(final String fieldName) {
-
-        // Assert.assertTrue(contact.checkIfGivenFieldIsInList(fieldName);
-
         homePage.switchToContact();
         contactDataField.switchToContactSummary();
         Assert.assertTrue(contactDataField.isVisibleInSummary(fieldName));
@@ -251,28 +207,15 @@ public class ContactDataFieldTest extends SettingsTest {
     public void isDefaultFieldsVisibleInAddView() {
         homePage.switchToContact();
         contactDataField.switchToAddContactForm();
-        //contact.isDefaultFieldsVisibleInAddView();
         Assert.assertTrue(contactDataField.isDefaultFieldsVisibleInAddView());
     }
 
     //  @Test(dataProvider = "SystemField")
     public void isVisibleInAddForm(final String fieldName) {
-//        Assert.assertTrue(contact.checkIfGivenFieldsAddViewIsChecked("iio"));
-//        homePage.switchToContact();
-//        contact.switchToAddContactForm();
-//        Assert.assertTrue(contact.isVisibleInAddForm("iio"));
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("fieldToBeChecked")) {
-        //  Assert.assertTrue(contact.checkIfGivenFieldsAddViewIsChecked(fieldName));
-        //}
         homePage.switchToContact();
         contactDataField.switchToContactSummary();
-        //Assert.assertTrue(contact.isVisibleInSummary());
-        //  if (input.containsKey("fieldToBeChecked")) {
         Assert.assertTrue(contactDataField.isVisibleInAddForm(fieldName));
-        // }
+
     }
 
     @Test
@@ -315,8 +258,6 @@ public class ContactDataFieldTest extends SettingsTest {
         }
 
     }
-
-
 
 
 }

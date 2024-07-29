@@ -19,7 +19,7 @@ public class SettingsTest extends BaseTest {
 
     @BeforeClass
     public void initialize() {
-        homePage = signIn.signIn("jd@gmail.com", "A$12345a");
+        homePage = signIn.signIn("jade@gmail.com", "A$12345a");
         contactDataField = homePage.switchToSettings().switchToContactDataFields();
     }
 }

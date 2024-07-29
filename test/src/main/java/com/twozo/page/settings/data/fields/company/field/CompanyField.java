@@ -65,7 +65,7 @@ public enum CompanyField implements Field {
         return fieldType;
     }
 
-    public static List<CompanyField> getDefaultCompanySystemFields() {
+    public static List<Field> getDefaultFields() {
         return List.of(NAME, WEBSITE, SALES_OWNER, ADDRESS);
     }
 }

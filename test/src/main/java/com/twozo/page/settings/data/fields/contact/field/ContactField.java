@@ -71,7 +71,7 @@ public enum ContactField implements Field {
         return fieldType;
     }
 
-    public static List<Field> getDefaultContactSystemFields() {
+    public static List<Field> getDefaultFields() {
         return List.of(FIRST_NAME, LAST_NAME, EMAILS, PHONES, COMPANY, DESIGNATION, SALES_OWNER, FACEBOOK, LINKED_IN);
     }
 }
