@@ -11,11 +11,9 @@ import com.twozo.page.url.settings.URL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
-import org.openqa.selenium.NoSuchElementException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class ContactDataField extends AbstractDataField {
 
@@ -24,7 +22,7 @@ public class ContactDataField extends AbstractDataField {
     protected ContactDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals(URL.CONTACT)) {
+        if (getURL().equals(URL.CONTACT)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -76,7 +74,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(firstNameDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(firstNameDiv, XPathBuilder.getXPathByText(ContactField.FIRST_NAME.getName()))),
-                findByXpath(format(firstNameDiv, FieldTypePath.TEXT)),
+                findByXpath(format(firstNameDiv, XPathBuilder.getXPathByText(ContactField.FIRST_NAME.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(firstNameDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(firstNameDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -88,7 +86,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(lastNameDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(lastNameDiv, XPathBuilder.getXPathByText(ContactField.LAST_NAME.getName()))),
-                findByXpath(format(lastNameDiv, FieldTypePath.TEXT)),
+                findByXpath(format(lastNameDiv, XPathBuilder.getXPathByText(ContactField.LAST_NAME.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(lastNameDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(lastNameDiv, FieldElement.REQUIRED_CHECKBOX))), null);
     }
@@ -99,7 +97,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(emailDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(emailDiv, XPathBuilder.getXPathByText(ContactField.EMAILS.getName()))),
-                findByXpath(format(emailDiv, FieldTypePath.EMAILS)),
+                findByXpath(format(emailDiv, XPathBuilder.getXPathByText(ContactField.EMAILS.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(emailDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(emailDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -111,7 +109,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(phonesDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(phonesDiv, XPathBuilder.getXPathByText(ContactField.PHONES.getName()))),
-                findByXpath(format(phonesDiv, FieldTypePath.PHONES)),
+                findByXpath(format(phonesDiv, XPathBuilder.getXPathByText(ContactField.PHONES.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(phonesDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(phonesDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -123,7 +121,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(companyDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(companyDiv, XPathBuilder.getXPathByText(ContactField.COMPANY.getName()))),
-                findByXpath(format(companyDiv, FieldTypePath.COMPANY)),
+                findByXpath(format(companyDiv, XPathBuilder.getXPathByText(ContactField.COMPANY.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(companyDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(companyDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -135,7 +133,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(designationDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(designationDiv, XPathBuilder.getXPathByText(ContactField.DESIGNATION.getName()))),
-                findByXpath(format(designationDiv, FieldTypePath.TEXT)),
+                findByXpath(format(designationDiv, XPathBuilder.getXPathByText(ContactField.DESIGNATION.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(designationDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(designationDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -147,7 +145,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(salesOwnerDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(salesOwnerDiv, XPathBuilder.getXPathByText(ContactField.SALES_OWNER.getName()))),
-                findByXpath(format(salesOwnerDiv, FieldTypePath.OWNER)),
+                findByXpath(format(salesOwnerDiv, XPathBuilder.getXPathByText(ContactField.SALES_OWNER.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(salesOwnerDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(salesOwnerDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -158,7 +156,7 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(facebookDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(facebookDiv, XPathBuilder.getXPathByText(ContactField.FACEBOOK.getName()))),
-                findByXpath(format(facebookDiv, FieldTypePath.TEXT)),
+                findByXpath(format(facebookDiv, XPathBuilder.getXPathByText(ContactField.FACEBOOK.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(facebookDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(facebookDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -169,33 +167,14 @@ public class ContactDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(twitterDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(twitterDiv, XPathBuilder.getXPathByText(ContactField.LINKED_IN.getName()))),
-                findByXpath(format(twitterDiv, FieldTypePath.TEXT)),
+                findByXpath(format(twitterDiv, XPathBuilder.getXPathByText(ContactField.LINKED_IN.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(twitterDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(twitterDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
 
-    public boolean isAddViewCheckBoxEditableForMandatoryField() {
-        final List<String> mandatoryFields = Arrays.asList(
-                getFirstNameDiv(),
-                getLastNameDiv(),
-                getEmailDiv(),
-                getPhonesDiv(),
-                getSalesOwnerDiv()
-        );
-
-        for (final String fieldDiv : mandatoryFields) {
-            click(findByXpath(format(fieldDiv, FieldElement.ADD_VIEW_CHECKBOX)));
-
-            try {
-                if (isDisplayed(findByXpath(format(fieldDiv, FieldElement.UPDATE_BUTTON)))) {
-                    throw new RuntimeException("Update button should not be visible after clicking the checkbox");
-                }
-            } catch (NoSuchElementException noSuchElementException) {
-
-            }
-        }
-        return true;
+    public boolean verifyActiveContactTab() {
+        return isDisplayed(getActiveContactTab());
     }
 
     public boolean emailOrPhoneShouldBeRequired() {
@@ -214,6 +193,17 @@ public class ContactDataField extends AbstractDataField {
     }
 
     @Override
+    protected List<String> getMandatoryFields() {
+        return Arrays.asList(
+                getFirstNameDiv(),
+                getLastNameDiv(),
+                getEmailDiv(),
+                getPhonesDiv(),
+                getSalesOwnerDiv()
+        );
+    }
+
+    @Override
     public boolean verifyNonDraggableFields() {
         return isNonDraggableIconDisplayed(getFirstNameDiv()) &&
                 isNonDraggableIconDisplayed(getLastNameDiv()) &&
@@ -222,7 +212,7 @@ public class ContactDataField extends AbstractDataField {
     }
 
     @Override
-    protected List<SystemField> getDefaultSystemFieldElements() {
+    protected List<Record> getDefaultSystemFieldElements() {
         return List.of(
                 getFirstNameField(),
                 getLastNameField(),
@@ -238,19 +228,12 @@ public class ContactDataField extends AbstractDataField {
 
     @Override
     public boolean isDefaultFieldsVisibleInSummary() {
-        final List<Field> defaultSystemFields = ContactField.getDefaultFields();
-        final Set<String> fieldsShouldNotBeChecked = Set.of(defaultSystemFields.get(1).getName(),
-                defaultSystemFields.get(2).getName(), defaultSystemFields.get(3).getName(),
-                defaultSystemFields.get(4).getName(), defaultSystemFields.get(5).getName());
+        final List<Field> summaryDefaultFields = List.of(ContactField.EMAILS, ContactField.PHONES, ContactField.SALES_OWNER);
 
-        for (final Field field : defaultSystemFields) {
-            final String name = field.getName();
+        for (final Field summaryDefaultField : summaryDefaultFields) {
 
-            if (fieldsShouldNotBeChecked.contains(name)) {
-                continue;
-            }
-
-            if (!isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(name))))) {
+            if (!isDisplayed(findByXpath(format("//*[@class='css-itno5t']",
+                    XPathBuilder.getXPathByText(summaryDefaultField.getName()))))) {
                 return false;
             }
         }

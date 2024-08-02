@@ -1,4 +1,4 @@
-package com.twozo.page.settings.data.fields.product;
+package com.twozo.page.settings.data.fields.product.field;
 
 import com.twozo.page.settings.data.fields.FieldType;
 import com.twozo.page.settings.data.fields.field.Field;
@@ -10,7 +10,7 @@ public enum ProductField implements Field {
 
     NAME("Name", FieldType.TEXT),
     SALES_OWNER("Sales Owner", FieldType.OWNER),
-    PRODUCT_CODE("Product Cod", FieldType.TEXT),
+    PRODUCT_CODE("Product Code", FieldType.TEXT),
     CATEGORY("Category", FieldType.DROPDOWN),
     UNIT_PRICE("Unit Price", FieldType.MONETARY),
     ACTIVE("Active", FieldType.DROPDOWN),

@@ -2,14 +2,19 @@ package com.twozo.page.settings.data.fields.deal;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.settings.data.fields.AbstractDataField;
+import com.twozo.page.settings.data.fields.company.field.CompanyField;
+import com.twozo.page.settings.data.fields.contact.field.ContactField;
 import com.twozo.page.settings.data.fields.deal.field.DealField;
 import com.twozo.page.settings.data.fields.field.*;
 import com.twozo.page.url.settings.URL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
+import org.openqa.selenium.NoSuchElementException;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class DealDataField extends AbstractDataField {
 
@@ -18,7 +23,7 @@ public class DealDataField extends AbstractDataField {
     protected DealDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (getURL().equals(URL.DEAL)) {
+        if (!getURL().equals(URL.DEAL)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -83,7 +88,7 @@ public class DealDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(titleDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(titleDiv, XPathBuilder.getXPathByText(DealField.TITLE.getName()))),
-                findByXpath(format(titleDiv, FieldTypePath.TEXT)),
+                findByXpath(format(titleDiv, XPathBuilder.getXPathByText(DealField.TITLE.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(titleDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(titleDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -95,7 +100,7 @@ public class DealDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(pipelineDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(pipelineDiv, XPathBuilder.getXPathByText(DealField.PIPELINE.getName()))),
-                findByXpath(format(pipelineDiv, FieldTypePath.DROPDOWN)),
+                findByXpath(format(pipelineDiv, XPathBuilder.getXPathByText(DealField.PIPELINE.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(pipelineDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(pipelineDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -106,7 +111,7 @@ public class DealDataField extends AbstractDataField {
 
         return new DependableField(
                 findByXpath(format(stageDiv, XPathBuilder.getXPathByText(DealField.STAGE.getName()))),
-                findByXpath(format(stageDiv, FieldTypePath.DROPDOWN)));
+                findByXpath(format(stageDiv, XPathBuilder.getXPathByText(DealField.STAGE.getFieldType()))));
     }
 
     private DependableField getWonReasonField() {
@@ -114,7 +119,7 @@ public class DealDataField extends AbstractDataField {
 
         return new DependableField(
                 findByXpath(format(wonReasonDiv, XPathBuilder.getXPathByText(DealField.WON_REASON.getName()))),
-                findByXpath(format(wonReasonDiv, FieldTypePath.DROPDOWN)));
+                findByXpath(format(wonReasonDiv, XPathBuilder.getXPathByText(DealField.WON_REASON.getFieldType()))));
     }
 
     private DependableField getLostReasonField() {
@@ -122,7 +127,7 @@ public class DealDataField extends AbstractDataField {
 
         return new DependableField(
                 findByXpath(format(lostReasonDiv, XPathBuilder.getXPathByText(DealField.LOST_REASON.getName()))),
-                findByXpath(format(lostReasonDiv, FieldTypePath.TEXT)));
+                findByXpath(format(lostReasonDiv, XPathBuilder.getXPathByText(DealField.LOST_REASON.getFieldType()))));
     }
 
     private DependableField getDealClosedOnField() {
@@ -130,7 +135,7 @@ public class DealDataField extends AbstractDataField {
 
         return new DependableField(
                 findByXpath(format(dealClosedOnDiv, XPathBuilder.getXPathByText(DealField.DEAL_CLOSED_ON.getName()))),
-                findByXpath(format(dealClosedOnDiv, FieldTypePath.TEXT)));
+                findByXpath(format(dealClosedOnDiv, XPathBuilder.getXPathByText(DealField.DEAL_CLOSED_ON.getFieldType()))));
     }
 
     private SystemField getPrimaryContactField() {
@@ -139,7 +144,7 @@ public class DealDataField extends AbstractDataField {
         return new SystemField(
                 findByXpath(format(primaryContactDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(primaryContactDiv, XPathBuilder.getXPathByText(DealField.PRIMARY_CONTACT.getName()))),
-                findByXpath(format(primaryContactDiv, FieldTypePath.CONTACT)),
+                findByXpath(format(primaryContactDiv, XPathBuilder.getXPathByText(DealField.PRIMARY_CONTACT.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(primaryContactDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(primaryContactDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
@@ -152,7 +157,7 @@ public class DealDataField extends AbstractDataField {
                 findByXpath(format(companyDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(companyDiv, XPathBuilder.getXPathByText(DealField.COMPANY.getName()))),
                 findByXpath(format(companyDiv, FieldTypePath.COMPANY)),
-                !isSelected(findByXpath(getPathOfSpecificCheckbox(companyDiv, FieldElement.ADD_VIEW_CHECKBOX))),
+                isSelected(findByXpath(getPathOfSpecificCheckbox(companyDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(companyDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
@@ -164,45 +169,50 @@ public class DealDataField extends AbstractDataField {
                 findByXpath(format(relatedContactsDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(relatedContactsDiv, XPathBuilder.getXPathByText(DealField.RELATED_CONTACTS.getName()))),
                 findByXpath(format(relatedContactsDiv, FieldTypePath.CONTACT)),
-                !isSelected(findByXpath(getPathOfSpecificCheckbox(relatedContactsDiv, FieldElement.ADD_VIEW_CHECKBOX))),
+                isSelected(findByXpath(getPathOfSpecificCheckbox(relatedContactsDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(relatedContactsDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
 
-    private SystemField getDealValue() {
+    private SystemField getDealValueField() {
         final String dealValueDiv = getDealValueDiv();
 
         return new SystemField(
                 findByXpath(format(dealValueDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(dealValueDiv, XPathBuilder.getXPathByText(DealField.DEAL_VALUE.getName()))),
-                findByXpath(format(dealValueDiv, FieldTypePath.MONETARY)),
-                !isSelected(findByXpath(getPathOfSpecificCheckbox(dealValueDiv, FieldElement.ADD_VIEW_CHECKBOX))),
+                findByXpath(format(dealValueDiv, XPathBuilder.getXPathByText(DealField.DEAL_VALUE.getFieldType()))),
+                isSelected(findByXpath(getPathOfSpecificCheckbox(dealValueDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(dealValueDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
 
-    private SystemField getSalesOwner() {
+    private SystemField getSalesOwnerField() {
         final String salesOwnerDiv = getSalesOwnerDiv();
 
         return new SystemField(
                 findByXpath(format(salesOwnerDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(salesOwnerDiv, XPathBuilder.getXPathByText(DealField.SALES_OWNER.getName()))),
-                findByXpath(format(salesOwnerDiv, FieldTypePath.TEXT)),
+                findByXpath(format(salesOwnerDiv, XPathBuilder.getXPathByText(DealField.SALES_OWNER.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(salesOwnerDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(salesOwnerDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
 
-    private SystemField getProductQuantity() {
+    private SystemField getProductQuantityField() {
         final String productQuantityDiv = getProductQuantityDiv();
         return new SystemField(
                 findByXpath(format(productQuantityDiv, FieldElement.DRAGGABLE)),
                 findByXpath(format(productQuantityDiv, XPathBuilder.getXPathByText(DealField.PRODUCT_QUANTITY.getName()))),
-                findByXpath(format(productQuantityDiv, FieldTypePath.TEXT)),
+                findByXpath(format(productQuantityDiv, XPathBuilder.getXPathByText(DealField.PRODUCT_QUANTITY.getFieldType()))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(productQuantityDiv, FieldElement.ADD_VIEW_CHECKBOX))),
                 isSelected(findByXpath(getPathOfSpecificCheckbox(productQuantityDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
+
+    public boolean verifyActiveDealTab() {
+        return isDisplayed(getActiveDealTab());
+    }
+
 
     @Override
     protected List<Field> getDefaultFields() {
@@ -215,28 +225,55 @@ public class DealDataField extends AbstractDataField {
     }
 
     @Override
-    protected boolean verifyNonDraggableFields() {
+    protected List<String> getMandatoryFields() {
+        return Arrays.asList(
+                getTitleDiv(),
+                getPipelineDiv(),
+                getPrimaryContactDiv(),
+                getSalesOwnerDiv()
+        );
+    }
+
+    @Override
+    public boolean verifyNonDraggableFields() {
         return isNonDraggableIconDisplayed(getTitleDiv()) &&
                 isNonDraggableIconDisplayed(getPipelineDiv()) &&
                 isNonDraggableIconDisplayed(getPrimaryContactDiv());
     }
 
     @Override
-    protected List<SystemField> getDefaultSystemFieldElements() {
-        return null;
+    protected List<Record> getDefaultSystemFieldElements() {
+        return List.of(getTitleField(), getPipelineField(), getStageField(), getWonReasonField(), getLostReasonField(),
+                getDealClosedOnField(), getPrimaryContactField(), getRelatedContactsField(), getCompanyField(),
+                getDealValueField(), getSalesOwnerField(), getProductQuantityField());
     }
 
     @Override
     public boolean isDefaultFieldsVisibleInSummary() {
-        return false;
+        final List<Field> summaryDefaultFields = List.of(DealField.SALES_OWNER, DealField.WON_REASON, DealField.DEAL_CLOSED_ON,
+                DealField.PRODUCT_QUANTITY);
+
+        for (final Field summaryDefaultField : summaryDefaultFields) {
+
+            if (!isDisplayed(findByXpath(format("//*[@class='css-itno5t']",
+                    XPathBuilder.getXPathByText(summaryDefaultField.getName()))))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    protected boolean uncheckMandatoryFields() {
-        return false;
+    public boolean uncheckMandatoryFields() {
+        final String[] mandatoryFields = new String[]{
+                getTitleDiv(),
+                getPipelineDiv(),
+                getPrimaryContactDiv(),
+                getSalesOwnerDiv()
+        };
+        unCheck(mandatoryFields);
+
+        return true;
     }
 
-    public boolean verifyActiveDealTab() {
-        return isDisplayed(getActiveDealTab());
-    }
 }

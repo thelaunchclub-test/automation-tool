@@ -4,16 +4,2127 @@
     "title": "First Name with add view",
     "input": {
       "isDraggable": false,
-      "name": "Address",
-      "fieldType": "Address",
+      "name": "First Name",
+      "fieldType": "Text",
       "isAddView": true,
       "isRequired": false,
-      "isEditable": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "First Name with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "First Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "First Name with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "First Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
       "isDeletable": false,
       "isHideable": true
-    },
-    "output": {
-      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "First Name with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "First Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 5,
+    "title": "Last Name with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 6,
+    "title": "Last Name with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 7,
+    "title": "Last Name with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 8,
+    "title": "Last Name with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 9,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 10,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 11,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 12,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 13,
+    "title": "Phones with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Phones",
+      "fieldType": "Phone",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 14,
+    "title": "Phones with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Phones",
+      "fieldType": "Phone",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 15,
+    "title": "Phones with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Phones",
+      "fieldType": "Phone",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 16,
+    "title": "Phones with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Phones",
+      "fieldType": "Phone",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 17,
+    "title": "Designation with add view",
+    "input": {
+      "isDraggable": true,
+      "name": "Designation",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 18,
+    "title": "Designation with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Designation",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 19,
+    "title": "Designation with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Designation",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 20,
+    "title": "Designation with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Designation",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 21,
+    "title": "Company with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Company",
+      "fieldType": "Company",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 22,
+    "title": "Company with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Company",
+      "fieldType": "Company",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 23,
+    "title": "Company with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Company",
+      "fieldType": "Company",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 24,
+    "title": "Company with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Company",
+      "fieldType": "Company",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 25,
+    "title": "Sales Owner with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Sales Owner",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 26,
+    "title": "Sales Owner with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Sales Owner",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 27,
+    "title": "Sales Owner with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Sales Owner",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 28,
+    "title": "Sales Owner with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Sales Owner",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 29,
+    "title": "Twitter with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Twitter",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 30,
+    "title": "Twitter with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Twitter",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 31,
+    "title": "Twitter with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Twitter",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 32,
+    "title": "Twitter with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Twitter",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 33,
+    "title": "Facebook with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Facebook",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 34,
+    "title": "Facebook with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Facebook",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 35,
+    "title": "Facebook with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Facebook",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 36,
+    "title": "Facebook with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Facebook",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 37,
+    "title": "Source with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Source",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 38,
+    "title": "Source with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Source",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 39,
+    "title": "Source with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Source",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 40,
+    "title": "Source with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Source",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 41,
+    "title": "LinkedIn with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "LinkedIn",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 42,
+    "title": "LinkedIn with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "LinkedIn",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 43,
+    "title": "LinkedIn with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "LinkedIn",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 44,
+    "title": "LinkedIn with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "LinkedIn",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 45,
+    "title": "Lifecycle Stage with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Lifecycle Stage",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 46,
+    "title": "Lifecycle Stage with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Lifecycle Stage",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 47,
+    "title": "Lifecycle Stage with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Lifecycle Stage",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 48,
+    "title": "Lifecycle Stage with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Lifecycle Stage",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },  {
+  "testCaseID": 1,
+  "title": "Emails with add view",
+  "input": {
+    "isDraggable": false,
+    "name": "Emails",
+    "fieldType": "Emails",
+    "isAddView": true,
+    "isRequired": false,
+    "isEditable": false,
+    "isDeletable": false,
+    "isHideable": false
+  }
+},
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },  {
+  "testCaseID": 1,
+  "title": "Emails with add view",
+  "input": {
+    "isDraggable": false,
+    "name": "Emails",
+    "fieldType": "Emails",
+    "isAddView": true,
+    "isRequired": false,
+    "isEditable": false,
+    "isDeletable": false,
+    "isHideable": false
+  }
+},
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Emails with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": false,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Emails with Required",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": false
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Emails with hide",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": false,
+      "isDeletable": false,
+      "isHideable": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Emails with edit",
+    "input": {
+      "isDraggable": false,
+      "name": "Emails",
+      "fieldType": "Emails",
+      "isAddView": true,
+      "isRequired": true,
+      "isEditable": true,
+      "isDeletable": false,
+      "isHideable": false
     }
   }
+
+
 ]

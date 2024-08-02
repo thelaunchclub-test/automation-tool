@@ -44,10 +44,10 @@ public enum ReportType {
 
     public static ReportType get(final String name) {
         return switch (name) {
-            case "testNgReport" -> ReportType.TESTNG_REPORTER;
-            case "junitReport" -> ReportType.JUNIT_REPORTER;
-            case "extentReport" -> ReportType.EXTENT_REPORT;
-            case "calliopeReport" -> ReportType.CALLIOPE_PRO;
+            case "testNgReport" -> TESTNG_REPORTER;
+            case "junitReport" -> JUNIT_REPORTER;
+            case "extentReport" -> EXTENT_REPORT;
+            case "calliopeReport" -> CALLIOPE_PRO;
             default -> throw new IllegalStateException("Unexpected value: " + name);
         };
     }

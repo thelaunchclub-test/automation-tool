@@ -161,17 +161,16 @@ public class SignUp extends BasePage {
         return completeSignUpButton;
     }
 
-    public HomePage signUp(final String email, final String name, final String password, final String confirmPassword,
-                           final String company, final String jobRole) {
-        send(getEmailField(), email);
+    public HomePage signUp(final Account account) {
+        send(getEmailField(), account.email);
         click(getNextButton());
-        send(getNameField(), name);
-        send(getPasswordField(), password);
-        send(getConfirmPasswordField(), confirmPassword);
+        send(getNameField(), account.getName());
+        send(getPasswordField(), account.getPassword());
+        send(getConfirmPasswordField(), account.getConfirmPassword());
         click(getCreateAccountButton());
-        send(getCompanyField(), company);
+        send(getCompanyField(), account.getCompany());
         click(getJobRoleDropDown());
-        dropdown(jobRole);
+        dropdown(account.getJobRole());
         click(getCompleteSignUpButton());
 
         return HomePage.getInstance(webAutomationDriver);

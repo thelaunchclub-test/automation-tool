@@ -49,7 +49,7 @@ public class SignIn extends BasePage {
     private SignIn(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals( "https://app.thelaunchclub.in/")) {
+        if (!getURL().equals( "https://app.twozo.live/login")) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -65,9 +65,9 @@ public class SignIn extends BasePage {
     }
 
     public SignUp getSignUp() {
-        signUp = initializeElement(signUp, () -> SignUp.getInstance(webAutomationDriver));
+        //signUp = initializeElement(signUp, () -> SignUp.getInstance(webAutomationDriver));
 
-        return signUp;
+        return SignUp.getInstance(webAutomationDriver);
     }
 
     public WebPageElement getTwozoLogo() {

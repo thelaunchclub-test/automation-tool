@@ -42,7 +42,7 @@ public class BasePage {
         explicitWaitHandler.waitTillVisible(new Element(LocatorType.XPATH, xpath, true));
     }
 
-    public void watTillClickable(final String xpath){
+    public void waitTillClickable(final String xpath){
         explicitWaitHandler.WaitTillClickable(new Element(LocatorType.XPATH,xpath,true));
     }
     protected final WebPageElement findElement(final Element element) {
@@ -146,7 +146,7 @@ public class BasePage {
         return names;
     }
 
-    protected String getURL() {
+    public String getURL() {
         return pageInformationProvider.getCurrentUrl();
     }
 
@@ -192,7 +192,7 @@ public class BasePage {
         return webPageElement.interact();
     }
 
-    protected void refresh() {
+    public void refresh() {
         webNavigator.refresh();
 
     }

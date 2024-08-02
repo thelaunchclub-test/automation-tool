@@ -7,14 +7,15 @@ import com.twozo.page.settings.data.fields.contact.ContactDataField;
 import com.twozo.page.settings.data.fields.deal.DealDataField;
 import com.twozo.page.settings.data.fields.product.ProductDataField;
 import com.twozo.page.url.URL;
+import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.model.Element;
+import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.status.WebDriverErrorCode;
+import org.openqa.selenium.NoSuchElementException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Settings extends BasePage {
 
@@ -83,7 +84,7 @@ public class Settings extends BasePage {
     }
 
     public Collection<String> getFieldNames(final Source source) {
-       // click(findByText(source.getName()));
+        // click(findByText(source.getName()));
         final List fields = new ArrayList();
 
         for (WebPageElement field : getFields()) {
@@ -106,7 +107,7 @@ public class Settings extends BasePage {
     }
 
     public DealDataField switchToDealDataFields() {
-        click(getContact());
+        click(getDeal());
 
         return DealDataField.getInstance(webAutomationDriver);
     }
@@ -114,6 +115,16 @@ public class Settings extends BasePage {
     public ProductDataField switchToProductDataFields() {
         click(getProduct());
 
+        try {
+            if (isDisplayed(findByXpath(XPathBuilder.getXpathByContains("Enables")))) {
+                click(findLeftElement(List.of(new Element(LocatorType.XPATH,
+                        "(//*[text()='Product'])[2]", true), new Element(LocatorType.TAG_NAME, "input",
+                        false))));
+            }
+        } catch (NoSuchElementException noSuchElementException) {
+        }
+
+        refresh();
         return ProductDataField.getInstance(webAutomationDriver);
     }
 }

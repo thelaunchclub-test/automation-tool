@@ -4,9 +4,13 @@ import com.twozo.page.BasePage;
 import com.twozo.page.contact.Contact;
 import com.twozo.page.Filter;
 import com.twozo.page.homepage.HomePage;
+import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.model.Element;
+import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Deal extends BasePage {
@@ -16,6 +20,7 @@ public class Deal extends BasePage {
     private AddDeal addDeal;
     private KanbanView kanbanView;
     private ForecastView forecastView;
+    private AddPipeline addPipeline;
     private Filter filter;
     private WebPageElement signInButton;
     private WebPageElement newDeal;
@@ -33,18 +38,20 @@ public class Deal extends BasePage {
 
     public Deal(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
+    }
 
-        //click(getSignInButton());
-//        System.out.println(pageInformationProvider.getCurrentUrl());
-//        if(!pageInformationProvider.getCurrentUrl().equals("https://app.thelaunchclub.in/deals")){
-//            throw TestException.get(WebDriverStatusCode.EXPECTED_PAGE_NOT_FOUND);
-        //}
+    public WebPageElement getColumnSettingsButton() {
+        return findByXpath("//*[@class='css-181x7hd']");
+    }
+
+    public void switchToColumnSettings() {
+        click(getColumnSettingsButton());
     }
 
     public static Deal getInstance(final WebAutomationDriver webAutomationDriver) {
 
-      //  if (Objects.isNull(deal)) {
-            deal = new Deal(webAutomationDriver);
+        //  if (Objects.isNull(deal)) {
+        deal = new Deal(webAutomationDriver);
         //}
 
         return deal;
@@ -74,138 +81,87 @@ public class Deal extends BasePage {
 
         if (Objects.isNull(addDeal)) {
             forecastView = ForecastView.getInstance(webAutomationDriver);
-
         }
 
         return forecastView;
+    }
+
+    public AddPipeline getAddPipeline() {
+        if (Objects.isNull(addPipeline)) {
+            addPipeline = AddPipeline.getInstance(webAutomationDriver);
+        }
+
+        return addPipeline;
     }
 
     public Filter getFilter() {
 
         if (Objects.isNull(filter)) {
             filter = Filter.getInstance(webAutomationDriver);
-
         }
 
         return filter;
     }
 
-    public WebPageElement getNewDeal() {
-
-        if (Objects.isNull(newDeal)) {
-            newDeal = findByText("New");
-
-        }
-
-        return newDeal;
+    public WebPageElement getNewDealButton() {
+        return findByText("New");
     }
 
     public WebPageElement getSignInButton() {
-
-        if (Objects.isNull(signInButton)) {
-            signInButton = findByText("Sign In");
-        }
-
-        return signInButton;
+        return findByText("Sign In");
     }
 
-    public WebPageElement getWonDeal() {
-
-        if (Objects.isNull(wonDeal)) {
-            wonDeal = findByText("Won");
-        }
-
-        return wonDeal;
+    public WebPageElement getWonDealButton() {
+        return findByText("Won");
     }
 
-    public WebPageElement getLostDeal() {
-
-        if (Objects.isNull(lostDeal)) {
-            lostDeal = findByText("Lost");
-        }
-
-        return lostDeal;
+    public WebPageElement getLostDealButton() {
+        return findByText("Lost");
     }
 
-    public WebPageElement getGeneral() {
-
-        if (Objects.isNull(general)) {
-            general = findByText("General");
-        }
-
-        return general;
+    public WebPageElement getGeneralButton() {
+        return findByText("General");
     }
 
-    public WebPageElement getAllDeal() {
-
-        if (Objects.isNull(allDeal)) {
-            allDeal = findByText("All Deal");
-        }
-
-        return allDeal;
+    public WebPageElement getManageButton() {
+        return findByText("Manage");
     }
 
-    public WebPageElement getImportDeals() {
+    public WebPageElement getAddPipelineButton() {
+        return findAboveElement(List.of(new Element(LocatorType.XPATH, XPathBuilder.getXPathByText("Add Pipeline"),
+                true), new Element(LocatorType.TAG_NAME, "button", false)));
+    }
 
-        if (Objects.isNull(importDeals)) {
-            importDeals = findByText("Import Deals");
-        }
+    public WebPageElement getAllDealButton() {
+        return findByText("All Deal");
+    }
 
-        return importDeals;
+    public WebPageElement getImportDealsButton() {
+        return findByText("Import Deals");
     }
 
     public WebPageElement getAddDealButton() {
-
-        if (Objects.isNull(addDealButton)) {
-            addDealButton = findByXpath("//*[text()='Deal'][@type='button']");
-        }
-
-        return addDealButton;
+        return findByXpath("//*[text()='Deal'][@type='button']");
     }
 
     public WebPageElement getKanbanViewButton() {
-
-        if (Objects.isNull(kanbanViewButton)) {
-            kanbanViewButton = findByText("kanban");
-        }
-
-        return kanbanViewButton;
+        return findByText("kanban");
     }
 
     public WebPageElement getListViewButton() {
-
-        if (Objects.isNull(listViewButton)) {
-            listViewButton = findByText("list");
-        }
-
-        return listViewButton;
+        return findByText("list");
     }
 
     public WebPageElement getForecastViewButton() {
-
-        if (Objects.isNull(forecastViewButton)) {
-            forecastViewButton = findByText("forecast");
-        }
-
-        return forecastViewButton;
+        return findByText("forecast");
     }
 
     public WebPageElement getContactIcon() {
-
-        if (Objects.isNull(contactIcon)) {
-            contactIcon = findByXpath("(//*[@class='MuiListItem-root MuiListItem-gutters css-12dzmul'])[2]");
-        }
-
-        return contactIcon;
+        return findByXpath("(//*[@class='MuiListItem-root MuiListItem-gutters css-12dzmul'])[2]");
     }
 
     public WebPageElement getFilterIcon() {
-
-        if (Objects.isNull(filterIcon)) {
-            filterIcon = findByXpath("//div[@class='css-j7qwjs'][@style='cursor: pointer;']");
-        }
-
-        return filterIcon;
+        return findByXpath("//div[@class='css-j7qwjs'][@style='cursor: pointer;']");
     }
 
     public AddDeal switchToAddDeal() {
@@ -230,6 +186,15 @@ public class Deal extends BasePage {
         click(getFilterIcon());
 
         return getFilter();
+    }
+
+    public AddPipeline switchToAddNewPipeline() {
+        click(getGeneralButton());
+        click(getManageButton());
+        click(getAddPipelineButton());
+
+        return getAddPipeline();
+
     }
 
     public Contact switchToContact() {

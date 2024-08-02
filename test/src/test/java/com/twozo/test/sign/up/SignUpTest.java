@@ -1,23 +1,40 @@
 package com.twozo.test.sign.up;
 
+import com.twozo.commons.json.JsonObject;
 import com.twozo.page.sign.in.SignIn;
+import com.twozo.page.sign.up.Account;
 import com.twozo.test.BaseTest;
 
+import com.twozo.test.TestCase;
+import com.twozo.test.TestDataProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public final class SignUpTest extends BaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SignUpTest.class);
 
-    @Test(enabled = true)
-    public void signUpWithValidDetails() {
-        final SignIn signIn = SignIn.getInstance(webAutomationDriver);
+    @DataProvider(name = "signUpData")
+    public static Object[][] getSearchData() {
+        return new TestDataProvider().getTestCases("SignUpData.json");
+    }
 
-        signIn.switchToSignUp().signUp("inil@gmail.com", "New User", "A$12345a",
-                "A$12345a", "inil", "Marketing");
+    @Test(dataProvider = "signUpData")
+    public void signUpWithValidDetails(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final Account account = new Account();
+
+        account.setEmail(input.getString("email"));
+        account.setName(input.getString("name"));
+        account.setPassword(input.getString("password"));
+        account.setConfirmPassword(input.getString("confirmPassword"));
+        account.setCompany(input.getString("company"));
+        account.setJobRole(input.getString("jobRole"));
         LOG.info("Signed up successfully");
+        signUp.signUp(account);
     }
 }

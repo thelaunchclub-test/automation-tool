@@ -142,6 +142,7 @@ public class HomePage extends BasePage {
     }
 
     public Contact switchToContact() {
+        refresh();
         click(getContactIcon());
 
         return contact;

@@ -30,7 +30,7 @@ public enum DealField implements Field {
     WON_TIME("Won Time", FieldType.DATE),
     LOST_TIME("Lost Time", FieldType.DATE),
     STAGE_PROBABILITY("Stage Probability", FieldType.NUMBER),
-    WEIGHTED_VALUE("Weighted Value", FieldType.MONETARY),
+    WEIGHTED_VALUE("Weighted value", FieldType.MONETARY),
     EXPECTED_DEAL_VALUE("Expected Deal Value", FieldType.MONETARY),
     DESCRIPTION("Description", FieldType.TEXT),
     TYPE("Type", FieldType.DROPDOWN),
