@@ -64,9 +64,7 @@ public final class ElementInteractionImpl implements ElementInteraction {
     }
 
     /**
-     * <p>
-     * Clears the text from the {@link WebElement}.
-     * </p>
+     * {@inheritDoc}
      */
     @Override
     public void clear() {
