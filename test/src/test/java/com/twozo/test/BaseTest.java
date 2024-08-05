@@ -25,7 +25,7 @@ public class BaseTest {
         webAutomationDriver = WebAutomationDriver.get();
         LOG.info("Browser initialize");
         webAutomationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
-        webAutomationDriver.getWebNavigator().to("https://app.twozo.live/");
+        webAutomationDriver.getWebNavigator().to("https://app.thelaunchclub.in/login");
         LOG.info("Navigated to Twozo website");
         webAutomationDriver.getWebWindowHandler().maximize();
         LOG.info("Browser window maximized");

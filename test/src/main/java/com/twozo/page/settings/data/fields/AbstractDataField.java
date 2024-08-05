@@ -2,7 +2,10 @@ package com.twozo.page.settings.data.fields;
 
 import com.twozo.page.settings.Settings;
 import com.twozo.page.settings.data.fields.contact.field.ContactField;
-import com.twozo.page.settings.data.fields.field.*;
+import com.twozo.page.settings.data.fields.field.DependableField;
+import com.twozo.page.settings.data.fields.field.Field;
+import com.twozo.page.settings.data.fields.field.FieldElement;
+import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
@@ -15,12 +18,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractDataField extends Settings {
+
     private static final String TWO_STRING_FORMAT = "%s%s";
     private static final String THREE_STRING_FORMAT = "%s%s%s";
     private static final String OPEN_PARENTHESIS = "(";
 
     protected AbstractDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
+    }
+
+    private WebPageElement getActiveTab(final String tabName){
+        return findByXpath(String.format("//*[@value='%s' and @aria-pressed='true']",tabName));
     }
 
     protected WebPageElement getActiveContactTab() {
@@ -159,8 +167,10 @@ public abstract class AbstractDataField extends Settings {
                     return false;
                 }
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -357,6 +367,19 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
+    public void hideField(final String systemFieldName) {
+        final String fieldBlock = getFieldBlock(systemFieldName);
+        hoverByXpath(fieldBlock);
+        click(findByXpath(format(fieldBlock, FieldElement.EYE_ICON)));
+    }
+
+    public void deleteField(final String systemFieldName) {
+        final String fieldBlock = getFieldBlock(systemFieldName);
+        hoverByXpath(fieldBlock);
+        click(findByXpath(format(fieldBlock, FieldElement.DELETE_ICON)));
+        click(findByText("Delete"));
+    }
+
     public boolean verifyEyeIcon(final Field field) {
         final String name = field.getName();
         final String fieldBlock = getFieldBlock(name);
@@ -493,7 +516,35 @@ public abstract class AbstractDataField extends Settings {
     }
 
     public boolean isVisibleInSummary(final String fieldName) {
-        return isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(fieldName))));
+//        try {
+//            return isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(fieldName))));
+//        } catch (Exception e) {
+//            try {
+//                click(findByXpath("//*[@class='css-1bv670y']//button"));
+//                return isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(fieldName))));
+//
+//            } catch (Exception exception) {
+//                return false;
+//            }
+//        }
+        while (true) {
+            try {
+                if (isDisplayed(findByXpath(format("//*[@class='css-itno5t']", XPathBuilder.getXPathByText(fieldName))))) {
+                    return true;
+                }
+            } catch (Exception e) {
+                try {
+                    WebPageElement button = findByXpath("//*[@class='css-1bv670y']//button");
+                    if (isDisplayed(button)) {
+                        click(button);
+                    } else {
+                        return false;
+                    }
+                } catch (Exception exception) {
+                    return false;
+                }
+            }
+        }
     }
 
     public boolean isVisibleInAddForm(final String fieldName) {
@@ -513,6 +564,7 @@ public abstract class AbstractDataField extends Settings {
         } catch (Exception exception) {
             refresh();
         }
+
         return false;
     }
 
@@ -524,6 +576,7 @@ public abstract class AbstractDataField extends Settings {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -533,6 +586,7 @@ public abstract class AbstractDataField extends Settings {
                     XPathBuilder.getXPathByText(fieldName))));
         } catch (Exception exception) {
             refresh();
+
             return false;
         }
     }
@@ -548,6 +602,7 @@ public abstract class AbstractDataField extends Settings {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -587,6 +642,7 @@ public abstract class AbstractDataField extends Settings {
 
             }
         }
+
         return true;
     }
 
@@ -637,6 +693,23 @@ public abstract class AbstractDataField extends Settings {
                 }
                 refresh();
             }
+        }
+    }
+
+    public void enableAddView(final String fieldName) {
+        final String fieldBlock = getFieldBlock(fieldName);
+        final WebPageElement addViewCheckbox = findByXpath(getPathOfSpecificCheckbox(fieldBlock,
+                FieldElement.ADD_VIEW_CHECKBOX));
+
+        if (!isSelected(addViewCheckbox)) {
+            click(addViewCheckbox);
+            try {
+                click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
+            } catch (Exception exception) {
+                System.out.println(fieldName);
+            }
+            refresh();
+
         }
     }
 //
@@ -701,17 +774,17 @@ public abstract class AbstractDataField extends Settings {
 //
 //    }
 
-    public void editCustomField(final String actualName, final String newName){
+    public void editCustomField(final String actualName, final String newName) {
         final String fieldBlockXpath = getFieldBlock(actualName);
-        try{
+        try {
             findByXpath(fieldBlockXpath);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("No such field found");
         }
         hoverByXpath(fieldBlockXpath);
-        click(findByXpath(format(fieldBlockXpath,FieldElement.EDIT_ICON)));
+        click(findByXpath(format(fieldBlockXpath, FieldElement.EDIT_ICON)));
         send(getCustomFieldName(), newName);
-
+        click(findByXpath(format(fieldBlockXpath, FieldElement.UPDATE_BUTTON)));
 
     }
 

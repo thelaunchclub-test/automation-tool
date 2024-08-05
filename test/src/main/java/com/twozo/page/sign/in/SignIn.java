@@ -49,7 +49,7 @@ public class SignIn extends BasePage {
     private SignIn(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals( "https://app.twozo.live/login")) {
+        if (!getURL().equals( "https://app.thelaunchclub.in/login")) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }

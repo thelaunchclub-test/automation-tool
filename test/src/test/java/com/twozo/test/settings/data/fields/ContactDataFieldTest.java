@@ -1,5 +1,6 @@
 package com.twozo.test.settings.data.fields;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.twozo.commons.json.JsonObject;
 import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
@@ -239,10 +240,10 @@ public class ContactDataFieldTest extends DataFieldTest {
 //        }
 //    }
 
-    @AfterMethod
-    public void switchToContactDataFields() {
-        HomePage.getInstance(webAutomationDriver).switchToSettings().switchToContactDataFields();
-    }
+//    @AfterMethod
+//    public void switchToContactDataFields() {
+//        HomePage.getInstance(webAutomationDriver).switchToSettings().switchToContactDataFields();
+//    }
 
     @Test
     public void addAllSystemFields() {
@@ -277,9 +278,9 @@ public class ContactDataFieldTest extends DataFieldTest {
         }
 
         if (fieldStatus.isRequired()) {
-            if (contactDataField.getURL().equals("https://app.twozo.live/contacts")){
-                Assert.assertTrue(contactDataField.isVisibleInAddFormAsRequired(name));}
-            else {
+            if (contactDataField.getURL().equals("https://app.twozo.live/contacts")) {
+                Assert.assertTrue(contactDataField.isVisibleInAddFormAsRequired(name));
+            } else {
                 isVisibleInAddFormAsRequired(name);
             }
         } else {
@@ -294,14 +295,37 @@ public class ContactDataFieldTest extends DataFieldTest {
     public void editFieldName(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
-
         final String name = input.getString("name");
+        final String append = input.getString("append");
+        final String newFieldName = String.format("%s%s", name, append);
 
-
-
-
-
+        // contactDataField.editCustomField(name, append);
+        //contactDataField.enableAddView(newFieldName);
+        // isVisibleInAddForm(newFieldName);
+        Assert.assertTrue(isVisibleInSummary("b"));
+        //isVisibleInColumnSettings(newFieldName);
     }
 
+    @Test(dataProvider = "hideField")
+    public void hideField(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final String name = input.getString("name");
+        contactDataField.hideField(name);
+        Assert.assertFalse(isVisibleInAddForm(name));
+        Assert.assertFalse(isVisibleInSummary(name));
+        Assert.assertFalse(isVisibleInColumnSettings(name));
+    }
+
+    @Test(dataProvider = "deleteField")
+    public void deleteField(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final String name = input.getString("name");
+        contactDataField.deleteField(name);
+        Assert.assertFalse(isVisibleInAddForm(name));
+        Assert.assertFalse(isVisibleInSummary(name));
+        Assert.assertFalse(isVisibleInColumnSettings(name));
+    }
 
 }

@@ -80,7 +80,7 @@ public class Contact extends BasePage {
     public WebPageElement getFirstName() {
 
         if (Objects.isNull(firstName)) {
-            firstName = findByText("First Name");
+            firstName = findByText("contact.fields.first.name");
         }
 
         return firstName;

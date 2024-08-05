@@ -3,8 +3,7 @@
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "aa",
-      "append": "edited"
+      "name": "Source"
     }
   }
 ]

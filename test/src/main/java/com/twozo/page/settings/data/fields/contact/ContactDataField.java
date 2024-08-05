@@ -22,7 +22,7 @@ public class ContactDataField extends AbstractDataField {
     protected ContactDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (getURL().equals(URL.CONTACT)) {
+        if (!getURL().equals(URL.CONTACT)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }

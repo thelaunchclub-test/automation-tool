@@ -40,10 +40,20 @@ public class DataFieldTest extends SettingsTest {
         return new TestDataProvider().getTestCases("EditFieldName.json");
     }
 
-    public void isVisibleInSummary(final String fieldName) {
+    @DataProvider(name = "hideField")
+    public static Object[][] getHideFieldData() {
+        return new TestDataProvider().getTestCases("HideField.json");
+    }
+
+    @DataProvider(name = "deleteField")
+    public static Object[][] getDeleteFieldData() {
+        return new TestDataProvider().getTestCases("DeleteField.json");
+    }
+
+    public boolean isVisibleInSummary(final String fieldName) {
         homePage.switchToContact();
         contactDataField.switchToSummary();
-        Assert.assertTrue(contactDataField.isVisibleInSummary(fieldName));
+        return contactDataField.isVisibleInSummary(fieldName);
     }
 
     public void isDefaultFieldsVisibleInAddView() {
@@ -64,9 +74,9 @@ public class DataFieldTest extends SettingsTest {
         return contactDataField.isVisibleInAddFormAsRequired(fieldName);
     }
 
-    public void isVisibleInColumnSettings(final String fieldName) {
+    public boolean isVisibleInColumnSettings(final String fieldName) {
         homePage.switchToContact().switchToColumnSettings();
         homePage.switchToContact();
-        Assert.assertTrue(contactDataField.isVisibleInColumnSettings(fieldName));
+        return contactDataField.isVisibleInColumnSettings(fieldName);
     }
 }

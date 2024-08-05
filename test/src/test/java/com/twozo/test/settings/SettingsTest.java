@@ -25,7 +25,7 @@ public class SettingsTest extends BaseTest {
 
     @BeforeClass
     public void initialize() {
-        homePage = signIn.signIn("gb@gmail.com", "A$12345a");
+        homePage = signIn.signIn("jd@gmail.com", "A$12345a");
         contactDataField = homePage.switchToSettings().switchToContactDataFields();
 
         //companyDataField = homePage.switchToSettings().switchToCompanyDataFields();

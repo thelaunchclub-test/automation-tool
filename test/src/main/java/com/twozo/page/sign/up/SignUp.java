@@ -37,7 +37,7 @@ public class SignUp extends BasePage {
         super(webAutomationDriver);
         click(getSignUpButton());
 
-        if (!isDisplayed(findByXpath("//p[contains(text(), 'Create')]"))) {
+        if (!getURL().equals( "https://app.thelaunchclub.in/signup")) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND);
         }
 
