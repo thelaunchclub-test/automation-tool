@@ -73,7 +73,7 @@ public interface ElementInformationProvider {
      * Gets the visible text of the {@link WebElement}.
      * </p>
      *
-     * @return The text of a {@link WebElement}as a String.
+     * @return The text of a {@link WebElement} as a String.
      */
     String getText();
 
@@ -85,4 +85,22 @@ public interface ElementInformationProvider {
      * @return true if the element is displayed, false otherwise.
      */
     boolean isDisplayed();
+
+    /**
+     * <p>
+     * Gets the x location of the {@link WebElement}.
+     * </p>
+     *
+     * @return The location of a {@link WebElement} as an integer.
+     */
+    int getXLocation();
+
+    /**
+     * <p>
+     * Gets the y location of the {@link WebElement}.
+     * </p>
+     *
+     * @return The location of a {@link WebElement} as an integer.
+     */
+    int getYLocation();
 }
