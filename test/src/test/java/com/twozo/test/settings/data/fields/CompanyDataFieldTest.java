@@ -205,6 +205,10 @@ public class CompanyDataFieldTest extends DataFieldTest {
         if (fieldStatus.isAddView()) {
             isVisibleInAddForm(fieldStatus.getName());
         }
+    }
 
+    @Test
+    public void dragAndDrop() {
+        contactDataField.dragAndDropByXpath("Designation");
     }
 }

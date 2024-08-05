@@ -902,7 +902,6 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-
     protected abstract List<Field> getDefaultFields();
 
     protected abstract Field[] getAllFields();

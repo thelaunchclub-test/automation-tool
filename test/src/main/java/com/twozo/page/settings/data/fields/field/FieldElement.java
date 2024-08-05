@@ -9,6 +9,8 @@ public class FieldElement {
 
     public static final String NON_DRAGGABLE = XPathBuilder.getXPath(new XPath(TagName.ALL, AttributeName.OPACITY, "0.2", 0));
     public static final String DRAGGABLE = XPathBuilder.getXPath(new XPath(TagName.ALL, AttributeName.OPACITY, "1", 0));
+
+    public static final String DRAG_ICON = "//*[@class='MuiBox-root css-44bmtb']";
     public static final String ADD_VIEW_CHECKBOX = "//*[@type='checkbox'])[1]";
     public static final String REQUIRED_CHECKBOX = "//*[@type='checkbox'])[2]";
     public static final String CANCEL_BUTTON = XPathBuilder.getXPathByText("Cancel");

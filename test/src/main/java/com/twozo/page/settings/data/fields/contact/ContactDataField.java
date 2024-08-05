@@ -10,6 +10,8 @@ import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.url.settings.URL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.model.Element;
+import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.status.WebDriverErrorCode;
 
 import java.util.Arrays;
@@ -172,6 +174,15 @@ public class ContactDataField extends AbstractDataField {
                 !isSelected(findByXpath(getPathOfSpecificCheckbox(twitterDiv, FieldElement.REQUIRED_CHECKBOX))),
                 null);
     }
+
+    public final void dragAndDropByXpath(final String fieldName){
+        mouseActions.dragAndDropBy(new Element(LocatorType.XPATH,format(getFieldBlock(fieldName),FieldElement.DRAG_ICON),true),0,120).perform();
+    }
+
+    public final void dragAndDropByElement(final Element element){
+        mouseActions.dragAndDropBy(element,0,0);
+    }
+
 
     public boolean verifyActiveContactTab() {
         return isDisplayed(getActiveContactTab());

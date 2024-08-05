@@ -168,11 +168,10 @@ public class BasePage {
 
     protected final void hover(final Element element) {
         mouseActions.moveToElement(element).build().perform();
-    }
-
-    protected final void hoverByXpath(final String xpath) {
+    }    protected final void hoverByXpath(final String xpath) {
         mouseActions.moveToElement(new Element(LocatorType.XPATH, xpath, true)).build().perform();
     }
+
 
     private void select(final String option, final String dropdownType) {
         for (final WebPageElement element : findElements(new Element(LocatorType.TAG_NAME, dropdownType, true))) {
