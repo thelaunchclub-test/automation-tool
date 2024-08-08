@@ -62,4 +62,12 @@ public final class ElementInteractionImpl implements ElementInteraction {
     public void sendKeys(@NonNull final CharSequence... keysToSend) {
         element.sendKeys(keysToSend);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void clear() {
+        element.clear();
+    }
 }
