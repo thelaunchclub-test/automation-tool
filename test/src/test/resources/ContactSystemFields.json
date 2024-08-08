@@ -165,7 +165,7 @@
     "input": {
       "isDraggable": false,
       "name": "Subscription Types",
-      "fieldType": "Dropdown",
+      "fieldType": "Multi Select",
       "isAddView": true
     }
   },
@@ -174,8 +174,8 @@
     "title": "Unsubscribe reason with add view",
     "input": {
       "isDraggable": false,
-      "name": "First Name",
-      "fieldType": "Text",
+      "name": "Unsubscribe reason",
+      "fieldType": "Dropdown",
       "isAddView": true
     }
   },
@@ -184,8 +184,8 @@
     "title": "Other Unsubscribe reason with add view",
     "input": {
       "isDraggable": false,
-      "name": "Other Unsubscribe reason",
-      "fieldType": "Dropdown",
+      "name": "Other unsubscribe reason",
+      "fieldType": "Large Text",
       "isAddView": true
     }
   },
@@ -255,7 +255,7 @@
     "input": {
       "isDraggable": false,
       "name": "Web Form",
-      "fieldType": "Number",
+      "fieldType": "Text",
       "isAddView": true
     }
   },
@@ -285,7 +285,7 @@
     "input": {
       "isDraggable": false,
       "name": "Last Activity Type",
-      "fieldType": "Dropdown",
+      "fieldType": "Text",
       "isAddView": true
     }
   },
@@ -395,7 +395,7 @@
     "input": {
       "isDraggable": false,
       "name": "Updated At",
-      "fieldType": "Time",
+      "fieldType": "Date",
       "isAddView": true
     }
   },
@@ -415,7 +415,7 @@
     "input": {
       "isDraggable": false,
       "name": "Created At",
-      "fieldType": "Time",
+      "fieldType": "Date",
       "isAddView": true
     }
   },
@@ -425,7 +425,7 @@
     "input": {
       "isDraggable": false,
       "name": "Last Assigned At",
-      "fieldType": "Time",
+      "fieldType": "Date",
       "isAddView": true
     }
   }

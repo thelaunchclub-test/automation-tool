@@ -42,9 +42,10 @@ public class BasePage {
         explicitWaitHandler.waitTillVisible(new Element(LocatorType.XPATH, xpath, true));
     }
 
-    public void waitTillClickable(final String xpath){
-        explicitWaitHandler.WaitTillClickable(new Element(LocatorType.XPATH,xpath,true));
+    public void waitTillClickable(final String xpath) {
+        explicitWaitHandler.WaitTillClickable(new Element(LocatorType.XPATH, xpath, true));
     }
+
     protected final WebPageElement findElement(final Element element) {
         return elementFinder.getWebPageElement(element);
     }
@@ -129,8 +130,12 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).isDisplayed();
     }
 
-    protected  final boolean isSelected(final WebPageElement webPageElement){
+    protected final boolean isSelected(final WebPageElement webPageElement) {
         return getElementInformationProvider(webPageElement).isSelected();
+    }
+
+    protected final boolean isEnabled(final WebPageElement webPageElement){
+        return getElementInformationProvider(webPageElement).isEnabled();
     }
 
     protected final String getText(final WebPageElement webPageElement) {
@@ -158,6 +163,14 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
 
+    protected int getLocationOfX(final WebPageElement webPageElement){
+        return getElementInformationProvider(webPageElement).getXLocation();
+    }
+
+    protected int getLocationOfY(final WebPageElement webPageElement){
+        return getElementInformationProvider(webPageElement).getYLocation();
+    }
+
     protected final void dropdown(final String option) {
         select(option, "li");
     }
@@ -168,10 +181,11 @@ public class BasePage {
 
     protected final void hover(final Element element) {
         mouseActions.moveToElement(element).build().perform();
-    }    protected final void hoverByXpath(final String xpath) {
-        mouseActions.moveToElement(new Element(LocatorType.XPATH, xpath, true)).build().perform();
     }
 
+    protected final void hoverByXpath(final String xpath) {
+        mouseActions.moveToElement(new Element(LocatorType.XPATH, xpath, true)).build().perform();
+    }
 
     private void select(final String option, final String dropdownType) {
         for (final WebPageElement element : findElements(new Element(LocatorType.TAG_NAME, dropdownType, true))) {
@@ -183,9 +197,16 @@ public class BasePage {
         }
     }
 
+    protected Element getElementByXpath(final String xpath){
+        return new Element(LocatorType.XPATH,xpath,true);
+    }
+
+
+
     private ElementInformationProvider getElementInformationProvider(final WebPageElement webPageElement) {
         return webPageElement.getElementInformationProvider();
     }
+
 
     private ElementInteraction getElementInteraction(final WebPageElement webPageElement) {
         return webPageElement.interact();

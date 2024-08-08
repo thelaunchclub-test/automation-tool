@@ -30,6 +30,7 @@ public class BaseTest {
         webAutomationDriver.getWebWindowHandler().maximize();
         LOG.info("Browser window maximized");
         signIn = SignIn.getInstance(webAutomationDriver);
+        //signUp = signIn.switchToSignUp();
     }
 
 //    @AfterMethod

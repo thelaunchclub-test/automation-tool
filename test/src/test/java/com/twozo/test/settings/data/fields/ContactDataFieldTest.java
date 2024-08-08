@@ -1,17 +1,10 @@
 package com.twozo.test.settings.data.fields;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.twozo.commons.json.JsonObject;
-import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
-import com.twozo.page.settings.data.fields.contact.ContactDataField;
-import com.twozo.page.settings.data.fields.contact.field.ContactField;
 import com.twozo.test.TestCase;
-import com.twozo.test.TestDataProvider;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ContactDataFieldTest extends DataFieldTest {
@@ -245,14 +238,10 @@ public class ContactDataFieldTest extends DataFieldTest {
 //        HomePage.getInstance(webAutomationDriver).switchToSettings().switchToContactDataFields();
 //    }
 
-    @Test
-    public void addAllSystemFields() {
-        contactDataField.addAllSystemFields();
-    }
 
     @Test
     public void enableAllSystemFields() {
-        contactDataField.enableAddViewForAllSystemFields();
+        Assert.assertTrue(contactDataField.enableAddViewForAllSystemFields());
     }
 
     @Test(dataProvider = "data")
@@ -326,6 +315,66 @@ public class ContactDataFieldTest extends DataFieldTest {
         Assert.assertFalse(isVisibleInAddForm(name));
         Assert.assertFalse(isVisibleInSummary(name));
         Assert.assertFalse(isVisibleInColumnSettings(name));
+    }
+
+//    @Test
+//    public void dragAndDrop() {
+//        contactDataField.fromTo("Company");
+//    }
+
+    @Test
+    public void checkChoices() {
+        contactDataField.checkSubscriptionStatus();
+    }
+
+    @Test
+    public void check() {
+        contactDataField.isEnabled();
+    }
+
+
+    @Test(dataProvider = "contactSystemFields")
+    public void addSystemFields(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(contactDataField.addSystemField(fieldStatus));
+      //  Assert.assertTrue(isVisibleInSummary(fieldStatus.getName()));
+    }
+
+    @Test(dataProvider = "contactSystemFields")
+    public void enableAddView(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(contactDataField.enableAddView(fieldStatus));
+    }
+
+    @Test(dataProvider = "contactSystemFields")
+    public void checkAddForm(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setAddView(input.getBoolean("isAddView"));
+        contactDataField.addSystemField(fieldStatus);
+        contactDataField.checkAddView(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        if (fieldStatus.isAddView()) {
+            Assert.assertTrue(isVisibleInAddForm(name));
+        } else {
+            Assert.assertFalse(isVisibleInAddForm(name));
+        }
     }
 
 }

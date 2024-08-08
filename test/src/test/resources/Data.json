@@ -3,9 +3,20 @@
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "isDraggable": false,
+      "isDraggable": true,
       "name": "Address",
       "fieldType": "Address",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "isDraggable": true,
+      "name": "Total Activities",
+      "fieldType": "Number",
       "isAddView": true,
       "isRequired": true
     }

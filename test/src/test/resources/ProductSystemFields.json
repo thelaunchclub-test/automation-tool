@@ -1,0 +1,215 @@
+[
+  {
+    "testCaseID": 1,
+    "title": "Name with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Product Code with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Product Code",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Sales Owner with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Sales Owner",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Unit Price with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Unit Price",
+      "fieldType": "Monetary",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 5,
+    "title": "Category with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Category",
+      "fieldType": "Dropdown",
+      "choicesAdded": 2,
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 6,
+    "title": "Active with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Active",
+      "fieldType": "Dropdown",
+      "choicesAdded": 2,
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 7,
+    "title": "Taxable with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Taxable",
+      "fieldType": "Dropdown",
+      "choicesAdded": 2,
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 8,
+    "title": "Quantity Ordered with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Quantity Ordered",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 9,
+    "title": "Quantity In Stock with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Quantity In Stock",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 10,
+    "title": "Description with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Description",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 11,
+    "title": "Type with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Type",
+      "fieldType": "Dropdown",
+      "choicesAdded": 2,
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 12,
+    "title": "SKU Number with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "SKU Number",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 13,
+    "title": "Valid Till with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Valid Till",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 14,
+    "title": "Created By with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Created By",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 15,
+    "title": "Created At with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Created At",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 16,
+    "title": "Updated By with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Updated By",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 17,
+    "title": "Updated At with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Updated At",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 18,
+    "title": "Last Assigned At with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Assigned At",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 19,
+    "title": "ID with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "ID",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  }
+]

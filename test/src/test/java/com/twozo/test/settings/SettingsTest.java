@@ -25,12 +25,12 @@ public class SettingsTest extends BaseTest {
 
     @BeforeClass
     public void initialize() {
-        homePage = signIn.signIn("jd@gmail.com", "A$12345a");
+        homePage = signIn.signIn("aak@gmail.com", "A$12345a");
         contactDataField = homePage.switchToSettings().switchToContactDataFields();
 
         //companyDataField = homePage.switchToSettings().switchToCompanyDataFields();
         // dealDataField = homePage.switchToSettings().switchToDealDataFields();
-        //productDataField = homePage.switchToSettings().switchToProductDataFields();
+      //  productDataField = homePage.switchToSettings().switchToProductDataFields();
 
     }
 }

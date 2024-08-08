@@ -3,10 +3,8 @@ package com.twozo.test.settings.data.fields;
 import com.twozo.test.TestDataProvider;
 import com.twozo.test.settings.SettingsTest;
 
-import org.openqa.selenium.devtools.v122.preload.model.PrerenderFinalStatus;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 public class DataFieldTest extends SettingsTest {
 
@@ -25,9 +23,24 @@ public class DataFieldTest extends SettingsTest {
 //        return new TestDataProvider().getTestCases("TestCase.json");
 //    }
 
-    @DataProvider(name = "addView")
-    public static Object[][] getAddViewData() {
-        return new TestDataProvider().getTestCases("AddView.json");
+    @DataProvider(name = "contactSystemFields")
+    public static Object[][] getContactSystemFieldData() {
+        return new TestDataProvider().getTestCases("ContactSystemFields.json");
+    }
+
+    @DataProvider(name = "companySystemFields")
+    public static Object[][] getCompanySystemFieldData() {
+        return new TestDataProvider().getTestCases("CompanySystemFields.json");
+    }
+
+    @DataProvider(name = "dealSystemFields")
+    public static Object[][] getDealSystemFieldData() {
+        return new TestDataProvider().getTestCases("DealSystemFields.json");
+    }
+
+    @DataProvider(name = "productSystemFields")
+    public static Object[][] getProductSystemFieldData() {
+        return new TestDataProvider().getTestCases("ProductSystemFields.json");
     }
 
     @DataProvider(name = "data")

@@ -207,8 +207,48 @@ public class CompanyDataFieldTest extends DataFieldTest {
         }
     }
 
-    @Test
-    public void dragAndDrop() {
-        contactDataField.dragAndDropByXpath("Designation");
+    @Test(dataProvider = "companySystemFields")
+    public void addAllSystemFields(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(companyDataField.addSystemField(fieldStatus));
     }
+
+    @Test(dataProvider = "companySystemFields")
+    public void enableAddView(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(companyDataField.enableAddView(fieldStatus));
+    }
+
+    @Test(dataProvider = "companySystemFields")
+    public void checkAddForm(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setAddView(input.getBoolean("isAddView"));
+        companyDataField.addSystemField(fieldStatus);
+        companyDataField.checkAddView(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        if (fieldStatus.isAddView()) {
+            Assert.assertTrue(isVisibleInAddForm(name));
+        } else {
+            Assert.assertFalse(isVisibleInAddForm(name));
+        }
+    }
+
 }

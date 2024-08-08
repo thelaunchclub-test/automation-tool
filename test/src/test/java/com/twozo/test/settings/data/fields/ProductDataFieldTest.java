@@ -206,4 +206,47 @@ public class ProductDataFieldTest extends DataFieldTest {
             isVisibleInAddForm(fieldStatus.getName());
         }
     }
+
+    @Test(dataProvider = "productSystemFields")
+    public void addAllSystemFields(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(productDataField.addSystemField(fieldStatus));
+    }
+
+    @Test(dataProvider = "productSystemFields")
+    public void enableAddView(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(productDataField.enableAddView(fieldStatus));
+    }
+
+    @Test(dataProvider = "productSystemFields")
+    public void checkAddForm(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setAddView(input.getBoolean("isAddView"));
+        productDataField.addSystemField(fieldStatus);
+        productDataField.checkAddView(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        if (fieldStatus.isAddView()) {
+            Assert.assertTrue(isVisibleInAddForm(name));
+        } else {
+            Assert.assertFalse(isVisibleInAddForm(name));
+        }
+    }
 }

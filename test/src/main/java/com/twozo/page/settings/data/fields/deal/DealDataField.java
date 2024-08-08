@@ -2,19 +2,15 @@ package com.twozo.page.settings.data.fields.deal;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.settings.data.fields.AbstractDataField;
-import com.twozo.page.settings.data.fields.company.field.CompanyField;
-import com.twozo.page.settings.data.fields.contact.field.ContactField;
 import com.twozo.page.settings.data.fields.deal.field.DealField;
 import com.twozo.page.settings.data.fields.field.*;
 import com.twozo.page.url.settings.URL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
-import org.openqa.selenium.NoSuchElementException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class DealDataField extends AbstractDataField {
 
@@ -213,6 +209,124 @@ public class DealDataField extends AbstractDataField {
         return isDisplayed(getActiveDealTab());
     }
 
+    public void checkWonReasonChoices() {
+        final String[] wonReasonChoices = {
+                "Product feature",
+                "Price",
+                "Timing",
+                "Others",
+        };
+
+        for (final String wonReason : wonReasonChoices) {
+            isDisplayed(findByXpath(XPathBuilder.getXPathByText(wonReason)));
+        }
+    }
+
+    public void checkLostReasonChoices() {
+        String[] lostReasonChoices = {
+                "Opted our rival",
+                "Price is too high",
+                "Junk Lead",
+                "Not interested",
+                "No Requirement",
+                "Need only in future",
+                "Product not satisfying",
+                "No proper follow-up",
+                "Appointment Missed"
+        };
+
+        for (final String lostReason : lostReasonChoices) {
+            isDisplayed(findByXpath(XPathBuilder.getXPathByText(lostReason)));
+        }
+    }
+
+    public void checkTypeChoices() {
+        final String[] typeChoices = {
+                "New Business",
+                "Existing Business - Renewal",
+                "Existing Business - Upgrade"
+        };
+
+        for (final String typeChoice : typeChoices) {
+            isDisplayed(findByXpath(XPathBuilder.getXPathByText(typeChoice)));
+        }
+    }
+
+    public void checkPipeline() {
+        final String pipeline = "Pipeline";
+        final String oneChoice = XPathBuilder.getXPathByText("1");
+        String dependableFieldBlock = getDependableFieldBlock(pipeline);
+
+        try {
+            isDisplayed(findByXpath(dependableFieldBlock));
+        } catch (Exception exception) {
+            addSystemField(pipeline);
+            isDisplayed(findByXpath(dependableFieldBlock));
+        }
+
+        final String pipelineBlock = getFieldBlock(pipeline);
+
+        isDisplayed(findByXpath(format(pipelineBlock, FieldElement.NON_DRAGGABLE)));
+        isDisplayed(findByXpath(format(pipelineBlock, FieldTypePath.DROPDOWN)));
+        click(findByXpath(format(pipelineBlock, oneChoice)));
+        final String stageBlock = getFieldBlock("Stage");
+
+        isDisplayed(findByXpath(format(stageBlock, FieldTypePath.DROPDOWN)));
+        isDisplayed(findByXpath(format(stageBlock, "0")));
+        final String wonReasonBlock = getFieldBlock("Won Reason");
+
+        isDisplayed(findByXpath(format(wonReasonBlock, FieldTypePath.DROPDOWN)));
+        click(findByXpath(format(pipelineBlock, "4")));
+        checkWonReasonChoices();
+        refresh();
+        final String lostReasonBlock = getFieldBlock("Lost Reason");
+
+        isDisplayed(findByXpath(format(lostReasonBlock, FieldTypePath.DROPDOWN)));
+        click(findByXpath(format(lostReasonBlock, "9")));
+        checkLostReasonChoices();
+        refresh();
+        final String dealClosedOn = getFieldBlock("Deal Closed On");
+
+        isDisplayed(findByXpath(format(dealClosedOn, FieldTypePath.DATE)));
+    }
+
+    public void checkType() {
+        final String type = "Type";
+        final String threeChoices = XPathBuilder.getXPathByText("3");
+        final String typeBlock = getFieldBlock(type);
+
+        try {
+            isDisplayed(findByXpath(getFieldBlock(type)));
+        } catch (Exception exception) {
+            addSystemField(type);
+            isDisplayed(findByXpath(getFieldBlock(type)));
+        }
+
+        checkSpecificElement(typeBlock, FieldElement.DRAGGABLE);
+        checkSpecificElement(typeBlock, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(typeBlock, threeChoices)));
+        checkTypeChoices();
+    }
+
+    public void checkPaymentStatus() {
+        final String type = "Payment Status";
+        final String twoChoices = XPathBuilder.getXPathByText("2");
+        final String paymentStatusBlock = getFieldBlock(type);
+
+        try {
+            isDisplayed(findByXpath(paymentStatusBlock));
+        } catch (Exception exception) {
+            addSystemField(type);
+            isDisplayed(findByXpath(paymentStatusBlock));
+        }
+
+        checkSpecificElement(paymentStatusBlock, FieldElement.DRAGGABLE);
+        checkSpecificElement(paymentStatusBlock, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(paymentStatusBlock, twoChoices)));
+        isDisplayed(findByXpath(XPathBuilder.getXPathByText("Online")));
+        isDisplayed(findByXpath(XPathBuilder.getXPathByText("Offline")));
+        refresh();
+    }
 
     @Override
     protected List<Field> getDefaultFields() {

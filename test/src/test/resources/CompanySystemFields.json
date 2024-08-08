@@ -1,0 +1,412 @@
+[
+  {
+    "testCaseID": 1,
+    "title": "Name with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Name",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 2,
+    "title": "Website with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Website",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 3,
+    "title": "Sales Owner with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Sales Owner",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 4,
+    "title": "Address with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Address",
+      "fieldType": "Address",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 5,
+    "title": "Facebook with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Facebook",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 6,
+    "title": "Twitter with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Twitter",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 7,
+    "title": "LinkedIn with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "LinkedIn",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 8,
+    "title": "Annual Revenue with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Annual Revenue",
+      "fieldType": "Monetary",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 9,
+    "title": "SIC Code with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "SIC Code",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 10,
+    "title": "Territory with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Territory",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 11,
+    "title": "Tags with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Tags",
+      "fieldType": "Multi Select",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 12,
+    "title": "Employees with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Employees",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 13,
+    "title": "Parent Company with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Parent Company",
+      "fieldType": "Company",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 14,
+    "title": "Organization Status with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Organization Status",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "choicesAdded": 5
+    }
+  },
+  {
+    "testCaseID": 15,
+    "title": "Industry Type with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Industry Type",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "choicesAdded": 68
+    }
+  },
+  {
+    "testCaseID": 16,
+    "title": "Business Type with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Business Type",
+      "fieldType": "Dropdown",
+      "isAddView": true,
+      "isRequired": true,
+      "choicesAdded": 13
+    }
+  },
+  {
+    "testCaseID": 17,
+    "title": "Description with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Description",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 18,
+    "title": "Created By with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Created By",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 19,
+    "title": "Created At with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Created At",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 20,
+    "title": "Updated By with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Updated By",
+      "fieldType": "Owner",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 21,
+    "title": "Updated At with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Updated At",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 22,
+    "title": "Last Assigned At with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Assigned At",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 23,
+    "title": "ID with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "ID",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 24,
+    "title": "Recent Note with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Recent Note",
+      "fieldType": "Large Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 25,
+    "title": "Open Deals with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Open Deals",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 26,
+    "title": "Closed Deals with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Closed Deals",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 27,
+    "title": "Won Deals with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Won Deals",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 28,
+    "title": "Lost Deals with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Lost Deals",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 29,
+    "title": "Last Activity Date with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Activity Date",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 30,
+    "title": "Next Activity Date with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Next Activity Date",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 31,
+    "title": "Last Activity Type with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Activity Type",
+      "fieldType": "Text",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 32,
+    "title": "Done Activities with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Done Activities",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 33,
+    "title": "Upcoming Activities with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Upcoming Activities",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 34,
+    "title": "Total Activities with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Total Activities",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 35,
+    "title": "Email Messages Count with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Email Message Count",
+      "fieldType": "Number",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 36,
+    "title": "Last Email Received with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Email Received",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  },
+  {
+    "testCaseID": 37,
+    "title": "Last Email Sent with add view",
+    "input": {
+      "isDraggable": false,
+      "name": "Last Email Sent",
+      "fieldType": "Date",
+      "isAddView": true,
+      "isRequired": true
+    }
+  }
+]

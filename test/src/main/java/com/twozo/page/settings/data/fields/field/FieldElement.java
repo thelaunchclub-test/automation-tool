@@ -9,7 +9,6 @@ public class FieldElement {
 
     public static final String NON_DRAGGABLE = XPathBuilder.getXPath(new XPath(TagName.ALL, AttributeName.OPACITY, "0.2", 0));
     public static final String DRAGGABLE = XPathBuilder.getXPath(new XPath(TagName.ALL, AttributeName.OPACITY, "1", 0));
-
     public static final String DRAG_ICON = "//*[@class='MuiBox-root css-44bmtb']";
     public static final String ADD_VIEW_CHECKBOX = "//*[@type='checkbox'])[1]";
     public static final String REQUIRED_CHECKBOX = "//*[@type='checkbox'])[2]";
@@ -17,6 +16,7 @@ public class FieldElement {
     public static final String ADD_BUTTON = XPathBuilder.getXPathByText("Add");
     public static final String UPDATE_BUTTON = XPathBuilder.getXPathByText("Update");
     public static final String FIELD_BLOCK = "(//*[@class='css-11x1d9z'])[%d]";
+    public static final String DEPENDABLE_FIELD_BLOCK = "//*[@class='MuiBox-root css-19idom'][%d]";
     public static final String SPECIFIC_BLOCK = "((//*[@class='css-11x1d9z'])[%d]/div/div/div/p)[1]";
     public static final String MENU_BLOCK = "(//*[@class='css-u4p24i'])[%d]";
     public static final String CUSTOM_FIELD_NAME = "(//*[@type='text'])[2]";

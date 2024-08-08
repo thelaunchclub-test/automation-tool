@@ -25,7 +25,7 @@ public enum ContactField implements Field {
     SUBSCRIPTION_STATUS("Subscription Status", FieldType.DROPDOWN),
     SUBSCRIPTION_TYPES("Subscription Types", FieldType.DROPDOWN),
     UNSUBSCRIBE_TYPES("Unsubscribe reason", FieldType.DROPDOWN),
-    OTHER_UNSUBSCRIBE_REASON("Other Unsubscribe reason", FieldType.DROPDOWN),
+    OTHER_UNSUBSCRIBE_REASON("Other unsubscribe reason", FieldType.DROPDOWN),
     WEB_FORM("Web Form", FieldType.TEXT),
     TIME_ZONE("Time Zone", FieldType.DROPDOWN),
     RECENT_NOTE("Recent Note", FieldType.LARGE_TEXT),

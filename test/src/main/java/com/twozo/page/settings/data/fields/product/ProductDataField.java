@@ -4,6 +4,7 @@ import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.settings.data.fields.AbstractDataField;
 import com.twozo.page.settings.data.fields.field.Field;
 import com.twozo.page.settings.data.fields.field.FieldElement;
+import com.twozo.page.settings.data.fields.field.FieldTypePath;
 import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.settings.data.fields.product.field.ProductField;
 import com.twozo.page.url.settings.URL;
@@ -118,6 +119,95 @@ public class ProductDataField extends AbstractDataField {
 
     public boolean verifyActiveProductTab() {
         return isDisplayed(getActiveProductTab());
+    }
+
+    public void choicesForActiveAndTaxable() {
+        String[] choices = {
+                "Yes",
+                "No"
+        };
+
+        for (final String choice : choices) {
+            isDisplayed(findByXpath(XPathBuilder.getXPathByText(choice)));
+        }
+    }
+
+    public void checkCategory() {
+        final String category = "Category";
+        final String twoChoices = XPathBuilder.getXPathByText("2");
+        final String categoryBlock = getFieldBlock(category);
+
+        try {
+            isDisplayed(findByXpath(categoryBlock));
+        } catch (Exception exception) {
+            addSystemField(category);
+            isDisplayed(findByXpath(categoryBlock));
+        }
+
+        checkSpecificElement(categoryBlock, FieldElement.DRAGGABLE);
+        checkSpecificElement(categoryBlock, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(categoryBlock, twoChoices)));
+        isDisplayed(findByXpath(XPathBuilder.getXPathByText("Hardware")));
+        isDisplayed(findByXpath(XPathBuilder.getXPathByText("Software")));
+        refresh();
+    }
+
+    public void checkActive() {
+        final String active = "Active";
+        final String twoChoices = XPathBuilder.getXPathByText("2");
+        final String activeBlock = getFieldBlock(active);
+
+        try {
+            isDisplayed(findByXpath(activeBlock));
+        } catch (Exception exception) {
+            addSystemField(active);
+            isDisplayed(findByXpath(activeBlock));
+        }
+
+        checkSpecificElement(activeBlock, FieldElement.DRAGGABLE);
+        checkSpecificElement(activeBlock, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(activeBlock, twoChoices)));
+        choicesForActiveAndTaxable();
+        refresh();
+    }
+
+    public void checkTaxable() {
+        final String taxable = "Taxable";
+        final String twoChoices = XPathBuilder.getXPathByText("2");
+        final String taxableBlock = getFieldBlock(taxable);
+
+        try {
+            isDisplayed(findByXpath(taxableBlock));
+        } catch (Exception exception) {
+            addSystemField(taxable);
+            isDisplayed(findByXpath(taxableBlock));
+        }
+
+        checkSpecificElement(taxableBlock, FieldElement.DRAGGABLE);
+        checkSpecificElement(taxableBlock, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(taxableBlock, twoChoices)));
+        choicesForActiveAndTaxable();
+        refresh();
+    }
+
+    public void checkType() {
+        final String type = "Type";
+        final String twoChoices = XPathBuilder.getXPathByText("2");
+        final String typeBlock = getFieldBlock(type);
+
+        try {
+            isDisplayed(findByXpath(typeBlock));
+        } catch (Exception exception) {
+            addSystemField(type);
+            isDisplayed(findByXpath(typeBlock));
+        }
+
+        checkSpecificElement(typeBlock, FieldElement.DRAGGABLE);
+        checkSpecificElement(typeBlock, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(typeBlock, twoChoices)));
+        isDisplayed(findByXpath(XPathBuilder.getXPathByText("Unit")));
+        isDisplayed(findByXpath(XPathBuilder.getXPathByText("Subscription")));
+        refresh();
     }
 
     @Override

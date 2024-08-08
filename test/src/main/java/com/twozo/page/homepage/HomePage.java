@@ -70,9 +70,9 @@ public class HomePage extends BasePage {
 
     public WebPageElement getContactIcon() {
 
-     //   if (Objects.isNull(contactIcon)) {
-            contactIcon = findByOrder(2);
-       // }
+        //   if (Objects.isNull(contactIcon)) {
+        contactIcon = findByOrder(2);
+        // }
 
         return contactIcon;
     }
@@ -167,6 +167,10 @@ public class HomePage extends BasePage {
     }
 
     public Settings switchToSettings() {
+        try {
+            Thread.sleep(5000);
+        } catch (Exception exception) {
+        }
         click(getSettingsIcon());
 
         return settings;

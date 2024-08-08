@@ -205,6 +205,50 @@ public class DealDataFieldTest extends DataFieldTest {
         if (fieldStatus.isAddView()) {
             isVisibleInAddForm(fieldStatus.getName());
         }
+    }
 
+    @Test(dataProvider = "dealSystemFields")
+    public void addAllSystemFields(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        //dealDataField.addSystemField(fieldStatus);
+       Assert.assertTrue(dealDataField.addSystemField(fieldStatus));
+    }
+
+    @Test(dataProvider = "dealSystemFields")
+    public void enableAddView(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setFieldType(input.getString("fieldType"));
+
+        Assert.assertTrue(dealDataField.enableAddView(fieldStatus));
+    }
+
+    @Test(dataProvider = "dealSystemFields")
+    public void checkAddForm(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setAddView(input.getBoolean("isAddView"));
+        dealDataField.addSystemField(fieldStatus);
+        dealDataField.checkAddView(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        if (fieldStatus.isAddView()) {
+            Assert.assertTrue(isVisibleInAddForm(name));
+        } else {
+            Assert.assertFalse(isVisibleInAddForm(name));
+        }
     }
 }
