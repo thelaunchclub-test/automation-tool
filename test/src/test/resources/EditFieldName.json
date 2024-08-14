@@ -1,10 +1,46 @@
 [
   {
     "testCaseID": 1,
-    "title": "First Name with add view",
+    "title": "Field",
     "input": {
-      "name": "aa",
+      "fieldName": "a",
       "append": "edited"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "b",
+      "append": "edited"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "c",
+      "append": "edited"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Field",
+    "input": {
+      "fieldName": "d",
+      "append": "edited"
+    },
+    "output": {
+      "result": "pass"
     }
   }
 ]

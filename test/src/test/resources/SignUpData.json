@@ -3,11 +3,116 @@
     "testCaseID": 1,
     "title": "Sign up data",
     "input": {
-      "email": "aak@gmail.com",
+      "email": "ba@gmail.com",
       "name": "a",
       "password": "A$12345a",
       "confirmPassword": "A$12345a",
-      "company": "aak",
+      "company": "ba",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "bb@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "bb",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "cc@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "cc",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "dd@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "dd",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "ee@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "ee",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "ff@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "ffgg",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "gg@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "gg",
+      "jobRole": "Marketing"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "Sign up data",
+    "input": {
+      "email": "hh@gmail.com",
+      "name": "a",
+      "password": "A$12345a",
+      "confirmPassword": "A$12345a",
+      "company": "hh",
       "jobRole": "Marketing"
     },
     "output": {

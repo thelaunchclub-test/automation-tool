@@ -7,7 +7,7 @@ import com.twozo.page.settings.data.fields.field.FieldElement;
 import com.twozo.page.settings.data.fields.field.FieldTypePath;
 import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.settings.data.fields.product.field.ProductField;
-import com.twozo.page.url.settings.URL;
+import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
@@ -22,7 +22,7 @@ public class ProductDataField extends AbstractDataField {
     protected ProductDataField(WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals(URL.PRODUCT)) {
+        if (!getURL().equals(SettingsURL.PRODUCT_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }

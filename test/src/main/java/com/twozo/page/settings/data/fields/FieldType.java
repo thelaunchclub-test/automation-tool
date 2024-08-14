@@ -6,12 +6,12 @@ public class FieldType {
     public static String LARGE_TEXT = "Large Text";
     public static String NUMBER = "Number";
     public static String DROPDOWN = "Dropdown";
-    public static String MULTI_SELECT = "Multi Select";
+    public static String MULTI_SELECT = "multiselect";
     public static String OWNER = "Owner";
     public static String COMPANY = "Company";
     public static String CONTACT = "Contact";
-    public static String PHONE = "Phone";
-    public static String EMAIL = "Email";
+    public static String PHONES = "Phones";
+    public static String EMAILS = "Emails";
     public static String MONETARY = "Monetary";
     public static String TIME = "Time";
     public static String TIME_RANGE = "Time Range";

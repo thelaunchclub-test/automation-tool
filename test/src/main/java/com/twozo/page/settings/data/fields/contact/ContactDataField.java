@@ -7,7 +7,7 @@ import com.twozo.page.settings.data.fields.field.Field;
 import com.twozo.page.settings.data.fields.field.FieldElement;
 import com.twozo.page.settings.data.fields.field.FieldTypePath;
 import com.twozo.page.settings.data.fields.field.SystemField;
-import com.twozo.page.url.settings.URL;
+import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
@@ -23,7 +23,7 @@ public class ContactDataField extends AbstractDataField {
     protected ContactDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals(URL.CONTACT)) {
+        if (!getURL().equals(SettingsURL.CONTACT_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -345,14 +345,13 @@ public class ContactDataField extends AbstractDataField {
     public void checkSubscriptionStatus() {
         final String subscriptionStatus = "Subscription Status";
         final String fiveChoices = XPathBuilder.getXPathByText("5");
-        String dependableFieldBlock = getDependableFieldBlock(subscriptionStatus);
+        // String dependableFieldBlock = getDependableFieldBlock(subscriptionStatus);
 
         try {
-            isDisplayed(findByXpath(dependableFieldBlock));
-
+            isDisplayed(findByXpath(getDependableFieldBlock(subscriptionStatus)));
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(subscriptionStatus);
-            isDisplayed(findByXpath(dependableFieldBlock));
+            isDisplayed(findByXpath(getDependableFieldBlock(subscriptionStatus)));
         }
 
         final String subscriptionStatusBlock = getFieldBlock(subscriptionStatus);
@@ -383,14 +382,16 @@ public class ContactDataField extends AbstractDataField {
     public void checkLifecycleStage() {
         final String lifecycleStage = "Lifecycle Stage";
         final String fourChoices = XPathBuilder.getXPathByText("4");
-        final String lifecycleStageBlock = getFieldBlock(lifecycleStage);
+        String lifecycleStageBlock = null;
 
         try {
             isDisplayed(findByXpath(getFieldBlock(lifecycleStage)));
 
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(lifecycleStage);
-            isDisplayed(findByXpath(getFieldBlock(lifecycleStage)));
+            lifecycleStageBlock =getFieldBlock(lifecycleStage);
+
+            isDisplayed(findByXpath(lifecycleStageBlock));
         }
 
         checkSpecificElement(lifecycleStageBlock, FieldElement.DRAGGABLE);
@@ -401,12 +402,13 @@ public class ContactDataField extends AbstractDataField {
     public void checkSource() {
         final String source = "Source";
         final String fourteenChoices = XPathBuilder.getXPathByText("14");
-        String sourceBlock = getFieldBlock(source);
+        String sourceBlock = null;
 
         try {
-            isDisplayed(findByXpath(sourceBlock));
+            isDisplayed(findByXpath(getFieldBlock(source)));
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(source);
+            sourceBlock = getFieldBlock(source);
             isDisplayed(findByXpath(sourceBlock));
         }
 
@@ -419,12 +421,13 @@ public class ContactDataField extends AbstractDataField {
     public void checkTimezone() {
         final String timeZone = "Time Zone";
         final String hundredChoices = XPathBuilder.getXPathByText("100");
-        String timezoneBlock = getFieldBlock(timeZone);
+        String timezoneBlock = null;
 
         try {
-            isDisplayed(findByXpath(timezoneBlock));
+            isDisplayed(findByXpath(getFieldBlock(timeZone)));
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(timeZone);
+            timezoneBlock =getFieldBlock(timeZone);
             isDisplayed(findByXpath(timezoneBlock));
         }
 

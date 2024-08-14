@@ -3,7 +3,28 @@
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "Source"
+      "name": "Next Activity Date"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "name": "Last Activity Type"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "name": "Done Activities"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "name": "Upcoming Activities"
     }
   }
 ]

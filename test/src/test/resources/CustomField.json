@@ -25,7 +25,7 @@
     "testCaseID": 1,
     "title": "Field",
     "input": {
-      "fieldName": "C",
+      "fieldName": "c",
       "fieldType": "Number"
     },
     "output": {
@@ -36,7 +36,7 @@
     "testCaseID": 1,
     "title": "Field",
     "input": {
-      "fieldName": "D",
+      "fieldName": "d",
       "fieldType": "Owner"
     },
     "output": {
@@ -47,7 +47,7 @@
     "testCaseID": 1,
     "title": "Field",
     "input": {
-      "fieldName": "E",
+      "fieldName": "e",
       "fieldType": "Company"
     },
     "output": {
@@ -58,7 +58,7 @@
     "testCaseID": 1,
     "title": "Field",
     "input": {
-      "fieldName": "F",
+      "fieldName": "f",
       "fieldType": "Contact"
     },
     "output": {
@@ -69,7 +69,7 @@
     "testCaseID": 1,
     "title": "Field",
     "input": {
-      "fieldName": "G",
+      "fieldName": "g",
       "fieldType": "Phone"
     },
     "output": {
@@ -80,11 +80,31 @@
     "testCaseID": 1,
     "title": "Field",
     "input": {
-      "fieldName": "H",
+      "fieldName": "h",
       "fieldType": "Email"
     },
     "output": {
       "result": "pass"
     }
+  },  {
+  "testCaseID": 1,
+  "title": "Field",
+  "input": {
+    "fieldName": "i",
+    "fieldType": "Dropdown"
+  },
+  "output": {
+    "result": "pass"
   }
+},  {
+  "testCaseID": 1,
+  "title": "Field",
+  "input": {
+    "fieldName": "j",
+    "fieldType": "Multi Select"
+  },
+  "output": {
+    "result": "pass"
+  }
+}
 ]

@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 public class SettingsTest extends BaseTest {
 
-    // private static final Logger LOG = LoggerFactory.getLogger(SignInTest.class);
+    //private static final Logger LOG = LoggerFactory.getLogger(SignInTest.class);
 
     protected HomePage homePage;
     protected Settings settings;
@@ -25,10 +25,10 @@ public class SettingsTest extends BaseTest {
 
     @BeforeClass
     public void initialize() {
-        homePage = signIn.signIn("aak@gmail.com", "A$12345a");
-        contactDataField = homePage.switchToSettings().switchToContactDataFields();
+        homePage = signIn.signIn("aaa@gmail.com", "A$12345a");
+       contactDataField = homePage.switchToSettings().switchToContactDataFields();
 
-        //companyDataField = homePage.switchToSettings().switchToCompanyDataFields();
+       // companyDataField = homePage.switchToSettings().switchToCompanyDataFields();
         // dealDataField = homePage.switchToSettings().switchToDealDataFields();
       //  productDataField = homePage.switchToSettings().switchToProductDataFields();
 

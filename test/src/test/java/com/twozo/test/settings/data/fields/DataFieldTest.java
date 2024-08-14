@@ -6,11 +6,16 @@ import com.twozo.test.settings.SettingsTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
-public class DataFieldTest extends SettingsTest {
+public abstract class DataFieldTest extends SettingsTest {
 
     @DataProvider(name = "searchData")
     public static Object[][] getSearchData() {
         return new TestDataProvider().getTestCases("SearchData.json");
+    }
+
+    @DataProvider(name = "customField")
+    public static Object[][] getCustomField() {
+        return new TestDataProvider().getTestCases("CustomField.json");
     }
 
     @DataProvider(name = "SystemField")
@@ -63,33 +68,13 @@ public class DataFieldTest extends SettingsTest {
         return new TestDataProvider().getTestCases("DeleteField.json");
     }
 
-    public boolean isVisibleInSummary(final String fieldName) {
-        homePage.switchToContact();
-        contactDataField.switchToSummary();
-        return contactDataField.isVisibleInSummary(fieldName);
-    }
+    public abstract boolean isVisibleInSummary(final String fieldName);
 
-    public void isDefaultFieldsVisibleInAddView() {
-        homePage.switchToContact();
-        contactDataField.switchToAddContactForm();
-        Assert.assertTrue(contactDataField.isDefaultFieldsVisibleInAddView());
-    }
+    public abstract void isDefaultFieldsVisibleInAddView();
 
-    public boolean isVisibleInAddForm(final String fieldName) {
-        homePage.switchToContact();
-        contactDataField.switchToAddContactForm();
-        return contactDataField.isVisibleInAddForm(fieldName);
-    }
+    public abstract boolean isVisibleInAddForm(final String fieldName);
 
-    public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        homePage.switchToContact();
-        contactDataField.switchToAddContactForm();
-        return contactDataField.isVisibleInAddFormAsRequired(fieldName);
-    }
+    public abstract boolean isVisibleInAddFormAsRequired(final String fieldName);
 
-    public boolean isVisibleInColumnSettings(final String fieldName) {
-        homePage.switchToContact().switchToColumnSettings();
-        homePage.switchToContact();
-        return contactDataField.isVisibleInColumnSettings(fieldName);
-    }
+    public abstract boolean isVisibleInColumnSettings(final String fieldName);
 }

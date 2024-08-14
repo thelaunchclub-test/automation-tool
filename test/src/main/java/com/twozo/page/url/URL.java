@@ -1,14 +1,26 @@
 package com.twozo.page.url;
 
+import com.twozo.commons.util.ConfigFileReader;
+
+import java.util.Map;
+
 public class URL {
 
-    public static final String DEALS = "https://app.thelaunchclub.in/deals";
-    public static final String CONTACTS = "https://app.thelaunchclub.in/contacts";
-    public static final String COMPANIES = "https://app.thelaunchclub.in/companies";
-    public static final String ACTIVITIES = "https://app.thelaunchclub.in/activities";
-    public static final String PRODUCTS = "https://app.thelaunchclub.in/products";
-    public static final String SETTINGS = "https://app.thelaunchclub.in/settings";
-    public static final String INBOX = "https://app.thelaunchclub.in/mail/inbox";
-    public static final String REPORTS = "https://app.thelaunchclub.in/reports/favourites";
+    private static final Map<String, String> CONFIG = ConfigFileReader.get("Config.Properties");
 
+    public static final String TWO_STRING_FORMAT = "%s%s";
+
+    public static final String BASE_URL = CONFIG.get("Domain");
+    public static final String LOG_IN = buildURL("/login");
+    public static final String SIGN_UP = buildURL("/signup");
+    public static final String DEALS = buildURL("/deals");
+    public static final String CONTACTS = buildURL("/contacts");
+    public static final String COMPANIES = buildURL("/companies");
+    public static final String ACTIVITIES = buildURL("/activities");
+    public static final String PRODUCTS = buildURL("/products");
+    public static final String SETTINGS = buildURL("/settings");
+
+    public static String buildURL(final String path) {
+        return String.format(TWO_STRING_FORMAT, BASE_URL, path);
+    }
 }

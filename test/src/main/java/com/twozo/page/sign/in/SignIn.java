@@ -1,6 +1,7 @@
 package com.twozo.page.sign.in;
 
 import com.twozo.commons.exception.ErrorCode;
+import com.twozo.page.url.URL;
 import com.twozo.page.xpath.AttributeName;
 import com.twozo.page.BasePage;
 import com.twozo.page.xpath.TagName;
@@ -49,7 +50,7 @@ public class SignIn extends BasePage {
     private SignIn(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals( "https://app.thelaunchclub.in/login")) {
+        if (!getURL().equals(URL.LOG_IN)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }

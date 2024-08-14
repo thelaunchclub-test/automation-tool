@@ -4,7 +4,7 @@ import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.settings.data.fields.AbstractDataField;
 import com.twozo.page.settings.data.fields.deal.field.DealField;
 import com.twozo.page.settings.data.fields.field.*;
-import com.twozo.page.url.settings.URL;
+import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
@@ -19,7 +19,7 @@ public class DealDataField extends AbstractDataField {
     protected DealDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals(URL.DEAL)) {
+        if (!getURL().equals(SettingsURL.DEAL_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -255,12 +255,13 @@ public class DealDataField extends AbstractDataField {
     public void checkPipeline() {
         final String pipeline = "Pipeline";
         final String oneChoice = XPathBuilder.getXPathByText("1");
-        String dependableFieldBlock = getDependableFieldBlock(pipeline);
+        String dependableFieldBlock = null;
 
         try {
-            isDisplayed(findByXpath(dependableFieldBlock));
+            isDisplayed(findByXpath(getDependableFieldBlock(pipeline)));
         } catch (Exception exception) {
             addSystemField(pipeline);
+            dependableFieldBlock =getDependableFieldBlock(pipeline);
             isDisplayed(findByXpath(dependableFieldBlock));
         }
 

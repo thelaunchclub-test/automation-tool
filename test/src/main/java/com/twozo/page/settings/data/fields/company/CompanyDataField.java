@@ -8,7 +8,7 @@ import com.twozo.page.settings.data.fields.field.Field;
 import com.twozo.page.settings.data.fields.field.FieldElement;
 import com.twozo.page.settings.data.fields.field.FieldTypePath;
 import com.twozo.page.settings.data.fields.field.SystemField;
-import com.twozo.page.url.settings.URL;
+import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.status.WebDriverErrorCode;
@@ -24,7 +24,7 @@ public class CompanyDataField extends AbstractDataField {
     protected CompanyDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (getURL().equals(URL.CONTACT)) {
+        if (getURL().equals(SettingsURL.CONTACT_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -210,12 +210,13 @@ public class CompanyDataField extends AbstractDataField {
     public void checkOrganizationStatus() {
         final String organizationStatus = "Organization Status";
         final String fiveChoices = XPathBuilder.getXPathByText("5");
-        String organizationStatusBlock = getFieldBlock(organizationStatus);
+        String organizationStatusBlock = null;
 
         try {
             isDisplayed(findByXpath(organizationStatus));
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(organizationStatus);
+            organizationStatusBlock = getFieldBlock(organizationStatus);
             isDisplayed(findByXpath(organizationStatus));
         }
 
@@ -229,12 +230,14 @@ public class CompanyDataField extends AbstractDataField {
     public void checkIndustryType() {
         final String industryType = "Industry Type";
         final String sixtyEightChoices = XPathBuilder.getXPathByText("68");
-        String industryTypeBlock = getFieldBlock(industryType);
+        String industryTypeBlock = null;
 
         try {
-            isDisplayed(findByXpath(industryTypeBlock));
+            isDisplayed(findByXpath(getFieldBlock(industryType)));
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(industryType);
+            industryTypeBlock = getFieldBlock(industryType);
+
             isDisplayed(findByXpath(industryTypeBlock));
         }
 
@@ -248,12 +251,13 @@ public class CompanyDataField extends AbstractDataField {
     public void checkBusinessType() {
         final String businessType = "Business Type";
         final String thirteenChoices = XPathBuilder.getXPathByText("13");
-        String businessTypeBlock = getFieldBlock(businessType);
+        String businessTypeBlock = null;
 
         try {
             isDisplayed(findByXpath(businessTypeBlock));
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(businessType);
+            businessTypeBlock = getFieldBlock(businessType);
             isDisplayed(findByXpath(businessTypeBlock));
         }
 

@@ -9,8 +9,8 @@ public enum ContactField implements Field {
 
     FIRST_NAME("First Name", FieldType.TEXT),
     LAST_NAME("Last Name", FieldType.TEXT),
-    EMAILS("Emails", FieldType.EMAIL),
-    PHONES("Phones", FieldType.PHONE),
+    EMAILS("Emails", FieldType.EMAILS),
+    PHONES("Phones", FieldType.PHONES),
     DESIGNATION("Designation", FieldType.TEXT),
     COMPANY("Company", FieldType.COMPANY),
     SALES_OWNER("Sales Owner", FieldType.OWNER),

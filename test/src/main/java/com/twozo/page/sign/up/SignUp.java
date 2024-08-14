@@ -6,6 +6,7 @@ import com.twozo.page.deal.Deal;
 
 import com.twozo.page.homepage.HomePage;
 import com.twozo.page.sign.in.SignIn;
+import com.twozo.page.url.URL;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
@@ -37,7 +38,7 @@ public class SignUp extends BasePage {
         super(webAutomationDriver);
         click(getSignUpButton());
 
-        if (!getURL().equals( "https://app.thelaunchclub.in/signup")) {
+        if (!getURL().equals(URL.SIGN_UP)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND);
         }
 

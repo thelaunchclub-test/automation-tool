@@ -9,167 +9,6 @@ import org.testng.annotations.Test;
 
 public class ContactDataFieldTest extends DataFieldTest {
 
-    //    @BeforeMethod
-//    public void switchToContact() {
-//        contactDataField = homePage.switchToSettings().switchToContactDataFields();
-//    }
-//
-//    @Test
-//    public void verifyBreadCrumb() {
-//        Assert.assertTrue(contactDataField.verifyBreadCrumb());
-//    }
-//
-//    @Test
-//    public void verifySelectedTabIsActive() {
-//        Assert.assertTrue(contactDataField.verifyActiveContactTab());
-//    }
-//
-//    @Test
-//    public void verifyDefaultSystemFields() {
-//        Assert.assertTrue(contactDataField.verifyDefaultSystemFields());
-//    }
-//
-//    @Test
-//    public void verifyNavigateBackAndForthBetweenDifferentModule() {
-//        Assert.assertTrue(contactDataField.switchBetweenTabs());
-//    }
-//
-//    @Test(dataProvider = "searchData")
-//    public void verifySearchBarsResult(final Object object) {
-//
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("searchData")) {
-//            Assert.assertTrue(contactDataField.verifySearchResult(input.getString("searchData")));
-//        }
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void addSystemField(final Object object) {
-//
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("fieldNameToBeAdded")) {
-//            Assert.assertTrue(contactDataField.addSystemField(ContactField.valueOf(input.getString("fieldNameToBeAdded"))));
-//        }
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void removeSystemField(final Object object) {
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("fieldNameToBeRemoved")) {
-//            Assert.assertTrue(contactDataField.removeSystemField(ContactField.valueOf(input.
-//                    getString("fieldNameToBeRemoved"))));
-//        }
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void addAndRemoveSystemFields(final Object object) {
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("fieldNameToBeRemoved")) {
-//            Assert.assertTrue(contactDataField.addAndRemoveSystemField(ContactField.valueOf(input.getString
-//                    ("fieldToBeAdded")), ContactField.valueOf(input.getString("fieldToBeRemoved"))));
-//        }
-//    }
-//
-//    @Test
-//    public void verifyNonDraggableFields() {
-//        Assert.assertTrue(contactDataField.verifyNonDraggableFields());
-//    }
-//
-//    @Test
-//    public void verifyEyeIconIsNotVisibleForDefaultFields() {
-//        Assert.assertTrue(contactDataField.verifyEyeIconIsNotVisibleForDefaultFields());
-//    }
-//
-//    @Test
-//    public void isAddViewCheckBoxEditableForMandatoryField() {
-//        Assert.assertTrue(contactDataField.isAddViewCheckBoxEditableForMandatoryField());
-//    }
-//
-//    @Test
-//    public void emailOrPhoneShouldBeRequired() {
-//        Assert.assertTrue(contactDataField.emailOrPhoneShouldBeRequired());
-//    }
-//
-//    @Test
-//    public void uncheckMandatoryFields() {
-//        Assert.assertTrue(contactDataField.uncheckMandatoryFields());
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void addAutoGeneratingSystemField(final Object object) {
-//
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("autoGeneratingFieldToBeAdded")) {
-//            Assert.assertTrue(contactDataField.addSystemField(ContactField.valueOf(input.
-//                    getString("autoGeneratingFieldToBeAdded"))));
-//        }
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void verifyAutoGeneratingSystemFieldNotEditable(final Object object) {
-//
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("autoGeneratingFieldToBeAdded")) {
-//            Assert.assertTrue(contactDataField.verifyAutoGeneratingSystemFieldNotEditable(ContactField.valueOf(input.
-//                    getString("autoGeneratingFieldToBeAdded"))));
-//        }
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void hideAutoGeneratingSystemField(final Object object) {
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("autoGeneratingFieldToBeRemoved")) {
-//            Assert.assertTrue(contactDataField.hideAutoGeneratingSystemField(ContactField.valueOf(input.
-//                    getString("autoGeneratingFieldToBeRemoved"))));
-//        }
-//    }
-//
-//    @Test(dataProvider = "SystemField")
-//    public void verifyEyeIcon(final Object object) {
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("eyeIconFor")) {
-//            Assert.assertTrue(contactDataField.verifyEyeIcon(ContactField.valueOf(input.
-//                    getString("eyeIconFor"))));
-//        }
-//    }
-//
-//    @Test
-//    public void verifyAllSystemFieldsType() {
-//        contactDataField.addAllSystemFields();
-//        contactDataField.checkSystemFieldsFieldType();
-//    }
-//
-//    @DataProvider(name = "CustomField")
-//    public static Object[][] getCustomField() {
-//        return new TestDataProvider().getTestCases("CustomField.json");
-//    }
-//
-//    @Test(dataProvider = "CustomField")
-//    public void addCustomFieldsWithAllFieldType(final Object object) {
-//
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//
-//        if (input.containsKey("fieldName") && input.containsKey("fieldType")) {
-//            Assert.assertTrue(contactDataField.addCustomField(input.getString("fieldName"), input.getString("fieldType")));
-//        }
-//    }
 //
 //    @Test(dataProvider = "SystemField")
 //    public void isDefaultFieldsVisibleInSummary(final Object object) {
@@ -213,7 +52,6 @@ public class ContactDataFieldTest extends DataFieldTest {
 //            isVisibleInAddForm(fieldStatus.getName());
 //        }
 //    }
-
 //    @Test(dataProvider = "addView")
 //    public void checkAddView(final Object object) {
 //        final TestCase testCase = (TestCase) object;
@@ -238,100 +76,71 @@ public class ContactDataFieldTest extends DataFieldTest {
 //        HomePage.getInstance(webAutomationDriver).switchToSettings().switchToContactDataFields();
 //    }
 
+//
+//    @Test(dataProvider = "data")
+//    public void checkAddViewCustomField(final Object object) {
+//        final TestCase testCase = (TestCase) object;
+//        final JsonObject input = testCase.input;
+//        final FieldStatus fieldStatus = new FieldStatus();
+//
+//        fieldStatus.setDraggable(input.getBoolean("isDraggable"));
+//        fieldStatus.setName(input.getString("name"));
+//        fieldStatus.setFieldType(input.getString("fieldType"));
+//        fieldStatus.setAddView(input.getBoolean("isAddView"));
+//        fieldStatus.setRequired(input.getBoolean("isRequired"));
+//        contactDataField.checkFieldElements(fieldStatus);
+//        contactDataField.checkAddView(fieldStatus);
+//        contactDataField.checkRequired(fieldStatus);
+//        final String name = fieldStatus.getName();
+//
+//        if (fieldStatus.isAddView()) {
+//            Assert.assertTrue(isVisibleInAddForm(name));
+//        } else {
+//            Assert.assertFalse(isVisibleInAddForm(name));
+//        }
+//
+//        if (fieldStatus.isRequired()) {
+//            if (contactDataField.getURL().equals("https://app.twozo.live/contacts")) {
+//                Assert.assertTrue(contactDataField.isVisibleInAddFormAsRequired(name));
+//            } else {
+//                isVisibleInAddFormAsRequired(name);
+//            }
+//        } else {
+//            Assert.assertFalse(isVisibleInAddFormAsRequired(name));
+//        }
+//
+//        isVisibleInSummary(name);
+//        isVisibleInColumnSettings(name);
+//    }
 
-    @Test
-    public void enableAllSystemFields() {
-        Assert.assertTrue(contactDataField.enableAddViewForAllSystemFields());
-    }
+//    @Test(dataProvider = "hideField")
+//    public void hideField(final Object object) {
+//        final TestCase testCase = (TestCase) object;
+//        final JsonObject input = testCase.input;
+//        final String name = input.getString("name");
+//        contactDataField.hideField(name);
+//        Assert.assertFalse(isVisibleInAddForm(name));
+//        Assert.assertFalse(isVisibleInSummary(name));
+//        Assert.assertFalse(isVisibleInColumnSettings(name));
+//    }
 
-    @Test(dataProvider = "data")
-    public void checkAddView(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setDraggable(input.getBoolean("isDraggable"));
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        fieldStatus.setAddView(input.getBoolean("isAddView"));
-        fieldStatus.setRequired(input.getBoolean("isRequired"));
-        contactDataField.checkFieldElements(fieldStatus);
-        contactDataField.checkAddView(fieldStatus);
-        contactDataField.checkRequired(fieldStatus);
-        final String name = fieldStatus.getName();
-
-        if (fieldStatus.isAddView()) {
-            Assert.assertTrue(isVisibleInAddForm(name));
-        } else {
-            Assert.assertFalse(isVisibleInAddForm(name));
-        }
-
-        if (fieldStatus.isRequired()) {
-            if (contactDataField.getURL().equals("https://app.twozo.live/contacts")) {
-                Assert.assertTrue(contactDataField.isVisibleInAddFormAsRequired(name));
-            } else {
-                isVisibleInAddFormAsRequired(name);
-            }
-        } else {
-            Assert.assertFalse(isVisibleInAddFormAsRequired(name));
-        }
-
-        isVisibleInSummary(name);
-        isVisibleInColumnSettings(name);
-    }
-
-    @Test(dataProvider = "editData")
-    public void editFieldName(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-        final String append = input.getString("append");
-        final String newFieldName = String.format("%s%s", name, append);
-
-        // contactDataField.editCustomField(name, append);
-        //contactDataField.enableAddView(newFieldName);
-        // isVisibleInAddForm(newFieldName);
-        Assert.assertTrue(isVisibleInSummary("b"));
-        //isVisibleInColumnSettings(newFieldName);
-    }
-
-    @Test(dataProvider = "hideField")
-    public void hideField(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-        contactDataField.hideField(name);
-        Assert.assertFalse(isVisibleInAddForm(name));
-        Assert.assertFalse(isVisibleInSummary(name));
-        Assert.assertFalse(isVisibleInColumnSettings(name));
-    }
-
-    @Test(dataProvider = "deleteField")
-    public void deleteField(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-        contactDataField.deleteField(name);
-        Assert.assertFalse(isVisibleInAddForm(name));
-        Assert.assertFalse(isVisibleInSummary(name));
-        Assert.assertFalse(isVisibleInColumnSettings(name));
-    }
 
 //    @Test
 //    public void dragAndDrop() {
 //        contactDataField.fromTo("Company");
 //    }
 
-    @Test
-    public void checkChoices() {
-        contactDataField.checkSubscriptionStatus();
-    }
+
+    //    @Test
+//    public void check() {
+//        contactDataField.isEnabled();
+//    }
+//======================================================================================================================
 
     @Test
-    public void check() {
-        contactDataField.isEnabled();
+    public void verifyDefaultSystemFields() {
+        Assert.assertTrue(contactDataField.verifyDefaultSystemFields());
     }
-
 
     @Test(dataProvider = "contactSystemFields")
     public void addSystemFields(final Object object) {
@@ -343,7 +152,47 @@ public class ContactDataFieldTest extends DataFieldTest {
         fieldStatus.setFieldType(input.getString("fieldType"));
 
         Assert.assertTrue(contactDataField.addSystemField(fieldStatus));
-      //  Assert.assertTrue(isVisibleInSummary(fieldStatus.getName()));
+    }
+
+    @Test(dataProvider = "customField")
+    public void addCustomFieldsWithAllFieldType(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+
+        if (input.containsKey("fieldName") && input.containsKey("fieldType")) {
+            Assert.assertTrue(contactDataField.addCustomField(input.getString("fieldName"), input.getString("fieldType")));
+        }
+    }
+
+    @Test(dataProvider = "editData")
+    public void editFieldName(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final String name = input.getString("fieldName");
+        final String append = input.getString("append");
+        final String newFieldName = String.format("%s%s", name, append);
+
+        contactDataField.editCustomField(name, append);
+       // Assert.assertTrue(contactDataField.isVisibleInDataFields(newFieldName));
+    }
+
+    @Test(dataProvider = "hideField")
+    public void hideField(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final String name = input.getString("name");
+
+        Assert.assertTrue(contactDataField.hideField(name));
+    }
+
+    @Test(dataProvider = "deleteField")
+    public void deleteField(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final String name = input.getString("name");
+
+        contactDataField.deleteField(name);
+        Assert.assertFalse(isVisibleInSummary(name));
     }
 
     @Test(dataProvider = "contactSystemFields")
@@ -354,27 +203,110 @@ public class ContactDataFieldTest extends DataFieldTest {
 
         fieldStatus.setName(input.getString("name"));
         fieldStatus.setFieldType(input.getString("fieldType"));
-
         Assert.assertTrue(contactDataField.enableAddView(fieldStatus));
     }
 
     @Test(dataProvider = "contactSystemFields")
-    public void checkAddForm(final Object object) {
+    public void enableRequired(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
         final FieldStatus fieldStatus = new FieldStatus();
 
         fieldStatus.setName(input.getString("name"));
-        fieldStatus.setAddView(input.getBoolean("isAddView"));
-        contactDataField.addSystemField(fieldStatus);
-        contactDataField.checkAddView(fieldStatus);
-        final String name = fieldStatus.getName();
-
-        if (fieldStatus.isAddView()) {
-            Assert.assertTrue(isVisibleInAddForm(name));
-        } else {
-            Assert.assertFalse(isVisibleInAddForm(name));
-        }
+        fieldStatus.setFieldType(input.getString("fieldType"));
+        Assert.assertTrue(contactDataField.enableRequired(fieldStatus));
     }
 
+//
+//    @Test(dataProvider = "contactSystemFields")
+//    public void checkAddForm(final Object object) {
+//        final TestCase testCase = (TestCase) object;
+//        final JsonObject input = testCase.input;
+//        final FieldStatus fieldStatus = new FieldStatus();
+//
+//        fieldStatus.setName(input.getString("name"));
+//        fieldStatus.setAddView(input.getBoolean("isAddView"));
+//        contactDataField.addSystemField(fieldStatus);
+//        contactDataField.checkAddView(fieldStatus);
+//        final String name = fieldStatus.getName();
+//
+//        if (fieldStatus.isAddView()) {
+//            Assert.assertTrue(isVisibleInAddForm(name));
+//        } else {
+//            Assert.assertFalse(isVisibleInAddForm(name));
+//        }
+//    }
+//
+//    @Test(dataProvider = "contactSystemFields")
+//    public void checkInAddForm(final Object object) {
+//        final TestCase testCase = (TestCase) object;
+//        final JsonObject input = testCase.input;
+//        final FieldStatus fieldStatus = new FieldStatus();
+//
+//        fieldStatus.setName(input.getString("name"));
+//        fieldStatus.setFieldType(input.getString("fieldType"));
+//
+//        final String name = fieldStatus.getName();
+//
+//        if (contactDataField.enableRequired(fieldStatus)) {
+//            if (contactDataField.getURL().equals(URL.CONTACTS)) {
+//                Assert.assertTrue(contactDataField.isVisibleInAddFormAsRequired(name));
+//            } else {
+//                isVisibleInAddFormAsRequired(name);
+//            }
+//        } else {
+//            Assert.assertFalse(isVisibleInAddFormAsRequired(name));
+//        }
+//    }
+//
+
+    @Test
+    public void checkSubscriptionStatus() {
+        contactDataField.checkSubscriptionStatus();
+    }
+
+    @Test
+    public void checkLifecycleStage() {
+        contactDataField.checkLifecycleStage();
+    }
+
+    @Test
+    public void checkTimeZone() {
+        contactDataField.checkTimezone();
+    }
+
+    @Override
+    public boolean isVisibleInSummary(String fieldName) {
+        homePage.switchToContact();
+        contactDataField.switchToSummary();
+        return contactDataField.isVisibleInSummary(fieldName);
+    }
+
+    @Override
+    public void isDefaultFieldsVisibleInAddView() {
+        homePage.switchToContact();
+        contactDataField.switchToAddContactForm();
+        Assert.assertTrue(contactDataField.isDefaultFieldsVisibleInAddView());
+    }
+
+    @Override
+    public boolean isVisibleInAddForm(final String fieldName) {
+        homePage.switchToContact();
+        contactDataField.switchToAddContactForm();
+        return contactDataField.isVisibleInAddForm(fieldName);
+    }
+
+    @Override
+    public boolean isVisibleInAddFormAsRequired(final String fieldName) {
+        homePage.switchToContact();
+        contactDataField.switchToAddContactForm();
+        return contactDataField.isVisibleInAddFormAsRequired(fieldName);
+    }
+
+    @Override
+    public boolean isVisibleInColumnSettings(final String fieldName) {
+        homePage.switchToContact().switchToColumnSettings();
+        homePage.switchToContact();
+        return contactDataField.isVisibleInColumnSettings(fieldName);
+    }
 }
