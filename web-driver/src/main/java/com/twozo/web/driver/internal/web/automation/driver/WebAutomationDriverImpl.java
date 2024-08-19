@@ -4,6 +4,7 @@ import com.twozo.commons.util.ConfigFileReader;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
+import com.twozo.web.driver.internal.session.cookie.SessionCookieImpl;
 import com.twozo.web.driver.internal.target.locator.WebTargetLocatorImpl;
 import com.twozo.web.driver.internal.wait.ExplicitWaitHandlerImpl;
 import com.twozo.web.driver.internal.wait.ImplicitWaitHandlerImpl;
@@ -70,6 +71,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     ImplicitWaitHandler implicitWaitHandler;
     ExplicitWaitHandler explicitWaitHandler;
     ScreenCapturer screenCapturer;
+    SessionCookie sessionCookie;
     MouseActions mouseActions;
     ElementFinder elementFinder;
 
@@ -84,6 +86,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.implicitWaitHandler = new ImplicitWaitHandlerImpl(driver.manage().timeouts());
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
+        this.sessionCookie = new SessionCookieImpl(driver.manage());
         this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
     }
 
@@ -98,6 +101,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.implicitWaitHandler = new ImplicitWaitHandlerImpl(driver.manage().timeouts());
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
+        this.sessionCookie = new SessionCookieImpl(driver.manage());
         this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
     }
 
@@ -203,6 +207,16 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     @Override
     public ScreenCapturer getScreenCapturer() {
         return screenCapturer;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return A {@link SessionCookie} for handling cookies within the session.
+     */
+    @Override
+    public SessionCookie getSessionCookie() {
+        return sessionCookie;
     }
 
     /**

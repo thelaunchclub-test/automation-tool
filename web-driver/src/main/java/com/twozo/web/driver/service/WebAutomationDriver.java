@@ -115,6 +115,15 @@ public interface WebAutomationDriver {
 
     /**
      * <p>
+     * Returns a {@link SessionCookie} for managing session cookies.
+     * </p>
+     *
+     * @return A {@link SessionCookie} for handling cookies within the session.
+     */
+    SessionCookie getSessionCookie();
+
+    /**
+     * <p>
      * Returns {@link ScreenCapturer} for capturing the screen.
      * </p>
      *
