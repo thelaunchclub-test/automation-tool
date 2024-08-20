@@ -3,18 +3,18 @@ package com.twozo.web.driver.internal.session.cookie;
 import com.twozo.commons.cookie.HttpCookie;
 import com.twozo.web.driver.service.SessionCookie;
 
-
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 import org.openqa.selenium.WebDriver.Options;
+import org.openqa.selenium.Cookie;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * <p>
- * Implementation of the {@link SessionCookie} interface that wraps Selenium's {@link HttpCookie}
+ * Implementation of the {@link SessionCookie} interface that wraps Selenium's {@link Cookie}
  * with a custom {@link HttpCookie} class.
  * </p>
  *
@@ -34,7 +34,14 @@ public class SessionCookieImpl implements SessionCookie {
      */
     @Override
     public void addCookie(final HttpCookie httpCookie) {
-        options.addCookie(httpCookie.toSeleniumCookie());
+        Cookie seleniumCookie = new Cookie.Builder(httpCookie.getName(), httpCookie.getValue())
+                .domain(httpCookie.getDomain())
+                .path(httpCookie.getPath())
+                .expiresOn(httpCookie.getExpiry())
+                .isSecure(httpCookie.isSecure())
+                .isHttpOnly(httpCookie.isHttpOnly())
+                .build();
+        options.addCookie(seleniumCookie);
     }
 
     /**
@@ -54,7 +61,14 @@ public class SessionCookieImpl implements SessionCookie {
      */
     @Override
     public void deleteCookie(final HttpCookie httpCookie) {
-        options.deleteCookie(httpCookie.toSeleniumCookie());
+        Cookie seleniumCookie = new Cookie.Builder(httpCookie.getName(), httpCookie.getValue())
+                .domain(httpCookie.getDomain())
+                .path(httpCookie.getPath())
+                .expiresOn(httpCookie.getExpiry())
+                .isSecure(httpCookie.isSecure())
+                .isHttpOnly(httpCookie.isHttpOnly())
+                .build();
+        options.deleteCookie(seleniumCookie);
     }
 
     /**
@@ -72,9 +86,21 @@ public class SessionCookieImpl implements SessionCookie {
      */
     @Override
     public Set<HttpCookie> getCookies() {
-        return options.getCookies().stream()
-                .map(HttpCookie::fromSeleniumCookie)
-                .collect(Collectors.toSet());
+        Set<HttpCookie> httpCookies = new HashSet<>();
+        for (Cookie seleniumCookie : options.getCookies()) {
+            HttpCookie httpCookie = new HttpCookie(
+                    seleniumCookie.getName(),
+                    seleniumCookie.getValue(),
+                    seleniumCookie.getPath(),
+                    seleniumCookie.getDomain(),
+                    seleniumCookie.getExpiry(),
+                    seleniumCookie.isSecure(),
+                    seleniumCookie.isHttpOnly(),
+                    null
+            );
+            httpCookies.add(httpCookie);
+        }
+        return httpCookies;
     }
 
     /**
@@ -85,8 +111,19 @@ public class SessionCookieImpl implements SessionCookie {
      */
     @Override
     public HttpCookie getCookieNamed(final String name) {
-        return options.getCookieNamed(name) != null ?
-                HttpCookie.fromSeleniumCookie(options.getCookieNamed(name)) :
-                null;
+        Cookie seleniumCookie = options.getCookieNamed(name);
+        if (seleniumCookie != null) {
+            return new HttpCookie(
+                    seleniumCookie.getName(),
+                    seleniumCookie.getValue(),
+                    seleniumCookie.getPath(),
+                    seleniumCookie.getDomain(),
+                    seleniumCookie.getExpiry(),
+                    seleniumCookie.isSecure(),
+                    seleniumCookie.isHttpOnly(),
+                    null
+            );
+        }
+        return null;
     }
 }

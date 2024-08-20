@@ -21,26 +21,4 @@ public class HttpCookie {
     private final boolean isHttpOnly;
     private final String sameSite;
 
-    public Cookie toSeleniumCookie() {
-        return new Cookie.Builder(name, value)
-                .domain(domain)
-                .path(path)
-                .expiresOn(expiry)
-                .isSecure(isSecure)
-                .isHttpOnly(isHttpOnly)
-                .build();
-    }
-
-    public static HttpCookie fromSeleniumCookie(final Cookie cookie) {
-        return new HttpCookie(
-                cookie.getName(),
-                cookie.getValue(),
-                cookie.getPath(),
-                cookie.getDomain(),
-                cookie.getExpiry(),
-                cookie.isSecure(),
-                cookie.isHttpOnly(),
-                null
-        );
-    }
 }
