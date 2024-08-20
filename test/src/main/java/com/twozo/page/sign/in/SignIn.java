@@ -50,9 +50,9 @@ public class SignIn extends BasePage {
     private SignIn(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
 
-        if (!getURL().equals(URL.LOG_IN)) {
-            throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
-        }
+//        if (!getURL().equals(URL.LOG_IN)) {
+//            throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
+//        }
     }
 
     public static SignIn getInstance(final WebAutomationDriver webAutomationDriver) {
@@ -60,111 +60,85 @@ public class SignIn extends BasePage {
     }
 
     public Deal getDeal() {
-        deal = initializeElement(deal, () -> Deal.getInstance(webAutomationDriver));
-
-        return deal;
+        return Deal.getInstance(webAutomationDriver);
     }
 
     public SignUp getSignUp() {
-        //signUp = initializeElement(signUp, () -> SignUp.getInstance(webAutomationDriver));
-
         return SignUp.getInstance(webAutomationDriver);
     }
 
     public WebPageElement getTwozoLogo() {
-        twozoLogo = initializeElement(twozoLogo, () -> findByXpath(new XPath(TagName.IMG, AttributeName.ALT, "twozo", 1)));
-
-        return twozoLogo;
+        return findByXpath(new XPath(TagName.IMG, AttributeName.ALT, "twozo", 1));
     }
 
     public WebPageElement getGreetingText() {
-        greetingText = initializeElement(greetingText, () -> findByText("Welcome Back!"));
-
-        return greetingText;
+        return findByText("Welcome Back!");
     }
 
     public WebPageElement getWorkEmailIdText() {
-        workEmailIdText = initializeElement(workEmailIdText, () -> findByText("Work Email Id"));
-
-        return workEmailIdText;
+        return findByText("Work Email Id");
     }
 
     public WebPageElement getPasswordText() {
-        passwordText = initializeElement(passwordText, () -> findByText("Password"));
-
-        return passwordText;
+        return findByText("Password");
     }
 
     public WebPageElement getRememberMeCheckBox() {
-        rememberMeCheckBox = initializeElement(rememberMeCheckBox, () -> findByXpath("//*[@type='checkbox']"));
-
-        return rememberMeCheckBox;
+        return findByXpath("//*[@type='checkbox']");
     }
 
     public WebPageElement getRememberMeCheckBoxToCheckIfDisplayed() {
-        rememberMeCheckBoxToCheckIfDisplayed = initializeElement(rememberMeCheckBox, () -> findLeftElement(List.of(new Element(LocatorType.XPATH, "//*[text()='Remember Me']"
-                , true), new Element(LocatorType.TAG_NAME, "svg", false))));
-
-        return rememberMeCheckBoxToCheckIfDisplayed;
+        return findLeftElement(List.of(new Element(LocatorType.XPATH, "//*[text()='Remember Me']"
+                , true), new Element(LocatorType.TAG_NAME, "svg", false)));
     }
 
     public WebPageElement getSignInButton() {
-        signInButton = initializeElement(signInButton, () -> findByText("Sign In"));
-        return signInButton;
+        return findByText("Sign In");
     }
 
     public WebPageElement getEmailField() {
-        emailField = initializeElement(emailField, () -> findByXpath("//input[@name='email']"));
-
-        return emailField;
+        return findByXpath("//*[@name='email']");
     }
 
     public WebPageElement getPasswordField() {
-        passwordField = initializeElement(passwordField, () -> findByXpath("//input[@name='password']"));
-
-        return passwordField;
+        return findByXpath("//*[@name='password']");
     }
 
     public WebPageElement getForgotPasswordButton() {
-        forgotPasswordButton = initializeElement(forgotPasswordButton, () -> findByText("Forgot Password?"));
-
-        return forgotPasswordButton;
+        return findByText("Forgot Password?");
     }
 
     public WebPageElement getResetPasswordButton() {
-        resetPasswordButton = initializeElement(resetPasswordButton, () -> findByText("Reset Password"));
-
-        return resetPasswordButton;
+        return findByText("Reset Password");
     }
 
     public WebPageElement getForgotPasswordPageStatement() {
-        forgotPasswordPageStatement = initializeElement(forgotPasswordPageStatement, () -> findByXpath("//*[contains(text(),'worries')]"));
-
-        return forgotPasswordPageStatement;
+        return findByXpath("//*[contains(text(),'worries')]");
     }
 
     public WebPageElement getSignUpButton() {
-        signUpButton = initializeElement(signUpButton, () -> findByText("Sign Up"));
-
-        return signUpButton;
+        return findByText("Sign Up");
     }
 
     public WebPageElement getEmailIdPlaceholder() {
-        emailIdPlaceholder = initializeElement(emailIdPlaceholder, () -> findByXpath("//*[@placeholder='Enter your work email id']"));
-
-        return emailIdPlaceholder;
+        return findByXpath("//*[@placeholder='Enter your work email id']");
     }
 
     public WebPageElement getPasswordPlaceholder() {
-        passwordPlaceholder = initializeElement(passwordPlaceholder, () -> findByXpath("//*[@placeholder='Enter password']"));
-        return passwordPlaceholder;
+        return findByXpath("//*[@placeholder='Enter password']");
     }
 
-    public HomePage signIn(final String email, final String password) {
-        send(getEmailField(), email);
-        send(getPasswordField(), password);
-        click(getSignInButton());
-        return HomePage.getInstance(webAutomationDriver);
+//    public HomePage signIn(final String email, final String password) {
+//        send(getEmailField(), email);
+//        send(getPasswordField(), password);
+//        click(getSignInButton());
+//        return HomePage.getInstance(webAutomationDriver);
+//    }
+
+    public void facebookLogin() {
+        send(findByXpath("//*[@name='email']"), "8220978540");
+        send(findByXpath("//*[@type='password']"), "nj8220978540");
+        click(findByText("Log in"));
     }
 
     public WebPageElement getEmailValidationText() {

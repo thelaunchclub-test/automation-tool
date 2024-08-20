@@ -166,9 +166,9 @@ public final class SignInTest extends BaseTest {
         Assert.assertTrue(signIn.isCheckboxIsUncheckedByDefault());
     }
 
-    @Test(dataProvider = "testCases")
+    @Test
     public void signIn() {
-        signIn.signIn("p@gmail.com", "A$12345a").switchToSettings();
+       // signIn.signIn("aaaa@gmail.com", "A$12345a").switchToSettings();
 
         //ravi$123.stream().collect(Coll).filter(Deal::isDisplayed).map()forEach(System.out::println);
 

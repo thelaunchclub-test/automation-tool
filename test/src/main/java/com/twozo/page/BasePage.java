@@ -2,10 +2,7 @@ package com.twozo.page;
 
 import com.twozo.page.xpath.XPath;
 import com.twozo.page.xpath.XPathBuilder;
-import com.twozo.web.driver.service.ExplicitWaitHandler;
-import com.twozo.web.driver.service.PageInformationProvider;
-import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.driver.service.WebNavigator;
+import com.twozo.web.driver.service.*;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.ElementFinder;
@@ -13,11 +10,9 @@ import com.twozo.web.element.service.ElementInformationProvider;
 import com.twozo.web.element.service.ElementInteraction;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.mouse.service.actions.MouseActions;
+import org.openqa.selenium.Cookie;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class BasePage {
@@ -26,6 +21,7 @@ public class BasePage {
     protected ElementFinder elementFinder;
     protected WebNavigator webNavigator;
     protected PageInformationProvider pageInformationProvider;
+    protected SessionCookie sessionCookie;
     protected MouseActions mouseActions;
     protected ExplicitWaitHandler explicitWaitHandler;
 
@@ -36,6 +32,21 @@ public class BasePage {
         this.pageInformationProvider = webAutomationDriver.getPageInformationProvider();
         this.mouseActions = webAutomationDriver.getMouseActionsHandler();
         this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
+        this.sessionCookie = webAutomationDriver.getSessionCookie();
+    }
+
+    public Set<Cookie> getCookies(){
+        //System.out.println(sessionCookie.getCookies());
+//        for (Cookie cookie : sessionCookie.getCookies()) {
+//            System.out.println(cookie);
+//        }
+        return sessionCookie.getCookies();
+    }
+    public void addCookies(final Set<Cookie> cookies) {
+        //System.out.println(sessionCookie.getCookies());
+        for (Cookie cookie : cookies) {
+            sessionCookie.addCookie(cookie);
+        }
     }
 
     public void waitTillVisible(final String xpath) {
@@ -134,7 +145,7 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).isSelected();
     }
 
-    protected final boolean isEnabled(final WebPageElement webPageElement){
+    protected final boolean isEnabled(final WebPageElement webPageElement) {
         return getElementInformationProvider(webPageElement).isEnabled();
     }
 
@@ -163,11 +174,11 @@ public class BasePage {
         return getElementInformationProvider(webPageElement).getAttribute(attributeName);
     }
 
-    protected int getLocationOfX(final WebPageElement webPageElement){
+    protected int getLocationOfX(final WebPageElement webPageElement) {
         return getElementInformationProvider(webPageElement).getXLocation();
     }
 
-    protected int getLocationOfY(final WebPageElement webPageElement){
+    protected int getLocationOfY(final WebPageElement webPageElement) {
         return getElementInformationProvider(webPageElement).getYLocation();
     }
 
@@ -197,10 +208,9 @@ public class BasePage {
         }
     }
 
-    protected Element getElementByXpath(final String xpath){
-        return new Element(LocatorType.XPATH,xpath,true);
+    protected Element getElementByXpath(final String xpath) {
+        return new Element(LocatorType.XPATH, xpath, true);
     }
-
 
 
     private ElementInformationProvider getElementInformationProvider(final WebPageElement webPageElement) {
