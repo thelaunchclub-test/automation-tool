@@ -1,33 +1,25 @@
 package com.twozo.web.driver.internal.session.cookie;
 
+import com.twozo.commons.cookie.HttpCookie;
 import com.twozo.web.driver.service.SessionCookie;
+
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver.Options;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
- * Defines a contract for components capable of managing browser session cookies.
- * Provides methods to add, delete, and retrieve cookies within a session.
- * </p>
- *
- * <p>
- * Example usage:
- * <pre>{@code
- * sessionCookie.addCookie(new Cookie("name", "value"));
- * Set<Cookie> cookies = sessionCookie.getCookies();
- * sessionCookie.deleteAllCookies();
- * }</pre>
+ * Implementation of the {@link SessionCookie} interface that wraps Selenium's {@link HttpCookie}
+ * with a custom {@link HttpCookie} class.
  * </p>
  *
  * @author Petchimuthu
  * @version 1.0
- * @see SessionCookie
  */
 @NonNull
 @AllArgsConstructor
@@ -38,11 +30,11 @@ public class SessionCookieImpl implements SessionCookie {
     /**
      * {@inheritDoc}
      *
-     * @param cookie The cookie to be added.
+     * @param httpCookie The cookie to be added.
      */
     @Override
-    public void addCookie(final Cookie cookie) {
-        options.addCookie(cookie);
+    public void addCookie(final HttpCookie httpCookie) {
+        options.addCookie(httpCookie.toSeleniumCookie());
     }
 
     /**
@@ -58,11 +50,11 @@ public class SessionCookieImpl implements SessionCookie {
     /**
      * {@inheritDoc}
      *
-     * @param cookie The cookie to be deleted.
+     * @param httpCookie The cookie to be deleted.
      */
     @Override
-    public void deleteCookie(final Cookie cookie) {
-        options.deleteCookie(cookie);
+    public void deleteCookie(final HttpCookie httpCookie) {
+        options.deleteCookie(httpCookie.toSeleniumCookie());
     }
 
     /**
@@ -79,8 +71,10 @@ public class SessionCookieImpl implements SessionCookie {
      * @return A set of all cookies in the current session.
      */
     @Override
-    public Set<Cookie> getCookies() {
-        return options.getCookies();
+    public Set<HttpCookie> getCookies() {
+        return options.getCookies().stream()
+                .map(HttpCookie::fromSeleniumCookie)
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -90,7 +84,9 @@ public class SessionCookieImpl implements SessionCookie {
      * @return The cookie with the specified name, or {@code null} if not found.
      */
     @Override
-    public Cookie getCookieNamed(final String name) {
-        return options.getCookieNamed(name);
+    public HttpCookie getCookieNamed(final String name) {
+        return options.getCookieNamed(name) != null ?
+                HttpCookie.fromSeleniumCookie(options.getCookieNamed(name)) :
+                null;
     }
 }
