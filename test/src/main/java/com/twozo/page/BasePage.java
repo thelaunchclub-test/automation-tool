@@ -1,5 +1,6 @@
 package com.twozo.page;
 
+import com.twozo.commons.cookie.HttpCookie;
 import com.twozo.page.xpath.XPath;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.*;
@@ -35,16 +36,17 @@ public class BasePage {
         this.sessionCookie = webAutomationDriver.getSessionCookie();
     }
 
-    public Set<Cookie> getCookies(){
+    public Set<HttpCookie> getCookies(){
         //System.out.println(sessionCookie.getCookies());
 //        for (Cookie cookie : sessionCookie.getCookies()) {
 //            System.out.println(cookie);
 //        }
         return sessionCookie.getCookies();
     }
-    public void addCookies(final Set<Cookie> cookies) {
+
+    public void addCookies(final Set<HttpCookie> cookies) {
         //System.out.println(sessionCookie.getCookies());
-        for (Cookie cookie : cookies) {
+        for (HttpCookie cookie : cookies) {
             sessionCookie.addCookie(cookie);
         }
     }

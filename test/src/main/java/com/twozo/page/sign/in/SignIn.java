@@ -128,12 +128,12 @@ public class SignIn extends BasePage {
         return findByXpath("//*[@placeholder='Enter password']");
     }
 
-//    public HomePage signIn(final String email, final String password) {
-//        send(getEmailField(), email);
-//        send(getPasswordField(), password);
-//        click(getSignInButton());
-//        return HomePage.getInstance(webAutomationDriver);
-//    }
+    public HomePage signIn(final String email, final String password) {
+        send(getEmailField(), email);
+        send(getPasswordField(), password);
+        click(getSignInButton());
+        return HomePage.getInstance(webAutomationDriver);
+    }
 
     public void facebookLogin() {
         send(findByXpath("//*[@name='email']"), "8220978540");
