@@ -1,6 +1,6 @@
 package com.twozo.web.driver.service;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.twozo.commons.cookie.BrowserCookie;
 
 import java.util.Set;
 
@@ -29,9 +29,9 @@ public interface SessionCookie {
      * Adds a cookie to the current session.
      * </p>
      *
-     * @param httpCookie The cookie to be added.
+     * @param browserCookie The cookie to be added.
      */
-    void addCookie(final HttpCookie httpCookie);
+    void addCookie(final BrowserCookie browserCookie);
 
     /**
      * <p>
@@ -47,9 +47,9 @@ public interface SessionCookie {
      * Deletes a specific cookie from the current session.
      * </p>
      *
-     * @param httpCookie The cookie to be deleted.
+     * @param browserCookie The cookie to be deleted.
      */
-    void deleteCookie(final HttpCookie httpCookie);
+    void deleteCookie(final BrowserCookie browserCookie);
 
     /**
      * <p>
@@ -65,7 +65,7 @@ public interface SessionCookie {
      *
      * @return A set of all cookies in the current session.
      */
-    Set<HttpCookie> getCookies();
+    Set<BrowserCookie> getCookies();
 
     /**
      * <p>
@@ -75,5 +75,5 @@ public interface SessionCookie {
      * @param name The name of the cookie to retrieve.
      * @return The cookie with the specified name, or {@code null} if not found.
      */
-    HttpCookie getCookieNamed(final String name);
+    BrowserCookie getCookieNamed(final String name);
 }

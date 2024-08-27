@@ -1,6 +1,6 @@
 package com.twozo.web.driver.internal.session.cookie;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.twozo.commons.cookie.BrowserCookie;
 import com.twozo.web.driver.service.SessionCookie;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * <p>
  * Implementation of the {@link SessionCookie} interface that wraps Selenium's {@link Cookie}
- * with a custom {@link HttpCookie} class.
+ * with a custom {@link BrowserCookie} class.
  * </p>
  *
  * @author Petchimuthu
@@ -30,16 +30,16 @@ public class SessionCookieImpl implements SessionCookie {
     /**
      * {@inheritDoc}
      *
-     * @param httpCookie The cookie to be added.
+     * @param browserCookie The cookie to be added.
      */
     @Override
-    public void addCookie(final HttpCookie httpCookie) {
-        Cookie seleniumCookie = new Cookie.Builder(httpCookie.getName(), httpCookie.getValue())
-                .domain(httpCookie.getDomain())
-                .path(httpCookie.getPath())
-                .expiresOn(httpCookie.getExpiry())
-                .isSecure(httpCookie.isSecure())
-                .isHttpOnly(httpCookie.isHttpOnly())
+    public void addCookie(final BrowserCookie browserCookie) {
+        Cookie seleniumCookie = new Cookie.Builder(browserCookie.name(), browserCookie.value())
+                .domain(browserCookie.domain())
+                .path(browserCookie.path())
+                .expiresOn(browserCookie.expiry())
+                .isSecure(browserCookie.secure())
+                .isHttpOnly(browserCookie.httpOnly())
                 .build();
         options.addCookie(seleniumCookie);
     }
@@ -57,16 +57,16 @@ public class SessionCookieImpl implements SessionCookie {
     /**
      * {@inheritDoc}
      *
-     * @param httpCookie The cookie to be deleted.
+     * @param browserCookie The cookie to be deleted.
      */
     @Override
-    public void deleteCookie(final HttpCookie httpCookie) {
-        Cookie seleniumCookie = new Cookie.Builder(httpCookie.getName(), httpCookie.getValue())
-                .domain(httpCookie.getDomain())
-                .path(httpCookie.getPath())
-                .expiresOn(httpCookie.getExpiry())
-                .isSecure(httpCookie.isSecure())
-                .isHttpOnly(httpCookie.isHttpOnly())
+    public void deleteCookie(final BrowserCookie browserCookie) {
+        Cookie seleniumCookie = new Cookie.Builder(browserCookie.name(), browserCookie.value())
+                .domain(browserCookie.domain())
+                .path(browserCookie.path())
+                .expiresOn(browserCookie.expiry())
+                .isSecure(browserCookie.secure())
+                .isHttpOnly(browserCookie.httpOnly())
                 .build();
         options.deleteCookie(seleniumCookie);
     }
@@ -85,10 +85,10 @@ public class SessionCookieImpl implements SessionCookie {
      * @return A set of all cookies in the current session.
      */
     @Override
-    public Set<HttpCookie> getCookies() {
-        Set<HttpCookie> httpCookies = new HashSet<>();
+    public Set<BrowserCookie> getCookies() {
+        Set<BrowserCookie> browserCookies = new HashSet<>();
         for (Cookie seleniumCookie : options.getCookies()) {
-            HttpCookie httpCookie = new HttpCookie(
+            BrowserCookie browserCookie = new BrowserCookie(
                     seleniumCookie.getName(),
                     seleniumCookie.getValue(),
                     seleniumCookie.getPath(),
@@ -98,9 +98,9 @@ public class SessionCookieImpl implements SessionCookie {
                     seleniumCookie.isHttpOnly(),
                     null
             );
-            httpCookies.add(httpCookie);
+            browserCookies.add(browserCookie);
         }
-        return httpCookies;
+        return browserCookies;
     }
 
     /**
@@ -110,10 +110,10 @@ public class SessionCookieImpl implements SessionCookie {
      * @return The cookie with the specified name, or {@code null} if not found.
      */
     @Override
-    public HttpCookie getCookieNamed(final String name) {
+    public BrowserCookie getCookieNamed(final String name) {
         Cookie seleniumCookie = options.getCookieNamed(name);
         if (seleniumCookie != null) {
-            return new HttpCookie(
+            return new BrowserCookie(
                     seleniumCookie.getName(),
                     seleniumCookie.getValue(),
                     seleniumCookie.getPath(),
