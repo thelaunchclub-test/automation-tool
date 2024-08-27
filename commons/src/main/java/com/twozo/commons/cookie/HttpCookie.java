@@ -3,7 +3,6 @@ package com.twozo.commons.cookie;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
-import org.openqa.selenium.Cookie;
 
 import java.util.Date;
 
