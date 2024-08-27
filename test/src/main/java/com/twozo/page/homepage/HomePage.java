@@ -36,6 +36,7 @@ public class HomePage extends BasePage {
     private WebPageElement settingsIcon;
     private WebPageElement inboxIcon;
     private WebPageElement analyticsIcon;
+    private final boolean isProductEnabled = isProductEnabled();
 
     protected HomePage(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
@@ -52,9 +53,9 @@ public class HomePage extends BasePage {
 
     public static HomePage getInstance(final WebAutomationDriver webAutomationDriver) {
 
-        // if (Objects.isNull(homePage)) {
-        homePage = new HomePage(webAutomationDriver);
-        //}
+        if (Objects.isNull(homePage)) {
+            homePage = new HomePage(webAutomationDriver);
+        }
 
         return homePage;
     }
@@ -70,9 +71,9 @@ public class HomePage extends BasePage {
 
     public WebPageElement getContactIcon() {
 
-        //   if (Objects.isNull(contactIcon)) {
-        contactIcon = findByOrder(2);
-        // }
+        if (Objects.isNull(contactIcon)) {
+            contactIcon = findByOrder(2);
+        }
 
         return contactIcon;
     }
@@ -105,30 +106,31 @@ public class HomePage extends BasePage {
     }
 
     public WebPageElement getSettingsIcon() {
-
-        if (Objects.isNull(settingsIcon)) {
-            settingsIcon = findByOrder(5);
-        }
-
-        return settingsIcon;
+        return getIcon(settingsIcon, 6, 5);
     }
 
     public WebPageElement getInboxIcon() {
-
-        if (Objects.isNull(inboxIcon)) {
-            inboxIcon = findByOrder(7);
-        }
-
-        return inboxIcon;
+        return getIcon(inboxIcon, 7, 6);
     }
 
     public WebPageElement getAnalyticsIcon() {
+        return getIcon(analyticsIcon, 8, 7);
+    }
 
-        if (Objects.isNull(analyticsIcon)) {
-            analyticsIcon = findByOrder(8);
+    private WebPageElement getIcon(WebPageElement icon, final int productEnabledOrder, final int productDisabledOrder) {
+        if (Objects.isNull(icon)) {
+            icon = findByOrder(isProductEnabled() ? productEnabledOrder : productDisabledOrder);
         }
 
-        return analyticsIcon;
+        return icon;
+    }
+
+    private boolean isProductEnabled() {
+        try {
+            return isDisplayed(findByOrder(8));
+        } catch (Exception exception) {
+            return false;
+        }
     }
 
     private WebPageElement findByOrder(final int position) {
@@ -167,10 +169,6 @@ public class HomePage extends BasePage {
     }
 
     public Settings switchToSettings() {
-        try {
-            Thread.sleep(5000);
-        } catch (Exception exception) {
-        }
         click(getSettingsIcon());
 
         return settings;

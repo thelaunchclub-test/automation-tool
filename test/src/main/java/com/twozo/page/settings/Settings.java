@@ -95,7 +95,7 @@ public class Settings extends BasePage {
     }
 
     public ContactDataField switchToContactDataFields() {
-        click(getContact());
+      //  click(getContact());
 
         return ContactDataField.getInstance(webAutomationDriver);
     }

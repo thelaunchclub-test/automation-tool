@@ -22,7 +22,7 @@ public class BasePage {
     protected ElementFinder elementFinder;
     protected WebNavigator webNavigator;
     protected PageInformationProvider pageInformationProvider;
-    protected SessionCookie sessionCookie;
+    public SessionCookie sessionCookie;
     protected MouseActions mouseActions;
     protected ExplicitWaitHandler explicitWaitHandler;
 

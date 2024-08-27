@@ -16,21 +16,22 @@ public class SettingsTest extends BaseTest {
 
     //private static final Logger LOG = LoggerFactory.getLogger(SignInTest.class);
 
-    protected HomePage homePage;
+
     protected Settings settings;
-    protected ContactDataField contactDataField;
     protected CompanyDataField companyDataField;
     protected DealDataField dealDataField;
     protected ProductDataField productDataField;
 
-    @BeforeClass
-    public void initialize() {
-        //homePage = signIn.signIn("aaa@gmail.com", "A$12345a");
-       //contactDataField = homePage.switchToSettings().switchToContactDataFields();
-
-       // companyDataField = homePage.switchToSettings().switchToCompanyDataFields();
-        // dealDataField = homePage.switchToSettings().switchToDealDataFields();
-      //  productDataField = homePage.switchToSettings().switchToProductDataFields();
-
-    }
+//    @BeforeMethod
+//    public void initialize() {
+//
+//       // homePage = signIn.signIn("aah@gmail.com", "A$12345a");
+//
+    //   contactDataField = homePage().switchToContactDataFields();
+//
+//        //companyDataField = homePage.switchToSettings().switchToCompanyDataFields();
+//        // dealDataField = homePage.switchToSettings().switchToDealDataFields();
+//      //  productDataField = homePage.switchToSettings().switchToProductDataFields();
+//
+//    }
 }

@@ -6,7 +6,7 @@ public class FieldType {
     public static String LARGE_TEXT = "Large Text";
     public static String NUMBER = "Number";
     public static String DROPDOWN = "Dropdown";
-    public static String MULTI_SELECT = "multiselect";
+    public static String MULTI_SELECT = "Multi Select";
     public static String OWNER = "Owner";
     public static String COMPANY = "Company";
     public static String CONTACT = "Contact";

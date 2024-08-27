@@ -33,7 +33,8 @@ public final class ConfigFileReader {
      * @return {@link Properties} containing the key-value pairs from the configuration file.
      */
     public static Map<String, String> get(final String fileName) {
-        final File file = new File(EnvUtility.getConfDirectory(), fileName);
+        final File file = new File("C:\\Testing\\automation-tool\\test\\src\\test\\resources", fileName);
+        System.out.println(EnvUtility.getConfDirectory());
 
         if (!file.exists()) {
             LOGGER.error("Commons : The given file path '{}' is not found", file.getAbsolutePath());

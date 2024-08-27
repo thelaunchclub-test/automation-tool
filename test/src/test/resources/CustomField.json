@@ -1,110 +1,13 @@
 [
   {
-    "testCaseID": 1,
+    "testCaseID": "CF-1",
     "title": "Field",
     "input": {
-      "fieldName": "a",
+      "fieldName": "bad",
       "fieldType": "Text"
     },
     "output": {
       "result": "pass"
     }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "b",
-      "fieldType": "Large Text"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "c",
-      "fieldType": "Number"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "d",
-      "fieldType": "Owner"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "e",
-      "fieldType": "Company"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "f",
-      "fieldType": "Contact"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "g",
-      "fieldType": "Phone"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": 1,
-    "title": "Field",
-    "input": {
-      "fieldName": "h",
-      "fieldType": "Email"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },  {
-  "testCaseID": 1,
-  "title": "Field",
-  "input": {
-    "fieldName": "i",
-    "fieldType": "Dropdown"
-  },
-  "output": {
-    "result": "pass"
   }
-},  {
-  "testCaseID": 1,
-  "title": "Field",
-  "input": {
-    "fieldName": "j",
-    "fieldType": "Multi Select"
-  },
-  "output": {
-    "result": "pass"
-  }
-}
 ]

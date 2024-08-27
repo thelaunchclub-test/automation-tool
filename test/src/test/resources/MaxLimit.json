@@ -1,0 +1,123 @@
+[
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "ba",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bb",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bc",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bd",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bd",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "be",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bf",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bg",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bh",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bi",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bj",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
+  }
+]

@@ -3,6 +3,7 @@ package com.twozo.test.sign.up;
 import com.twozo.commons.json.JsonObject;
 import com.twozo.page.sign.in.SignIn;
 import com.twozo.page.sign.up.Account;
+import com.twozo.page.sign.up.SignUp;
 import com.twozo.test.BaseTest;
 
 import com.twozo.test.TestCase;
@@ -35,6 +36,6 @@ public final class SignUpTest extends BaseTest {
         account.setCompany(input.getString("company"));
         account.setJobRole(input.getString("jobRole"));
         LOG.info("Signed up successfully");
-        signUp.signUp(account);
+        SignUp.getInstance(webAutomationDriver).signUp(account);
     }
 }

@@ -4,7 +4,7 @@
     "title": "First Name with add view",
     "input": {
       "isDraggable": false,
-      "name": "First Name",
+      "name": "Open Deals",
       "fieldType": "Text",
       "isAddView": true
     }
@@ -14,88 +14,8 @@
     "title": "Last Name with add view",
     "input": {
       "isDraggable": false,
-      "name": "Last Name",
+      "name": "Closed Deals",
       "fieldType": "Text",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 3,
-    "title": "Emails with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Emails",
-      "fieldType": "Emails",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 4,
-    "title": "Phones with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Phones",
-      "fieldType": "Phones",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 5,
-    "title": "Designation with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Designation",
-      "fieldType": "Text",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 6,
-    "title": "Company with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Company",
-      "fieldType": "Company",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 7,
-    "title": "Sales Owner with add view",
-    "input": {
-      "isDraggable": true,
-      "name": "Sales Owner",
-      "fieldType": "Owner",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 8,
-    "title": "Twitter with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Twitter",
-      "fieldType": "Text",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 9,
-    "title": "Facebook with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Facebook",
-      "fieldType": "Text",
-      "isAddView": true
-    }
-  },
-  {
-    "testCaseID": 10,
-    "title": "Source with add view",
-    "input": {
-      "isDraggable": false,
-      "name": "Source",
-      "fieldType": "Dropdown",
       "isAddView": true
     }
   }

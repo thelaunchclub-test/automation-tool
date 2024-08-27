@@ -168,7 +168,7 @@ public final class SignInTest extends BaseTest {
 
     @Test
     public void signIn() {
-       // signIn.signIn("aaaa@gmail.com", "A$12345a").switchToSettings();
+       signIn.signIn("aaaa@gmail.com", "A$12345a");
 
         //ravi$123.stream().collect(Coll).filter(Deal::isDisplayed).map()forEach(System.out::println);
 

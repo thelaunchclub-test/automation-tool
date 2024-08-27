@@ -3,7 +3,30 @@
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "a"
+      "name": "aedited"
+    }
+  },
+
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "name": "bedited"
+    }
+  },
+
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "name": "cedited"
+    }
+  },
+  {
+    "testCaseID": 1,
+    "title": "First Name with add view",
+    "input": {
+      "name": "dedited"
     }
   }
 ]

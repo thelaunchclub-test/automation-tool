@@ -97,7 +97,9 @@ public class SignIn extends BasePage {
     }
 
     public WebPageElement getEmailField() {
-        return findByXpath("//*[@name='email']");
+        emailField = initializeElement(emailField, () -> findByXpath("//input[@name='email']"));
+
+        return emailField;
     }
 
     public WebPageElement getPasswordField() {
@@ -136,8 +138,8 @@ public class SignIn extends BasePage {
     }
 
     public void facebookLogin() {
-        send(findByXpath("//*[@name='email']"), "8220978540");
-        send(findByXpath("//*[@type='password']"), "nj8220978540");
+        send(findByXpath("//*[@name='email']"), "9566452216");
+        send(findByXpath("//*[@type='password']"), "Shab$2015");
         click(findByText("Log in"));
     }
 

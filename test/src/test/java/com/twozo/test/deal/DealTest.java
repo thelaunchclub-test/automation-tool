@@ -9,7 +9,7 @@ public final class DealTest extends BaseTest {
 
     @Test
     public void addDeal() {
-        final SignIn signIn = SignIn.getInstance(webAutomationDriver);
+       // final SignIn signIn = SignIn.getInstance(webAutomationDriver);
         //final signIn.signIn("aei@gmail.com", "New$Password123");
 
         //deal.switchToAddDeal().addDeal();

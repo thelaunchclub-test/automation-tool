@@ -22,8 +22,11 @@ public class ContactDataField extends AbstractDataField {
 
     protected ContactDataField(final WebAutomationDriver webAutomationDriver) {
         super(webAutomationDriver);
+        System.out.println(getURL());
+        System.out.println(SettingsURL.CONTACT_DATA_FIELDS);
 
         if (!getURL().equals(SettingsURL.CONTACT_DATA_FIELDS)) {
+            System.out.println(SettingsURL.CONTACT_DATA_FIELDS);
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
@@ -434,7 +437,7 @@ public class ContactDataField extends AbstractDataField {
         checkSpecificElement(timezoneBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(timezoneBlock, FieldTypePath.DROPDOWN);
         click(findByXpath(format(timezoneBlock, hundredChoices)));
-        checkChoicesForSource();
+        checkChoicesForTimeZone();
     }
 
     public void isEnabled() {

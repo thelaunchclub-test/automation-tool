@@ -1,24 +1,56 @@
 package com.twozo.test.settings.data.fields;
 
+import com.twozo.commons.cookie.HttpCookie;
 import com.twozo.commons.json.JsonObject;
+import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
-import com.twozo.page.settings.data.fields.product.field.ProductField;
+import com.twozo.page.settings.data.fields.product.ProductDataField;
 import com.twozo.test.TestCase;
-import com.twozo.test.TestDataProvider;
+import com.twozo.web.driver.service.WebAutomationDriver;
 
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class ProductDataFieldTest extends DataFieldTest {
 
+    ProductDataField productDataField;
+    HomePage homePage;
+    private WebAutomationDriver automationDriver;
+
+    @BeforeMethod
+    public void before() {
+        automationDriver = WebAutomationDriver.get();
+        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in");
+
+        for (final HttpCookie cookie : cookies) {
+            automationDriver.getSessionCookie().addCookie(cookie);
+        }
+
+        automationDriver.getWebWindowHandler().maximize();
+        automationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
+        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Product");
+        automationDriver.getWebWindowHandler().maximize();
+
+        homePage = HomePage.getInstance(automationDriver);
+        homePage.switchToProduct();
+        productDataField = ProductDataField.getInstance(automationDriver);
+    }
+
+    @AfterMethod
+    public void after() {
+        automationDriver.close();
+    }
 
     @Test
     public void verifyDefaultSystemFields() {
         Assert.assertTrue(productDataField.verifyDefaultSystemFields());
     }
 
-    @Test(dataProvider = "contactSystemFields")
+    @Test(dataProvider = "productSystemFields")
     public void addSystemFields(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
@@ -26,7 +58,6 @@ public class ProductDataFieldTest extends DataFieldTest {
 
         fieldStatus.setName(input.getString("name"));
         fieldStatus.setFieldType(input.getString("fieldType"));
-
         Assert.assertTrue(productDataField.addSystemField(fieldStatus));
     }
 
@@ -36,7 +67,8 @@ public class ProductDataFieldTest extends DataFieldTest {
         final JsonObject input = testCase.input;
 
         if (input.containsKey("fieldName") && input.containsKey("fieldType")) {
-            Assert.assertTrue(productDataField.addCustomField(input.getString("fieldName"), input.getString("fieldType")));
+            Assert.assertTrue(productDataField.addCustomField(input.getString("fieldName"),
+                    input.getString("fieldType")));
         }
     }
 
@@ -46,11 +78,8 @@ public class ProductDataFieldTest extends DataFieldTest {
         final JsonObject input = testCase.input;
         final String name = input.getString("name");
         final String append = input.getString("append");
-        final String newFieldName = String.format("%s%s", name, append);
 
-        productDataField.editCustomField(name, append);
-        productDataField.isVisibleInDataFields(newFieldName);
-        Assert.assertTrue(isVisibleInSummary(newFieldName));
+        Assert.assertTrue(productDataField.editCustomField(name, append));
     }
 
     @Test(dataProvider = "hideField")
@@ -58,8 +87,8 @@ public class ProductDataFieldTest extends DataFieldTest {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
         final String name = input.getString("name");
-        productDataField.hideField(name);
-        Assert.assertFalse(isVisibleInSummary(name));
+
+        Assert.assertTrue(productDataField.hideField(name));
     }
 
     @Test(dataProvider = "deleteField")
@@ -72,7 +101,7 @@ public class ProductDataFieldTest extends DataFieldTest {
         Assert.assertFalse(isVisibleInSummary(name));
     }
 
-    @Test(dataProvider = "contactSystemFields")
+    @Test(dataProvider = "productSystemFields")
     public void enableAddView(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
@@ -83,7 +112,7 @@ public class ProductDataFieldTest extends DataFieldTest {
         Assert.assertTrue(productDataField.enableAddView(fieldStatus));
     }
 
-    @Test(dataProvider = "contactSystemFields")
+    @Test(dataProvider = "productSystemFields")
     public void enableRequired(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
@@ -91,54 +120,59 @@ public class ProductDataFieldTest extends DataFieldTest {
 
         fieldStatus.setName(input.getString("name"));
         fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(contactDataField.enableRequired(fieldStatus));
+        Assert.assertTrue(productDataField.enableRequired(fieldStatus));
     }
-//
-//    @Test(dataProvider = "contactSystemFields")
-//    public void checkAddForm(final Object object) {
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//        final FieldStatus fieldStatus = new FieldStatus();
-//
-//        fieldStatus.setName(input.getString("name"));
-//        fieldStatus.setAddView(input.getBoolean("isAddView"));
-//        productDataField.addSystemField(fieldStatus);
-//        productDataField.checkAddView(fieldStatus);
-//        final String name = fieldStatus.getName();
-//
-//        if (fieldStatus.isAddView()) {
-//            Assert.assertTrue(isVisibleInAddForm(name));
-//        } else {
-//            Assert.assertFalse(isVisibleInAddForm(name));
-//        }
-//    }
-//
-//    @Test(dataProvider = "contactSystemFields")
-//    public void checkInAddForm(final Object object) {
-//        final TestCase testCase = (TestCase) object;
-//        final JsonObject input = testCase.input;
-//        final FieldStatus fieldStatus = new FieldStatus();
-//
-//        fieldStatus.setName(input.getString("name"));
-//        fieldStatus.setFieldType(input.getString("fieldType"));
-//
-//        final String name = fieldStatus.getName();
-//
-//        if (productDataField.enableRequired(fieldStatus)) {
-//            if (productDataField.getURL().equals("https://app.twozo.live/contacts")) {
-//                Assert.assertTrue(productDataField.isVisibleInAddFormAsRequired(name));
-//            } else {
-//                isVisibleInAddFormAsRequired(name);
-//            }
-//        } else {
-//            Assert.assertFalse(isVisibleInAddFormAsRequired(name));
-//        }
-//    }
+
+    @Test(dataProvider = "productSystemFields")
+    public void checkAddForm(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        fieldStatus.setAddView(input.getBoolean("isAddView"));
+        productDataField.addSystemField(fieldStatus);
+        productDataField.checkAddView(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        if (fieldStatus.isAddView()) {
+            Assert.assertTrue(isVisibleInAddForm(name));
+        } else {
+            Assert.assertFalse(isVisibleInAddForm(name));
+        }
+    }
+
+    @Test(dataProvider = "productSystemFields")
+    public void checkColumnSettings(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        productDataField.addSystemField(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        Assert.assertTrue(isVisibleInColumnSettings(name));
+    }
+
+    @Test(dataProvider = "productSystemFields")
+    public void checkSummary(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
+
+        fieldStatus.setName(input.getString("name"));
+        productDataField.addSystemField(fieldStatus);
+        final String name = fieldStatus.getName();
+
+        Assert.assertTrue(isVisibleInSummary(name));
+    }
 
     @Override
-    public boolean isVisibleInSummary(String fieldName) {
+    public boolean isVisibleInSummary(final String fieldName) {
         homePage.switchToProduct();
         productDataField.switchToSummary();
+
         return productDataField.isVisibleInSummary(fieldName);
     }
 
@@ -150,21 +184,26 @@ public class ProductDataFieldTest extends DataFieldTest {
     }
 
     @Override
-    public boolean isVisibleInAddForm(String fieldName) {
+    public boolean isVisibleInAddForm(final String fieldName) {
         homePage.switchToProduct();
         productDataField.switchToAddProductForm();
+
         return productDataField.isVisibleInAddForm(fieldName);
     }
 
     @Override
-    public boolean isVisibleInAddFormAsRequired(String fieldName) {
+    public boolean isVisibleInAddFormAsRequired(final String fieldName) {
         homePage.switchToProduct();
-        contactDataField.switchToAddProductForm();
-        return productDataField.isVisibleInAddFormAsRequired(fieldName);    }
+        productDataField.switchToAddProductForm();
+
+        return productDataField.isVisibleInAddFormAsRequired(fieldName);
+    }
 
     @Override
-    public boolean isVisibleInColumnSettings(String fieldName) {
+    public boolean isVisibleInColumnSettings(final String fieldName) {
         homePage.switchToProduct().switchToColumnSettings();
-        homePage.switchToContact();
-        return productDataField.isVisibleInColumnSettings(fieldName);    }
+        homePage.switchToProduct();
+
+        return productDataField.isVisibleInColumnSettings(fieldName);
+    }
 }

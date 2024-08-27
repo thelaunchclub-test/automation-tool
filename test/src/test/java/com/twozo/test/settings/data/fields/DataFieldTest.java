@@ -23,10 +23,10 @@ public abstract class DataFieldTest extends SettingsTest {
         return new TestDataProvider().getTestCases("SystemField.json");
     }
 
-//    @DataProvider(name = "testCase")
-//    public static Object[][] getData() {
-//        return new TestDataProvider().getTestCases("TestCase.json");
-//    }
+    @DataProvider(name = "maxLimit")
+    public static Object[][] getDataForMaxLimit() {
+        return new TestDataProvider().getTestCases("MaxLimit.json");
+    }
 
     @DataProvider(name = "contactSystemFields")
     public static Object[][] getContactSystemFieldData() {

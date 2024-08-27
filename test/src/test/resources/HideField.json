@@ -3,28 +3,28 @@
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "Next Activity Date"
+      "name": "Open Deals"
     }
   },
   {
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "Last Activity Type"
+      "name": "Closed Deals"
     }
   },
   {
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "Done Activities"
+      "name": "Won Deals"
     }
   },
   {
     "testCaseID": 1,
     "title": "First Name with add view",
     "input": {
-      "name": "Upcoming Activities"
+      "name": "Lost Deals"
     }
   }
 ]
