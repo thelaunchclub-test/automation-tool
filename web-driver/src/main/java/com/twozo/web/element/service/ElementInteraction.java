@@ -54,4 +54,6 @@ public interface ElementInteraction {
      * </p>
      */
     void clear();
+
+    boolean isSelected();
 }

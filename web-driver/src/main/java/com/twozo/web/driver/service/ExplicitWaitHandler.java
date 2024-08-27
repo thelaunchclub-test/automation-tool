@@ -39,4 +39,5 @@ public interface ExplicitWaitHandler {
      * @param element The {@link Element} to be clickable.
      */
     void WaitTillClickable(final Element element);
+
 }

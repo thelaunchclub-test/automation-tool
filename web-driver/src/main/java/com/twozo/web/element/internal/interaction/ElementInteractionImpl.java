@@ -70,4 +70,9 @@ public final class ElementInteractionImpl implements ElementInteraction {
     public void clear() {
         element.clear();
     }
+
+    @Override
+    public boolean isSelected() {
+        return element.isSelected();
+    }
 }

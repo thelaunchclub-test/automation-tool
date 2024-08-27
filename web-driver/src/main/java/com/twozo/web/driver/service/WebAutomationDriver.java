@@ -28,7 +28,7 @@ import com.twozo.web.mouse.service.actions.MouseActions;
 public interface WebAutomationDriver {
 
     static WebAutomationDriver get() {
-        return new WebAutomationDriverImpl();
+        return WebAutomationDriverImpl.getInstance();
     }
 
     /**
@@ -135,4 +135,6 @@ public interface WebAutomationDriver {
      * </p>
      */
     void quit();
+
+    Cookies getCookies();
 }

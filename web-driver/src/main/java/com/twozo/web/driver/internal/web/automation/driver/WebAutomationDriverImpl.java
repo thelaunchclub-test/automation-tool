@@ -1,6 +1,7 @@
 package com.twozo.web.driver.internal.web.automation.driver;
 
 import com.twozo.commons.util.ConfigFileReader;
+import com.twozo.web.driver.internal.cookies.CookiesImpl;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
@@ -72,6 +73,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     ScreenCapturer screenCapturer;
     MouseActions mouseActions;
     ElementFinder elementFinder;
+    Cookies cookies;
 
     public WebAutomationDriverImpl(@NonNull final WebDriver driver) {
         this.driver = driver;
@@ -85,6 +87,11 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
         this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
+        this.cookies = new CookiesImpl(driver.manage());
+    }
+
+    private static class Instance {
+        private static final WebAutomationDriverImpl INSTANCE = new WebAutomationDriverImpl();
     }
 
     public WebAutomationDriverImpl() {
@@ -99,6 +106,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
         this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
+        this.cookies = new CookiesImpl(driver.manage());
     }
 
     private static RemoteWebDriver getDriver(@NonNull final BrowserType browserType) {
@@ -114,6 +122,10 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     private BrowserType getBrowserType() {
         return Objects.requireNonNull(BrowserType.valueOf(
                 Objects.requireNonNull(map.get("Browser").toUpperCase())));
+    }
+
+    public static WebAutomationDriver getInstance() {
+        return Instance.INSTANCE;
     }
 
     /**
@@ -231,5 +243,10 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     @Override
     public void quit() {
         driver.quit();
+    }
+
+    @Override
+    public Cookies getCookies() {
+        return cookies;
     }
 }
