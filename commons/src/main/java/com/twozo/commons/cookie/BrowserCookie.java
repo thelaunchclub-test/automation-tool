@@ -1,6 +1,5 @@
 package com.twozo.commons.cookie;
 
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.Date;
