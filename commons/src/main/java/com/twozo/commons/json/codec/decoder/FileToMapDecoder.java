@@ -3,7 +3,7 @@ package com.twozo.commons.json.codec.decoder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.twozo.commons.exception.ErrorCode;
-import com.twozo.commons.exception.status.CommonsErrorCode;
+import com.twozo.commons.exception.error.code.CommonsErrorCode;
 
 import lombok.NonNull;
 import lombok.Value;
