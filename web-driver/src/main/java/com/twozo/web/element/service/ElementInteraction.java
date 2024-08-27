@@ -47,4 +47,11 @@ public interface ElementInteraction {
      * @param keysToSend The character sequences to be sent.
      */
     void sendKeys(final CharSequence... keysToSend);
+
+    /**
+     * <p>
+     * Clears the text from the {@link WebElement}.
+     * </p>
+     */
+    void clear();
 }

@@ -102,4 +102,25 @@ public final class ElementInformationProviderImpl implements ElementInformationP
     public boolean isDisplayed() {
         return element.isDisplayed();
     }
+
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return The location of a {@link WebElement} as an integer.
+     */
+    @Override
+    public int getXLocation() {
+        return element.getLocation().x;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return The location of a {@link WebElement} as an integer.
+     */
+    @Override
+    public int getYLocation() {
+        return element.getLocation().y;
+    }
 }
