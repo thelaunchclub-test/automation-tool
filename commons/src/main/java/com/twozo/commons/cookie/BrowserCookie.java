@@ -1,6 +1,5 @@
 package com.twozo.commons.cookie;
 
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.Date;
@@ -20,7 +19,6 @@ import java.util.Date;
  * @version 1.0
  */
 @NonNull
-@Getter
 public record BrowserCookie(String name, String value, String path, String domain, Date expiry, boolean secure,
                             boolean httpOnly, String sameSite) {
 }

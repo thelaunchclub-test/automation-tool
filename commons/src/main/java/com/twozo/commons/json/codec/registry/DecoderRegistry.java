@@ -2,7 +2,7 @@ package com.twozo.commons.json.codec.registry;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.commons.json.codec.decoder.*;
-import com.twozo.commons.json.status.JsonErrorCode;
+import com.twozo.commons.json.error.code.JsonErrorCode;
 
 import lombok.NonNull;
 import lombok.Value;
