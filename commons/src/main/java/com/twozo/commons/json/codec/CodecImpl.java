@@ -17,7 +17,7 @@ import lombok.Value;
  *
  * @author Petchimuthu
  * @version 1.0
- * @see Codec
+ * @see com.twozo.commons.json.codec.Codec
  */
 @Value
 @NonNull

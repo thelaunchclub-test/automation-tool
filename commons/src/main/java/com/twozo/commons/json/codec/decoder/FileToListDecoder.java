@@ -8,11 +8,13 @@ import com.twozo.commons.exception.status.CommonsErrorCode;
 import lombok.NonNull;
 import lombok.Value;
 
+import java.io.File;
+
 import java.util.List;
 
 /**
  * <p>
- * The {@link StringToListDecoder} is responsible for decoding a JSON string into a {@link List}.
+ * The {@link FileToListDecoder} is responsible for decoding a JSON file into a {@link List} of {@link Object}.
  * </p>
  *
  * @author Petchimuthu
@@ -20,21 +22,21 @@ import java.util.List;
  */
 @Value
 @NonNull
-public class StringToListDecoder implements Decoder<String, List<Object>> {
+public class FileToListDecoder implements Decoder<File, List<Object>> {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * Decodes a JSON string into a {@link List} of {@link Object}.
+     * Decodes a JSON file into a {@link List} of {@link Object}.
      *
-     * @param value The JSON string to be decoded.
-     * @return A {@link List} of {@link Object parsed from the JSON string.
+     * @param file The JSON file to be decoded.
+     * @return A {@link List} of {@link Object} parsed from the JSON file.
      */
     @Override
-    public List<Object> decode(final String value) {
+    public List<Object> decode(final File file) {
         try {
-            return objectMapper.readValue(value, List.class);
-        } catch (Exception e) {
+            return objectMapper.readValue(file, List.class);
+        } catch (Exception exception) {
             throw ErrorCode.get(CommonsErrorCode.FILE_NOT_FOUND);
         }
     }

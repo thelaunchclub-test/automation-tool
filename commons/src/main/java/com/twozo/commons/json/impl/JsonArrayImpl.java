@@ -1,8 +1,11 @@
 package com.twozo.commons.json.impl;
 
+import com.twozo.commons.exception.ErrorCode;
 import com.twozo.commons.json.Json;
 import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
+import com.twozo.commons.json.status.JsonErrorCode;
+
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
@@ -236,13 +239,12 @@ public final class JsonArrayImpl implements JsonArray {
      *
      * @param index The index of the object to check.
      * @return The {@link Object} at the specified index if it is not null.
-     * @throws NullPointerException if the object at the specified index is null.
      */
     private Object getValue(final int index) {
         final Object object = list.get(index);
 
         if (Objects.isNull(object)) {
-            throw new NullPointerException("the key is invalid"); // TODO: Replace generic catch block with proper exception handling
+            throw ErrorCode.get(JsonErrorCode.INVALID_DATA);
         }
 
         return object;
