@@ -1,4 +1,4 @@
-package com.twozo.commons.exception.errorcode;
+package com.twozo.commons.exception.status;
 
 import com.twozo.commons.exception.provider.PrefixProvider;
 import com.twozo.commons.exception.service.ErrorCodeProvider;
@@ -29,7 +29,9 @@ import com.twozo.commons.exception.service.ErrorCodeProvider;
 public enum CommonsErrorCode implements ErrorCodeProvider {
 
     INVALID_BASE_CODE(1),
-    BASE_CODE_ALREADY_REGISTERED(2);
+    BASE_CODE_ALREADY_REGISTERED(2),
+    FILE_NOT_FOUND(3),
+    CANNOT_READ(4);
 
     private static final PrefixProvider PREFIX_PROVIDER = new PrefixProvider();
     private static final int BASE_CODE = 0x1000;
