@@ -25,7 +25,7 @@ public final class EnvUtility {
     private static final String AUTOMATION_DIRECTORY = String.format("%s%s%s", USER_HOME, SEPARATOR, "automation");
     private static final String FILE = String.format("%s%s%s", AUTOMATION_DIRECTORY, SEPARATOR, "file");
     private static final String JSON = String.format("%s%s%s", AUTOMATION_DIRECTORY, SEPARATOR, "json");
-    private static final String CONF = String.format("%s%s%s%s%s", USER_DIRECTORY, SEPARATOR, "src", "main", "resources");
+    private static final String CONF = String.format("%s%s%s%s%s%s%s", USER_DIRECTORY, SEPARATOR, "src", SEPARATOR, "test", SEPARATOR, "resources");
 
     /**
      * Returns the path of the user's home directory.

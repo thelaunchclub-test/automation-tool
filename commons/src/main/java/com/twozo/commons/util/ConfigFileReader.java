@@ -1,7 +1,7 @@
 package com.twozo.commons.util;
 
 import com.twozo.commons.exception.ErrorCode;
-import com.twozo.commons.exception.status.CommonsErrorCode;
+import com.twozo.commons.exception.error.code.CommonsErrorCode;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
