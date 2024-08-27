@@ -1,7 +1,6 @@
 package com.twozo.commons.exception;
 
 import com.twozo.commons.exception.service.ErrorCodeProvider;
-
 import lombok.AllArgsConstructor;
 
 /**
