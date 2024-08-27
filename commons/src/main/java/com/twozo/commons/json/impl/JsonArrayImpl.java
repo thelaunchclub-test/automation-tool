@@ -4,7 +4,7 @@ import com.twozo.commons.exception.ErrorCode;
 import com.twozo.commons.json.Json;
 import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
-import com.twozo.commons.json.status.JsonErrorCode;
+import com.twozo.commons.json.error.code.JsonErrorCode;
 
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
