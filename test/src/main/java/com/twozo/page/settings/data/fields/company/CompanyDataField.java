@@ -11,7 +11,7 @@ import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.status.WebDriverErrorCode;
+import com.twozo.web.error.code.WebDriverErrorCode;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.Arrays;
@@ -21,16 +21,16 @@ public class CompanyDataField extends AbstractDataField {
 
     private static CompanyDataField company;
 
-    protected CompanyDataField(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected CompanyDataField() {
+        super();
 
         if (getURL().equals(SettingsURL.CONTACT_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
 
-    public static CompanyDataField getInstance(final WebAutomationDriver webAutomationDriver) {
-        company = new CompanyDataField(webAutomationDriver);
+    public static CompanyDataField getInstance() {
+        company = new CompanyDataField();
 
         return company;
     }

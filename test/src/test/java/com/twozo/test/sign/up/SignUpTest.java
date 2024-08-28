@@ -1,9 +1,8 @@
 package com.twozo.test.sign.up;
 
 import com.twozo.commons.json.JsonObject;
-import com.twozo.page.sign.in.SignIn;
-import com.twozo.page.sign.up.Account;
-import com.twozo.page.sign.up.SignUp;
+import com.twozo.page.sign.Account;
+import com.twozo.page.sign.SignUp;
 import com.twozo.test.BaseTest;
 
 import com.twozo.test.TestCase;

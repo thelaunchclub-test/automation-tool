@@ -1,13 +1,13 @@
 package com.twozo.test.settings.data.fields;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.twozo.commons.cookie.BrowserCookie;
 import com.twozo.commons.json.JsonObject;
+import com.twozo.page.company.Company;
 import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
 import com.twozo.page.settings.data.fields.company.CompanyDataField;
 import com.twozo.test.TestCase;
 import com.twozo.web.driver.service.WebAutomationDriver;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,9 +24,10 @@ public class CompanyDataFieldTest extends DataFieldTest {
     @BeforeMethod
     public void before() {
         automationDriver = WebAutomationDriver.get();
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in");
+        webNavigator = automationDriver.getWebNavigator();
+        webNavigator.to("https://app.thelaunchclub.in");
 
-        for (final HttpCookie cookie : cookies) {
+        for (final BrowserCookie cookie : cookies) {
             automationDriver.getSessionCookie().addCookie(cookie);
         }
 
@@ -35,8 +36,8 @@ public class CompanyDataFieldTest extends DataFieldTest {
         automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Company");
         automationDriver.getWebWindowHandler().maximize();
 
-        homePage = HomePage.getInstance(automationDriver);
-        companyDataField = CompanyDataField.getInstance(automationDriver);
+        homePage = HomePage.getInstance();
+        companyDataField = CompanyDataField.getInstance();
     }
 
     @AfterMethod
@@ -61,7 +62,7 @@ public class CompanyDataFieldTest extends DataFieldTest {
     }
 
     @Test(dataProvider = "maxLimit")
-    public void checkMaxLimit(final Object object){
+    public void checkMaxLimit(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
 
@@ -195,36 +196,36 @@ public class CompanyDataFieldTest extends DataFieldTest {
 
     @Override
     public boolean isVisibleInSummary(final String fieldName) {
-        HomePage.getInstance(webAutomationDriver).switchToCompany();
+        HomePage.getInstance().switchToCompany();
         companyDataField.switchToSummary();
         return companyDataField.isVisibleInSummary(fieldName);
     }
 
     @Override
     public void isDefaultFieldsVisibleInAddView() {
-        homePage.switchToCompany();
+        webNavigator.to("https://app.thelaunchclub.in/Companies");
         companyDataField.switchToAddCompanyForm();
         Assert.assertTrue(companyDataField.isDefaultFieldsVisibleInAddView());
     }
 
     @Override
     public boolean isVisibleInAddForm(final String fieldName) {
-        homePage.switchToCompany();
+        webNavigator.to("https://app.thelaunchclub.in/Companies");
         companyDataField.switchToAddCompanyForm();
         return companyDataField.isVisibleInAddForm(fieldName);
     }
 
     @Override
     public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        homePage.switchToCompany();
+        webNavigator.to("https://app.thelaunchclub.in/Companies");
         companyDataField.switchToAddCompanyForm();
         return companyDataField.isVisibleInAddFormAsRequired(fieldName);
     }
 
     @Override
     public boolean isVisibleInColumnSettings(final String fieldName) {
-        homePage.switchToCompany().switchToColumnSettings();
-        homePage.switchToCompany();
+        webNavigator.to("https://app.thelaunchclub.in/Companies");
+        Company.getInstance().switchToColumnSettings();
         return companyDataField.isVisibleInColumnSettings(fieldName);
     }
 }

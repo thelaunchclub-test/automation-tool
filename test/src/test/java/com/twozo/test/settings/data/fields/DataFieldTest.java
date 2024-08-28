@@ -3,10 +3,12 @@ package com.twozo.test.settings.data.fields;
 import com.twozo.test.TestDataProvider;
 import com.twozo.test.settings.SettingsTest;
 
+import com.twozo.web.driver.service.WebNavigator;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
 public abstract class DataFieldTest extends SettingsTest {
+    WebNavigator webNavigator;
 
     @DataProvider(name = "searchData")
     public static Object[][] getSearchData() {

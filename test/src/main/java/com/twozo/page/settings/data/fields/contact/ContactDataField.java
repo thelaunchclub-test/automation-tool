@@ -9,19 +9,18 @@ import com.twozo.page.settings.data.fields.field.FieldTypePath;
 import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
-import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.status.WebDriverErrorCode;
+import com.twozo.web.element.service.WebPageElement;
+import com.twozo.web.error.code.WebDriverErrorCode;
 import org.openqa.selenium.NoSuchElementException;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ContactDataField extends AbstractDataField {
 
     private static ContactDataField contactDataField;
 
-    protected ContactDataField(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected ContactDataField() {
+        super();
         System.out.println(getURL());
         System.out.println(SettingsURL.CONTACT_DATA_FIELDS);
 
@@ -31,9 +30,8 @@ public class ContactDataField extends AbstractDataField {
         }
     }
 
-
-    public static ContactDataField getInstance(final WebAutomationDriver webAutomationDriver) {
-        contactDataField = new ContactDataField(webAutomationDriver);
+    public static ContactDataField getInstance() {
+        contactDataField = new ContactDataField();
 
         return contactDataField;
     }
@@ -315,8 +313,16 @@ public class ContactDataField extends AbstractDataField {
                 "(UTC-07:00) America/Creston"
         };
 
+        final Collection<WebPageElement> choices = findElementsByXpath("//*[@class='css-vb6e92']/div[2]/div/p");
+        final Set<String> timeZoneChoices = new HashSet<>();
+        for (final WebPageElement choice : choices) {
+            timeZoneChoices.add(getText(choice));
+        }
+
         for (final String timeZone : timeZones) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(timeZone)));
+            if (!timeZoneChoices.contains(timeZone)) {
+                throw new AssertionError("Time zone not found: " + timeZone);
+            }
         }
     }
 
@@ -428,6 +434,7 @@ public class ContactDataField extends AbstractDataField {
 
         try {
             isDisplayed(findByXpath(getFieldBlock(timeZone)));
+            timezoneBlock = getFieldBlock(timeZone);
         } catch (NoSuchElementException noSuchElementException) {
             addSystemField(timeZone);
             timezoneBlock =getFieldBlock(timeZone);

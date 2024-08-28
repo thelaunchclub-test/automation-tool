@@ -1,7 +1,8 @@
 package com.twozo.test.settings.data.fields;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.twozo.commons.cookie.BrowserCookie;
 import com.twozo.commons.json.JsonObject;
+import com.twozo.page.contact.Contact;
 import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
 import com.twozo.page.settings.data.fields.contact.ContactDataField;
@@ -24,25 +25,26 @@ public class ContactDataFieldTest extends DataFieldTest {
     @BeforeMethod
     public void before() {
         automationDriver = WebAutomationDriver.get();
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/");
+        webNavigator = automationDriver.getWebNavigator();
+        webNavigator.to("https://app.thelaunchclub.in/");
 
-        for (final HttpCookie cookie : cookies) {
+        for (final BrowserCookie cookie : cookies) {
             automationDriver.getSessionCookie().addCookie(cookie);
         }
 
         automationDriver.getWebWindowHandler().maximize();
         automationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Contact");
+        webNavigator.to("https://app.thelaunchclub.in/settings/datafields?type=Contact");
         automationDriver.getWebWindowHandler().maximize();
 
-        homePage = HomePage.getInstance(automationDriver);
-        contactDataField = ContactDataField.getInstance(automationDriver);
+        homePage = HomePage.getInstance();
+        contactDataField = ContactDataField.getInstance();
     }
-//
-//    @AfterMethod
-//    public void after() {
-//        automationDriver.close();
-//    }
+
+    @AfterMethod
+    public void after() {
+        automationDriver.close();
+    }
 
     @Test
     public void verifyDefaultSystemFields() {
@@ -50,7 +52,7 @@ public class ContactDataFieldTest extends DataFieldTest {
     }
 
     @Test(dataProvider = "maxLimit")
-    public void checkMaxLimit(final Object object){
+    public void checkMaxLimit(final Object object) {
         final TestCase testCase = (TestCase) object;
         final JsonObject input = testCase.input;
 
@@ -59,7 +61,6 @@ public class ContactDataFieldTest extends DataFieldTest {
                     input.getString("fieldType")));
         }
     }
-
 
     @Test(dataProvider = "contactSystemFields")
     public void addSystemFields(final Object object) {
@@ -195,36 +196,40 @@ public class ContactDataFieldTest extends DataFieldTest {
 
     @Override
     public boolean isVisibleInSummary(final String fieldName) {
-        homePage.switchToContact();
+        webNavigator.to("https://app.thelaunchclub.in/contacts");
         contactDataField.switchToSummary();
+
         return contactDataField.isVisibleInSummary(fieldName);
     }
 
     @Override
     public void isDefaultFieldsVisibleInAddView() {
-        homePage.switchToContact();
+        webNavigator.to("https://app.thelaunchclub.in/contacts");
         contactDataField.switchToAddContactForm();
         Assert.assertTrue(contactDataField.isDefaultFieldsVisibleInAddView());
     }
 
     @Override
     public boolean isVisibleInAddForm(final String fieldName) {
-        homePage.switchToContact();
+        webNavigator.to("https://app.thelaunchclub.in/contacts");
         contactDataField.switchToAddContactForm();
+
         return contactDataField.isVisibleInAddForm(fieldName);
     }
 
     @Override
     public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        homePage.switchToContact();
+        webNavigator.to("https://app.thelaunchclub.in/contacts");
         contactDataField.switchToAddContactForm();
+
         return contactDataField.isVisibleInAddFormAsRequired(fieldName);
     }
 
     @Override
     public boolean isVisibleInColumnSettings(final String fieldName) {
-        homePage.switchToContact().switchToColumnSettings();
-        homePage.switchToContact();
+        webNavigator.to("https://app.thelaunchclub.in/contacts");
+        Contact.getInstance().switchToColumnSettings();
+
         return contactDataField.isVisibleInColumnSettings(fieldName);
     }
 }

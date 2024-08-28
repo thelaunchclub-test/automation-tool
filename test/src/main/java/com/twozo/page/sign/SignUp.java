@@ -1,17 +1,16 @@
-package com.twozo.page.sign.up;
+package com.twozo.page.sign;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.BasePage;
 import com.twozo.page.deal.Deal;
 
 import com.twozo.page.homepage.HomePage;
-import com.twozo.page.sign.in.SignIn;
 import com.twozo.page.url.URL;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
-import com.twozo.web.status.WebDriverErrorCode;
+import com.twozo.web.error.code.WebDriverErrorCode;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -34,21 +33,21 @@ public class SignUp extends BasePage {
     private Collection<WebPageElement> jobRoles;
     private WebPageElement completeSignUpButton;
 
-    private SignUp(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    private SignUp() {
+        super();
         click(getSignUpButton());
 
         if (!getURL().equals(URL.SIGN_UP)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND);
         }
 
-        this.deal = Deal.getInstance(webAutomationDriver);
+        this.deal = Deal.getInstance();
     }
 
     public static SignUp getInstance(final WebAutomationDriver webAutomationDriver) {
 
       //  if (Objects.isNull(signUp)) {
-            signUp = new SignUp(webAutomationDriver);
+            signUp = new SignUp();
         //}
 
         return signUp;

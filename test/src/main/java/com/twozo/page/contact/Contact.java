@@ -39,14 +39,14 @@ public class Contact extends BasePage {
     private WebPageElement addContactButton;
     private WebPageElement importContacts;
 
-    protected Contact(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected Contact() {
+        super();
     }
 
-    public static Contact getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static Contact getInstance() {
 
     //    if (Objects.isNull(contact)) {
-            contact = new Contact(webAutomationDriver);
+            contact = new Contact();
       //  }
 
         return contact;
@@ -55,7 +55,7 @@ public class Contact extends BasePage {
     public AddContact getAddContact() {
 
         if (Objects.isNull(addContact)) {
-            addContact = AddContact.getInstance(webAutomationDriver);
+            addContact = AddContact.getInstance();
         }
 
         return addContact;

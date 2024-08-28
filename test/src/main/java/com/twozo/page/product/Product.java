@@ -15,14 +15,14 @@ public class Product extends BasePage {
         return findByXpath("//*[@class='css-181x7hd']");
     }
 
-    protected Product(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected Product() {
+        super();
     }
 
-    public static Product getInstance(final WebAutomationDriver webAutomationDriver){
+    public static Product getInstance(){
 
       //  if (Objects.isNull(product)) {
-            product = new Product(webAutomationDriver);
+            product = new Product();
         //}
 
         return product;

@@ -1,13 +1,13 @@
 package com.twozo.test.settings.data.fields;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.twozo.commons.cookie.BrowserCookie;
 import com.twozo.commons.json.JsonObject;
 import com.twozo.page.homepage.HomePage;
+import com.twozo.page.product.Product;
 import com.twozo.page.settings.data.fields.FieldStatus;
 import com.twozo.page.settings.data.fields.product.ProductDataField;
 import com.twozo.test.TestCase;
 import com.twozo.web.driver.service.WebAutomationDriver;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,9 +24,10 @@ public class ProductDataFieldTest extends DataFieldTest {
     @BeforeMethod
     public void before() {
         automationDriver = WebAutomationDriver.get();
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in");
+        webNavigator = automationDriver.getWebNavigator();
+        webNavigator.to("https://app.thelaunchclub.in");
 
-        for (final HttpCookie cookie : cookies) {
+        for (final BrowserCookie cookie : cookies) {
             automationDriver.getSessionCookie().addCookie(cookie);
         }
 
@@ -35,9 +36,9 @@ public class ProductDataFieldTest extends DataFieldTest {
         automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Product");
         automationDriver.getWebWindowHandler().maximize();
 
-        homePage = HomePage.getInstance(automationDriver);
-        homePage.switchToProduct();
-        productDataField = ProductDataField.getInstance(automationDriver);
+        homePage = HomePage.getInstance();
+        productDataField = ProductDataField.getInstance();
+
     }
 
     @AfterMethod
@@ -48,6 +49,11 @@ public class ProductDataFieldTest extends DataFieldTest {
     @Test
     public void verifyDefaultSystemFields() {
         Assert.assertTrue(productDataField.verifyDefaultSystemFields());
+    }
+
+    @Test(dataProvider = "maxLimit")
+    public void checkMaxLimit(final Object object) {
+       addCustomFieldsWithAllFieldType(object);
     }
 
     @Test(dataProvider = "productSystemFields")
@@ -170,7 +176,7 @@ public class ProductDataFieldTest extends DataFieldTest {
 
     @Override
     public boolean isVisibleInSummary(final String fieldName) {
-        homePage.switchToProduct();
+        webNavigator.to("https://app.thelaunchclub.in/products");
         productDataField.switchToSummary();
 
         return productDataField.isVisibleInSummary(fieldName);
@@ -178,14 +184,14 @@ public class ProductDataFieldTest extends DataFieldTest {
 
     @Override
     public void isDefaultFieldsVisibleInAddView() {
-        homePage.switchToProduct();
+        webNavigator.to("https://app.thelaunchclub.in/products");
         productDataField.switchToAddProductForm();
         Assert.assertTrue(productDataField.isDefaultFieldsVisibleInAddView());
     }
 
     @Override
     public boolean isVisibleInAddForm(final String fieldName) {
-        homePage.switchToProduct();
+        webNavigator.to("https://app.thelaunchclub.in/products");
         productDataField.switchToAddProductForm();
 
         return productDataField.isVisibleInAddForm(fieldName);
@@ -193,7 +199,7 @@ public class ProductDataFieldTest extends DataFieldTest {
 
     @Override
     public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        homePage.switchToProduct();
+        webNavigator.to("https://app.thelaunchclub.in/products");
         productDataField.switchToAddProductForm();
 
         return productDataField.isVisibleInAddFormAsRequired(fieldName);
@@ -201,8 +207,8 @@ public class ProductDataFieldTest extends DataFieldTest {
 
     @Override
     public boolean isVisibleInColumnSettings(final String fieldName) {
-        homePage.switchToProduct().switchToColumnSettings();
-        homePage.switchToProduct();
+        webNavigator.to("https://app.thelaunchclub.in/products");
+        Product.getInstance().switchToColumnSettings();
 
         return productDataField.isVisibleInColumnSettings(fieldName);
     }

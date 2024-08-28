@@ -1,6 +1,5 @@
 package com.twozo.test.deal;
 
-import com.twozo.page.sign.in.SignIn;
 import com.twozo.test.BaseTest;
 
 import org.testng.annotations.Test;

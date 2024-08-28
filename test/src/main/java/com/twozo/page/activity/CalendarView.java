@@ -8,15 +8,15 @@ public class CalendarView extends Activity {
 
     private static CalendarView calendarView;
 
-    protected CalendarView(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected CalendarView() {
+        super();
     }
 
-    public static CalendarView getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static CalendarView getInstance() {
 
       //  if (Objects.isNull(calendarView)) {
 
-            calendarView = new CalendarView(webAutomationDriver);
+            calendarView = new CalendarView();
         //}
 
         return calendarView;

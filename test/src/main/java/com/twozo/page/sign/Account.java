@@ -1,4 +1,4 @@
-package com.twozo.page.sign.up;
+package com.twozo.page.sign;
 
 import lombok.Getter;
 import lombok.Setter;

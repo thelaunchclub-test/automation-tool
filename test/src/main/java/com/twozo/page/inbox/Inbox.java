@@ -10,14 +10,14 @@ public class Inbox extends BasePage {
 
     private static Inbox inbox;
 
-    protected Inbox(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected Inbox() {
+        super();
     }
 
-    public static Inbox getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static Inbox getInstance() {
 
        // if (Objects.isNull(inbox)) {
-            inbox = new Inbox(webAutomationDriver);
+            inbox = new Inbox();
         //}
 
         return inbox;

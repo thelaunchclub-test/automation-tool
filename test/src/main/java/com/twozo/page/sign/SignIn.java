@@ -1,24 +1,18 @@
-package com.twozo.page.sign.in;
+package com.twozo.page.sign;
 
-import com.twozo.commons.exception.ErrorCode;
-import com.twozo.page.url.URL;
 import com.twozo.page.xpath.AttributeName;
 import com.twozo.page.BasePage;
 import com.twozo.page.xpath.TagName;
 import com.twozo.page.xpath.XPath;
 import com.twozo.page.deal.Deal;
 import com.twozo.page.homepage.HomePage;
-import com.twozo.page.sign.up.SignUp;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
-import com.twozo.web.status.WebDriverErrorCode;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class SignIn extends BasePage {
 
@@ -47,20 +41,20 @@ public class SignIn extends BasePage {
     private WebPageElement forgotPasswordPageInvalidEmailIdValidationText;
     private WebPageElement forgotPasswordPageNoEmailIdValidationText;
 
-    private SignIn(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    private SignIn() {
+        super();
 
 //        if (!getURL().equals(URL.LOG_IN)) {
 //            throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
 //        }
     }
 
-    public static SignIn getInstance(final WebAutomationDriver webAutomationDriver) {
-        return new SignIn(webAutomationDriver);
+    public static SignIn getInstance() {
+        return new SignIn();
     }
 
     public Deal getDeal() {
-        return Deal.getInstance(webAutomationDriver);
+        return Deal.getInstance();
     }
 
     public SignUp getSignUp() {
@@ -134,7 +128,7 @@ public class SignIn extends BasePage {
         send(getEmailField(), email);
         send(getPasswordField(), password);
         click(getSignInButton());
-        return HomePage.getInstance(webAutomationDriver);
+        return HomePage.getInstance();
     }
 
     public void facebookLogin() {

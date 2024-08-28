@@ -15,14 +15,14 @@ public class Company extends BasePage {
         return findByXpath("//*[@class='css-181x7hd']");
     }
 
-    protected Company(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected Company() {
+        super();
     }
 
-    public static Company getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static Company getInstance() {
 
        // if (Objects.isNull(company)) {
-            company = new Company(webAutomationDriver);
+            company = new Company();
         //}
 
         return company;

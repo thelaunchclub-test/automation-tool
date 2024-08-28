@@ -8,14 +8,14 @@ public class ForecastView extends Deal{
 
     private static ForecastView forecastView;
 
-    public ForecastView(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    public ForecastView() {
+        super();
     }
 
-    public static ForecastView getInstance(final WebAutomationDriver webAutomationDriver){
+    public static ForecastView getInstance(){
 
      //   if (Objects.isNull(forecastView)) {
-            forecastView = new ForecastView(webAutomationDriver);
+            forecastView = new ForecastView();
        // }
 
         return forecastView;

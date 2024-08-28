@@ -1,5 +1,5 @@
 import com.twozo.commons.exception.ErrorCode;
-import com.twozo.commons.exception.errorcode.CommonsErrorCode;
+import com.twozo.commons.exception.error.code.CommonsErrorCode;
 
 import java.io.File;
 import java.io.FileReader;

@@ -6,14 +6,14 @@ public class AddCompany extends Company {
 
     private static AddCompany addCompany;
 
-    protected AddCompany(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected AddCompany() {
+        super();
     }
 
-    public static AddCompany getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static AddCompany getInstance() {
 
        // if (Objects.isNull(addCompany)) {
-            addCompany = new AddCompany(webAutomationDriver);
+            addCompany = new AddCompany();
         //}
 
         return addCompany;

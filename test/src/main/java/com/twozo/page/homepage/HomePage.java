@@ -18,7 +18,7 @@ public class HomePage extends BasePage {
 
     private static HomePage homePage;
 
-    protected final WebAutomationDriver webAutomationDriver;
+   // protected final WebAutomationDriver webAutomationDriver;
     private final Deal deal;
     private final Contact contact;
     private final Company company;
@@ -38,23 +38,23 @@ public class HomePage extends BasePage {
     private WebPageElement analyticsIcon;
     private final boolean isProductEnabled = isProductEnabled();
 
-    protected HomePage(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected HomePage() {
+        super();
         this.webAutomationDriver = webAutomationDriver;
-        this.deal = Deal.getInstance(webAutomationDriver);
-        this.contact = Contact.getInstance(webAutomationDriver);
-        this.company = Company.getInstance(webAutomationDriver);
-        this.activity = Activity.getInstance(webAutomationDriver);
-        this.product = Product.getInstance(webAutomationDriver);
-        this.settings = Settings.getInstance(webAutomationDriver);
-        this.inbox = Inbox.getInstance(webAutomationDriver);
-        this.analytics = Analytics.getInstance(webAutomationDriver);
+        this.deal = Deal.getInstance();
+        this.contact = Contact.getInstance();
+        this.company = Company.getInstance();
+        this.activity = Activity.getInstance();
+        this.product = Product.getInstance();
+        this.settings = Settings.getInstance();
+        this.inbox = Inbox.getInstance();
+        this.analytics = Analytics.getInstance();
     }
 
-    public static HomePage getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static HomePage getInstance() {
 
         if (Objects.isNull(homePage)) {
-            homePage = new HomePage(webAutomationDriver);
+            homePage = new HomePage();
         }
 
         return homePage;

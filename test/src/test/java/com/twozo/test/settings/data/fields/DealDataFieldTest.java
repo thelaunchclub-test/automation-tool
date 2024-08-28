@@ -1,7 +1,8 @@
 package com.twozo.test.settings.data.fields;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.twozo.commons.cookie.BrowserCookie;
 import com.twozo.commons.json.JsonObject;
+import com.twozo.page.deal.Deal;
 import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
 import com.twozo.page.settings.data.fields.deal.DealDataField;
@@ -25,9 +26,10 @@ public class DealDataFieldTest extends DataFieldTest {
     @BeforeMethod
     public void before() {
         automationDriver = WebAutomationDriver.get();
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in");
+        webNavigator = automationDriver.getWebNavigator();
+        webNavigator.to("https://app.thelaunchclub.in");
 
-        for (final HttpCookie cookie : cookies) {
+        for (final BrowserCookie cookie : cookies) {
             automationDriver.getSessionCookie().addCookie(cookie);
         }
 
@@ -36,8 +38,8 @@ public class DealDataFieldTest extends DataFieldTest {
         automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Deal");
         automationDriver.getWebWindowHandler().maximize();
 
-        homePage = HomePage.getInstance(automationDriver);
-        dealDataField = DealDataField.getInstance(automationDriver);
+        homePage = HomePage.getInstance();
+        dealDataField = DealDataField.getInstance();
     }
 
     @AfterMethod
@@ -176,36 +178,38 @@ public class DealDataFieldTest extends DataFieldTest {
 
     @Override
     public boolean isVisibleInSummary(final String fieldName) {
-        homePage.switchToDeal();
+        webNavigator.to("https://app.thelaunchclub.in/deals");
         dealDataField.switchToSummary();
         return dealDataField.isVisibleInSummary(fieldName);
     }
 
     @Override
     public void isDefaultFieldsVisibleInAddView() {
-        homePage.switchToDeal();
+        webNavigator.to("https://app.thelaunchclub.in/deals");
         dealDataField.switchToAddDealForm();
         Assert.assertTrue(dealDataField.isDefaultFieldsVisibleInAddView());
     }
 
     @Override
     public boolean isVisibleInAddForm(final String fieldName) {
-        homePage.switchToDeal();
+        webNavigator.to("https://app.thelaunchclub.in/deals");
         dealDataField.switchToAddDealForm();
         return dealDataField.isVisibleInAddForm(fieldName);
     }
 
     @Override
     public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        homePage.switchToDeal();
+        webNavigator.to("https://app.thelaunchclub.in/deals");
         dealDataField.switchToAddDealForm();
+
         return dealDataField.isVisibleInAddFormAsRequired(fieldName);
     }
 
     @Override
     public boolean isVisibleInColumnSettings(final String fieldName) {
-        homePage.switchToDeal().switchToColumnSettings();
-        homePage.switchToDeal();
+        webNavigator.to("https://app.thelaunchclub.in/deals");
+        Deal.getInstance().switchToColumnSettings();
+
         return dealDataField.isVisibleInColumnSettings(fieldName);
     }
 }

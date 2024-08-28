@@ -1,6 +1,8 @@
 package com.twozo.page;
 
-import com.twozo.commons.cookie.HttpCookie;
+import com.fasterxml.jackson.databind.cfg.ContextAttributes;
+import com.twozo.commons.cookie.BrowserCookie;
+import com.twozo.page.settings.data.fields.contact.ContactDataField;
 import com.twozo.page.xpath.XPath;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.*;
@@ -18,16 +20,30 @@ import java.util.function.Supplier;
 
 public class BasePage {
 
-    protected WebAutomationDriver webAutomationDriver;
-    protected ElementFinder elementFinder;
-    protected WebNavigator webNavigator;
-    protected PageInformationProvider pageInformationProvider;
+    public WebAutomationDriver webAutomationDriver;
+    public ElementFinder elementFinder;
+    public WebNavigator webNavigator;
+    public PageInformationProvider pageInformationProvider;
     public SessionCookie sessionCookie;
-    protected MouseActions mouseActions;
-    protected ExplicitWaitHandler explicitWaitHandler;
+    public MouseActions mouseActions;
+    public ExplicitWaitHandler explicitWaitHandler;
+    public ImplicitWaitHandler implicitWaitHandler;
+    private static BasePage basePage;
+
 
     protected BasePage(final WebAutomationDriver webAutomationDriver) {
         this.webAutomationDriver = webAutomationDriver;
+        this.elementFinder = webAutomationDriver.getElementFinder();
+        this.webNavigator = webAutomationDriver.getWebNavigator();
+        this.pageInformationProvider = webAutomationDriver.getPageInformationProvider();
+        this.mouseActions = webAutomationDriver.getMouseActionsHandler();
+        this.implicitWaitHandler = webAutomationDriver.getImplicitWaitHandler();
+        this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
+
+        this.sessionCookie = webAutomationDriver.getSessionCookie();
+    }
+
+    protected BasePage() {
         this.elementFinder = webAutomationDriver.getElementFinder();
         this.webNavigator = webAutomationDriver.getWebNavigator();
         this.pageInformationProvider = webAutomationDriver.getPageInformationProvider();
@@ -36,7 +52,13 @@ public class BasePage {
         this.sessionCookie = webAutomationDriver.getSessionCookie();
     }
 
-    public Set<HttpCookie> getCookies(){
+    public static BasePage getInstance(final WebAutomationDriver webAutomationDriver) {
+        basePage = new BasePage(webAutomationDriver);
+
+        return basePage;
+    }
+
+    public Set<BrowserCookie> getCookies(){
         //System.out.println(sessionCookie.getCookies());
 //        for (Cookie cookie : sessionCookie.getCookies()) {
 //            System.out.println(cookie);
@@ -44,13 +66,16 @@ public class BasePage {
         return sessionCookie.getCookies();
     }
 
-    public void addCookies(final Set<HttpCookie> cookies) {
+    public void addCookies(final Set<BrowserCookie> cookies) {
         //System.out.println(sessionCookie.getCookies());
-        for (HttpCookie cookie : cookies) {
+        for (BrowserCookie cookie : cookies) {
             sessionCookie.addCookie(cookie);
         }
     }
 
+    public void close(){
+        webAutomationDriver.close();
+    }
     public void waitTillVisible(final String xpath) {
         explicitWaitHandler.waitTillVisible(new Element(LocatorType.XPATH, xpath, true));
     }

@@ -9,15 +9,15 @@ public class AddProduct extends Product{
 
     private static AddProduct addProduct;
 
-    protected AddProduct(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected AddProduct() {
+        super();
     }
 
-    public static AddProduct getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static AddProduct getInstance() {
 
 //        if (Objects.isNull(addProduct)) {
 
-            addProduct = new AddProduct(webAutomationDriver);
+            addProduct = new AddProduct();
   //      }
 
         return addProduct;

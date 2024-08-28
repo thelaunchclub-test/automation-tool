@@ -10,7 +10,7 @@ import com.twozo.page.settings.data.fields.product.field.ProductField;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.status.WebDriverErrorCode;
+import com.twozo.web.error.code.WebDriverErrorCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,18 +19,30 @@ public class ProductDataField extends AbstractDataField {
 
     private static ProductDataField product;
 
-    protected ProductDataField(WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected ProductDataField() {
+        super();
 
         if (!getURL().equals(SettingsURL.PRODUCT_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
+        enableProduct();
     }
 
-    public static ProductDataField getInstance(final WebAutomationDriver webAutomationDriver) {
-        product = new ProductDataField(webAutomationDriver);
+    public static ProductDataField getInstance() {
+        product = new ProductDataField();
 
         return product;
+    }
+
+    public void enableProduct() {
+        try{
+        if (isDisplayed(findByXpath("//*[contains(text(),'Enables')]"))) {
+            click(findByXpath("//*[@class='MuiSwitch-root MuiSwitch-sizeMedium css-1v2eis']"));
+            refresh();
+        }}catch (Exception exception){
+
+        }
+
     }
 
     public boolean verifyActiveContactTab() {
@@ -209,6 +221,7 @@ public class ProductDataField extends AbstractDataField {
         isDisplayed(findByXpath(XPathBuilder.getXPathByText("Subscription")));
         refresh();
     }
+
 
     @Override
     protected List<Field> getDefaultFields() {

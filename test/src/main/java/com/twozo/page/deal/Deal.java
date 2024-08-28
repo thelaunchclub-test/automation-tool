@@ -36,8 +36,8 @@ public class Deal extends BasePage {
     private WebPageElement contactIcon;
     private WebPageElement filterIcon;
 
-    public Deal(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    public Deal() {
+        super();
     }
 
     public WebPageElement getColumnSettingsButton() {
@@ -48,10 +48,10 @@ public class Deal extends BasePage {
         click(getColumnSettingsButton());
     }
 
-    public static Deal getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static Deal getInstance() {
 
         //  if (Objects.isNull(deal)) {
-        deal = new Deal(webAutomationDriver);
+        deal = new Deal();
         //}
 
         return deal;
@@ -60,7 +60,7 @@ public class Deal extends BasePage {
     public AddDeal getAddDeal() {
 
         if (Objects.isNull(addDeal)) {
-            addDeal = AddDeal.getInstance(webAutomationDriver);
+            addDeal = AddDeal.getInstance();
 
         }
 
@@ -70,7 +70,7 @@ public class Deal extends BasePage {
     public KanbanView getKanbanView() {
 
         if (Objects.isNull(kanbanView)) {
-            kanbanView = KanbanView.getInstance(webAutomationDriver);
+            kanbanView = KanbanView.getInstance();
 
         }
 
@@ -79,8 +79,8 @@ public class Deal extends BasePage {
 
     public ForecastView getForecastView() {
 
-        if (Objects.isNull(addDeal)) {
-            forecastView = ForecastView.getInstance(webAutomationDriver);
+        if (Objects.isNull(forecastView)) {
+            forecastView = ForecastView.getInstance();
         }
 
         return forecastView;
@@ -88,7 +88,7 @@ public class Deal extends BasePage {
 
     public AddPipeline getAddPipeline() {
         if (Objects.isNull(addPipeline)) {
-            addPipeline = AddPipeline.getInstance(webAutomationDriver);
+            addPipeline = AddPipeline.getInstance();
         }
 
         return addPipeline;
@@ -97,7 +97,7 @@ public class Deal extends BasePage {
     public Filter getFilter() {
 
         if (Objects.isNull(filter)) {
-            filter = Filter.getInstance(webAutomationDriver);
+            filter = Filter.getInstance();
         }
 
         return filter;

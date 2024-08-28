@@ -27,14 +27,14 @@ public class AddDeal extends Deal {
     private WebPageElement salesOwner;
     private WebPageElement saveButton;
 
-    protected AddDeal(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected AddDeal() {
+        super();
     }
 
-    public static AddDeal getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static AddDeal getInstance() {
 
       //  if (Objects.isNull(addDeal)) {
-            addDeal = new AddDeal(webAutomationDriver);
+            addDeal = new AddDeal();
         //}
 
         return addDeal;

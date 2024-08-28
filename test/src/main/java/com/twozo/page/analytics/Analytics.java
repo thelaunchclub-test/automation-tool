@@ -10,14 +10,14 @@ public class Analytics extends BasePage {
 
     private static Analytics analytics;
 
-    protected Analytics(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected Analytics() {
+        super();
     }
 
-    public static Analytics getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static Analytics getInstance() {
 
         //if (Objects.isNull(analytics)) {
-            analytics = new Analytics(webAutomationDriver);
+            analytics = new Analytics();
        // }
 
         return analytics;

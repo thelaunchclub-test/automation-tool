@@ -12,15 +12,15 @@ public class AddPipeline extends Deal {
 
     private static AddPipeline addPipeline;
 
-    public AddPipeline(WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    public AddPipeline() {
+        super();
     }
 
 
-    public static AddPipeline getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static AddPipeline getInstance() {
 
         //   if (Objects.isNull(pipeline)) {
-        addPipeline = new AddPipeline(webAutomationDriver);
+        addPipeline = new AddPipeline();
         // }
 
         return addPipeline;

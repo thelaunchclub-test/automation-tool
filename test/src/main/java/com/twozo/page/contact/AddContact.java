@@ -8,14 +8,14 @@ public class AddContact extends Contact {
 
     private static AddContact addContact;
 
-    protected AddContact(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected AddContact() {
+        super();
     }
 
-    public static AddContact getInstance(final WebAutomationDriver webAutomationDriver) {
+    public static AddContact getInstance() {
 
        // if (Objects.isNull(addContact)) {
-            addContact = new AddContact(webAutomationDriver);
+            addContact = new AddContact();
         //}
 
         return addContact;

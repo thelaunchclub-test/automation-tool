@@ -7,7 +7,7 @@ import com.twozo.page.settings.data.fields.field.*;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
-import com.twozo.web.status.WebDriverErrorCode;
+import com.twozo.web.error.code.WebDriverErrorCode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,16 +16,16 @@ public class DealDataField extends AbstractDataField {
 
     private static DealDataField deal;
 
-    protected DealDataField(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected DealDataField() {
+        super();
 
         if (!getURL().equals(SettingsURL.DEAL_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
 
-    public static DealDataField getInstance(final WebAutomationDriver webAutomationDriver) {
-        deal = new DealDataField(webAutomationDriver);
+    public static DealDataField getInstance() {
+        deal = new DealDataField();
 
         return deal;
     }

@@ -12,7 +12,7 @@ import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
-import com.twozo.web.status.WebDriverErrorCode;
+import com.twozo.web.error.code.WebDriverErrorCode;
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.*;
@@ -27,15 +27,15 @@ public class Settings extends BasePage {
     private WebPageElement product;
     private Collection<WebPageElement> fields;
 
-    protected Settings(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected Settings() {
+        super();
         if (getURL().equals(URL.SETTINGS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
 
-    public static Settings getInstance(final WebAutomationDriver webAutomationDriver) {
-        return new Settings(webAutomationDriver);
+    public static Settings getInstance() {
+        return new Settings();
     }
 
     public WebPageElement getContact() {
@@ -97,19 +97,19 @@ public class Settings extends BasePage {
     public ContactDataField switchToContactDataFields() {
       //  click(getContact());
 
-        return ContactDataField.getInstance(webAutomationDriver);
+        return ContactDataField.getInstance();
     }
 
     public CompanyDataField switchToCompanyDataFields() {
         click(getCompany());
 
-        return CompanyDataField.getInstance(webAutomationDriver);
+        return CompanyDataField.getInstance();
     }
 
     public DealDataField switchToDealDataFields() {
         click(getDeal());
 
-        return DealDataField.getInstance(webAutomationDriver);
+        return DealDataField.getInstance();
     }
 
     public ProductDataField switchToProductDataFields() {
@@ -125,6 +125,6 @@ public class Settings extends BasePage {
         }
 
         refresh();
-        return ProductDataField.getInstance(webAutomationDriver);
+        return ProductDataField.getInstance();
     }
 }

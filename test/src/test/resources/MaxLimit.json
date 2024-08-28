@@ -119,5 +119,16 @@
     "output": {
       "result": "pass"
     }
+  },
+  {
+    "testCaseID": "CF-1",
+    "title": "Field",
+    "input": {
+      "fieldName": "bk",
+      "fieldType": "Multi Select"
+    },
+    "output": {
+      "result": "pass"
+    }
   }
 ]

@@ -14,8 +14,7 @@ import com.twozo.web.element.service.WebPageElement;
 
 import org.openqa.selenium.NoSuchElementException;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public abstract class AbstractDataField extends Settings {
 
@@ -23,8 +22,8 @@ public abstract class AbstractDataField extends Settings {
     private static final String THREE_STRING_FORMAT = "%s%s%s";
     private static final String OPEN_PARENTHESIS = "(";
 
-    protected AbstractDataField(final WebAutomationDriver webAutomationDriver) {
-        super(webAutomationDriver);
+    protected AbstractDataField() {
+        super();
     }
 
     private WebPageElement getActiveTab(final String tabName) {
@@ -197,7 +196,7 @@ public abstract class AbstractDataField extends Settings {
         return false;
     }
 
-    public boolean addCustomField(final String customFieldName, final String fieldType) {
+    public boolean  addCustomField(final String customFieldName, final String fieldType) {
         final String multiSelect;
         final String dropdownPath;
         final String multiSelectPath;
@@ -601,25 +600,35 @@ public abstract class AbstractDataField extends Settings {
     }
 
     public boolean isVisibleInSummary(final String fieldName) {
+//
+//        while (true) {
+//            try {
+//                if (isDisplayed(findByXpath(format("//*[@class='css-itno5t']",
+//                        XPathBuilder.getXPathByText(fieldName))))) {
+//                    return true;
+//                }
+//            } catch (Exception e) {
+//                try {
+//                    if (isDisplayed(findByXpath("//*[@class='css-1bv670y']//button"))) {
+//                        click(findByXpath("//*[@class='css-1bv670y']//button"));
+//                    } else {
+//                        return false;
+//                    }
+//                } catch (Exception exception) {
+//                    return false;
+//                }
+//            }
+//        }
+        final Collection<WebPageElement> fieldsInSummary = findElementsByXpath("//*[@class='css-itno5t']/div/div/table/tbody/tr/td[1]/p");
 
-        while (true) {
-            try {
-                if (isDisplayed(findByXpath(format("//*[@class='css-itno5t']",
-                        XPathBuilder.getXPathByText(fieldName))))) {
-                    return true;
-                }
-            } catch (Exception e) {
-                try {
-                    if (isDisplayed(findByXpath("//*[@class='css-1bv670y']//button"))) {
-                        click(findByXpath("//*[@class='css-1bv670y']//button"));
-                    } else {
-                        return false;
-                    }
-                } catch (Exception exception) {
-                    return false;
-                }
-            }
+        final Set<String> fieldNames = new HashSet<>();
+
+        for (final WebPageElement field : fieldsInSummary) {
+            fieldNames.add(getText(field));
+            System.out.println(getText(field));
         }
+
+        return fieldNames.contains(String.format("%s%s%s", fieldName, " ", ":"));
     }
 
     public boolean isVisibleInAddForm(final String fieldName) {
@@ -904,6 +913,10 @@ public abstract class AbstractDataField extends Settings {
             click(addViewCheckbox);
             click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
             refresh();
+            try {
+                Thread.sleep(2000);
+            } catch (Exception exception) {
+            }
             updatedAddViewChecked = isSelected(findByXpath(getPathOfSpecificCheckbox(fieldBlock,
                     FieldElement.ADD_VIEW_CHECKBOX)));
         }
@@ -936,6 +949,7 @@ public abstract class AbstractDataField extends Settings {
     public boolean addSystemField(final FieldStatus fieldStatus) {
         final String fieldName = fieldStatus.getName();
         final String fieldType = fieldStatus.getFieldType();
+        System.out.println(fieldName);
 
         try {
             isDisplayed(findByXpath(getFieldBlock(fieldName)));
