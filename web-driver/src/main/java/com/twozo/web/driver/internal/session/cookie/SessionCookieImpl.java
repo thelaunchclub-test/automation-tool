@@ -23,31 +23,55 @@ import java.util.Set;
  */
 @NonNull
 @AllArgsConstructor
-public class SessionCookieImpl implements SessionCookie {
+public final class SessionCookieImpl implements SessionCookie {
 
     private final Options options;
 
     /**
-     * {@inheritDoc}
+     * Converts a {@link BrowserCookie} to a Selenium {@link Cookie}.
      *
-     * @param browserCookie The cookie to be added.
+     * @param browserCookie The cookie to convert.
+     * @return The corresponding Selenium {@link Cookie}.
      */
-    @Override
-    public void addCookie(final BrowserCookie browserCookie) {
-        Cookie seleniumCookie = new Cookie.Builder(browserCookie.name(), browserCookie.value())
+    private Cookie toSeleniumCookie(BrowserCookie browserCookie) {
+        return new Cookie.Builder(browserCookie.name(), browserCookie.value())
                 .domain(browserCookie.domain())
                 .path(browserCookie.path())
                 .expiresOn(browserCookie.expiry())
                 .isSecure(browserCookie.secure())
                 .isHttpOnly(browserCookie.httpOnly())
                 .build();
-        options.addCookie(seleniumCookie);
+    }
+
+    /**
+     * Converts a Selenium {@link Cookie} to a {@link BrowserCookie}.
+     *
+     * @param seleniumCookie The Selenium cookie to convert.
+     * @return The corresponding {@link BrowserCookie}.
+     */
+    private BrowserCookie toBrowserCookie(Cookie seleniumCookie) {
+        return new BrowserCookie(
+                seleniumCookie.getName(),
+                seleniumCookie.getValue(),
+                seleniumCookie.getPath(),
+                seleniumCookie.getDomain(),
+                seleniumCookie.getExpiry(),
+                seleniumCookie.isSecure(),
+                seleniumCookie.isHttpOnly(),
+                null
+        );
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @param name The name of the cookie to be deleted.
+     */
+    @Override
+    public void addCookie(final BrowserCookie browserCookie) {
+        options.addCookie(toSeleniumCookie(browserCookie));
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void deleteCookieNamed(final String name) {
@@ -56,19 +80,10 @@ public class SessionCookieImpl implements SessionCookie {
 
     /**
      * {@inheritDoc}
-     *
-     * @param browserCookie The cookie to be deleted.
      */
     @Override
     public void deleteCookie(final BrowserCookie browserCookie) {
-        Cookie seleniumCookie = new Cookie.Builder(browserCookie.name(), browserCookie.value())
-                .domain(browserCookie.domain())
-                .path(browserCookie.path())
-                .expiresOn(browserCookie.expiry())
-                .isSecure(browserCookie.secure())
-                .isHttpOnly(browserCookie.httpOnly())
-                .build();
-        options.deleteCookie(seleniumCookie);
+        options.deleteCookie(toSeleniumCookie(browserCookie));
     }
 
     /**
@@ -86,44 +101,24 @@ public class SessionCookieImpl implements SessionCookie {
      */
     @Override
     public Set<BrowserCookie> getCookies() {
-        Set<BrowserCookie> browserCookies = new HashSet<>();
-        for (Cookie seleniumCookie : options.getCookies()) {
-            BrowserCookie browserCookie = new BrowserCookie(
-                    seleniumCookie.getName(),
-                    seleniumCookie.getValue(),
-                    seleniumCookie.getPath(),
-                    seleniumCookie.getDomain(),
-                    seleniumCookie.getExpiry(),
-                    seleniumCookie.isSecure(),
-                    seleniumCookie.isHttpOnly(),
-                    null
-            );
-            browserCookies.add(browserCookie);
+        final Set<BrowserCookie> browserCookies = new HashSet<>();
+
+        for (final Cookie seleniumCookie : options.getCookies()) {
+            browserCookies.add(toBrowserCookie(seleniumCookie));
         }
+
         return browserCookies;
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param name The name of the cookie to retrieve.
-     * @return The cookie with the specified name, or {@code null} if not found.
+     * @return A set of all cookies in the current session.
      */
     @Override
     public BrowserCookie getCookieNamed(final String name) {
-        Cookie seleniumCookie = options.getCookieNamed(name);
-        if (seleniumCookie != null) {
-            return new BrowserCookie(
-                    seleniumCookie.getName(),
-                    seleniumCookie.getValue(),
-                    seleniumCookie.getPath(),
-                    seleniumCookie.getDomain(),
-                    seleniumCookie.getExpiry(),
-                    seleniumCookie.isSecure(),
-                    seleniumCookie.isHttpOnly(),
-                    null
-            );
-        }
-        return null;
+        final Cookie seleniumCookie = options.getCookieNamed(name);
+
+        return seleniumCookie != null ? toBrowserCookie(seleniumCookie) : null;
     }
 }
