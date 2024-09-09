@@ -1,0 +1,23 @@
+[
+  {
+    "testCaseID": "TC-6",
+    "title": "Make sure you can add a currency.",
+    "input": {
+      "currency": "EUR"
+    }
+  },
+  {
+    "testCaseID": "TC-6",
+    "title": "Make sure you can add a currency.",
+    "input": {
+      "currency": "BHD"
+    }
+  },
+  {
+    "testCaseID": "TC-6",
+    "title": "Make sure you can add a currency.",
+    "input": {
+      "currency": "CHF"
+    }
+  }
+]
