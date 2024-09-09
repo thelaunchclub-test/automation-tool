@@ -41,4 +41,6 @@ public interface ScreenCapture {
      * @return The {@link ReportTest}.
      */
     ScreenCapture fromBase64Path(final String base64);
+
+    ScreenCapture fromPath(final String path, final String details);
 }

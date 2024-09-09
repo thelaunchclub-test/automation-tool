@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import com.twozo.extent.report.reporter.logger.ExtentLogger;
 import com.twozo.extent.report.reporter.internal.spark.SparkReporter;
 import com.twozo.extent.report.reporter.model.ExtentReportType;
 import com.twozo.extent.report.reporter.service.Reporter;
@@ -73,6 +74,8 @@ public abstract class AbstractExtentReporter implements Reporter {
     @Override
     public ReportTest createTest(final String name) {
         final ExtentTest extentTest = reports.createTest(name);
+
+        ExtentLogger.getInstance().setExtentTest(extentTest);
 
         return new ReportTestImpl(extentTest);
     }

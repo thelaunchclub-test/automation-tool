@@ -60,18 +60,18 @@ public interface ReportTest {
      * @param testName  The testName of the {@link ReportTest}.
      * @return The newly created {@link ReportTest}.
      */
-    ReportTest createTest(final String testName);
-
-    /**
-     * <p>
-     * Creates a new {@link ReportTest} with the specified testName and description.
-     * </p>
-     *
-     * @param testName    The testName of the test.
-     * @param details     The description of the test.
-     * @return The newly created test.
-     */
-    ReportTest createTest(final String testName, final String details);
+//    ReportTest createTest(final String testName);
+//
+//    /**
+//     * <p>
+//     * Creates a new {@link ReportTest} with the specified testName and description.
+//     * </p>
+//     *
+//     * @param testName    The testName of the test.
+//     * @param details     The description of the test.
+//     * @return The newly created test.
+//     */
+//    ReportTest createTest(final String testName, final String details);
 
     /**
      * <p>
