@@ -35,6 +35,6 @@ public final class SignUpTest extends BaseTest {
         account.setCompany(input.getString("company"));
         account.setJobRole(input.getString("jobRole"));
         LOG.info("Signed up successfully");
-        SignUp.getInstance(webAutomationDriver).signUp(account);
+        SignUp.getInstance(automationDriver).signUp(account);
     }
 }

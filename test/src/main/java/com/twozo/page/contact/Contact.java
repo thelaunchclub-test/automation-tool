@@ -2,6 +2,7 @@ package com.twozo.page.contact;
 
 import com.twozo.page.BasePage;
 import com.twozo.page.Filter;
+import com.twozo.page.homepage.HomePage;
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.service.WebPageElement;
 
@@ -39,167 +40,77 @@ public class Contact extends BasePage {
     private WebPageElement addContactButton;
     private WebPageElement importContacts;
 
-    protected Contact() {
-        super();
+    protected Contact(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
-    public static Contact getInstance() {
-
-    //    if (Objects.isNull(contact)) {
-            contact = new Contact();
-      //  }
-
-        return contact;
+    public static Contact getInstance(final WebAutomationDriver webAutomationDriver) {
+        return new Contact(webAutomationDriver);
     }
 
-    public AddContact getAddContact() {
-
-        if (Objects.isNull(addContact)) {
-            addContact = AddContact.getInstance();
-        }
-
-        return addContact;
-    }
-    public WebPageElement getColumnSettingsButton() {
-        return findByXpath("//*[@class='css-181x7hd']");
-    }
-
-    public void switchToColumnSettings() {
-        click(getColumnSettingsButton());
+    private AddContact getAddContact() {
+        return AddContact.getInstance(webAutomationDriver);
     }
 
     public WebPageElement getFilterIcon() {
-
-        if (Objects.isNull(filterIcon)) {
-            filterIcon = findByXpath("//div[@class='css-j7qwjs'][@style='cursor: pointer;']");
-        }
-
-        return filterIcon;
+        return findByXpath("//div[@class='css-j7qwjs'][@style='cursor: pointer;']");
     }
 
     public WebPageElement getFirstName() {
-
-        if (Objects.isNull(firstName)) {
-            firstName = findByText("contact.fields.first.name");
-        }
-
-        return firstName;
+        return findByText("contact.fields.first.name");
     }
 
     public WebPageElement getLastName() {
-
-        if (Objects.isNull(lastName)) {
-            lastName = findByText("Last Name");
-        }
-
-        return lastName;
+        return findByText("Last Name");
     }
 
     public WebPageElement getEmails() {
-
-        if (Objects.isNull(emails)) {
-            emails = findByText("Emails");
-        }
-        return emails;
+        return findByText("Emails");
     }
 
     public WebPageElement getPhones() {
-
-        if (Objects.isNull(phones)) {
-            phones = findByText("Phones");
-        }
-
-        return phones;
+        return findByText("Phones");
     }
 
     public WebPageElement getSource() {
-
-        if (Objects.isNull(source)) {
-            source = findByText("Source");
-        }
-
-        return source;
+        return findByText("Source");
     }
 
     public WebPageElement getStage() {
-
-        if (Objects.isNull(stage)) {
-            stage = findByText("Stage");
-        }
-
-        return stage;
+        return findByText("Stage");
     }
 
     public WebPageElement getCompany() {
-
-        if (Objects.isNull(company)) {
-            company = findByText("Company");
-        }
-
-        return company;
+        return findByText("Company");
     }
 
     public WebPageElement getDepartment() {
-
-        if (Objects.isNull(department)) {
-            department = findByText("Department");
-        }
-
-        return department;
+        return findByText("Department");
     }
 
     public WebPageElement getFacebook() {
-
-        if (Objects.isNull(facebook)) {
-            facebook = findByText("Facebook");
-        }
-
-        return facebook;
+        return findByText("Facebook");
     }
 
     public WebPageElement getTwitter() {
-
-        if (Objects.isNull(twitter)) {
-            twitter = findByText("Twitter");
-        }
-
-        return twitter;
+        return findByText("Twitter");
     }
 
     public WebPageElement getLinkedIn() {
-
-        if (Objects.isNull(linkedIn)) {
-            linkedIn = findByText("Linkedin");
-        }
-
-        return linkedIn;
+        return findByText("LinkedIn");
     }
 
     public WebPageElement getDateOfBirth() {
-
-        if (Objects.isNull(dateOfBirth)) {
-            dateOfBirth = findByText("Date of Birth");
-        }
-
-        return dateOfBirth;
+        return findByText("Date of Birth");
     }
 
     public WebPageElement getDesignation() {
 
-        if (Objects.isNull(designation)) {
-            designation = findByText("Designation");
-        }
-
-        return designation;
+        return findByText("Designation");
     }
 
     public WebPageElement getCreatedTime() {
-
-        if (Objects.isNull(createdTime)) {
-            createdTime = findByText("Created Time");
-        }
-
-        return createdTime;
+        return findByText("Created Time");
     }
 
     public WebPageElement getModifiedTime() {
@@ -266,30 +177,15 @@ public class Contact extends BasePage {
     }
 
     public WebPageElement getOtherUnsubscribeReason() {
-
-        if (Objects.isNull(otherUnsubscribeReason)) {
-            otherUnsubscribeReason = findByText("Other unsubscribe reason");
-        }
-
-        return otherUnsubscribeReason;
+        return findByText("Other unsubscribe reason");
     }
 
     public WebPageElement getTags() {
-
-        if (Objects.isNull(tags)) {
-            tags = findByText("Tags");
-        }
-
-        return tags;
+        return findByText("Tags");
     }
 
     public WebPageElement getAddContactButton() {
-
-        if (Objects.isNull(addContactButton)) {
-            addContactButton = findByText("Contact");
-        }
-
-        return addContactButton;
+        return findByText("Contact");
     }
 
     public AddContact addContact() {
@@ -303,4 +199,6 @@ public class Contact extends BasePage {
 
         return Filter.getInstance(webAutomationDriver);
     }
+
+
 }

@@ -2,21 +2,35 @@ package com.twozo.page.settings;
 
 import com.twozo.commons.exception.ErrorCode;
 import com.twozo.page.BasePage;
+import com.twozo.page.company.Company;
+import com.twozo.page.contact.Contact;
+import com.twozo.page.deal.Deal;
+import com.twozo.page.product.Product;
 import com.twozo.page.settings.data.fields.company.CompanyDataField;
 import com.twozo.page.settings.data.fields.contact.ContactDataField;
 import com.twozo.page.settings.data.fields.deal.DealDataField;
 import com.twozo.page.settings.data.fields.product.ProductDataField;
 import com.twozo.page.url.URL;
 import com.twozo.page.xpath.XPathBuilder;
+
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.error.code.WebDriverErrorCode;
+
 import org.openqa.selenium.NoSuchElementException;
 
 import java.util.*;
 
+/**
+ * <p>
+ * Represents the settings page.It provides methods to interact with different modules.
+ * </p>
+ *
+ * @author Petchimuthu
+ * @version 1.0
+ */
 public class Settings extends BasePage {
 
     private static Settings settings;
@@ -27,91 +41,106 @@ public class Settings extends BasePage {
     private WebPageElement product;
     private Collection<WebPageElement> fields;
 
-    protected Settings() {
-        super();
-        if (getURL().equals(URL.SETTINGS)) {
-            throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
+    protected Settings(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
+//        if (!getURL().equals(URL.SETTINGS)) {
+//            throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
+//        }
+    }
+
+    public static Settings getInstance(final WebAutomationDriver webAutomationDriver) {
+        if (settings == null) {
+            settings = new Settings(webAutomationDriver);
         }
+        return settings;
     }
 
-    public static Settings getInstance() {
-        return new Settings();
-    }
-
+    /**
+     * <p>
+     * Retrieves the {@link WebPageElement} for the {@link Contact} data field.
+     * </p>
+     *
+     * @return The {@link WebPageElement} representing the {@link Contact} data field.
+     */
     public WebPageElement getContact() {
-
-        if (Objects.isNull(contact)) {
-            contact = findByText("Contact");
-        }
-
-        return contact;
+        return findByText("Contact");
     }
 
+    /**
+     * <p>
+     * Retrieves the {@link WebPageElement} for the {@link Company} data field.
+     * </p>
+     *
+     * @return The {@link WebPageElement} representing the {@link Company} data field.
+     */
     public WebPageElement getCompany() {
-
-        if (Objects.isNull(company)) {
-            company = findByText("Company");
-        }
-
-        return company;
+        return findByText("Company");
     }
 
+    /**
+     * <p>
+     * Retrieves the {@link WebPageElement} for the {@link Deal} data field.
+     * </p>
+     *
+     * @return The {@link WebPageElement} representing the {@link Deal} data field.
+     */
     public WebPageElement getDeal() {
-
-        if (Objects.isNull(deal)) {
-            deal = findByText("Deal");
-        }
-
-        return deal;
+        return findByText("Deal");
     }
 
+    /**
+     * <p>
+     * Retrieves the {@link WebPageElement} for the {@link Product} data field.
+     * </p>
+     *
+     * @return The {@link WebPageElement} representing the {@link Product} data field.
+     */
     public WebPageElement getProduct() {
-
-        if (Objects.isNull(product)) {
-            product = findByText("Product");
-        }
-
-        return product;
+        return findByText("Product");
     }
 
-    private Collection<WebPageElement> getFields() {
-
-        if (Objects.isNull(fields)) {
-            fields = findElementsByXpath("//*[@data-rbd-droppable-id='field-list']/div/div/div/div/div/div[2]/div/p");
-        }
-
-        return fields;
-    }
-
-    public Collection<String> getFieldNames(final Source source) {
-        // click(findByText(source.getName()));
-        final List fields = new ArrayList();
-
-        for (WebPageElement field : getFields()) {
-            fields.add(getText(field));
-        }
-
-        return getTexts(getFields());
-    }
-
+    /**
+     * <p>
+     * Switches to the Contact data fields page and returns the {@link ContactDataField}.
+     * </p>
+     *
+     * @return The {@link ContactDataField}.
+     */
     public ContactDataField switchToContactDataFields() {
-      //  click(getContact());
+        click(getContact());
 
-        return ContactDataField.getInstance();
+        return ContactDataField.getInstance(webAutomationDriver);
     }
 
+    /**
+     * Switches to the Company data fields page and returns the {@link CompanyDataField}.
+     *
+     * @return The {@link CompanyDataField}.
+     */
     public CompanyDataField switchToCompanyDataFields() {
         click(getCompany());
 
-        return CompanyDataField.getInstance();
+        return CompanyDataField.getInstance(webAutomationDriver);
     }
 
+    /**
+     * Switches to the Deal data fields page and returns the {@link DealDataField}.
+     *
+     * @return The {@link DealDataField}.
+     */
     public DealDataField switchToDealDataFields() {
         click(getDeal());
 
-        return DealDataField.getInstance();
+        return DealDataField.getInstance(webAutomationDriver);
     }
 
+    /**
+     * <p>
+     * Switches to the Product data fields page and returns the {@link ProductDataField}.
+     * </p>
+     *
+     * @return The {@link ProductDataField}.
+     */
     public ProductDataField switchToProductDataFields() {
         click(getProduct());
 
@@ -125,6 +154,7 @@ public class Settings extends BasePage {
         }
 
         refresh();
-        return ProductDataField.getInstance();
+
+        return ProductDataField.getInstance(webAutomationDriver);
     }
 }

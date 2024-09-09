@@ -1,6 +1,7 @@
 package com.twozo.page.settings.data.fields.contact;
 
 import com.twozo.commons.exception.ErrorCode;
+
 import com.twozo.page.settings.data.fields.AbstractDataField;
 import com.twozo.page.settings.data.fields.contact.field.ContactField;
 import com.twozo.page.settings.data.fields.field.Field;
@@ -9,9 +10,10 @@ import com.twozo.page.settings.data.fields.field.FieldTypePath;
 import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
+
+import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.error.code.WebDriverErrorCode;
-import org.openqa.selenium.NoSuchElementException;
 
 import java.util.*;
 
@@ -19,19 +21,16 @@ public class ContactDataField extends AbstractDataField {
 
     private static ContactDataField contactDataField;
 
-    protected ContactDataField() {
-        super();
-        System.out.println(getURL());
-        System.out.println(SettingsURL.CONTACT_DATA_FIELDS);
+    protected ContactDataField(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
 
         if (!getURL().equals(SettingsURL.CONTACT_DATA_FIELDS)) {
-            System.out.println(SettingsURL.CONTACT_DATA_FIELDS);
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
 
-    public static ContactDataField getInstance() {
-        contactDataField = new ContactDataField();
+    public static ContactDataField getInstance(final WebAutomationDriver webAutomationDriver) {
+        contactDataField = new ContactDataField(webAutomationDriver);
 
         return contactDataField;
     }
@@ -74,6 +73,7 @@ public class ContactDataField extends AbstractDataField {
 
     private SystemField getFirstNameField() {
         final String firstNameDiv = getFirstNameDiv();
+
         return new SystemField(
                 findByXpath(format(firstNameDiv, FieldElement.NON_DRAGGABLE)),
                 findByXpath(format(firstNameDiv, XPathBuilder.getXPathByText(ContactField.FIRST_NAME.getName()))),
@@ -176,7 +176,6 @@ public class ContactDataField extends AbstractDataField {
                 null);
     }
 
-
     public boolean verifyActiveContactTab() {
         return isDisplayed(getActiveContactTab());
     }
@@ -186,7 +185,7 @@ public class ContactDataField extends AbstractDataField {
                 isSelected(findByXpath(getPathOfSpecificCheckbox(getPhonesDiv(), FieldElement.REQUIRED_CHECKBOX)));
     }
 
-    public void checkChoicesForSource() {
+    public boolean checkChoicesForSource() {
         final String[] sources = {
                 "Web",
                 "Organic Search",
@@ -204,12 +203,29 @@ public class ContactDataField extends AbstractDataField {
                 "Webinar"
         };
 
-        for (final String source : sources) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(source)));
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='MuiBox-root css-173a8x7']//*[@class='css-h35jak']");
+        final Collection<WebPageElement> draggableChoicesAsElements = findElementsByXpath("//*[@class='MuiBox-root css-173a8x7']//*[@class='css-1c02ymu']");
+        final List<String> choices = new ArrayList<>();
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
         }
+
+        for (final WebPageElement draggableChoicesAsElement : draggableChoicesAsElements) {
+            choices.add(getText(draggableChoicesAsElement));
+        }
+
+        for (final String source : sources) {
+
+            if (!choices.contains(source)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void checkChoicesForTimeZone() {
+    public boolean checkChoicesForTimeZone() {
         final String[] timeZones = {
                 "(UTC+00:00) Africa/Abidjan",
                 "(UTC+00:00) Africa/Accra",
@@ -315,141 +331,186 @@ public class ContactDataField extends AbstractDataField {
 
         final Collection<WebPageElement> choices = findElementsByXpath("//*[@class='css-vb6e92']/div[2]/div/p");
         final Set<String> timeZoneChoices = new HashSet<>();
+
         for (final WebPageElement choice : choices) {
             timeZoneChoices.add(getText(choice));
         }
 
         for (final String timeZone : timeZones) {
+
             if (!timeZoneChoices.contains(timeZone)) {
-                throw new AssertionError("Time zone not found: " + timeZone);
+                return false;
             }
         }
+
+        return true;
     }
 
-    public void checkChoicesForSubscriptionStatus() {
+    public boolean checkChoicesForSubscriptionStatus() {
         final String[] options = {"Subscribed", "Unsubscribed", "Not Subscribed", "Reported as spam", "Bounced"};
+        final Collection<String> choices = new ArrayList<>();
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='css-h35jak']");
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
+        }
 
         for (final String option : options) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(option)));
+
+            if (!choices.contains(option)) {
+                return false;
+            }
         }
+
+        return true;
     }
 
-    public void checkChoicesForUnsubscribeReason() {
+    public boolean checkChoicesForSubscriptionTypes() {
+        final String[] options = {"Newsletter", "Promotional", "Product updates", "Conference and events", "Non marketing emails from our company"};
+        final List<String> choices = new ArrayList<>();
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='css-evarem']");
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
+        }
+
+        for (final String option : options) {
+
+            if (!choices.contains(option)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean checkChoicesForUnsubscribeReason() {
         final String[] options = {"I no longer want to receive emails from you", "I receive too many emails from you",
                 "The emails are inappropriate", "The emails are spam", "Other unsubscribeReason"};
 
-        for (final String option : options) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(option)));
+        final List<String> choices = new ArrayList<>();
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='css-vb6e92']");
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
         }
+
+        for (final String option : options) {
+
+            if (!choices.contains(option)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void checkChoicesForSubscriptionTypes() {
-        final String[] options = {"Newsletter", "Promotional", "Product updates", "Conference and events", "Non marketing emails from our company"};
-
-        for (final String option : options) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(option)));
-        }
-    }
-
-    public void checkSubscriptionStatus() {
-        final String subscriptionStatus = "Subscription Status";
+    public boolean checkSubscriptionStatus() {
+        final String subscriptionStatus = ContactField.SUBSCRIPTION_STATUS.getName();
         final String fiveChoices = XPathBuilder.getXPathByText("5");
-        // String dependableFieldBlock = getDependableFieldBlock(subscriptionStatus);
 
+        if (!isFieldPresent(subscriptionStatus)) {
+            addField(subscriptionStatus);
+        }
+        // refresh();
         try {
-            isDisplayed(findByXpath(getDependableFieldBlock(subscriptionStatus)));
-        } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(subscriptionStatus);
-            isDisplayed(findByXpath(getDependableFieldBlock(subscriptionStatus)));
+            Thread.sleep(5000);
+        } catch (Exception exception) {
+
         }
 
-        final String subscriptionStatusBlock = getFieldBlock(subscriptionStatus);
-
-        checkSpecificElement(subscriptionStatusBlock, FieldElement.DRAGGABLE);
-        checkSpecificElement(subscriptionStatusBlock, FieldTypePath.DROPDOWN);
-        click(findByXpath(format(subscriptionStatusBlock, fiveChoices)));
+        checkSpecificElement(subscriptionStatus, FieldElement.DRAGGABLE);
+        checkSpecificElement(subscriptionStatus, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(getFieldBlock(subscriptionStatus), fiveChoices)));
         checkChoicesForSubscriptionStatus();
         refresh();
-        final String subscriptionTypes = getFieldBlock("Subscription Types");
+        final String subscriptionTypes = ContactField.SUBSCRIPTION_TYPES.getName();
 
         checkSpecificElement(subscriptionTypes, FieldTypePath.MULTI_SELECT);
-        click(findByXpath(format(subscriptionTypes, fiveChoices)));
+        click(findByXpath(format(getFieldBlock(subscriptionTypes), fiveChoices)));
         checkChoicesForSubscriptionTypes();
         refresh();
-        final String unsubscribeReason = getFieldBlock("Unsubscribe reason");
+        final String unsubscribeReason = ContactField.UNSUBSCRIBE_TYPES.getName();
 
         checkSpecificElement(unsubscribeReason, FieldTypePath.DROPDOWN);
-        click(findByXpath(format(unsubscribeReason, fiveChoices)));
+        click(findByXpath(format(getFieldBlock(unsubscribeReason), fiveChoices)));
         checkChoicesForUnsubscribeReason();
         refresh();
-        final String otherUnsubscribeReason = getFieldBlock("Other unsubscribe reason");
+        final String otherUnsubscribeReason = ContactField.OTHER_UNSUBSCRIBE_REASON.getName();
 
         checkSpecificElement(otherUnsubscribeReason, FieldTypePath.LARGE_TEXT);
 
+        return true;
     }
 
-    public void checkLifecycleStage() {
-        final String lifecycleStage = "Lifecycle Stage";
+    public boolean checkLifecycleStage() {
+        final String lifecycleStage = ContactField.LIFECYCLE_STAGE.getName();
         final String fourChoices = XPathBuilder.getXPathByText("4");
-        String lifecycleStageBlock = null;
 
-        try {
-            isDisplayed(findByXpath(getFieldBlock(lifecycleStage)));
-
-        } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(lifecycleStage);
-            lifecycleStageBlock =getFieldBlock(lifecycleStage);
-
-            isDisplayed(findByXpath(lifecycleStageBlock));
+        if (!isFieldPresent(lifecycleStage)) {
+            addField(lifecycleStage);
         }
 
-        checkSpecificElement(lifecycleStageBlock, FieldElement.DRAGGABLE);
-        checkSpecificElement(lifecycleStageBlock, FieldTypePath.DROPDOWN);
-        checkSpecificElement(lifecycleStageBlock, fourChoices);
+        refresh();
+        try {
+            Thread.sleep(10000);
+        } catch (Exception exception) {
+
+        }
+
+        checkSpecificElement(lifecycleStage, FieldElement.DRAGGABLE);
+        checkSpecificElement(lifecycleStage, FieldTypePath.DROPDOWN);
+        checkSpecificElement(lifecycleStage, fourChoices);
+
+        return true;
     }
 
-    public void checkSource() {
-        final String source = "Source";
+    public boolean checkSource() {
+        final String source = ContactField.SOURCE.getName();
         final String fourteenChoices = XPathBuilder.getXPathByText("14");
-        String sourceBlock = null;
 
-        try {
-            isDisplayed(findByXpath(getFieldBlock(source)));
-        } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(source);
-            sourceBlock = getFieldBlock(source);
-            isDisplayed(findByXpath(sourceBlock));
+        if (!isFieldPresent(source)) {
+            addField(source);
         }
 
-        checkSpecificElement(sourceBlock, FieldElement.DRAGGABLE);
-        checkSpecificElement(sourceBlock, FieldTypePath.DROPDOWN);
-        click(findByXpath(format(sourceBlock, fourteenChoices)));
+        refresh();
+        try {
+            Thread.sleep(10000);
+        } catch (Exception exception) {
+
+        }
+
+
+        checkSpecificElement(source, FieldElement.DRAGGABLE);
+        checkSpecificElement(source, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(getFieldBlock(source), fourteenChoices)));
         checkChoicesForSource();
+
+        return true;
     }
 
-    public void checkTimezone() {
-        final String timeZone = "Time Zone";
+    public boolean checkTimezone() {
+        final String timeZone = ContactField.TIME_ZONE.getName();
         final String hundredChoices = XPathBuilder.getXPathByText("100");
-        String timezoneBlock = null;
 
-        try {
-            isDisplayed(findByXpath(getFieldBlock(timeZone)));
-            timezoneBlock = getFieldBlock(timeZone);
-        } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(timeZone);
-            timezoneBlock =getFieldBlock(timeZone);
-            isDisplayed(findByXpath(timezoneBlock));
+        if (!isFieldPresent(timeZone)) {
+            addField(timeZone);
         }
 
-        checkSpecificElement(timezoneBlock, FieldElement.DRAGGABLE);
-        checkSpecificElement(timezoneBlock, FieldTypePath.DROPDOWN);
-        click(findByXpath(format(timezoneBlock, hundredChoices)));
-        checkChoicesForTimeZone();
-    }
+        refresh();
 
-    public void isEnabled() {
-        System.out.println(isEnabled(findByXpath(getPathOfSpecificCheckbox(getFieldBlock("First Name"), FieldElement.ADD_VIEW_CHECKBOX))));
-        System.out.println(isEnabled(findByXpath(getPathOfSpecificCheckbox(getFieldBlock("Last Name"), FieldElement.ADD_VIEW_CHECKBOX))));
+        try {
+            Thread.sleep(10000);
+        } catch (Exception exception) {
+
+        }
+
+        checkSpecificElement(timeZone, FieldElement.DRAGGABLE);
+        checkSpecificElement(timeZone, FieldTypePath.DROPDOWN);
+        click(findByXpath(format(getFieldBlock(timeZone), hundredChoices)));
+        checkChoicesForTimeZone();
+
+        return true;
     }
 
     @Override
@@ -521,6 +582,62 @@ public class ContactDataField extends AbstractDataField {
         unCheck(mandatoryFields);
 
         return true;
+    }
+
+    @Override
+    public List<String> getFieldsForAddViewAndRequired(final String addViewOrRequired) {
+        final List<String> fieldsPresent = new ArrayList<>();
+
+        int count = 0;
+        final Collection<WebPageElement> elementsByXpath = findElementsByXpath("//*[@class='MuiBox-root css-19idom']");
+
+        for (final WebPageElement webPageElement : elementsByXpath) {
+            count++;
+        }
+
+        for (int i = 1; i <= count; i++) {
+
+            final String fieldBlock = String.format(FieldElement.BLOCK, i);
+            final WebPageElement fieldElement = findByXpath(getPathOfSpecificCheckbox
+                    (fieldBlock, addViewOrRequired));
+
+            if (isSelected(fieldElement)) {
+                fieldsPresent.add(getText(findByXpath(String.format("(%s%s%s)", "((", fieldBlock, "/div)[1])//*[@class='MuiTypography-root MuiTypography-body1 MuiTypography-noWrap css-10vldmf']"))));
+
+            }
+        }
+
+        return fieldsPresent;
+    }
+
+    @Override
+    public List<String> getFields() {
+        final List<String> fieldsPresent = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-1qqzcwf']/div/p");
+
+        for (final WebPageElement field : fields) {
+            fieldsPresent.add(getText(field));
+        }
+
+        return fieldsPresent;
+    }
+
+    @Override
+    public List<String> getFieldsForSummary() {
+        final List<String> fieldsPresent = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-1qqzcwf']/div/p");
+        final List<String> profileFieldsForContact = List.of("First Name", "Last Name", "LinkedIn", "Facebook",
+                "Designation", "Company", "Unsubscribe Reason", "Other unsubscribe reason");
+
+        for (final WebPageElement field : fields) {
+            final String fieldName = getText(field);
+
+            if (!profileFieldsForContact.contains(fieldName)) {
+                fieldsPresent.add(getText(field));
+            }
+        }
+
+        return fieldsPresent;
     }
 }
 

@@ -1,33 +1,71 @@
 package com.twozo.test.settings.data.fields;
 
 import com.twozo.commons.cookie.BrowserCookie;
+import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
+import com.twozo.page.contact.Contact;
 import com.twozo.page.deal.Deal;
 import com.twozo.page.homepage.HomePage;
 import com.twozo.page.settings.data.fields.FieldStatus;
 import com.twozo.page.settings.data.fields.deal.DealDataField;
+import com.twozo.page.settings.data.fields.field.FieldElement;
+import com.twozo.page.url.URL;
+import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.test.TestCase;
+import com.twozo.test.TestDataProvider;
 import com.twozo.web.driver.service.WebAutomationDriver;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DealDataFieldTest extends DataFieldTest {
 
     private DealDataField dealDataField;
     private HomePage homePage;
-
     private WebAutomationDriver automationDriver;
+
+    @DataProvider(name = "dealSystemFields")
+    private static Object[][] getDealSystemFieldData() {
+        return new TestDataProvider().getTestCases("deal/SystemFields.json");
+    }
+
+    @DataProvider(name = "addViewAndRequired")
+    private static Object[][] getAddView() {
+        return new TestDataProvider().getTestCases("deal/AddViewAndRequired.json");
+    }
+
+    @DataProvider(name = "autoGeneratingField")
+    private static Object[][] getAutoGeneratingFieldData() {
+        return new TestDataProvider().getTestCases("deal/AutoGeneratingFields.json");
+    }
+
+//    @BeforeClass
+//    public void set(){
+//        automationDriver = WebAutomationDriver.get();
+//        webNavigator = automationDriver.getWebNavigator();
+//        webNavigator.to(link);
+//
+//        for (final BrowserCookie cookie : cookies) {
+//            automationDriver.getSessionCookie().addCookie(cookie);
+//        }
+//
+//        automationDriver.getWebWindowHandler().maximize();
+//        automationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
+//        webNavigator.to(URL.CONTACTS);
+//        automationDriver.getWebWindowHandler().maximize();
+//        Deal.getInstance(automationDriver).addDeal().createDeal();
+//    }
 
     @BeforeMethod
     public void before() {
         automationDriver = WebAutomationDriver.get();
         webNavigator = automationDriver.getWebNavigator();
-        webNavigator.to("https://app.thelaunchclub.in");
+        webNavigator.to(link);
 
         for (final BrowserCookie cookie : cookies) {
             automationDriver.getSessionCookie().addCookie(cookie);
@@ -35,11 +73,11 @@ public class DealDataFieldTest extends DataFieldTest {
 
         automationDriver.getWebWindowHandler().maximize();
         automationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Deal");
+        automationDriver.getWebNavigator().to(SettingsURL.DEAL_DATA_FIELDS);
         automationDriver.getWebWindowHandler().maximize();
 
-        homePage = HomePage.getInstance();
-        dealDataField = DealDataField.getInstance();
+        homePage = HomePage.getInstance(automationDriver);
+        dealDataField = DealDataField.getInstance(automationDriver);
     }
 
     @AfterMethod
@@ -53,163 +91,117 @@ public class DealDataFieldTest extends DataFieldTest {
     }
 
     @Test(dataProvider = "dealSystemFields")
-    public void addSystemFields(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
+    public void addSystemField(final Object object) {
+        Assert.assertTrue(dealDataField.addSystemField(getFieldStatus(object)));
+    }
 
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(dealDataField.addSystemField(fieldStatus));
+
+    @Test(dataProvider = "addViewAndRequired")
+    public void enableAddView(final Object object) {
+        Assert.assertTrue(dealDataField.enableAddView(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "addViewAndRequired")
+    public void enableRequired(final Object object) {
+        Assert.assertTrue(dealDataField.enableRequired(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "autoGeneratingField")
+    public void enableAddViewForAutoGeneratingField(final Object object) {
+        Assert.assertFalse(dealDataField.enableAddView(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "autoGeneratingField")
+    public void enableRequiredForAutoGeneratingField(final Object object) {
+        Assert.assertFalse(dealDataField.enableRequired(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "dealSystemFields")
+    public void hideField(final Object object) {
+        Assert.assertTrue(dealDataField.hideField(getFieldStatus(object).getFieldName()));
     }
 
     @Test(dataProvider = "customField")
     public void addCustomFieldsWithAllFieldType(final Object object) {
-
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-
-        if (input.containsKey("fieldName") && input.containsKey("fieldType")) {
-            Assert.assertTrue(dealDataField.addCustomField(input.getString("fieldName"),
-                    input.getString("fieldType")));
-        }
+        Assert.assertTrue(dealDataField.addCustomField(getFieldStatus(object)));
     }
 
     @Test(dataProvider = "editData")
     public void editFieldName(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-        final String append = input.getString("append");
-
-        Assert.assertTrue(dealDataField.editCustomField(name, append));
-    }
-
-    @Test(dataProvider = "hideField")
-    public void hideField(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-
-        Assert.assertTrue(dealDataField.hideField(name));
+        Assert.assertTrue(dealDataField.editCustomField(getFieldStatus(object)));
     }
 
     @Test(dataProvider = "deleteField")
     public void deleteField(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-
-        Assert.assertTrue(dealDataField.deleteField(name));
+             Assert.assertTrue(dealDataField.deleteField(getFieldStatus(object).getFieldName()));
     }
 
-    @Test(dataProvider = "dealSystemFields")
-    public void enableAddView(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(dealDataField.enableAddView(fieldStatus));
-    }
-
-    @Test(dataProvider = "dealSystemFields")
-    public void enableRequired(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(dealDataField.enableRequired(fieldStatus));
-    }
+    @Test
+    public void checkMaxLimit() {
+        final String fieldName = "CustomField";
+        final List<String> choices = List.of("a","b");
 
 
-    @Test(dataProvider = "dealSystemFields")
-    public void checkAddForm(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
+        for (int i = 1; i <= 11; i++) {
+            FieldStatus fieldStatus = new FieldStatus();
+            fieldStatus.setFieldName(String.format("%s%d", fieldName, i));
+            fieldStatus.setFieldType("Multi Select");
+            fieldStatus.setChoices(choices);
+            dealDataField.checkMaximumLimit(fieldStatus);
 
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setAddView(input.getBoolean("isAddView"));
-        dealDataField.addSystemField(fieldStatus);
-        dealDataField.checkAddView(fieldStatus);
-        final String name = fieldStatus.getName();
-
-        if (fieldStatus.isAddView()) {
-            Assert.assertTrue(isVisibleInAddForm(name));
-        } else {
-            Assert.assertFalse(isVisibleInAddForm(name));
+            if (i!=11) {
+                dealDataField.refresh();
+            }
         }
+        Assert.assertTrue(dealDataField.isLimitExceededNotificationDisplayed());
     }
 
-    @Test(dataProvider = "dealSystemFields")
-    public void checkColumnSettings(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        dealDataField.addSystemField(fieldStatus);
-        final String name = fieldStatus.getName();
-
-        Assert.assertTrue(isVisibleInColumnSettings(name));
+    @Test
+    public void checkAddForm() {
+        Assert.assertTrue(isPresentInAddForm(dealDataField.getFieldsForAddViewAndRequired(FieldElement.ADD_VIEW_CHECKBOX)));
     }
 
-    @Test(dataProvider = "dealSystemFields")
-    public void checkSummary(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
+    @Test
+    public void checkAddFormAsRequired() {
+        Assert.assertTrue(isPresentInAddForm(dealDataField.getFieldsForAddViewAndRequired(FieldElement.REQUIRED_CHECKBOX)));
+    }
 
-        fieldStatus.setName(input.getString("name"));
-        dealDataField.addSystemField(fieldStatus);
-        final String name = fieldStatus.getName();
+    @Test
+    public void checkSummary() {
+        Assert.assertTrue(isPresentInSummary(dealDataField.getFieldsForSummary()));
+    }
 
-        Assert.assertTrue(isVisibleInSummary(name));
+    @Test
+    public void checkColumnSettings() {
+        Assert.assertTrue(isPresentInColumnSettings(dealDataField.getFields()));
     }
 
     @Test
     public void checkPipeline() {
-        dealDataField.checkPipeline();
+        Assert.assertTrue(dealDataField.checkPipeline());
     }
 
     @Override
-    public boolean isVisibleInSummary(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/deals");
+    public boolean isPresentInSummary(final List<String> fields) {
+        webNavigator.to(URL.DEALS);
         dealDataField.switchToSummary();
-        return dealDataField.isVisibleInSummary(fieldName);
+
+        return dealDataField.isPresentInSummary(fields);
     }
 
     @Override
-    public void isDefaultFieldsVisibleInAddView() {
-        webNavigator.to("https://app.thelaunchclub.in/deals");
-        dealDataField.switchToAddDealForm();
-        Assert.assertTrue(dealDataField.isDefaultFieldsVisibleInAddView());
-    }
-
-    @Override
-    public boolean isVisibleInAddForm(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/deals");
-        dealDataField.switchToAddDealForm();
-        return dealDataField.isVisibleInAddForm(fieldName);
-    }
-
-    @Override
-    public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/deals");
+    public boolean isPresentInAddForm(final List<String> fields) {
+        webNavigator.to(URL.DEALS);
         dealDataField.switchToAddDealForm();
 
-        return dealDataField.isVisibleInAddFormAsRequired(fieldName);
+        return dealDataField.isPresentInAddForm(fields);
     }
 
     @Override
-    public boolean isVisibleInColumnSettings(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/deals");
-        Deal.getInstance().switchToColumnSettings();
+    public boolean isPresentInColumnSettings(final List<String> fields) {
+        webNavigator.to(com.twozo.page.url.URL.DEALS);
+        Deal.getInstance(automationDriver).switchToColumnSettings();
 
-        return dealDataField.isVisibleInColumnSettings(fieldName);
+        return dealDataField.isPresentInColumnSettings(fields);
     }
 }

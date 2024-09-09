@@ -41,14 +41,14 @@ public class Activity extends BasePage {
     private WebPageElement importActivities;
     private WebPageElement addActivity;
 
-    protected Activity() {
-        super();
+    protected Activity(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
-    public static Activity getInstance(){
+    public static Activity getInstance(final WebAutomationDriver webAutomationDriver) {
 
         //if (Objects.isNull(activity)) {
-            activity = new Activity();
+            activity = new Activity(webAutomationDriver);
         //}
 
         return activity;

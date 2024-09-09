@@ -1,35 +1,53 @@
 package com.twozo.test;
 
 import com.twozo.commons.cookie.BrowserCookie;
-import com.twozo.page.BasePage;
+import com.twozo.commons.util.ConfigFileReader;
 import com.twozo.page.sign.SignIn;
 import com.twozo.web.driver.service.WebAutomationDriver;
 
+import org.openqa.selenium.OutputType;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 public class BaseTest {
 
-    private BasePage basePage;
+    private static final Map<String, String> CONFIG = ConfigFileReader.get("Config.Properties");
+
+    protected WebAutomationDriver automationDriver;
     protected SignIn signIn;
     protected Set<BrowserCookie> cookies;
+    public String link;
 
     @BeforeClass
     public void setUp() {
-        basePage = BasePage.getInstance(WebAutomationDriver.get());
+        automationDriver = WebAutomationDriver.get();
+        link = CONFIG.get("Domain");
 
-        basePage.webNavigator.to("https://app.thelaunchclub.in/");
-        basePage.implicitWaitHandler.implicitWait(Duration.ofSeconds(10));
-        SignIn.getInstance().signIn("b6@gmail.com", "A$12345a");
+        automationDriver.getWebNavigator().to(link);
+        automationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
+        SignIn.getInstance(automationDriver).signIn("n4@gmail.com", "A$12345a");
+        cookies = automationDriver.getSessionCookie().getCookies();
 
-        try {
-            Thread.sleep(2000);
-        } catch (Exception exception) {
-        }
-        cookies=basePage.sessionCookie.getCookies();
+        automationDriver.close();
+    }
 
-        basePage.close();
+    public String takeScreenShot(final String TestName, final WebAutomationDriver driver) throws IOException {
+        final File sourceFile = driver.getScreenCapturer().getScreenshotAs(OutputType.FILE);
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmmss");
+        final String timeStamp = dateFormat.format(new Date());
+        final String path = System.getProperty("user.dir") + "\\reports\\" + TestName + "_" + timeStamp + ".png";
+        final File file = new File(path);
+
+        //FileUtils.
+
+        return path;
     }
 }

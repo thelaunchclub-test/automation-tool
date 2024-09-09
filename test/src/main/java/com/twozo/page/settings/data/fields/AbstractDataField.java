@@ -1,70 +1,186 @@
 package com.twozo.page.settings.data.fields;
 
 import com.twozo.page.settings.Settings;
-import com.twozo.page.settings.data.fields.contact.field.ContactField;
 import com.twozo.page.settings.data.fields.field.DependableField;
 import com.twozo.page.settings.data.fields.field.Field;
 import com.twozo.page.settings.data.fields.field.FieldElement;
 import com.twozo.page.settings.data.fields.field.SystemField;
 import com.twozo.page.xpath.XPathBuilder;
+
 import com.twozo.web.driver.service.WebAutomationDriver;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.model.LocatorType;
 import com.twozo.web.element.service.WebPageElement;
 
-import org.openqa.selenium.NoSuchElementException;
-
 import java.util.*;
 
+/**
+ * <p>
+ * Handles data fields within the settings page of a web application. Provides common functionality for managing
+ * system and custom fields, interacting with UI elements,
+ * and verifying field states.
+ * </p>
+ *
+ * @author Petchimuthu
+ * @version 1.0
+ */
 public abstract class AbstractDataField extends Settings {
 
     private static final String TWO_STRING_FORMAT = "%s%s";
     private static final String THREE_STRING_FORMAT = "%s%s%s";
     private static final String OPEN_PARENTHESIS = "(";
 
-    protected AbstractDataField() {
-        super();
+    protected AbstractDataField(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
+    /**
+     * <p>
+     * Retrieves the {@link WebPageElement} of an active tab by its name.
+     * </p>
+     *
+     * @param tabName The name of the tab.
+     * @return A {@link WebPageElement} representing the active tab.
+     */
     private WebPageElement getActiveTab(final String tabName) {
         return findByXpath(String.format("//*[@value='%s' and @aria-pressed='true']", tabName));
     }
 
+    /**
+     * <p>
+     * Retrieves the active "Contact" tab.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the active "Contact" tab.
+     */
     protected WebPageElement getActiveContactTab() {
         return getActiveTab("Contact");
     }
 
+    /**
+     * <p>
+     * Retrieves the active "Company" tab.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the active "Company" tab.
+     */
     protected WebPageElement getActiveCompanyTab() {
         return getActiveTab("Company");
     }
 
+    /**
+     * <p>
+     * Retrieves the active "Deal" tab.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the active "Deal" tab.
+     */
     protected WebPageElement getActiveDealTab() {
         return getActiveTab("Deal");
     }
 
+    /**
+     * <p>
+     * Retrieves the active "Product" tab.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the active "Product" tab.
+     */
     protected WebPageElement getActiveProductTab() {
         return getActiveTab("Product");
     }
 
+    /**
+     * <p>
+     * Checks if the notification for exceeding a limit (e.g., maximum fields) is displayed.
+     * </p>
+     *
+     * @return true if the notification is displayed, false otherwise.
+     */
+    public boolean isLimitExceededNotificationDisplayed() {
+        return isDisplayed(findByXpath("//*[contains(text(),'Maximum')]"));
+    }
+
+    /**
+     * <p>
+     * Formats a string by concatenating two parts.
+     * </p>
+     *
+     * @param div     The first part of the string.
+     * @param element The second part of the string.
+     * @return The formatted string.
+     */
     protected String format(final String div, final String element) {
         return String.format(TWO_STRING_FORMAT, div, element);
     }
 
+    /**
+     * <p>
+     * Constructs the XPath for a specific checkbox within a block element.
+     * </p>
+     *
+     * @param div     The parent block element.
+     * @param element The specific checkbox element.
+     * @return The XPath string for the checkbox.
+     */
     protected String getPathOfSpecificCheckbox(final String div, final String element) {
         return String.format(THREE_STRING_FORMAT, OPEN_PARENTHESIS, div, element);
     }
 
+    /**
+     * <p>
+     * Retrieves the "Add System Fields" button element.
+     * </p>
+     *
+     * @return A WebPageElement representing the "Add System Fields" button.
+     */
     protected WebPageElement getAddSystemFieldsButton() {
         return findByText(Button.SYSTEM_FIELDS);
     }
 
+    /**
+     * <p>
+     * Retrieves the block XPath for a dependable field based on its field name.
+     * </p>
+     *
+     * @param field The name of the dependable field.
+     * @return The XPath string for the dependable field block.
+     */
+    protected String getDependableFieldBlock(final String field) {
+        int rowNumber = 1;
+
+        while (!field.equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
+            rowNumber++;
+        }
+
+        return String.format(FieldElement.DEPENDABLE_FIELD_BLOCK, rowNumber);
+    }
+
+    /**
+     * <p>
+     * Retrieves the checkbox element for adding a system field to the list.
+     * </p>
+     *
+     * @param fieldName The name of the system field.
+     * @return A {@link WebPageElement} representing the checkbox element.
+     */
+    protected WebPageElement getAddSystemFieldToList(final String fieldName) {
+        return findByXpath(format(getMenuBlock(fieldName), "//*[@type='checkbox']"));
+    }
+
+    /**
+     * <p>
+     * Retrieves the block XPath for a field based on its field name.
+     * </p>
+     *
+     * @param field The name of the field.
+     * @return The XPath string for the field block.
+     */
     protected String getFieldBlock(final String field) {
         int rowNumber = 1;
 
         while (true) {
             final String xpath = String.format(FieldElement.SPECIFIC_BLOCK, rowNumber);
-
-            waitTillVisible(xpath);
 
             if (field.contains(getText(findByXpath(xpath)))) {
                 break;
@@ -76,20 +192,14 @@ public abstract class AbstractDataField extends Settings {
         return String.format(FieldElement.FIELD_BLOCK, rowNumber);
     }
 
-    protected String getDependableFieldBlock(final String field) {
-        int rowNumber = 1;
-
-        while (!field.equals(getText(findByXpath(String.format(FieldElement.SPECIFIC_BLOCK, rowNumber))))) {
-            rowNumber++;
-        }
-
-        return String.format(FieldElement.DEPENDABLE_FIELD_BLOCK, rowNumber);
-    }
-
-    protected WebPageElement getAddSystemFieldToList(final String fieldName) {
-        return findByXpath(format(getMenuBlock(fieldName), "//*[@type='checkbox']"));
-    }
-
+    /**
+     * <p>
+     * Retrieves the block XPath for a field based on its {@link Field} .
+     * </p>
+     *
+     * @param field The field object.
+     * @return The XPath string for the {@link Field} block.
+     */
     protected String getFieldBlock(final Field field) {
         int rowNumber = 1;
 
@@ -100,48 +210,137 @@ public abstract class AbstractDataField extends Settings {
         return String.format(FieldElement.FIELD_BLOCK, rowNumber);
     }
 
+    /**
+     * <p>
+     * Retrieves the "Add Selected Fields" button element.
+     * </p>
+     *
+     * @return A WebPageElement representing the "Add Selected Fields" button.
+     */
     protected WebPageElement getAddSelectedFieldsButton() {
         return findByText(Button.ADD_SELECTED_FIELDS);
     }
 
+    /**
+     * <p>
+     * Retrieves the "Add Custom Field" button element.
+     * </p>
+     *
+     * @return A WebPageElement representing the "Add Custom Field" button.
+     */
     public WebPageElement getAddCustomFieldButton() {
         return findByText(Button.CUSTOM_FIELD);
     }
 
+    /**
+     * <p>
+     * Retrieves the element for the custom field name input.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the custom field name input.
+     */
     protected WebPageElement getCustomFieldName() {
         return findByXpath(FieldElement.CUSTOM_FIELD_NAME);
     }
 
+    /**
+     * <p>
+     * Retrieves the dropdown element for selecting the custom field type.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the custom field type dropdown.
+     */
     protected WebPageElement getSelectCustomFieldType() {
         return findByXpath(Button.CUSTOM_FIELDS_FIELD_TYPE);
     }
 
+    /**
+     * <p>
+     * Retrieves the button element to add a custom field.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the "Add" button for custom fields.
+     */
     protected WebPageElement getCustomFieldAddButton() {
         return findByXpath(FieldElement.ADD_BUTTON);
     }
 
+    /**
+     * <p>
+     * Retrieves the button element for adding a choice to a custom field.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the "Choice" button.
+     */
     protected WebPageElement getChoice() {
         return findByText(Button.CHOICE);
     }
 
+    /**
+     * <p>
+     * Retrieves the button element for adding a new choice option.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the "Add Choice" button.
+     */
     protected WebPageElement getAddChoice() {
         return findByText(Button.ADD_CHOICE);
     }
 
+    /**
+     * <p>
+     * Retrieves the breadcrumb element for navigation within the settings page.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the breadcrumb element.
+     */
     protected WebPageElement getBreadCrumb() {
         return findRightElement(List.of(new Element(LocatorType.XPATH,
                 buildXpathByText("Admin Settings"), true), new Element(LocatorType.TAG_NAME, "svg",
                 false)));
     }
 
+    /**
+     * <p>
+     * Retrieves the search bar element for searching system fields to add.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the search bar for system fields.
+     */
     protected WebPageElement getAddSystemFieldSearchBar() {
         return findByXpath("(//*[@placeholder='Search'])[2]");
     }
 
+    /**
+     * <p>
+     * Retrieves the success notification element that indicates an operation was successful.
+     * </p>
+     *
+     * @return A {@link WebPageElement} representing the "Success!" notification.
+     */
+    protected WebPageElement getSuccessNotification() {
+        return findByText("Success!");
+    }
+
+    /**
+     * <p>
+     * Retrieves the element for displaying search results for system fields.
+     * </p>
+     *
+     * @return An {@link Element} representing the system field search results.
+     */
     protected Element getSystemFieldSearchResults() {
         return new Element(LocatorType.XPATH, FieldElement.SYSTEM_FIELD_SEARCH_RESULT, true);
     }
 
+    /**
+     * <p>
+     * Retrieves the menu block XPath for a specific field name.
+     * </p>
+     *
+     * @param fieldName The name of the field.
+     * @return The XPath string for the menu block of the specified field.
+     */
     protected String getMenuBlock(final String fieldName) {
         int rowNumber = 1;
 
@@ -152,13 +351,29 @@ public abstract class AbstractDataField extends Settings {
         return String.format(FieldElement.MENU_BLOCK, rowNumber);
     }
 
+    /**
+     * <p>
+     * Checks if a specific element within a field's block is displayed.
+     * </p>
+     *
+     * @param fieldName   The name of the field block.
+     * @param elementName The name of the element to check within the block.
+     */
     protected void checkSpecificElement(final String fieldName, final String elementName) {
-        isDisplayed(findByXpath(format(fieldName, elementName)));
-
+        isDisplayed(findByXpath(format(getFieldBlock(fieldName), elementName)));
     }
 
+    /**
+     * <p>
+     * Verifies the presence and state of the elements associated with a given record
+     * This method checks that all relevant elements are displayed on the web page.
+     * </p>
+     *
+     * @param record The {@link Record}  representing the data field to be checked.
+     * @return true if all elements related to the record are correctly displayed;
+     * false otherwise.
+     */
     protected boolean check(final Record record) {
-
         if (record instanceof SystemField systemField) {
             final List<WebPageElement> elementsToCheck = Arrays.asList(
                     systemField.dragAndDropIcon(),
@@ -184,7 +399,6 @@ public abstract class AbstractDataField extends Settings {
             );
 
             for (final WebPageElement element : elementsToCheck) {
-
                 if (!isDisplayed(element)) {
                     return false;
                 }
@@ -196,15 +410,57 @@ public abstract class AbstractDataField extends Settings {
         return false;
     }
 
-    public boolean  addCustomField(final String customFieldName, final String fieldType) {
-        final String multiSelect;
-        final String dropdownPath;
-        final String multiSelectPath;
+    public boolean addCustomField(final FieldStatus fieldStatus) {
+        final String customFieldName = fieldStatus.getFieldName();
+        final String fieldType = fieldStatus.getFieldType();
+        final List<String> choices = fieldStatus.getChoices();
+        final String dropdownPath = "(((//*[@data-rbd-droppable-id='dropdown-choices']/div/div/div/div)[%d])/div/div)[2]/div/div/div/input";
+        final String multiSelectPath = "(((//*[@data-rbd-droppable-id='multiselect-choices']/div/div/div/div)[%d])/div/div)[2]/div/input";
+
+        if (!isFieldPresent(customFieldName)) {
+
+            click(getAddCustomFieldButton());
+            send(getCustomFieldName(), customFieldName);
+            click(getSelectCustomFieldType());
+            dropdown(fieldType);
+
+            if (isDropdownOrMultiSelect(fieldType)) {
+                click(getChoice());
+                click(getAddChoice());
+
+                for (int i = 0; i < choices.size(); i++) {
+                    if ((fieldType.equalsIgnoreCase(FieldType.MULTI_SELECT) || fieldType.equalsIgnoreCase(FieldType.DROPDOWN)) && i > 1) {
+                        click(getAddChoice());
+                    }
+                    final String path = fieldType.equalsIgnoreCase(FieldType.DROPDOWN)
+                            ? dropdownPath
+                            : multiSelectPath;
+                    send(findByXpath(String.format(path, i + 1)), choices.get(i));
+                }
+
+            }
+            click(findByXpath("//body"));
+
+            waitTillVisible(FieldElement.ADD_BUTTON);
+            click(getCustomFieldAddButton());
+
+            refresh();
+        }
+
+        return isFieldPresent(customFieldName);
+    }
+
+    public void checkMaximumLimit(final FieldStatus fieldStatus) {
+        final String customFieldName = fieldStatus.getFieldName();
+        final String fieldType = fieldStatus.getFieldType();
+        final List<String> choices = fieldStatus.getChoices();
+        final String multiSelect = "multiselect";
+        final String dropdownPath = "(((//*[@data-rbd-droppable-id='%s-choices']/div/div/div/div)[%d])/div/div)[2]/div/div/div/input";
+        final String multiSelectPath = "(((//*[@data-rbd-droppable-id='%s-choices']/div/div/div/div)[%d])/div/div)[2]/div/input";
 
         try {
             Thread.sleep(2000);
         } catch (Exception exception) {
-
         }
 
         click(getAddCustomFieldButton());
@@ -212,37 +468,34 @@ public abstract class AbstractDataField extends Settings {
         click(getSelectCustomFieldType());
         dropdown(fieldType);
 
-        if (fieldType.equalsIgnoreCase(FieldType.DROPDOWN) || fieldType.equalsIgnoreCase(FieldType.MULTI_SELECT)) {
-            multiSelect = "multiselect";
-            dropdownPath = "(((//*[@data-rbd-droppable-id='%s-choices']/div/div/div/div)[%d])/div/div)[2]/div/div/div/input";
-            multiSelectPath = "(((//*[@data-rbd-droppable-id='%s-choices']/div/div/div/div)[%d])/div/div)[2]/div/input";
 
+        if (isDropdownOrMultiSelect(fieldType)) {
             click(getChoice());
             click(getAddChoice());
-            if (fieldType.equalsIgnoreCase(FieldType.DROPDOWN)) {
-                send(findByXpath(String.format(dropdownPath, "dropdown", 1)), "afd");
-                send(findByXpath(String.format(dropdownPath, "dropdown", 2)), "ad");
-                click(findByXpath("//body"));
 
-            } else {
-                click(findByXpath(String.format(multiSelectPath, multiSelect, 1)));
-                send(findByXpath(String.format(multiSelectPath, multiSelect, 1)), "ad");
-                click(findByXpath(String.format(multiSelectPath, multiSelect, 2)));
-                send(findByXpath(String.format(multiSelectPath, multiSelect, 2)), "ado");
-                click(findByXpath("//body"));
+            for (int i = 0; i < choices.size(); i++) {
+                if (fieldType.equalsIgnoreCase(FieldType.MULTI_SELECT) && i > 1) {
+                    click(getAddChoice());
+                }
+                final String path = fieldType.equalsIgnoreCase(FieldType.DROPDOWN)
+                        ? dropdownPath
+                        : multiSelectPath;
+                send(findByXpath(String.format(path, multiSelect, i + 1)), choices.get(i));
             }
+
         }
+        click(findByXpath("//body"));
 
         waitTillVisible(FieldElement.ADD_BUTTON);
         click(getCustomFieldAddButton());
-        // refresh();
+    }
 
-        try {
-            isDisplayed(findByXpath(getFieldBlock(customFieldName)));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    private boolean isDropdownOrMultiSelect(final String fieldType) {
+        return fieldType.equalsIgnoreCase(FieldType.DROPDOWN) || fieldType.equalsIgnoreCase(FieldType.MULTI_SELECT);
+    }
+
+    protected boolean isFieldPresent(final String fieldName) {
+        return getFields().contains(fieldName);
     }
 
     public boolean verifySearchResult(final String systemFieldName) {
@@ -262,24 +515,6 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-    public boolean addSystemField(final Field field) {
-        return addSystemField(field.getName());
-    }
-
-
-    public boolean addSystemField(final String fieldName) {
-        click(getAddSystemFieldsButton());
-        click(getAddSystemFieldToList(fieldName));
-        click(getAddSelectedFieldsButton());
-
-        final String fieldBlock = getFieldBlock(fieldName);
-
-        try {
-            return isDisplayed(findByXpath(fieldBlock));
-        } catch (Exception exception) {
-            return false;
-        }
-    }
 
     protected void verifySystemFieldNotEditable(final Field field) {
         final String name = field.getName();
@@ -329,7 +564,7 @@ public abstract class AbstractDataField extends Settings {
 
     public boolean checkIfDisplayed(final FieldStatus fieldStatus) {
         final boolean draggable = fieldStatus.isDraggable();
-        final String fieldName = fieldStatus.getName();
+        final String fieldName = fieldStatus.getFieldName();
         final String fieldType = fieldStatus.getFieldType();
         final boolean addView = fieldStatus.isAddView();
         final boolean required = fieldStatus.isRequired();
@@ -342,7 +577,7 @@ public abstract class AbstractDataField extends Settings {
             fieldBlock = getFieldBlock(fieldName);
 
         } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(fieldName);
+            // addSystemField(fieldName);
             fieldBlock = getFieldBlock(fieldName);
         }
 
@@ -414,48 +649,53 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-    private boolean isFieldDisplayed(final String fieldName) {
-        try {
-            return isDisplayed(findByXpath(getFieldBlock(fieldName)));
-        } catch (Exception e) {
-            return false;
-        }
-    }
+    public boolean editCustomField(final FieldStatus fieldStatus) {
+        final String actualName = fieldStatus.getFieldName();
+        final String newName = fieldStatus.getAppend();
 
-    public boolean editCustomField(final String actualName, final String newName) {
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-        }
-        final String fieldBlockXpath = getFieldBlock(actualName);
-        try {
-            findByXpath(fieldBlockXpath);
-        } catch (Exception exception) {
-            System.out.println("No such field found");
-        }
-        hoverByXpath(fieldBlockXpath);
-        click(findByXpath(format(fieldBlockXpath, FieldElement.EDIT_ICON)));
-        send(getCustomFieldName(), newName);
-        click(findByXpath(format(fieldBlockXpath, FieldElement.UPDATE_BUTTON)));
+        String fieldBlockXpath = null;
 
-        return isFieldDisplayed(String.format("%s%s", actualName, newName));
+        if (isFieldPresent(actualName)) {
+            fieldBlockXpath = getFieldBlock(actualName);
+
+            hoverByXpath(fieldBlockXpath);
+            click(findByXpath(format(fieldBlockXpath, FieldElement.EDIT_ICON)));
+            send(getCustomFieldName(), newName);
+            click(findByXpath(format(fieldBlockXpath, FieldElement.UPDATE_BUTTON)));
+            refresh();
+
+        }
+
+        return isFieldPresent(String.format("%s%s", actualName, newName));
     }
 
     public boolean hideField(final String systemFieldName) {
-        final String fieldBlock = getFieldBlock(systemFieldName);
-        hoverByXpath(fieldBlock);
-        click(findByXpath(format(fieldBlock, FieldElement.EYE_ICON)));
 
-        return !isFieldDisplayed(systemFieldName);
+        if (isFieldPresent(systemFieldName)) {
+            final String fieldBlock = getFieldBlock(systemFieldName);
+            hoverByXpath(fieldBlock);
+            click(findByXpath(format(fieldBlock, FieldElement.EYE_ICON)));
+            refresh();
+        }
+
+        return !isFieldPresent(systemFieldName);
     }
 
     public boolean deleteField(final String fieldName) {
-        final String fieldBlock = getFieldBlock(fieldName);
-        hoverByXpath(fieldBlock);
-        click(findByXpath(format(fieldBlock, FieldElement.DELETE_ICON)));
-        click(findByText("Delete"));
 
-        return !isFieldDisplayed(fieldName);
+        if (isFieldPresent(fieldName)) {
+            final String fieldBlock = getFieldBlock(fieldName);
+            hoverByXpath(fieldBlock);
+            click(findByXpath(format(fieldBlock, FieldElement.DELETE_ICON)));
+            try {
+                Thread.sleep(5000);
+            } catch (Exception e) {
+            }
+            click(findByText("Delete"));
+            refresh();
+        }
+
+        return !isFieldPresent(fieldName);
     }
 
     public boolean verifyEyeIcon(final Field field) {
@@ -588,75 +828,20 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-    public boolean isDefaultFieldsVisibleInAddView() {
-        for (final Field field : getDefaultFields()) {
-
-            if (!isDisplayed(findByXpath(format("//*[@class='MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1g8cfko']",
-                    XPathBuilder.getXPathByText(field.getName()))))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean isVisibleInSummary(final String fieldName) {
-//
-//        while (true) {
-//            try {
-//                if (isDisplayed(findByXpath(format("//*[@class='css-itno5t']",
-//                        XPathBuilder.getXPathByText(fieldName))))) {
-//                    return true;
-//                }
-//            } catch (Exception e) {
-//                try {
-//                    if (isDisplayed(findByXpath("//*[@class='css-1bv670y']//button"))) {
-//                        click(findByXpath("//*[@class='css-1bv670y']//button"));
-//                    } else {
-//                        return false;
-//                    }
-//                } catch (Exception exception) {
-//                    return false;
-//                }
-//            }
-//        }
-        final Collection<WebPageElement> fieldsInSummary = findElementsByXpath("//*[@class='css-itno5t']/div/div/table/tbody/tr/td[1]/p");
-
+    public boolean isPresentInSummary(final List<String> fieldsToBePresentInSummary) {
+        final Collection<WebPageElement> fieldsPresentInSummary = findElementsByXpath("//*[@class='css-itno5t']/div/div/table/tbody/tr/td[1]/p");
         final Set<String> fieldNames = new HashSet<>();
 
-        for (final WebPageElement field : fieldsInSummary) {
-            fieldNames.add(getText(field));
-            System.out.println(getText(field));
+        for (final WebPageElement field : fieldsPresentInSummary) {
+            String fieldText = getText(field);
+            fieldNames.add(fieldText);
         }
 
-        return fieldNames.contains(String.format("%s%s%s", fieldName, " ", ":"));
-    }
+        for (final String fieldToBePresent : fieldsToBePresentInSummary) {
 
-    public boolean isVisibleInAddForm(final String fieldName) {
-        try {
-            return isDisplayed(findByXpath(format("//*[@class='MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1g8cfko']",
-                    XPathBuilder.getXPathByText(fieldName))));
-        } catch (Exception exception) {
-            refresh();
-        }
-        return false;
-    }
+            final String formattedField = String.format("%s%s%s", fieldToBePresent, " ", ":");
 
-    public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        try {
-            return isDisplayed(findByXpath(String.format(THREE_STRING_FORMAT, "//*[@class='MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1g8cfko']",
-                    XPathBuilder.getXPathByText(fieldName), XPathBuilder.getXPathByText("*"))));
-        } catch (Exception exception) {
-            refresh();
-        }
-
-        return false;
-    }
-
-    public boolean isDefaultFieldsVisibleInListColumnSettings() {
-        for (final Field field : getDefaultFields()) {
-
-            if (!isDisplayed(findByXpath(format("//*[@class='css-eawmf1']",
-                    XPathBuilder.getXPathByText(field.getName()))))) {
+            if (!fieldNames.contains(formattedField)) {
                 return false;
             }
         }
@@ -664,15 +849,47 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
-    public boolean isVisibleInColumnSettings(final String fieldName) {
-        try {
-            return isDisplayed(findByXpath(format("//*[@class='css-eawmf1']",
-                    XPathBuilder.getXPathByText(fieldName))));
-        } catch (Exception exception) {
-            refresh();
+    public boolean isPresentInAddForm(final List<String> fieldsToBePresentInAddForm) {
+        final List<String> fieldsPresentInAddForm = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='MuiTypography-root MuiTypography-body1 css-1b4365c']");
+        final Collection<WebPageElement> remainingFields = findElementsByXpath("//*[@class='css-1cdo4bs']/p");
 
-            return false;
+        for (final WebPageElement field : fields) {
+
+            fieldsPresentInAddForm.add(getText(field).replaceAll("\\*$", ""));
         }
+
+        for (final WebPageElement remainingField : remainingFields) {
+            fieldsPresentInAddForm.add(getText(remainingField).replaceAll("\\*$", ""));
+        }
+
+        for (final String field : fieldsToBePresentInAddForm) {
+            if (!fieldsPresentInAddForm.contains(field)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    public boolean isPresentInColumnSettings(final List<String> fieldsToBePresentInColumnSettings) {
+        final List<String> fieldsPresentInAddForm = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-eawmf1']/div/div/p");
+
+        for (final WebPageElement field : fields) {
+            fieldsPresentInAddForm.add(getText(field));
+        }
+
+        for (final String field : fieldsToBePresentInColumnSettings) {
+
+            if (!fieldsPresentInAddForm.contains(field)) {
+                System.out.println(field);
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void addParticularFieldToList(final String fieldName) {
@@ -696,12 +913,6 @@ public abstract class AbstractDataField extends Settings {
 
     public WebPageElement getAnUnExpectedErrorMessage() {
         return findByText("An unexpected error occurred. Please try again later.");
-    }
-
-    protected boolean isDisplayedInList(final ContactField contactDataField) {
-        final String fieldBlock = getFieldBlock(contactDataField);
-
-        return isDisplayed(findByText(fieldBlock));
     }
 
     protected boolean isNonDraggableIconDisplayed(String divBlockName) {
@@ -741,14 +952,26 @@ public abstract class AbstractDataField extends Settings {
     }
 
     public void switchToAddContactForm() {
+        try {
+            Thread.sleep(5000);
+        } catch (Exception ex) {
+        }
         click(findByText("Contact"));
     }
 
     public void switchToAddCompanyForm() {
+        try {
+            Thread.sleep(5000);
+        } catch (Exception exception) {
+        }
         click(findByText("Company"));
     }
 
     public void switchToAddDealForm() {
+        try {
+            Thread.sleep(5000);
+        } catch (Exception ex) {
+        }
         click(findByText("Deal"));
     }
 
@@ -784,7 +1007,7 @@ public abstract class AbstractDataField extends Settings {
             try {
                 findByXpath(fieldBlock);
             } catch (Exception exception) {
-                addSystemField(field.getName());
+                // addSystemField(field.getName());
             }
 
             try {
@@ -842,7 +1065,7 @@ public abstract class AbstractDataField extends Settings {
 
     public boolean checkIfAddViewIsChecked(final FieldStatus fieldStatus) {
         final boolean draggable = fieldStatus.isDraggable();
-        final String fieldName = fieldStatus.getName();
+        final String fieldName = fieldStatus.getFieldName();
         final boolean addView = fieldStatus.isAddView();
         String fieldBlock = null;
 
@@ -850,7 +1073,7 @@ public abstract class AbstractDataField extends Settings {
             fieldBlock = getFieldBlock(fieldName);
 
         } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(fieldName);
+            //  addSystemField(fieldName);
             fieldBlock = getFieldBlock(fieldName);
         }
 
@@ -880,7 +1103,7 @@ public abstract class AbstractDataField extends Settings {
 
     public boolean checkFieldElements(final FieldStatus fieldStatus) {
         final boolean draggable = fieldStatus.isDraggable();
-        final String fieldName = fieldStatus.getName();
+        final String fieldName = fieldStatus.getFieldName();
         final String fieldType = fieldStatus.getFieldType();
 
         String fieldBlock = null;
@@ -889,7 +1112,7 @@ public abstract class AbstractDataField extends Settings {
             fieldBlock = getFieldBlock(fieldName);
 
         } catch (NoSuchElementException noSuchElementException) {
-            addSystemField(fieldName);
+            //  addSystemField(fieldName);
             fieldBlock = getFieldBlock(fieldName);
         }
         isDisplayed(findByXpath(format(fieldBlock, XPathBuilder.getXPathByText(fieldType))));
@@ -902,7 +1125,7 @@ public abstract class AbstractDataField extends Settings {
     }
 
     public void checkAddView(final FieldStatus fieldStatus) {
-        final String fieldBlock = getFieldBlock(fieldStatus.getName());
+        final String fieldBlock = getFieldBlock(fieldStatus.getFieldName());
         final boolean addView = fieldStatus.isAddView();
 
         final WebPageElement addViewCheckbox = findByXpath(getPathOfSpecificCheckbox(fieldBlock,
@@ -929,7 +1152,7 @@ public abstract class AbstractDataField extends Settings {
     }
 
     public boolean checkRequired(final FieldStatus fieldStatus) {
-        final String fieldBlock = getFieldBlock(fieldStatus.getName());
+        final String fieldBlock = getFieldBlock(fieldStatus.getFieldName());
         final boolean required = fieldStatus.isRequired();
 
         //checkFieldElements(fieldStatus);
@@ -946,85 +1169,90 @@ public abstract class AbstractDataField extends Settings {
         return true;
     }
 
+    protected void addField(final String fieldName) {
+        click(getAddSystemFieldsButton());
+        click(getAddSystemFieldToList(fieldName));
+        click(getAddSelectedFieldsButton());
+    }
+
     public boolean addSystemField(final FieldStatus fieldStatus) {
-        final String fieldName = fieldStatus.getName();
+        final String fieldName = fieldStatus.getFieldName();
         final String fieldType = fieldStatus.getFieldType();
-        System.out.println(fieldName);
+
+        System.out.println(!isFieldPresent(fieldName));
+
+        if (!isFieldPresent(fieldName)) {
+            addField(fieldName);
+        }
+
+        refresh();
 
         try {
-            isDisplayed(findByXpath(getFieldBlock(fieldName)));
-        } catch (Exception exception) {
-            click(getAddSystemFieldsButton());
-            click(getAddSystemFieldToList(fieldName));
-            click(getAddSelectedFieldsButton());
+            Thread.sleep(3000);
+        } catch (Exception e) {
         }
-        refresh();
-        try {
-            return isDisplayed(findByXpath(getFieldBlock(fieldName))) && isDisplayed(findByXpath(format(getFieldBlock(fieldName),
-                    XPathBuilder.getXPathByText(fieldType))));
-        } catch (Exception exception) {
-            return false;
-        }
+
+        return isDisplayed(findByXpath(getFieldBlock(fieldName))) && isDisplayed(findByXpath(format(getFieldBlock(fieldName),
+                XPathBuilder.getXPathByText(fieldType))));
+
     }
 
     public boolean enableAddView(final FieldStatus fieldStatus) {
-        final String fieldName = fieldStatus.getName();
+        final String fieldName = fieldStatus.getFieldName();
         WebPageElement addViewCheckbox = null;
 
-        System.out.println(fieldName);
-        String fieldBlock = null;
-
-        try {
-            fieldBlock = getFieldBlock(fieldName);
-            findByXpath(fieldBlock);
-        } catch (Exception exception) {
+        if (!isFieldPresent(fieldName)) {
             addSystemField(fieldStatus);
         }
 
-        try {
-            addViewCheckbox = findByXpath(getPathOfSpecificCheckbox(fieldBlock, FieldElement.ADD_VIEW_CHECKBOX));
+        addViewCheckbox = findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.ADD_VIEW_CHECKBOX));
 
-            if (!isSelected(addViewCheckbox)) {
-                click(addViewCheckbox);
-                try {
-                    click(findByXpath(format(fieldBlock, FieldElement.UPDATE_BUTTON)));
-                } catch (Exception exception) {
-                    System.out.println(fieldName);
-                }
-                refresh();
+        if (!isSelected(addViewCheckbox)) {
+            click(addViewCheckbox);
+            try {
+                click(findByXpath(format(getFieldBlock(fieldName), FieldElement.UPDATE_BUTTON)));
+            } catch (Exception exception) {
+                System.out.println(fieldName);
             }
-        } catch (Exception exception) {
+            refresh();
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return isSelected(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.ADD_VIEW_CHECKBOX)));
     }
 
     public boolean enableRequired(final FieldStatus fieldStatus) {
-        final String fieldName = fieldStatus.getName();
-        WebPageElement addViewCheckbox = null;
+        final String fieldName = fieldStatus.getFieldName();
+        WebPageElement requiredCheckbox = null;
 
         System.out.println(fieldName);
 
-        try {
-            getFieldBlock(fieldName);
-            findByXpath(getFieldBlock(fieldName));
-        } catch (Exception exception) {
+        if (!isFieldPresent(fieldName)) {
             addSystemField(fieldStatus);
         }
 
-        try {
-            addViewCheckbox = findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.REQUIRED_CHECKBOX));
 
-            if (!isSelected(addViewCheckbox)) {
-                click(addViewCheckbox);
-                try {
-                    click(findByXpath(format(getFieldBlock(fieldName), FieldElement.UPDATE_BUTTON)));
-                } catch (Exception exception) {
-                    System.out.println(fieldName);
-                }
-                refresh();
+        requiredCheckbox = findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.REQUIRED_CHECKBOX));
+
+        if (!isSelected(requiredCheckbox)) {
+            click(requiredCheckbox);
+            try {
+                click(findByXpath(format(getFieldBlock(fieldName), FieldElement.UPDATE_BUTTON)));
+            } catch (Exception exception) {
+                System.out.println(fieldName);
             }
-        } catch (Exception exception) {
+            refresh();
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return isSelected(findByXpath(getPathOfSpecificCheckbox(getFieldBlock(fieldName), FieldElement.REQUIRED_CHECKBOX)));
@@ -1043,5 +1271,11 @@ public abstract class AbstractDataField extends Settings {
     public abstract boolean isDefaultFieldsVisibleInSummary();
 
     protected abstract boolean uncheckMandatoryFields();
+
+    protected abstract List<String> getFields();
+
+    protected abstract List<String> getFieldsForSummary();
+
+    protected abstract List<String> getFieldsForAddViewAndRequired(final String addViewOrRequired);
 }
 

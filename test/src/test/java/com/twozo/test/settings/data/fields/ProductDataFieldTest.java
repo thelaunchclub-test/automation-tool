@@ -1,31 +1,57 @@
 package com.twozo.test.settings.data.fields;
 
 import com.twozo.commons.cookie.BrowserCookie;
+import com.twozo.commons.json.JsonArray;
 import com.twozo.commons.json.JsonObject;
 import com.twozo.page.homepage.HomePage;
-import com.twozo.page.product.Product;
 import com.twozo.page.settings.data.fields.FieldStatus;
+import com.twozo.page.settings.data.fields.field.FieldElement;
 import com.twozo.page.settings.data.fields.product.ProductDataField;
+import com.twozo.page.url.URL;
+import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.test.TestCase;
+import com.twozo.test.TestDataProvider;
 import com.twozo.web.driver.service.WebAutomationDriver;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductDataFieldTest extends DataFieldTest {
 
-    ProductDataField productDataField;
-    HomePage homePage;
+    private ProductDataField productDataField;
+    private HomePage homePage;
     private WebAutomationDriver automationDriver;
+
+
+    @DataProvider(name = "productSystemFields")
+    private static Object[][] getContactSystemFieldData() {
+        return new TestDataProvider().getTestCases("product/SystemFields.json");
+    }
+
+    @DataProvider(name = "addViewAndRequired")
+    private static Object[][] getAddView() {
+        return new TestDataProvider().getTestCases("product/AddViewAndRequired.json");
+    }
+
+    @DataProvider(name = "autoGeneratingField")
+    private static Object[][] getAutoGeneratingFieldData() {
+        return new TestDataProvider().getTestCases("product/AutoGeneratingFields.json");
+    }
+
 
     @BeforeMethod
     public void before() {
         automationDriver = WebAutomationDriver.get();
         webNavigator = automationDriver.getWebNavigator();
-        webNavigator.to("https://app.thelaunchclub.in");
+        webNavigator.to(link);
 
         for (final BrowserCookie cookie : cookies) {
             automationDriver.getSessionCookie().addCookie(cookie);
@@ -33,12 +59,11 @@ public class ProductDataFieldTest extends DataFieldTest {
 
         automationDriver.getWebWindowHandler().maximize();
         automationDriver.getImplicitWaitHandler().implicitWait(Duration.ofSeconds(10));
-        automationDriver.getWebNavigator().to("https://app.thelaunchclub.in/settings/datafields?type=Product");
+        automationDriver.getWebNavigator().to(SettingsURL.PRODUCT_DATA_FIELDS);
         automationDriver.getWebWindowHandler().maximize();
 
-        homePage = HomePage.getInstance();
-        productDataField = ProductDataField.getInstance();
-
+        homePage = HomePage.getInstance(automationDriver);
+        productDataField = ProductDataField.getInstance(automationDriver);
     }
 
     @AfterMethod
@@ -51,165 +76,112 @@ public class ProductDataFieldTest extends DataFieldTest {
         Assert.assertTrue(productDataField.verifyDefaultSystemFields());
     }
 
-    @Test(dataProvider = "maxLimit")
-    public void checkMaxLimit(final Object object) {
-       addCustomFieldsWithAllFieldType(object);
+    @Test(dataProvider = "productSystemFields")
+    public void addSystemFields(final Object object) {
+        Assert.assertTrue(productDataField.addSystemField(getFieldStatus(object)));
+    }
+
+
+    @Test(dataProvider = "addViewAndRequired")
+    public void enableAddView(final Object object) {
+        Assert.assertTrue(productDataField.enableAddView(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "addViewAndRequired")
+    public void enableRequired(final Object object) {
+        Assert.assertTrue(productDataField.enableRequired(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "autoGeneratingField")
+    public void enableAddViewForAutoGeneratingField(final Object object) {
+        Assert.assertTrue(!productDataField.enableAddView(getFieldStatus(object)));
+    }
+
+    @Test(dataProvider = "autoGeneratingField")
+    public void enableRequiredForAutoGeneratingField(final Object object) {
+        Assert.assertTrue(!productDataField.enableRequired(getFieldStatus(object)));
     }
 
     @Test(dataProvider = "productSystemFields")
-    public void addSystemFields(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(productDataField.addSystemField(fieldStatus));
+    public void hideField(final Object object) {
+        Assert.assertTrue(productDataField.hideField(getFieldStatus(object).getFieldName()));
     }
 
     @Test(dataProvider = "customField")
     public void addCustomFieldsWithAllFieldType(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-
-        if (input.containsKey("fieldName") && input.containsKey("fieldType")) {
-            Assert.assertTrue(productDataField.addCustomField(input.getString("fieldName"),
-                    input.getString("fieldType")));
-        }
+        Assert.assertTrue(productDataField.addCustomField(getFieldStatus(object)));
     }
 
     @Test(dataProvider = "editData")
     public void editFieldName(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-        final String append = input.getString("append");
-
-        Assert.assertTrue(productDataField.editCustomField(name, append));
-    }
-
-    @Test(dataProvider = "hideField")
-    public void hideField(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-
-        Assert.assertTrue(productDataField.hideField(name));
+        Assert.assertTrue(productDataField.editCustomField(getFieldStatus(object)));
     }
 
     @Test(dataProvider = "deleteField")
     public void deleteField(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final String name = input.getString("name");
-
-        productDataField.deleteField(name);
-        Assert.assertFalse(isVisibleInSummary(name));
+        Assert.assertTrue(productDataField.deleteField(getFieldStatus(object).getFieldName()));
     }
 
-    @Test(dataProvider = "productSystemFields")
-    public void enableAddView(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
+    @Test
+    public void checkMaxLimit() {
+        final String fieldName = "CustomField";
+        final List<String> choices = List.of("a","b");
 
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(productDataField.enableAddView(fieldStatus));
-    }
+        for (int i = 1; i <= 11; i++) {
+            FieldStatus fieldStatus = new FieldStatus();
+            fieldStatus.setFieldName(String.format("%s%d", fieldName, i));
+            fieldStatus.setFieldType("Multi Select");
+            fieldStatus.setChoices(choices);
+            productDataField.checkMaximumLimit(fieldStatus);
 
-    @Test(dataProvider = "productSystemFields")
-    public void enableRequired(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setFieldType(input.getString("fieldType"));
-        Assert.assertTrue(productDataField.enableRequired(fieldStatus));
-    }
-
-    @Test(dataProvider = "productSystemFields")
-    public void checkAddForm(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        fieldStatus.setAddView(input.getBoolean("isAddView"));
-        productDataField.addSystemField(fieldStatus);
-        productDataField.checkAddView(fieldStatus);
-        final String name = fieldStatus.getName();
-
-        if (fieldStatus.isAddView()) {
-            Assert.assertTrue(isVisibleInAddForm(name));
-        } else {
-            Assert.assertFalse(isVisibleInAddForm(name));
+            if (i!=11) {
+                productDataField.refresh();
+            }
         }
+        Assert.assertTrue(productDataField.isLimitExceededNotificationDisplayed());
     }
 
-    @Test(dataProvider = "productSystemFields")
-    public void checkColumnSettings(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
-
-        fieldStatus.setName(input.getString("name"));
-        productDataField.addSystemField(fieldStatus);
-        final String name = fieldStatus.getName();
-
-        Assert.assertTrue(isVisibleInColumnSettings(name));
+    @Test
+    public void checkAddForm() {
+        Assert.assertTrue(isPresentInAddForm(productDataField.getFieldsForAddViewAndRequired(FieldElement.ADD_VIEW_CHECKBOX)));
     }
 
-    @Test(dataProvider = "productSystemFields")
-    public void checkSummary(final Object object) {
-        final TestCase testCase = (TestCase) object;
-        final JsonObject input = testCase.input;
-        final FieldStatus fieldStatus = new FieldStatus();
+    @Test
+    public void checkAddFormAsRequired() {
+        Assert.assertTrue(isPresentInAddForm(productDataField.getFieldsForAddViewAndRequired(FieldElement.REQUIRED_CHECKBOX)));
+    }
 
-        fieldStatus.setName(input.getString("name"));
-        productDataField.addSystemField(fieldStatus);
-        final String name = fieldStatus.getName();
+    @Test
+    public void checkSummary() {
+        Assert.assertTrue(isPresentInSummary(productDataField.getFieldsForSummary()));
+    }
 
-        Assert.assertTrue(isVisibleInSummary(name));
+    @Test
+    public void checkColumnSettings() {
+        Assert.assertTrue(isPresentInColumnSettings(productDataField.getFields()));
     }
 
     @Override
-    public boolean isVisibleInSummary(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/products");
+    public boolean isPresentInSummary(final List<String> fields) {
+        webNavigator.to(URL.PRODUCTS);
         productDataField.switchToSummary();
 
-        return productDataField.isVisibleInSummary(fieldName);
+        return productDataField.isPresentInSummary(fields);
     }
 
     @Override
-    public void isDefaultFieldsVisibleInAddView() {
-        webNavigator.to("https://app.thelaunchclub.in/products");
-        productDataField.switchToAddProductForm();
-        Assert.assertTrue(productDataField.isDefaultFieldsVisibleInAddView());
-    }
-
-    @Override
-    public boolean isVisibleInAddForm(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/products");
+    public boolean isPresentInAddForm(final List<String> fields) {
+        webNavigator.to(URL.PRODUCTS);
         productDataField.switchToAddProductForm();
 
-        return productDataField.isVisibleInAddForm(fieldName);
+        return productDataField.isPresentInAddForm(fields);
     }
 
     @Override
-    public boolean isVisibleInAddFormAsRequired(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/products");
-        productDataField.switchToAddProductForm();
+    public boolean isPresentInColumnSettings(final List<String> fields) {
+        webNavigator.to(URL.PRODUCTS);
+        productDataField.switchToColumnSettings();
 
-        return productDataField.isVisibleInAddFormAsRequired(fieldName);
-    }
-
-    @Override
-    public boolean isVisibleInColumnSettings(final String fieldName) {
-        webNavigator.to("https://app.thelaunchclub.in/products");
-        Product.getInstance().switchToColumnSettings();
-
-        return productDataField.isVisibleInColumnSettings(fieldName);
+        return productDataField.isPresentInColumnSettings(fields);
     }
 }

@@ -37,7 +37,7 @@
     "title": "Field",
     "input": {
       "fieldName": "d",
-      "fieldType": "Email"
+      "fieldType": "Emails"
     },
     "output": {
       "result": "pass"
@@ -48,7 +48,7 @@
     "title": "Field",
     "input": {
       "fieldName": "e",
-      "fieldType": "Phone"
+      "fieldType": "Phones"
     },
     "output": {
       "result": "pass"
@@ -157,17 +157,6 @@
     "testCaseID": "CF-14",
     "title": "Field",
     "input": {
-      "fieldName": "n",
-      "fieldType": "Multi Select"
-    },
-    "output": {
-      "result": "pass"
-    }
-  },
-  {
-    "testCaseID": "CF-14",
-    "title": "Field",
-    "input": {
       "fieldName": "o",
       "fieldType": "Number"
     },
@@ -180,7 +169,9 @@
     "title": "Field",
     "input": {
       "fieldName": "p",
-      "fieldType": "Dropdown"
+      "fieldType": "Dropdown",
+      "choices": ["a","b"]
+
     },
     "output": {
       "result": "pass"
@@ -191,7 +182,8 @@
     "title": "Field",
     "input": {
       "fieldName": "q",
-      "fieldType": "Multi Select"
+      "fieldType": "Multi Select",
+      "choices": ["a","b"]
     },
     "output": {
       "result": "pass"

@@ -47,8 +47,8 @@ public final class ScreenCaptureImpl implements ScreenCapture {
      * @return The {@link ReportTest}.
      */
     @Override
-    public ScreenCapture fromPath(final String path) {
-        extentTest.addScreenCaptureFromPath(path);
+    public ScreenCapture fromPath(final String path,final String message) {
+        extentTest.addScreenCaptureFromPath(path, message);
 
         return this;
     }

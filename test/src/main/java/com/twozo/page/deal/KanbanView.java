@@ -8,14 +8,14 @@ public class KanbanView extends Deal{
 
     private static KanbanView kanbanView;
 
-    public KanbanView() {
-        super();
+    public KanbanView(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
-    public static KanbanView getInstance(){
+    public static KanbanView getInstance(final WebAutomationDriver webAutomationDriver){
 
        // if (Objects.isNull(kanbanView)) {
-            kanbanView = new KanbanView();
+            kanbanView = new KanbanView(webAutomationDriver);
         //}
 
         return kanbanView;

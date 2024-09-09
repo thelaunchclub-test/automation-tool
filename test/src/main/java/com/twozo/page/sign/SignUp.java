@@ -33,21 +33,21 @@ public class SignUp extends BasePage {
     private Collection<WebPageElement> jobRoles;
     private WebPageElement completeSignUpButton;
 
-    private SignUp() {
-        super();
+    private SignUp(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
         click(getSignUpButton());
 
         if (!getURL().equals(URL.SIGN_UP)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND);
         }
 
-        this.deal = Deal.getInstance();
+        this.deal = Deal.getInstance(webAutomationDriver);
     }
 
     public static SignUp getInstance(final WebAutomationDriver webAutomationDriver) {
 
       //  if (Objects.isNull(signUp)) {
-            signUp = new SignUp();
+            signUp = new SignUp(webAutomationDriver);
         //}
 
         return signUp;

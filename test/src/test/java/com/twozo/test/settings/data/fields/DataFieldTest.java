@@ -1,11 +1,19 @@
 package com.twozo.test.settings.data.fields;
 
+import com.twozo.commons.json.JsonArray;
+import com.twozo.commons.json.JsonObject;
+import com.twozo.page.settings.data.fields.FieldStatus;
+import com.twozo.test.TestCase;
 import com.twozo.test.TestDataProvider;
 import com.twozo.test.settings.SettingsTest;
 
 import com.twozo.web.driver.service.WebNavigator;
-import org.testng.Assert;
+
 import org.testng.annotations.DataProvider;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public abstract class DataFieldTest extends SettingsTest {
     WebNavigator webNavigator;
@@ -20,49 +28,9 @@ public abstract class DataFieldTest extends SettingsTest {
         return new TestDataProvider().getTestCases("CustomField.json");
     }
 
-    @DataProvider(name = "SystemField")
-    public static Object[][] getSystemField() {
-        return new TestDataProvider().getTestCases("SystemField.json");
-    }
-
-    @DataProvider(name = "maxLimit")
-    public static Object[][] getDataForMaxLimit() {
-        return new TestDataProvider().getTestCases("MaxLimit.json");
-    }
-
-    @DataProvider(name = "contactSystemFields")
-    public static Object[][] getContactSystemFieldData() {
-        return new TestDataProvider().getTestCases("ContactSystemFields.json");
-    }
-
-    @DataProvider(name = "companySystemFields")
-    public static Object[][] getCompanySystemFieldData() {
-        return new TestDataProvider().getTestCases("CompanySystemFields.json");
-    }
-
-    @DataProvider(name = "dealSystemFields")
-    public static Object[][] getDealSystemFieldData() {
-        return new TestDataProvider().getTestCases("DealSystemFields.json");
-    }
-
-    @DataProvider(name = "productSystemFields")
-    public static Object[][] getProductSystemFieldData() {
-        return new TestDataProvider().getTestCases("ProductSystemFields.json");
-    }
-
-    @DataProvider(name = "data")
-    public static Object[][] getData() {
-        return new TestDataProvider().getTestCases("Data.json");
-    }
-
     @DataProvider(name = "editData")
     public static Object[][] getEditData() {
         return new TestDataProvider().getTestCases("EditFieldName.json");
-    }
-
-    @DataProvider(name = "hideField")
-    public static Object[][] getHideFieldData() {
-        return new TestDataProvider().getTestCases("HideField.json");
     }
 
     @DataProvider(name = "deleteField")
@@ -70,13 +38,38 @@ public abstract class DataFieldTest extends SettingsTest {
         return new TestDataProvider().getTestCases("DeleteField.json");
     }
 
-    public abstract boolean isVisibleInSummary(final String fieldName);
+    protected FieldStatus getFieldStatus(final Object object) {
+        final TestCase testCase = (TestCase) object;
+        final JsonObject input = testCase.input;
+        final FieldStatus fieldStatus = new FieldStatus();
 
-    public abstract void isDefaultFieldsVisibleInAddView();
+        if (input.containsKey("fieldName")) {
+            fieldStatus.setFieldName(input.getString("fieldName"));
+        }
+        if (input.containsKey("fieldType")) {
+            fieldStatus.setFieldType(input.getString("fieldType"));
+        }
 
-    public abstract boolean isVisibleInAddForm(final String fieldName);
+        if (input.containsKey("append")) {
+            fieldStatus.setFieldType(input.getString("append"));
+        }
 
-    public abstract boolean isVisibleInAddFormAsRequired(final String fieldName);
+        if (input.containsKey("choices")) {
+            final JsonArray choices = input.getJsonArray("choices");
+            final List<String> choice = new ArrayList<>();
 
-    public abstract boolean isVisibleInColumnSettings(final String fieldName);
+            for (int i = 0; i < choices.size(); i++) {
+                choice.add(choices.getString(i));
+            }
+            fieldStatus.setChoices(choice);
+        }
+
+        return fieldStatus;
+    }
+
+    public abstract boolean isPresentInSummary(final List<String> fields);
+
+    public abstract boolean isPresentInAddForm(final List<String> fields);
+
+    public abstract boolean isPresentInColumnSettings(final List<String> fields);
 }

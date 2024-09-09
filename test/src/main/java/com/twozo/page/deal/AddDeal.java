@@ -27,14 +27,14 @@ public class AddDeal extends Deal {
     private WebPageElement salesOwner;
     private WebPageElement saveButton;
 
-    protected AddDeal() {
-        super();
+    protected AddDeal(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
-    public static AddDeal getInstance() {
+    public static AddDeal getInstance(final WebAutomationDriver webAutomationDriver) {
 
       //  if (Objects.isNull(addDeal)) {
-            addDeal = new AddDeal();
+            addDeal = new AddDeal(webAutomationDriver);
         //}
 
         return addDeal;
@@ -170,7 +170,7 @@ public class AddDeal extends Deal {
         return saveButton;
     }
 
-    public void addDeal() {
+    public void createDeal() {
         send(getTitleField(), "title");
         click(getStageDropdown());
         dropdown("won");

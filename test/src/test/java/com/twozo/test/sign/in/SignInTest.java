@@ -10,11 +10,6 @@ public final class SignInTest extends BaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(SignInTest.class);
 
-//    @DataProvider
-//    public static Collection<JsonFileReader.TestCase> testCases() {
-//         return new JsonFileReader().getTestCases("SystemField.json");
-//    }
-
     @Test
     public void isLogInPageDetailsDisplayed() {
         Assert.assertTrue(signIn.isLogInPageDetailsDisplayed());

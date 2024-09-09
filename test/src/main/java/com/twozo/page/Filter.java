@@ -10,14 +10,14 @@ public class Filter extends BasePage {
     private WebPageElement selectColumn;
     private WebPageElement selectField;
 
-    protected Filter() {
-        super();
+    protected Filter(WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
-    public static Filter getInstance() {
+    public static Filter getInstance(final WebAutomationDriver webAutomationDriver) {
 
         //  if (Objects.isNull(filter)) {
-        filter = new Filter();
+        filter = new Filter(webAutomationDriver);
         //}
 
         return filter;

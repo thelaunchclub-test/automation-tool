@@ -39,16 +39,6 @@ public class BasePage {
         this.mouseActions = webAutomationDriver.getMouseActionsHandler();
         this.implicitWaitHandler = webAutomationDriver.getImplicitWaitHandler();
         this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
-
-        this.sessionCookie = webAutomationDriver.getSessionCookie();
-    }
-
-    protected BasePage() {
-        this.elementFinder = webAutomationDriver.getElementFinder();
-        this.webNavigator = webAutomationDriver.getWebNavigator();
-        this.pageInformationProvider = webAutomationDriver.getPageInformationProvider();
-        this.mouseActions = webAutomationDriver.getMouseActionsHandler();
-        this.explicitWaitHandler = webAutomationDriver.getExplicitWaitHandler();
         this.sessionCookie = webAutomationDriver.getSessionCookie();
     }
 
@@ -71,6 +61,15 @@ public class BasePage {
         for (BrowserCookie cookie : cookies) {
             sessionCookie.addCookie(cookie);
         }
+    }
+
+    public WebPageElement getColumnSettingsButton() {
+        return findByXpath("//*[@class='css-181x7hd']");
+    }
+
+    public void switchToColumnSettings() {
+
+        click(getColumnSettingsButton());
     }
 
     public void close(){

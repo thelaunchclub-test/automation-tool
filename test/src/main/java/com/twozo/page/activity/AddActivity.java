@@ -38,15 +38,15 @@ public class AddActivity extends BasePage {
     private WebPageElement closeAddActivityDrawer;
 
 
-    protected AddActivity() {
-        super();
+    protected AddActivity(WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
     }
 
     public static AddActivity getInstance(final WebAutomationDriver webAutomationDriver) {
 
        // if (Objects.isNull(addActivity)) {
 
-            addActivity = new AddActivity();
+            addActivity = new AddActivity(webAutomationDriver);
         //}
 
         return addActivity;

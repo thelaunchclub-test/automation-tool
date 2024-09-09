@@ -7,25 +7,28 @@ import com.twozo.page.settings.data.fields.field.*;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.error.code.WebDriverErrorCode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class DealDataField extends AbstractDataField {
 
     private static DealDataField deal;
 
-    protected DealDataField() {
-        super();
+    protected DealDataField(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
 
         if (!getURL().equals(SettingsURL.DEAL_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
         }
     }
 
-    public static DealDataField getInstance() {
-        deal = new DealDataField();
+    public static DealDataField getInstance(final WebAutomationDriver webAutomationDriver) {
+        deal = new DealDataField(webAutomationDriver);
 
         return deal;
     }
@@ -209,7 +212,7 @@ public class DealDataField extends AbstractDataField {
         return isDisplayed(getActiveDealTab());
     }
 
-    public void checkWonReasonChoices() {
+    public boolean checkWonReasonChoices() {
         final String[] wonReasonChoices = {
                 "Product feature",
                 "Price",
@@ -217,12 +220,24 @@ public class DealDataField extends AbstractDataField {
                 "Others",
         };
 
-        for (final String wonReason : wonReasonChoices) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(wonReason)));
+        final List<String> choices = new ArrayList<>();
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='css-vb6e92']");
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
         }
+
+        for (final String option : wonReasonChoices) {
+
+            if (!choices.contains(option)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void checkLostReasonChoices() {
+    public boolean checkLostReasonChoices() {
         String[] lostReasonChoices = {
                 "Opted our rival",
                 "Price is too high",
@@ -235,98 +250,119 @@ public class DealDataField extends AbstractDataField {
                 "Appointment Missed"
         };
 
-        for (final String lostReason : lostReasonChoices) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(lostReason)));
+        final List<String> choices = new ArrayList<>();
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='css-vb6e92']");
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
         }
+
+        for (final String option : lostReasonChoices) {
+
+            if (!choices.contains(option)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void checkTypeChoices() {
+    public boolean checkTypeChoices() {
         final String[] typeChoices = {
                 "New Business",
                 "Existing Business - Renewal",
                 "Existing Business - Upgrade"
         };
 
-        for (final String typeChoice : typeChoices) {
-            isDisplayed(findByXpath(XPathBuilder.getXPathByText(typeChoice)));
+        final List<String> choices = new ArrayList<>();
+        final Collection<WebPageElement> choicesAsElements = findElementsByXpath("//*[@class='css-vb6e92']");
+
+        for (final WebPageElement choicesAsElement : choicesAsElements) {
+            choices.add(getText(choicesAsElement));
         }
+
+        for (final String option : typeChoices) {
+
+            if (!choices.contains(option)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void checkPipeline() {
+    public boolean checkPipeline() {
         final String pipeline = "Pipeline";
-        final String oneChoice = XPathBuilder.getXPathByText("1");
-        String dependableFieldBlock = null;
 
-        try {
-            isDisplayed(findByXpath(getDependableFieldBlock(pipeline)));
-        } catch (Exception exception) {
-            addSystemField(pipeline);
-            dependableFieldBlock =getDependableFieldBlock(pipeline);
-            isDisplayed(findByXpath(dependableFieldBlock));
+        if (!isFieldPresent(pipeline)) {
+            addField(pipeline);
         }
 
         final String pipelineBlock = getFieldBlock(pipeline);
 
         isDisplayed(findByXpath(format(pipelineBlock, FieldElement.NON_DRAGGABLE)));
         isDisplayed(findByXpath(format(pipelineBlock, FieldTypePath.DROPDOWN)));
-        click(findByXpath(format(pipelineBlock, oneChoice)));
+        click(findByXpath(format(pipelineBlock, XPathBuilder.getXPathByText("1"))));
         final String stageBlock = getFieldBlock("Stage");
 
         isDisplayed(findByXpath(format(stageBlock, FieldTypePath.DROPDOWN)));
-        isDisplayed(findByXpath(format(stageBlock, "0")));
+        isDisplayed(findByXpath(format(stageBlock, XPathBuilder.getXPathByText("0"))));
         final String wonReasonBlock = getFieldBlock("Won Reason");
 
         isDisplayed(findByXpath(format(wonReasonBlock, FieldTypePath.DROPDOWN)));
-        click(findByXpath(format(pipelineBlock, "4")));
+        click(findByXpath(format(wonReasonBlock, XPathBuilder.getXPathByText("4"))));
         checkWonReasonChoices();
         refresh();
         final String lostReasonBlock = getFieldBlock("Lost Reason");
 
         isDisplayed(findByXpath(format(lostReasonBlock, FieldTypePath.DROPDOWN)));
-        click(findByXpath(format(lostReasonBlock, "9")));
+        click(findByXpath(format(lostReasonBlock, XPathBuilder.getXPathByText("9"))));
         checkLostReasonChoices();
         refresh();
         final String dealClosedOn = getFieldBlock("Deal Closed On");
 
-        isDisplayed(findByXpath(format(dealClosedOn, FieldTypePath.DATE)));
+        return isDisplayed(findByXpath(format(dealClosedOn, FieldTypePath.DATE)));
     }
 
     public void checkType() {
         final String type = "Type";
-        final String threeChoices = XPathBuilder.getXPathByText("3");
-        final String typeBlock = getFieldBlock(type);
+        String typeBlock = null;
 
         try {
             isDisplayed(findByXpath(getFieldBlock(type)));
         } catch (Exception exception) {
-            addSystemField(type);
+            addField(type);
+            typeBlock = getFieldBlock(type);
             isDisplayed(findByXpath(getFieldBlock(type)));
         }
 
         checkSpecificElement(typeBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(typeBlock, FieldTypePath.DROPDOWN);
-        click(findByXpath(format(typeBlock, threeChoices)));
+        click(findByXpath(format(typeBlock, XPathBuilder.getXPathByText("3"))));
         checkTypeChoices();
     }
 
     public void checkPaymentStatus() {
-        final String type = "Payment Status";
-        final String twoChoices = XPathBuilder.getXPathByText("2");
-        final String paymentStatusBlock = getFieldBlock(type);
+        final String paymentStatus = "Payment Status";
+        String paymentStatusBlock = null;
 
-        try {
-            isDisplayed(findByXpath(paymentStatusBlock));
-        } catch (Exception exception) {
-            addSystemField(type);
-            isDisplayed(findByXpath(paymentStatusBlock));
+        if (!isFieldPresent(paymentStatus)) {
+            addField(paymentStatus);
         }
 
+        paymentStatusBlock = getFieldBlock(paymentStatus);
         checkSpecificElement(paymentStatusBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(paymentStatusBlock, FieldTypePath.DROPDOWN);
-        click(findByXpath(format(paymentStatusBlock, twoChoices)));
+        click(findByXpath(format(paymentStatusBlock, XPathBuilder.getXPathByText("2"))));
         isDisplayed(findByXpath(XPathBuilder.getXPathByText("Online")));
         isDisplayed(findByXpath(XPathBuilder.getXPathByText("Offline")));
         refresh();
+    }
+
+    public void switchToSummary() {
+        final WebPageElement moveToSummary = findByXpath("(//*[@class='MuiBox-root css-19idom'])[1]");
+
+        click(moveToSummary);
     }
 
     @Override
@@ -391,4 +427,57 @@ public class DealDataField extends AbstractDataField {
         return true;
     }
 
+    @Override
+    public List<String> getFieldsForAddViewAndRequired(final String addViewOrRequired) {
+        final List<String> fieldsPresent = new ArrayList<>();
+
+        int count = 0;
+        final Collection<WebPageElement> elementsByXpath = findElementsByXpath("//*[@class='MuiBox-root css-19idom']");
+
+        for (final WebPageElement webPageElement : elementsByXpath) {
+            count++;
+        }
+
+        for (int i = 1; i <= count; i++) {
+
+            final String fieldBlock = String.format(FieldElement.BLOCK, i);
+            final WebPageElement fieldElement = findByXpath(getPathOfSpecificCheckbox
+                    (fieldBlock, addViewOrRequired));
+
+            if (isSelected(fieldElement)) {
+                fieldsPresent.add(getText(findByXpath(String.format("(%s%s%s)", "((", fieldBlock, "/div)[1])//*[@class='MuiTypography-root MuiTypography-body1 MuiTypography-noWrap css-10vldmf']"))));
+            }
+        }
+
+        return fieldsPresent;
+    }
+
+    @Override
+    public List<String> getFields() {
+        final List<String> fieldsPresent = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-1qqzcwf']/div/p");
+
+        for (final WebPageElement field : fields) {
+            fieldsPresent.add(getText(field));
+        }
+
+        return fieldsPresent;
+    }
+
+    @Override
+    public List<String> getFieldsForSummary() {
+        final List<String> fieldsPresent = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-1qqzcwf']/div/p");
+        final List<String> profileFieldsForContact = List.of("Title", "Company", "Sales Owner");
+
+        for (final WebPageElement field : fields) {
+            final String fieldName = getText(field);
+
+            if (!profileFieldsForContact.contains(fieldName)) {
+                fieldsPresent.add(getText(field));
+            }
+        }
+
+        return fieldsPresent;
+    }
 }

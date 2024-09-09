@@ -41,20 +41,20 @@ public class SignIn extends BasePage {
     private WebPageElement forgotPasswordPageInvalidEmailIdValidationText;
     private WebPageElement forgotPasswordPageNoEmailIdValidationText;
 
-    private SignIn() {
-        super();
+    private SignIn(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
 
 //        if (!getURL().equals(URL.LOG_IN)) {
 //            throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
 //        }
     }
 
-    public static SignIn getInstance() {
-        return new SignIn();
+    public static SignIn getInstance(final WebAutomationDriver webAutomationDriver) {
+        return new SignIn(webAutomationDriver);
     }
 
     public Deal getDeal() {
-        return Deal.getInstance();
+        return Deal.getInstance(webAutomationDriver);
     }
 
     public SignUp getSignUp() {
@@ -128,7 +128,8 @@ public class SignIn extends BasePage {
         send(getEmailField(), email);
         send(getPasswordField(), password);
         click(getSignInButton());
-        return HomePage.getInstance();
+
+        return HomePage.getInstance(webAutomationDriver);
     }
 
     public void facebookLogin() {

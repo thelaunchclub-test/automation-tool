@@ -30,7 +30,7 @@ public interface ScreenCapture {
      * @param path The file path.
      * @return The {@link ReportTest}.
      */
-    ScreenCapture fromPath(final String path);
+    ScreenCapture fromPath(final String path,final String message);
 
     /**
      * <p>

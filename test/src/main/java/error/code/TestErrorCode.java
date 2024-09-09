@@ -5,8 +5,7 @@ import com.twozo.commons.exception.service.ErrorCodeProvider;
 
 public enum TestErrorCode implements ErrorCodeProvider {
 
-    NO_SUCH_ELEMENT(1)
-    ;
+    NO_SUCH_ELEMENT(1);
 
     private static final PrefixProvider PREFIX_PROVIDER = new PrefixProvider();
     private static final int BASE_CODE = 0x4000;

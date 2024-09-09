@@ -10,17 +10,20 @@ import com.twozo.page.settings.data.fields.product.field.ProductField;
 import com.twozo.page.url.settings.SettingsURL;
 import com.twozo.page.xpath.XPathBuilder;
 import com.twozo.web.driver.service.WebAutomationDriver;
+import com.twozo.web.element.service.WebPageElement;
 import com.twozo.web.error.code.WebDriverErrorCode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class ProductDataField extends AbstractDataField {
 
     private static ProductDataField product;
 
-    protected ProductDataField() {
-        super();
+    protected ProductDataField(final WebAutomationDriver webAutomationDriver) {
+        super(webAutomationDriver);
 
         if (!getURL().equals(SettingsURL.PRODUCT_DATA_FIELDS)) {
             throw ErrorCode.get(WebDriverErrorCode.EXPECTED_PAGE_NOT_FOUND, "exp page not found");
@@ -28,18 +31,19 @@ public class ProductDataField extends AbstractDataField {
         enableProduct();
     }
 
-    public static ProductDataField getInstance() {
-        product = new ProductDataField();
+    public static ProductDataField getInstance(final WebAutomationDriver webAutomationDriver) {
+        product = new ProductDataField(webAutomationDriver);
 
         return product;
     }
 
     public void enableProduct() {
-        try{
-        if (isDisplayed(findByXpath("//*[contains(text(),'Enables')]"))) {
-            click(findByXpath("//*[@class='MuiSwitch-root MuiSwitch-sizeMedium css-1v2eis']"));
-            refresh();
-        }}catch (Exception exception){
+        try {
+            if (isDisplayed(findByXpath("//*[contains(text(),'Enables')]"))) {
+                click(findByXpath("//*[@class='MuiSwitch-root MuiSwitch-sizeMedium css-1v2eis']"));
+                refresh();
+            }
+        } catch (Exception exception) {
 
         }
 
@@ -147,73 +151,65 @@ public class ProductDataField extends AbstractDataField {
     public void checkCategory() {
         final String category = "Category";
         final String twoChoices = XPathBuilder.getXPathByText("2");
-        final String categoryBlock = getFieldBlock(category);
+        String categoryBlock = null;
 
-        try {
-            isDisplayed(findByXpath(categoryBlock));
-        } catch (Exception exception) {
-            addSystemField(category);
-            isDisplayed(findByXpath(categoryBlock));
+        if (!isFieldPresent(category)) {
+            addField(category);
         }
+
+        categoryBlock = getFieldBlock(category);
 
         checkSpecificElement(categoryBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(categoryBlock, FieldTypePath.DROPDOWN);
         click(findByXpath(format(categoryBlock, twoChoices)));
         isDisplayed(findByXpath(XPathBuilder.getXPathByText("Hardware")));
         isDisplayed(findByXpath(XPathBuilder.getXPathByText("Software")));
-        refresh();
     }
 
     public void checkActive() {
         final String active = "Active";
         final String twoChoices = XPathBuilder.getXPathByText("2");
-        final String activeBlock = getFieldBlock(active);
+        String activeBlock = null;
 
-        try {
-            isDisplayed(findByXpath(activeBlock));
-        } catch (Exception exception) {
-            addSystemField(active);
-            isDisplayed(findByXpath(activeBlock));
+        if (!isFieldPresent(active)) {
+            addField(active);
         }
+
+        activeBlock = getFieldBlock(active);
 
         checkSpecificElement(activeBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(activeBlock, FieldTypePath.DROPDOWN);
         click(findByXpath(format(activeBlock, twoChoices)));
         choicesForActiveAndTaxable();
-        refresh();
     }
 
     public void checkTaxable() {
         final String taxable = "Taxable";
         final String twoChoices = XPathBuilder.getXPathByText("2");
-        final String taxableBlock = getFieldBlock(taxable);
+        String taxableBlock = null;
 
-        try {
-            isDisplayed(findByXpath(taxableBlock));
-        } catch (Exception exception) {
-            addSystemField(taxable);
-            isDisplayed(findByXpath(taxableBlock));
+        if (!isFieldPresent(taxable)) {
+            addField(taxable);
         }
+
+        taxableBlock = getFieldBlock(taxable);
 
         checkSpecificElement(taxableBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(taxableBlock, FieldTypePath.DROPDOWN);
         click(findByXpath(format(taxableBlock, twoChoices)));
         choicesForActiveAndTaxable();
-        refresh();
     }
 
     public void checkType() {
         final String type = "Type";
         final String twoChoices = XPathBuilder.getXPathByText("2");
-        final String typeBlock = getFieldBlock(type);
+        String typeBlock = null;
 
-        try {
-            isDisplayed(findByXpath(typeBlock));
-        } catch (Exception exception) {
-            addSystemField(type);
-            isDisplayed(findByXpath(typeBlock));
+        if (!isFieldPresent(type)) {
+            addField(type);
         }
 
+        typeBlock = getFieldBlock(type);
         checkSpecificElement(typeBlock, FieldElement.DRAGGABLE);
         checkSpecificElement(typeBlock, FieldTypePath.DROPDOWN);
         click(findByXpath(format(typeBlock, twoChoices)));
@@ -273,4 +269,58 @@ public class ProductDataField extends AbstractDataField {
         return true;
     }
 
+    @Override
+    public List<String> getFieldsForAddViewAndRequired(final String addViewOrRequired) {
+        final List<String> fieldsPresent = new ArrayList<>();
+
+        int count = 0;
+        final Collection<WebPageElement> elementsByXpath = findElementsByXpath("//*[@class='MuiBox-root css-19idom']");
+
+        for (final WebPageElement webPageElement : elementsByXpath) {
+            count++;
+        }
+
+        for (int i = 1; i <= count; i++) {
+
+            final String fieldBlock = String.format(FieldElement.BLOCK, i);
+            final WebPageElement fieldElement = findByXpath(getPathOfSpecificCheckbox
+                    (fieldBlock, addViewOrRequired));
+
+            if (isSelected(fieldElement)) {
+                fieldsPresent.add(getText(findByXpath(String.format("(%s%s%s)", "((", fieldBlock, "/div)[1])//*[@class='MuiTypography-root MuiTypography-body1 MuiTypography-noWrap css-10vldmf']"))));
+            }
+        }
+
+        return fieldsPresent;
+    }
+
+    @Override
+    public List<String> getFields() {
+        final List<String> fieldsPresent = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-1qqzcwf']/div/p");
+
+        for (final WebPageElement field : fields) {
+            fieldsPresent.add(getText(field));
+        }
+
+        return fieldsPresent;
+    }
+
+    @Override
+    public List<String> getFieldsForSummary() {
+        final List<String> fieldsPresent = new ArrayList<>();
+        final Collection<WebPageElement> fields = findElementsByXpath("//*[@class='css-1qqzcwf']/div/p");
+        final List<String> profileFieldsForContact = List.of("First Name", "Last Name", "LinkedIn", "Facebook",
+                "Designation", "Company", "Unsubscribe Reason", "Other unsubscribe reason");
+
+        for (final WebPageElement field : fields) {
+            final String fieldName = getText(field);
+
+            if (!profileFieldsForContact.contains(fieldName)) {
+                fieldsPresent.add(getText(field));
+            }
+        }
+
+        return fieldsPresent;
+    }
 }

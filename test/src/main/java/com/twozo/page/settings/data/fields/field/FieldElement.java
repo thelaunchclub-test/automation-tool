@@ -16,6 +16,7 @@ public class FieldElement {
     public static final String ADD_BUTTON = XPathBuilder.getXPathByText("Add");
     public static final String UPDATE_BUTTON = XPathBuilder.getXPathByText("Update");
     public static final String FIELD_BLOCK = "(//*[@class='css-11x1d9z'])[%d]";
+    public static final String BLOCK = "(//*[@class='MuiBox-root css-19idom'])[%d]";
     public static final String DEPENDABLE_FIELD_BLOCK = "//*[@class='MuiBox-root css-19idom'][%d]";
     public static final String SPECIFIC_BLOCK = "((//*[@class='css-11x1d9z'])[%d]/div/div/div/p)[1]";
     public static final String MENU_BLOCK = "(//*[@class='css-u4p24i'])[%d]";
