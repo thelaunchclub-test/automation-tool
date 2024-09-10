@@ -47,6 +47,7 @@ public class ExtentReporterInitializer extends AbstractExtentReporter {
             case KLOV, AVENT, EMAIL -> null;
         };
     }
+
     public static Reporter create(final String path) {
         final ExtentReportType reportType = ExtentReportType.get(map.get("extentReportType"));
 

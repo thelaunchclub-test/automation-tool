@@ -36,6 +36,9 @@ public final class LogImpl implements Log {
     private final ExtentTest extentTest;
 
     public LogImpl(final ExtentTest extentTest) {
+        if (extentTest == null) {
+            throw new IllegalArgumentException("ExtentTest cannot be null");
+        }
         this.extentTest = extentTest;
     }
 

@@ -34,11 +34,13 @@ public final class ReportTestImpl implements ReportTest  {
     private final ExtentReports reports;
     private final Map<ReportTest, ExtentTest> test;
     private ExtentTest extentTest;
+//    private final ExtentLogger extentLogger;
 
     public ReportTestImpl(final ExtentTest extentTest) {
         this.reports = new ExtentReports();
         this.extentTest = extentTest;
         this.test = new HashMap<>();
+//        this.extentLogger = ExtentLogger.getInstance();
     }
 
     /**
@@ -105,6 +107,7 @@ public final class ReportTestImpl implements ReportTest  {
     public ReportTest createTest(final String testName, final String description) {
         this.extentTest = reports.createTest(testName, description);
 
+//        extentLogger.setExtentTest(extentTest);
         this.test.put(this, extentTest);
 
         return this;

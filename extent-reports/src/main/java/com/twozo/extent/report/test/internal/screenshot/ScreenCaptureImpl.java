@@ -65,4 +65,11 @@ public final class ScreenCaptureImpl implements ScreenCapture {
 
         return this;
     }
+
+    @Override
+    public ScreenCapture fromPath(final String path, final String details) {
+        extentTest.addScreenCaptureFromPath(path, details);
+
+        return this;
+    }
 }
