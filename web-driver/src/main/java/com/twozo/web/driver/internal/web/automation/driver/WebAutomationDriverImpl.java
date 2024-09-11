@@ -1,6 +1,7 @@
 package com.twozo.web.driver.internal.web.automation.driver;
 
 import com.twozo.commons.util.ConfigFileReader;
+import com.twozo.web.driver.internal.cookie.SessionCookieImpl;
 import com.twozo.web.driver.internal.navigation.WebNavigatorImpl;
 import com.twozo.web.driver.internal.page.information.PageInformationProviderImpl;
 import com.twozo.web.driver.internal.screen.capturer.ScreenCapturerImpl;
@@ -72,6 +73,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     ScreenCapturer screenCapturer;
     MouseActions mouseActions;
     ElementFinder elementFinder;
+    SessionCookie sessionCookie;
 
     public WebAutomationDriverImpl(@NonNull final WebDriver driver) {
         this.driver = driver;
@@ -85,6 +87,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
         this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
+        this.sessionCookie = new SessionCookieImpl(driver.manage());
     }
 
     public WebAutomationDriverImpl() {
@@ -99,6 +102,7 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
         this.explicitWaitHandler = new ExplicitWaitHandlerImpl(driver);
         this.screenCapturer = new ScreenCapturerImpl(driver);
         this.mouseActions = new MouseActionsImpl(driver, new Actions(driver));
+        this.sessionCookie = new SessionCookieImpl(driver.manage());
     }
 
     private static RemoteWebDriver getDriver(@NonNull final BrowserType browserType) {
@@ -215,6 +219,18 @@ public class WebAutomationDriverImpl implements WebAutomationDriver {
     @Override
     public MouseActions getMouseActionsHandler() {
         return mouseActions;
+    }
+
+    /**
+     * <p>
+     * Returns a {@link SessionCookie} for managing session cookies.
+     * </p>
+     *
+     * @return A {@link SessionCookie} for handling cookies within the session.
+     */
+    @Override
+    public SessionCookie getSessionCookie() {
+        return sessionCookie;
     }
 
     /**
