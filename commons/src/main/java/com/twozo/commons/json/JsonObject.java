@@ -2,6 +2,7 @@
 package com.twozo.commons.json;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -49,6 +50,15 @@ public interface JsonObject {
      * @return true if the {@link JsonObject} contains the key, false otherwise.
      */
     boolean containsKey(final String key);
+
+    /**
+     * <p>
+     * Returns a set of all keys contained in this {@link JsonObject}.
+     * </p>
+     *
+     * @return A {@link Set} of strings representing the keys in this {@link JsonObject}.
+     */
+    Set<String> keySet();
 
     /**
      * <p>

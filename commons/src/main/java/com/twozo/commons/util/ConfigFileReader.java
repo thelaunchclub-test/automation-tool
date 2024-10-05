@@ -34,7 +34,7 @@ public final class ConfigFileReader {
      */
     public static Map<String, String> get(final String fileName) {
         final File file = new File(EnvUtility.getConfDirectory(), fileName);
-
+        System.out.println(EnvUtility.getConfDirectory());
         if (!file.exists()) {
             LOGGER.error("Commons : The given file path '{}' is not found", file.getAbsolutePath());
             throw ErrorCode.get(CommonsErrorCode.FILE_NOT_FOUND);
