@@ -8,6 +8,7 @@ import lombok.NonNull;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * <p>
@@ -67,6 +68,16 @@ public final class JsonObjectImpl implements JsonObject {
     @Override
     public boolean containsKey(final String key) {
         return map.containsKey(key);
+    }
+
+    /**
+     * Returns all keys in the JsonObject as a Set of Strings.
+     *
+     * @return A Set containing all keys in this JsonObject.
+     */
+    @Override
+    public Set<String> getKeys() {
+        return map.keySet();
     }
 
     /**
