@@ -7,6 +7,7 @@ import com.twozo.web.element.model.LocatorType;
 import lombok.NonNull;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,10 +19,12 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
 
     private final WebDriver webDriver;
     private final WebDriverWait wait;
+    private final WebDriverWait shortWait;
 
     public ExplicitWaitHandlerImpl(@NonNull final WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        this.shortWait = new WebDriverWait(webDriver,Duration.ofSeconds(1));
     }
 
     /**
@@ -31,8 +34,8 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
      */
     @Override
     public void waitTillVisible(@NonNull final Element element) {
-        wait.until(ExpectedConditions.visibilityOf(webDriver.findElement(getByValue(element.locatorType(),
-                element.value()))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(getByValue(element.locatorType(),
+                element.value())));
     }
 
     /**
@@ -43,6 +46,28 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
     @Override
     public void WaitTillClickable(@NonNull final Element element) {
         wait.until(ExpectedConditions.elementToBeClickable(webDriver.findElement(getByValue(element.locatorType(),
+                element.value()))));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param element The {@link Element} to wait for visibility.
+     */
+    @Override
+    public void shortWaitTillVisible(@NonNull final Element element) {
+        shortWait.until(ExpectedConditions.visibilityOfElementLocated(getByValue(element.locatorType(),
+                element.value())));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param element The {@link Element} to be clickable.
+     */
+    @Override
+    public void shortWaitTillClickable(@NonNull final Element element) {
+        shortWait.until(ExpectedConditions.elementToBeClickable(webDriver.findElement(getByValue(element.locatorType(),
                 element.value()))));
     }
 
