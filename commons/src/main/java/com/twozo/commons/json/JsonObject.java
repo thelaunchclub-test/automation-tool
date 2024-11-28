@@ -51,6 +51,14 @@ public interface JsonObject {
      */
     boolean containsKey(final String key);
 
+
+    /**
+     * Returns all keys in the JsonObject as a Set of Strings.
+     *
+     * @return A Set containing all keys in this JsonObject.
+     */
+    Set<String> getKeys();
+
     /**
      * <p>
      * Returns a set of all keys contained in this {@link JsonObject}.
