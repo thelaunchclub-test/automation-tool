@@ -32,6 +32,16 @@ public interface ExplicitWaitHandler {
 
     /**
      * <p>
+     * Waits until the specified {@link Element} is no longer visible on the web page.
+     * Checks the invisibility of the given element until the condition is met or a timeout occurs.
+     * </p>
+     *
+     * @param element The {@link Element} to wait for invisibility.
+     */
+    void waitTillInvisible(final Element element);
+
+    /**
+     * <p>
      * Waits until the specified {@link Element} is clickable on the web page.
      * checks the clickability of the given element until the condition is met or a timeout occurs.
      * </p>

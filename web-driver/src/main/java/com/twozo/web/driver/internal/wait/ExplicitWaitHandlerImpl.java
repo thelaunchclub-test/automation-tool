@@ -24,7 +24,7 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
     public ExplicitWaitHandlerImpl(@NonNull final WebDriver webDriver) {
         this.webDriver = webDriver;
         this.wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        this.shortWait = new WebDriverWait(webDriver,Duration.ofSeconds(1));
+        this.shortWait = new WebDriverWait(webDriver, Duration.ofSeconds(1));
     }
 
     /**
@@ -36,6 +36,17 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
     public void waitTillVisible(@NonNull final Element element) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(getByValue(element.locatorType(),
                 element.value())));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param element The {@link Element} to wait for invisibility.
+     */
+    @Override
+    public void waitTillInvisible(Element element) {
+        wait.until(ExpectedConditions.invisibilityOf(webDriver.findElement(getByValue(element.locatorType(),
+                element.value()))));
     }
 
     /**
