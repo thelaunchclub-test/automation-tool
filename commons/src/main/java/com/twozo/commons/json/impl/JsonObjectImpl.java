@@ -71,6 +71,16 @@ public final class JsonObjectImpl implements JsonObject {
     }
 
     /**
+     * Returns all keys in the JsonObject as a Set of Strings.
+     *
+     * @return A Set containing all keys in this JsonObject.
+     */
+    @Override
+    public Set<String> getKeys() {
+        return map.keySet();
+    }
+
+    /**
      * <p>
      * Returns a set of all keys contained in this {@link JsonObject}.
      * </p>
