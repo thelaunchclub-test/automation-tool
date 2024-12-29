@@ -8,6 +8,7 @@ import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Collection;
