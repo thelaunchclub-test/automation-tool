@@ -26,7 +26,7 @@ public final class EnvUtility {
     private static final String AUTOMATION_DIRECTORY = Paths.get(USER_HOME,"automation").toString();
     private static final String FILE = Paths.get(AUTOMATION_DIRECTORY,"file").toString();
     private static final String JSON = Paths.get(AUTOMATION_DIRECTORY,"json").toString();
-    private static final String CONF = Paths.get(USER_DIRECTORY,"tlc-crm-test","base","src","test","resources").toString();
+    private static final String CONF = Paths.get(USER_DIRECTORY,"tlc-crm-test","crm-automation-base","src","test","resources").toString();
 
     /**
      * Returns the path of the user's home directory.
