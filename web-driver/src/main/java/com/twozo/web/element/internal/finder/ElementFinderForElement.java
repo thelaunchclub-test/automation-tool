@@ -1,15 +1,15 @@
 package com.twozo.web.element.internal.finder;
 
+import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
 import com.twozo.web.element.model.Element;
 import com.twozo.web.element.service.WebPageElement;
-import com.twozo.web.element.internal.web.page.element.WebPageElementImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 import org.openqa.selenium.WebElement;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -45,21 +45,21 @@ public final class ElementFinderForElement extends AbstractElementFinder {
      * {@inheritDoc}
      *
      * @param element The {@link Element}  containing locator type and value.
-     * @return a {@link Collection} of {@link WebPageElement} representing the located web page elements.
+     * @return a {@link List} of {@link WebPageElement} representing the located web page elements.
      */
     @Override
-    public Collection<WebPageElement> getWebPageElements(@NonNull final Element element) {
+    public List<WebPageElement> getWebPageElements(@NonNull final Element element) {
         return getCommonElements(this.element.findElements(getByValue(element.locatorType(), element.value())));
     }
 
     /**
      * {@inheritDoc}
      *
-     * @param elements A {@link Collection} of {@link Element}.
+     * @param elements A {@link List} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findBelowElement(@NonNull final Collection<Element> elements) {
+    public WebPageElement findBelowElement(@NonNull final List<Element> elements) {
         final Map<Boolean, Element> booleanFinderMap = get(elements);
         final Element knownElement = booleanFinderMap.get(true);
         final Element unKnownElement = booleanFinderMap.get(false);
@@ -71,11 +71,11 @@ public final class ElementFinderForElement extends AbstractElementFinder {
     /**
      * {@inheritDoc}
      *
-     * @param elements A {@link Collection} of {@link Element}.
+     * @param elements A {@link List} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findAboveElement(@NonNull final Collection<Element> elements) {
+    public WebPageElement findAboveElement(@NonNull final List<Element> elements) {
         final Map<Boolean, Element> booleanFinderMap = get(elements);
         final Element knownElement = booleanFinderMap.get(true);
         final Element unKnownElement = booleanFinderMap.get(false);
@@ -87,11 +87,11 @@ public final class ElementFinderForElement extends AbstractElementFinder {
     /**
      * {@inheritDoc}
      *
-     * @param elements A {@link Collection} of {@link Element}.
+     * @param elements A {@link List} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findLeftElement(@NonNull final Collection<Element> elements) {
+    public WebPageElement findLeftElement(@NonNull final List<Element> elements) {
         final Map<Boolean, Element> booleanFinderMap = get(elements);
         final Element knownElement = booleanFinderMap.get(true);
         final Element unKnownElement = booleanFinderMap.get(false);
@@ -103,11 +103,11 @@ public final class ElementFinderForElement extends AbstractElementFinder {
     /**
      * {@inheritDoc}
      *
-     * @param elements A {@link Collection} of {@link Element}.
+     * @param elements A {@link List} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findRightElement(@NonNull final Collection<Element> elements) {
+    public WebPageElement findRightElement(@NonNull final List<Element> elements) {
         final Map<Boolean, Element> booleanFinderMap = get(elements);
         final Element knownElement = booleanFinderMap.get(true);
         final Element unKnownElement = booleanFinderMap.get(false);
@@ -119,11 +119,11 @@ public final class ElementFinderForElement extends AbstractElementFinder {
     /**
      * {@inheritDoc}
      *
-     * @param elements A {@link Collection} of {@link Element}.
+     * @param elements A {@link List} of {@link Element}.
      * @return A {@link WebPageElement} representing the located web page element.
      */
     @Override
-    public WebPageElement findNearElement(@NonNull final Collection<Element> elements) {
+    public WebPageElement findNearElement(@NonNull final List<Element> elements) {
         final Map<Boolean, Element> booleanFinderMap = get(elements);
         final Element knownElement = booleanFinderMap.get(true);
         final Element unKnownElement = booleanFinderMap.get(false);
@@ -134,14 +134,14 @@ public final class ElementFinderForElement extends AbstractElementFinder {
 
     /**
      * <p>
-     * Converts a {@link Collection} of {@link Element} into a {@link Map} where the key is a boolean indicating
+     * Converts a {@link List} of {@link Element} into a {@link Map} where the key is a boolean indicating
      * whether the locator is known or not, and the value is the Element object itself.
      * </p>
      *
-     * @param elements A {@link Collection} of {@link Element} into a {@link Map}.
+     * @param elements A {@link List} of {@link Element} into a {@link Map}.
      * @return A {@link Map}.
      */
-    private Map<Boolean, Element> get(@NonNull final Collection<Element> elements) {
+    private Map<Boolean, Element> get(@NonNull final List<Element> elements) {
         return elements.stream().collect(Collectors.toMap(Element::isKnown, Function.identity()));
     }
 }

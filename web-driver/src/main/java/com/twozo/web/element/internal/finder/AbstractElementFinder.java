@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -94,15 +94,15 @@ public abstract class AbstractElementFinder implements ElementFinder {
 
     /**
      * <p>
-     * Retrieves a {@link Collection} of {@link WebPageElement} from the provided
-     * {@link Collection} of {@link WebElement}.
+     * Retrieves a {@link List} of {@link WebPageElement} from the provided
+     * {@link List} of {@link WebElement}.
      * </p>
      *
-     * @param webElements The {@link Collection} of {@link WebElement} .
-     * @return A {@link Collection} of {@link WebPageElement}.
+     * @param webElements The {@link List} of {@link WebElement} .
+     * @return A {@link List} of {@link WebPageElement}.
      */
-    protected Collection<WebPageElement> getCommonElements(@NonNull final Collection<WebElement> webElements) {
-        final Collection<WebPageElement> webPageElements = new ArrayList<>();
+    protected List<WebPageElement> getCommonElements(@NonNull final List<WebElement> webElements) {
+        final List<WebPageElement> webPageElements = new ArrayList<>();
 
         for (final WebElement element : webElements) {
             webPageElements.add(new WebPageElementImpl(element));

@@ -2,10 +2,9 @@ package com.twozo.web.element.service;
 
 import com.twozo.web.element.model.Element;
 
-import lombok.NonNull;
 import org.openqa.selenium.By;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -24,7 +23,7 @@ import java.util.Collection;
  * {@code
  * ElementFinder elementLocator = webAutomationDriver.getElementFinder();
  * WebPageElement singleElement = elementLocator.getWebPageElement(LocatorType.ID, "element-id");
- * Collection<WebPageElement> multipleElements = elementLocator.getWebPageElements
+ * List<WebPageElement> multipleElements = elementLocator.getWebPageElements
  *                                          (LocatorType.CLASS_NAME, "element-class");
  * WebPageElement elementBelow = elementLocator.findBelowElement(LocatorType.CSS_SELECTOR, "below-element-css",
  *                                          LocatorType.ID, "above-element-id");
@@ -50,12 +49,12 @@ public interface ElementFinder {
 
     /**
      * <p>
-     * Returns a {@link Collection} of {@link WebPageElement} based on the given locator type and value.
+     * Returns a {@link List} of {@link WebPageElement} based on the given locator type and value.
      * </p>
      *
-     * @return A {@link Collection} of {@link WebPageElement} representing the located web page elements.
+     * @return A {@link List} of {@link WebPageElement} representing the located web page elements.
      */
-    Collection<WebPageElement> getWebPageElements(final Element element);
+    List<WebPageElement> getWebPageElements(final Element element);
 
     /**
      * <p>
@@ -64,7 +63,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findBelowElement(final Collection<Element> elements);
+    WebPageElement findBelowElement(final List<Element> elements);
 
     /**
      * <p>
@@ -73,7 +72,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findAboveElement(final Collection<Element> elements);
+    WebPageElement findAboveElement(final List<Element> elements);
 
     /**
      * <p>
@@ -82,7 +81,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findLeftElement(final Collection<Element> elements);
+    WebPageElement findLeftElement(final List<Element> elements);
 
     /**
      * <p>
@@ -91,7 +90,7 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findRightElement(final Collection<Element> elements);
+    WebPageElement findRightElement(final List<Element> elements);
 
     /**
      * <p>
@@ -100,5 +99,5 @@ public interface ElementFinder {
      *
      * @return A {@link WebPageElement} representing the located web page element.
      */
-    WebPageElement findNearElement(final Collection<Element> elements);
+    WebPageElement findNearElement(final List<Element> elements);
 }
