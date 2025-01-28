@@ -60,7 +60,7 @@ import java.util.Objects;
 @NonNull
 public class WebAutomationDriverImpl implements WebAutomationDriver {
 
-    private static final Map<String, String> map = ConfigFileReader.get("Config.Properties");
+    private static final Map<String, String> map = ConfigFileReader.get("config.properties");
 
     WebDriver driver;
     WebNavigator webNavigator;
