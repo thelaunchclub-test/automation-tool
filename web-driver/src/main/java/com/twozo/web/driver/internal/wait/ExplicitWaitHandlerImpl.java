@@ -44,8 +44,8 @@ public class ExplicitWaitHandlerImpl implements ExplicitWaitHandler {
      */
     @Override
     public void waitTillInvisible(Element element) {
-        wait.until(ExpectedConditions.invisibilityOf(webDriver.findElement(getByValue(element.locatorType(),
-                element.value()))));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(getByValue(element.locatorType(),
+                element.value())));
     }
 
     /**

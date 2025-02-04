@@ -1,6 +1,7 @@
 package com.twozo.extent.report.reporter.util;
 
 import com.twozo.commons.exception.ErrorCode;
+import com.twozo.commons.util.EnvUtility;
 import com.twozo.extent.report.reporter.error.code.ExtentReportErrorCode;
 import lombok.Value;
 import org.slf4j.Logger;
@@ -39,8 +40,8 @@ public class PropertyReader {
      * @return         A map containing key-value pairs of properties read from the file.
      */
     public static Map<String, String> get(String fileName) throws IOException {
-        final File file = new File(ENVUtility.getConf(), fileName);
-
+        final File file = new File(EnvUtility.getConfDirectory(), fileName);
+        System.out.println(EnvUtility.getConfDirectory());
         if (!file.exists()) {
             LOGGER.error("PropertyReader : Properties file not found" + fileName);
             throw ErrorCode.get(ExtentReportErrorCode.FILE_NOT_FOUND);
